@@ -7,6 +7,9 @@ Code example about studies
 - Javascript
 - HTML
 - CSS
+- C++
+- PHP
+- SQL
 
 ## Note 
 This project is using to study
