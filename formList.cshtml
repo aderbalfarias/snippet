@@ -1,0 +1,45 @@
+<section id="ContatosList">
+    @for (int i = 0; i < Model.Contatos.Count; i++)
+    {
+        <div class="form-content-block no-margin-top" id="@i">
+            <input type="hidden" id="@("Contatos_" + i + "_Id")" name="@("Contatos[" + i + "].Id")" value="@Model.Contatos[i].Id">
+
+            <div class="col-xs-12 col-md-6">
+                <div class="form-group">
+                    <label for="NomeContato">Nome do Contato</label>
+                    <span class="text-danger"></span>
+                    <input class="form-control" data-val="true" data-val-required="Campo Obrigatório" id="@("Contatos_" + i + "_Nome")" name="@("Contatos[" + i + "].Nome")" type="text" value="@Model.Contatos[i].Nome">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="NomeContato" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
+                <div class="form-group">
+                    <label for="Email">E-Mail</label>
+                    <span class="text-danger"></span>
+                    <input class="form-control" data-val="true" data-val-email="E-mail Inválido" data-val-required="Campo Obrigatório" id="@("Contatos_" + i + "_Email")" name="@("Contatos[" + i + "].Email")" type="email" value="@Model.Contatos[i].Email">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Email" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
+                <div class="form-group">
+                    <label for="Cargo">Cargo</label>
+                    <span class="text-danger"></span>
+                    <input class="form-control" data-val="true" data-val-required="Campo Obrigatório" id="@("Contatos_" + i + "_Cargo")" name="@("Contatos[" + i + "].Cargo")" type="text" value="@Model.Contatos[i].Cargo">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Cargo" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-md-6">
+                <div class="form-group">
+                    <label for="Telefone">Telefone</label>
+                    <span class="text-danger"></span>
+                    <input class="form-control telefone" data-val="true" data-val-required="Campo Obrigatório" id="@("Contatos_" + i + "_TelefoneFixo")" name="@("Contatos[" + i + "].TelefoneFixo")" placeholder="(99) 9999-9999" type="text" value="@Model.Contatos[i].TelefoneFixo">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Telefone" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    }
+</section>
