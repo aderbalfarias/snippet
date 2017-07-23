@@ -1,0 +1,47 @@
+Lista de Referências:
+
+Criar Projeto com Change Authentication: No Authentication
+
+Deletar Arquivos:
+Project_Readme.html
+
+Remover a linha abaixo do web.config:
+<compilation debug="true" targetFramework="4.5.1" />
+
+------------------------------------------------------------------
+Adicionar Dlls:
+- Atualizar Mvc:
+Install-Package Microsoft.AspNet.Mvc -Version 5.1.2
+
+- Owin:
+Install-Package Microsoft.Owin
+Install-Package Microsoft.Owin.Host.SystemWeb
+Install-Package Microsoft.Owin.Security
+Install-Package Microsoft.Owin.Security.Cookies
+Install-Package Microsoft.Owin.Security.OAuth
+
+- Identity:
+Install-Package Microsoft.AspNet.Identity.Owin -Version 2.0.1
+
+-AutoMapper:
+Install-Package AutoMapper -Version 3.3.0
+
+-Ninject:
+Install-Package Ninject	
+Install-Package Ninject.MVC
+Install-Package Ninject.Web.Common -Version 3.2.2
+Install-Package WebActivatorEx
+
+------------------------------------------------------------------
+
+Na pasta App_Start adicionar o Startup.cs com Cookie do Owin, e NinjectWebCommon.cs caso não seja adicionado pelo nuget
+
+Adicionar a pasta Mapper ao projeto com os 3 arquivos de configuração:
+AutoMapperConfig.cs
+DomainToModelMappingProfile.cs
+ModelToDomainMappingProfile.cs
+
+No arquivo Global.asax adicionar as seguintes linhas:
+    AutoMapperConfig.RegisterMappings();
+	AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
+
