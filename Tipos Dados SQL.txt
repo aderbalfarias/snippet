@@ -1,0 +1,349 @@
+TINYINT ? 1 byte:
+
+Valores numéricos inteiros variando de 0 até 256.
+
+SMALLINT ? 2 bytes:
+
+Valores numéricos inteiros variando de -32.768 até 32.767.
+
+INT ? 4 bytes:
+
+Valores numéricos inteiros variando de -2.147.483.648 até 2.147.483.647.
+
+BIGINT ? 8 bytes:
+
+Valores numéricos inteirosvariando de -92.23.372.036.854.775.808 até 9.223.372.036.854.775.807.
+
+BIT ? 1 bit:
+
+Somente pode assumir os valores 0 ou 1. Utilizado para armazenar valores lógicos.
+
+DECIMAL(I,D) e NUMERIC(I,D) ? 19 bytes:
+
+Armazenam valores numéricos inteiros com casas decimais utilizando precisão. "I" deve ser substituído pela quantidade de dígitos total do número e "D"deve ser substituído pela quantidade de dígitos da parte decimal (após a vírgula). "DECIMAL" e "NUMERIC" possuem a mesma funcionalidade, porém"DECIMAL"faz parte do padrão ANSI e"NUMERIC"é mantido por compatibilidade. Por exemplo, DECIMAL(8,2) armazena valores numéricos decimais variando de -999999,99 até 999999,99.
+
+É importante lembrar sempre que o SQL Server internamente armazena o separador decimal como ponto (.) e o separador de milhar como vírgula (,). Essas configurações INDEPENDEM de como o Windows está configurado no Painel de Controle e para"DECIMAL"e"NUMERIC", somente o separador decimal (.) é armazenado.
+
+SMALLMONEY ? 4 bytes:
+
+Valores numéricos decimais variando de -214.748,3648 até 214.748,3647.
+
+MONEY ? 8 bytes:
+
+Valores numéricos decimais variando de -922.337.203.685.477,5808 até 922.337.203.685.477,5807.
+
+Atenção: "MONEY" e "SMALLMONEY"são limitados a quatro pontos decimais. Use o tipo de dados decimal, se forem necessários mais pontos decimais.
+
+REAL ? 4 bytes:
+
+Valores numéricos aproximados com precisão de ponto flutuante, indo de -3.40E + 38 até 3.40E + 38.
+
+FLOAT ? 8 bytes:
+
+Valores numéricos aproximados com precisão de ponto flutuante, indo de -1.79E + 308 até 1.79E + 308.
+
+DATE ? 3 bytes:
+
+Armazena data variando de 01-01-0001 até 31-12-9999.
+
+SMALLDATETIME ? 4 bytes:
+
+Armazena hora e data variando de 1 de janeiro de 1900 até 6 de junho de 2079. A precisão de hora é armazenada até os segundos.
+
+DATETIME ? 8 bytes:
+
+Dados de data e hora de 1 de janeiro de 1753 a 31 de dezembro de 9999, com precisão de três centésimos de segundo ou 3,33 milissegundos. Os valores são arredondados em incrementos de .000, .003 ou .007 milissegundos.Armazenados como dois inteiros de 4 bytes. Os primeiros 4 bytes armazenam o número de dias antes ou depois de base date, 1º de janeiro de 1900.A data base é a data de referência do sistema.Valores de date time anteriores a 1º de janeiro de 1753 não são permitidos.Os outros 4 bytes armazenam a hora do dia representada como o número de milissegundos depois da meia-noite. Os segundos têm um intervalo válido de 0-59.
+
+DATETIME2 (fractional seconds precision) ? tem 6 bytes para precisões menores que 3; 7 bytes para precisões 3 e 4. Todas as outras precisões exigem 8 bytes:De 0001-01-01 a 9999-12-31.
+
+Define uma data que é combinada com uma hora de um dia de 24 horas. "DATETIME2"pode ser considerada uma extensão do tipo "datetime" existente com um intervalo maior de datas, uma precisão fracionária padrão mais ampla e precisão opcional especificada pelo usuário.
+
+CHAR(N):
+
+Armazena N caracteres fixos (até 8.000) no formato não Unicode.Se a quantidade de caracteres armazenada no campo for menor que o tamanho total especificado em N, o resto do campo é preenchido com espaços em branco.
+
+VARCHAR(N):
+
+Armazena N caracteres (até 8.000) no formato não Unicode.Se a quantidade de caracteres armazenada no campo for menor que o tamanho total especificado em N, o resto do campo não é preenchido.
+
+TEXT:
+
+Armazena caracteres (até 2.147.483.647) no formato não Unicode. Se a quantidade de caracteres armazenada no campo for menor que 2.147.483.647, o resto do campo não é preenchido.Procure não utilizar este tipo de dado diretamente, pois existem funções específicas para trabalhar com este tipo de dado.
+
+NCHAR(N):
+
+Armazenam N caracteres fixos (até 4.000) no formato Unicode. Se a quantidade de caracteres armazenada no campo for menor que o tamanho total especificado em N, o resto do campo é preenchido com espaços em branco.
+
+NVARCHAR(N):
+
+Armazenam N caracteres (até 4.000) no formato Unicode. Se a quantidade de caracteres armazenada no campo for menor que o tamanho total especificado em N, o resto do campo não é preenchido.
+
+NTEXT:
+
+Armazena caracteres (até 1.073.741.823) no formato Unicode. Se a quantidade de caracteres armazenada no campo for menor que 1.073.741.823, o resto do campo não é preenchido.Procure não utilizar este tipo de dado diretamente, pois existem funções específicas para trabalhar com este tipo de dado.
+
+Observação: Não há mais suporte para "ntext" nas funções de cadeia de caracteres.
+
+BINARY(n):
+
+Dados binários de comprimento fixo com um comprimento máximo de 8.000 bytes. Comprimento padrão = 1.O tamanho de armazenamento é fixo, que é o comprimento em bytes declarado no tipo.
+
+VARBINARY(n):
+
+Dados binários de comprimento variável com um comprimento máximo de 8.000 bytes. Comprimento padrão = 1.O tamanho do armazenamento varia. É o comprimento do valor em bytes.
+
+IMAGE:
+
+Dados binários de comprimento variável com um comprimento máximo de 2^30-1 (1,073,741,823) bytes.O armazenamento é o comprimento do valor em bytes.
+
+UNIQUEIDENTIFIER:
+
+Um GUID (identificador global exclusivo). O tamanho de armazenamento é 16 bytes.
+
+IDENTITY [(s, i)]:
+
+Essa é uma propriedade de uma coluna de dados, não um tipo de dados distinto.Somente colunas de dados com tipos de dados inteiros podem ser usadas para colunas de identidade.Uma tabela só pode ter uma coluna de identidade.Uma propagação e um incremento podem ser especificados e a coluna não pode ser atualizada.
+
+s (propagação) = valor inicial
+i(incremento) = valor do incremento
+ROWGUIDCOL:
+
+Essa é uma propriedade de uma coluna de dados, não um tipo de dados distinto.É uma coluna em uma tabela definida pelo uso do tipo de dados uniqueidentifier.Uma tabela só pode ter uma coluna ROWGUIDCOL.
+
+Manipulação de Datas
+SET NOCOUNT ON;
+
+DECLARE
+     @dh_hoje DATE,
+     @dh_small SMALLDATETIME,
+     @dh_Ontem SMALLDATETIME,
+     @dh_hr_00 SMALLDATETIME,
+     @dh_hr_23 SMALLDATETIME,
+     @dh_ini_mes SMALLDATETIME,
+     @dh_fim_mes SMALLDATETIME,
+     @dt_ini_mes DATE,
+     @dt_fim_mes DATE,
+     @hr_qqr TIME(4),
+     @dh_hoje8 DATETIME;
+
+SET @dh_hoje = GETDATE();
+
+SET @dh_hoje8 = GETDATE();
+
+SET @dh_small = GETDATE();
+
+SET @dh_Ontem = GETDATE() - 1;
+
+SET @hr_qqr = @dh_small;
+
+SELECT
+     CAST(@dh_hoje8 AS time(7)) AS 'time'
+     ,CAST(@dh_hoje8 AS date) AS 'date'
+     ,CAST(@dh_hoje8 AS smalldatetime) AS 'smalldatetime'
+     ,CAST(@dh_hoje8 AS datetime) AS 'datetime';
+
+time
+
+date
+
+smalldatetime
+
+datetime
+
+10:19:32.9770000
+
+2014-08-05
+
+2014-08-05 10:20:00
+
+2014-08-05 10:19:32.977
+
+SELECT @dh_hoje AS Hoje,
+     CONVERT(CHAR(10),@dh_hoje,103) AS 'Hoje fmt',
+     CONVERT(CHAR(10),@dh_hoje,3) AS 'Hoje fmt 2',
+     @hr_qqr AS 'Hora apontada';
+
+Hoje
+
+Hoje fmt
+
+Hoje fmt 2
+
+Hora apontada
+
+2014-08-05
+
+05/08/2014
+
+05/08/14
+
+10:20:00.0000
+
+SELECT @dh_small AS 'Dt.armazenada',
+     CONVERT(CHAR(10),@dh_small,103) AS 'Convertida DD/MM/AAAA',
+     CONVERT(CHAR(10),@dh_small,108) AS 'Convertida em HH:MM:SS',
+     CONVERT(CHAR(10),@dh_small,3) AS 'Convertida em DD/MM/AA';
+
+Dt.armazenada
+
+Convertida DD/MM/AAAA
+
+Convertida em HH:MM:SS
+
+Convertida em DD/MM/AA
+
+2014-08-04 10:20:00
+
+04/08/2014
+
+10:20:00
+
+04/08/14
+
+SELECT CASE WHEN @dh_hoje > @dh_Ontem
+     THEN 'data de hoje é maior'
+     ELSE 'data de hoje é menor' END AS 'Teste de datas'
+
+Teste de datas
+
+data de hoje é maior
+
+-- evitem, ao máximo, usar funções em pesquisas. Mesmo o confronto com a data vigente
+
+-- deve ser quando esta estiver numa variável.
+
+-- pode ocorrer pesquisa sobre ocorrencias de um único dia.
+
+SELECT @dh_hr_00 =
+     CONVERT( SMALLDATETIME, ( CONVERT( VARCHAR(10), @dh_Ontem, 102) ) );
+
+SELECT @dh_hr_23 = DATEADD( mi, 59, @dh_hr_00 );
+
+SELECT @dh_hr_23 = DATEADD( hh, 23, @dh_hr_23 );
+
+SELECT @dh_hr_00 AS 'Hora Zero', @dh_hr_23 AS 'Hora Final';
+
+Hora Zero
+
+Hora Final
+
+2014-08-04 00:00:00
+
+2014-08-04 23:59:00
+
+-- WHERE <campo-data> BETWEEN @dh_hr_00 AND @dh_hr_23;
+
+-- obter o 1º dia, e último, do mês
+
+-- 1º dia do mês
+
+SELECT @dt_ini_mes = DATEADD(dd, -DAY(@dh_hoje) + 1, @dh_hoje);
+
+-- último dia do mês
+
+SELECT @dt_fim_mes = DATEADD(dd, -DAY(DATEADD(mm, 1, @dh_hoje)), DATEADD(mm, 1, @dh_hoje));
+
+SELECT @dt_ini_mes AS '1º dia do mês', @dt_fim_mes AS 'último dia do mês';
+
+1º dia do mês
+
+último dia do mês
+
+2014-08-01
+
+2014-08-31
+
+-- na versão 2012, já existe função específica p/ final do mês
+
+-- 1º dia do mês
+
+SELECT @dt_ini_mes = DATEADD(dd, 1, EOMONTH(@dh_hoje, -1))
+
+-- último dia do mês
+
+SELECT @dt_fim_mes = EOMONTH(@dh_hoje)
+
+SELECT @dt_ini_mes AS '1º dia do mês (12)',
+     @dt_fim_mes AS 'último dia do mês (12)';
+
+1º dia do mês (12)
+
+último dia do mês (12)
+
+2014-08-01
+
+2014-08-31
+
+-- obter o 1º dia, e último, do mês --> Quando necessita de hora
+
+-- 1º dia do mês
+
+SELECT @dh_ini_mes = DATEADD(dd, -DAY(@dh_hoje8) + 1, @dh_hoje8);
+
+SELECT @dh_ini_mes = CONVERT( SMALLDATETIME, ( CONVERT( VARCHAR(10), @dh_ini_mes, 102) ) );
+
+-- último dia do mês
+
+SELECT @dh_fim_mes = DATEADD(dd, -DAY(DATEADD(mm, 1, @dh_hoje8)), DATEADD(mm, 1, @dh_hoje));
+
+SELECT @dh_fim_mes = DATEADD( hh, 23, @dh_fim_mes );
+
+SELECT @dh_fim_mes = DATEADD( mi, 59, @dh_fim_mes );
+
+SELECT @dh_ini_mes AS '1º dia do mês', @dh_fim_mes AS 'último dia do mês';
+
+1º dia do mês
+
+último dia do mês
+
+2014-08-01 00:00:00
+
+2014-08-31 23:59:00
+
+Manipulação de Valores
+-- prefira os tipos MONEY e SMALLMONEY, que processam mais rápido.
+
+DECLARE
+     @mon1 MONEY,
+     @mon2 SMALLMONEY,
+     @mon3 SMALLMONEY,
+     @mon4 MONEY,
+     @num1 DECIMAL(19,4),
+     @num2 DECIMAL(19,4),
+     @num3 DECIMAL(19,4),
+     @num4 DECIMAL(19,4);
+
+SELECT
+     @mon1 = 100,
+     @mon2 = 0.19,
+     @mon3 = 0.19999,
+     @num1 = 100,
+     @num2 = 339,
+     @num3 = 10000;
+
+SET @mon4 = @mon1/@num2*@num3;
+
+SET @num4 = @num1/@num2*@num3;
+
+SELECT @mon4 AS moneyresult,
+     @num4 AS numericresult,
+     @mon2 AS smallmoney2,
+     @mon3 AS smallmoney3;
+
+moneyresult
+
+numericresult
+
+smallmoney2
+
+smallmoney3
+
+2949,8525
+
+2949.8525
+
+0,19
+
+0,20
+
+-- cuidado para não efetuar operações entre DECIMAL e MONEY/SMALLMONEY, quando existirem casas decimais; o resultado pode ser diferente. 
