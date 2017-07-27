@@ -1,8 +1,8 @@
 # Example
 
-Code example about studies 
+Examples of code snippets for consultations and studies
 
-## Languages
+## Languages used
 - C#
 - Javascript
 - HTML
@@ -12,5 +12,4 @@ Code example about studies
 - SQL
 
 ## Note 
-This project is using to study
-
+This project serves as a basis for storing parts of codes or files containing content that the author believes may be useful in the future.
