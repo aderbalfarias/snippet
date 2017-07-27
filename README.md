@@ -2,7 +2,7 @@
 
 Examples of code snippets for consultations and studies
 
-## Languages used
+## Languages Used
 - C#
 - Javascript
 - HTML
