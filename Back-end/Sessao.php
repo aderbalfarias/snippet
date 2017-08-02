@@ -1,22 +1,33 @@
 <?php 
-//$sql = select no banco
-
-if (mysql_num_rows($sql)>0){
+// Creating New Session
+// ==========================
 session_start();
-$_SESSION['usuario'] = $linha['id_usuario'];
-header ("Location: area_logada.php");
-}
-?>
+/*session is started if you don't write this line can't use $_Session  global variable*/
+$_SESSION["newsession"]=$value;
 
-
-<?php
-if(!isset($_SESSION['usuario'])){
-	header ("Location: inicio.php");
-}
-?>
-
-<?php
+// Getting Session
+// ==========================
 session_start();
-session_destroy();
-header ("Location: inicio.php");
+/*session is started if you don't write this line can't use $_Session  global variable*/
+$_SESSION["newsession"]=$value;
+/*session created*/
+echo $_SESSION["newsession"];
+/*session was getting*/
+
+// Updating Session
+// ==========================
+session_start();
+/*session is started if you don't write this line can't use $_Session  global variable*/
+$_SESSION["newsession"]=$value;
+/*it is my new session*/
+$_SESSION["newsession"]=$updatedvalue;
+/*session updated*/
+
+// Deleting Session
+// ==========================
+session_start();
+/*session is started if you don't write this line can't use $_Session  global variable*/
+$_SESSION["newsession"]=$value;
+unset($_SESSION["newsession"]);
+/*session deleted. if you try using this you've got an error*/
 ?>
