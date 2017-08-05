@@ -13,7 +13,7 @@ namespace LoadExceptions
             var listErros = new List<string>();
             var hash = new Criptografia();
 
-            var diretorio = new DirectoryInfo(@"C:\\Users\\aderbal.filho\\Desktop\\OI\\LoadExceptions\\Exceptions");
+            var diretorio = new DirectoryInfo(@"C:\\AppDirectory\\Exceptions");
             FileInfo[] files = diretorio.GetFiles("*", SearchOption.AllDirectories);
 
             foreach (var file in files)
@@ -62,7 +62,7 @@ class ReadFromFile
 
         // Example #1 
         // Read the file as one string. 
-        string text = System.IO.File.ReadAllText(@"C:\Users\Public\TestFolder\WriteText.txt");
+        string text = System.IO.File.ReadAllText(@"C:\Users\WriteText.txt");
 
         // Display the file contents to the console. Variable text is a string.
         System.Console.WriteLine("Contents of WriteText.txt = {0}", text);
@@ -70,7 +70,7 @@ class ReadFromFile
         // Example #2 
         // Read each line of the file into a string array. Each element 
         // of the array is one line of the file. 
-        string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Public\TestFolder\WriteLines2.txt");
+        string[] lines = System.IO.File.ReadAllLines(@"C:\Users\WriteLines2.txt");
 
         // Display the file contents by using a foreach loop.
         System.Console.WriteLine("Contents of WriteLines2.txt = ");
