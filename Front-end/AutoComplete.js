@@ -15,7 +15,7 @@
 
                 dataType: "json",
 
-                data: 'Chave=' + $('#idCampo ').val(),
+                data: {id: $("#Id")},
 
                 success: function (data) {
 
