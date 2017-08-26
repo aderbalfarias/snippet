@@ -347,3 +347,5 @@ smallmoney3
 0,20
 
 -- cuidado para não efetuar operações entre DECIMAL e MONEY/SMALLMONEY, quando existirem casas decimais; o resultado pode ser diferente. 
+
+Sql Server não tem LONGTEXT
