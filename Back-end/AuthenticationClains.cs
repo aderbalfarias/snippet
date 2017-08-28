@@ -39,6 +39,7 @@ namespace xpto.MVC5.Controllers
                     ModelState.AddModelError("UserName", "Usuário ou senha inválido.");
                 }
             }
+			
             return View("Index", model);
         }
 
@@ -106,6 +107,7 @@ namespace xpto.MVC5.Controllers
 
                 return RedirectToLocal(Url.Action("Index", "Home"));
             }
+			
             return View(model);
         }
 
@@ -130,6 +132,7 @@ namespace xpto.MVC5.Controllers
                 }
                 ModelState.AddModelError("Email", "Conta de usuário inválida!");
             }
+			
             return RedirectToAction("Index");
         }
 
