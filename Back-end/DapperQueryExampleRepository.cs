@@ -38,13 +38,6 @@ namespace Example.Infrastructure.Data.Repositories
 
         public IEnumerable<Log> Get(Pagination paginar, long? processoId = null, string key = null)
         {
-            //return _context.Log
-            //    .Include(i => i.LogType)
-            //    .Include(i => i.Usuario)
-            //    .Include(i => i.Tela)
-            //    .Skip(paginar.SkipPagina(paginar))
-            //    .Take(paginar.QtdeItensPagina)
-            //    .ToList();
             
             var resultList = _contextDapper.Query<Log, LogType, Usuario, Log>($@"
                     select l.Id, l.TelaId, l.Mensagem, l.Conteudo, l.DataCadastro, l.NomeClasse,
