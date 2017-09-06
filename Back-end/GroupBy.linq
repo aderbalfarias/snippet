@@ -1,5 +1,3 @@
-<Query Kind="Program" />
-
 void Main()
 {
   var osc = _context.vwOrdemServicoPorCliente
@@ -45,5 +43,3 @@ void Main()
           });
 
 }
-
-// Define other methods and classes here
