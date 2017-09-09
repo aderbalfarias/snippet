@@ -2,12 +2,10 @@
 #include <GL/glut.h>
 #include <stdlib.h>
 
-// prototipos das funcoes
 void init(void);
 void display(void);
 void keyboard(unsigned char key, int x, int y);
 
-// funcao principal
 int main(int argc, char** argv){
   glutInit(&argc, argv);                              // inicializa o glut
   glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);           // especifica o uso de cores e buffers
@@ -21,10 +19,8 @@ int main(int argc, char** argv){
   return 0;
 }
 
-// definicao de cada funcao
-
 void init(void){
-  glClearColor(1.0, 1.0, 1.0, 1.0);    // cor de fundo
+  glClearColor(1.0, 1.0, 1.0, 1.0);    // background color
   glOrtho (0, 256, 0, 256, -1 ,1);     // modo de projecao ortogonal
 } 
 

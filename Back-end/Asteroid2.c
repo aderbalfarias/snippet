@@ -1,32 +1,18 @@
-/**************************
- * Includes
- *
- **************************/
-
 #include <windows.h>
 #include <gl/gl.h>
 
-
 /**************************
  * Function Declarations
- *
  **************************/
-
 LRESULT CALLBACK WndProc (HWND hWnd, UINT message,
 WPARAM wParam, LPARAM lParam);
 void EnableOpenGL (HWND hWnd, HDC *hDC, HGLRC *hRC);
 void DisableOpenGL (HWND hWnd, HDC hDC, HGLRC hRC);
 
-
 /**************************
  * WinMain
- *
  **************************/
-
-int WINAPI WinMain (HINSTANCE hInstance,
-                    HINSTANCE hPrevInstance,
-                    LPSTR lpCmdLine,
-                    int iCmdShow)
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int iCmdShow)
 {
     WNDCLASS wc;
     HWND hWnd;
@@ -108,16 +94,11 @@ int WINAPI WinMain (HINSTANCE hInstance,
     return msg.wParam;
 }
 
-
 /********************
  * Window Procedure
- *
  ********************/
-
-LRESULT CALLBACK WndProc (HWND hWnd, UINT message,
-                          WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-
     switch (message)
     {
     case WM_CREATE:
@@ -143,12 +124,9 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message,
     }
 }
 
-
 /*******************
  * Enable OpenGL
- *
  *******************/
-
 void EnableOpenGL (HWND hWnd, HDC *hDC, HGLRC *hRC)
 {
     PIXELFORMATDESCRIPTOR pfd;
@@ -173,15 +151,11 @@ void EnableOpenGL (HWND hWnd, HDC *hDC, HGLRC *hRC)
     /* create and enable the render context (RC) */
     *hRC = wglCreateContext( *hDC );
     wglMakeCurrent( *hDC, *hRC );
-
 }
-
 
 /******************
  * Disable OpenGL
- *
  ******************/
-
 void DisableOpenGL (HWND hWnd, HDC hDC, HGLRC hRC)
 {
     wglMakeCurrent (NULL, NULL);
