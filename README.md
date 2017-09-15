@@ -1,6 +1,6 @@
 # Example
 
-Examples of code snippets for consultations and studies
+Examples of code snippets for consultations and studies.
 
 ## Languages Used
 - C#
