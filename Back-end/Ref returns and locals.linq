@@ -1,6 +1,6 @@
 <Query Kind="Program" />
 
-//C#7
+//C# 7
 void Main()
 {
 	int[] array = { 1, 15, -39, 0, 7, 14, -12 };

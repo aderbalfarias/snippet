@@ -1,6 +1,6 @@
 <Query Kind="Program" />
 
-//C#3
+//C# 3
 void Main()
 {
  	// int is the type argument

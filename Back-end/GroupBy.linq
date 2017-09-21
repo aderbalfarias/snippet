@@ -1,3 +1,5 @@
+<Query Kind="Program" />
+
 void Main()
 {
   var osc = _context.vwOrdemServicoPorCliente
