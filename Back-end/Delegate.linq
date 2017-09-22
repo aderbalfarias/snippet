@@ -28,5 +28,31 @@ class Test
         testDelA("Original Delegate");
         testDelB("Delegate C# 2");
         testDelC("Delegate C# 3");
+		
+		//Other options
+		Func<int> getRandomNumber = () => new Random().Next(1, 100);
+		Console.WriteLine(getRandomNumber()); 
+
+		//Another option
+		Func<int, int, int>  Sum  = (x, y) => x + y;
+        int result = Sum(10, 10);
+        Console.WriteLine(result);
+		
+		Func<int, int, string>  Sum1  = (x, y) => $"Sum is {x + y}";
+        string result1 = Sum1(10, 10);
+        Console.WriteLine(result1);
+		
+		Func<int , bool> IsPositivo = numero => numero > 0;
+		Console.WriteLine(IsPositivo(-40));
+		
+		
+		//Action delegate
+		Action<int> printActionDel = i => Console.WriteLine(i);
+        printActionDel(10);
+		
+		//Predicate
+		Predicate<string> isUpper = s => s.Equals(s.ToUpper());
+		Console.WriteLine(isUpper("hello!"));
+		Console.WriteLine(isUpper("HELLO!"));
     }
 }
