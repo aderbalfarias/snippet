@@ -6,12 +6,8 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Gsys.Business.DataEntities;
-using Gsys.Business.Interfaces.Repositories;
-using Gsys.Infraestrutura.CrossCutting.Support.Resources;
-using Gsys.Infrastructure.Data.EntityConfig;
 
-namespace Gsys.Infrastructure.Data.Repositories
+namespace Example.Infrastructure.Data.Repositories
 {
     public class EntityRepositoryBase<TEntity> : IEntityRepositoryBase<TEntity> where TEntity : class
     {
