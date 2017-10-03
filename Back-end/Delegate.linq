@@ -32,7 +32,10 @@ class Test
 		//Other options
 		Func<int> getRandomNumber = () => new Random().Next(1, 100);
 		Console.WriteLine(getRandomNumber()); 
-
+		
+		Func<int, int, int> getRandomNumber2 = (a, b) => new Random().Next(a, b);
+		Console.WriteLine(getRandomNumber2(10, 30));
+		
 		//Another option
 		Func<int, int, int>  Sum  = (x, y) => x + y;
         int result = Sum(10, 10);
