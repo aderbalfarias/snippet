@@ -59,3 +59,8 @@ class Test
 		Console.WriteLine(isUpper("HELLO!"));
     }
 }
+
+//A delegate in .NET is similar to a function pointer in C or C++. Using a delegate allows the programmer to encapsulate 
+//a reference to a method inside a delegate object. The delegate object can then be passed to code which can call the 
+//referenced method, without having to know at compile time which method will be invoked. In addition, we could use 
+//delegate to create custom event within a class.
