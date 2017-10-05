@@ -1,4 +1,13 @@
-<Query Kind="Program" />
+<Query Kind="Program">
+  <Connection>
+    <ID>7757c89b-2ec3-4e35-9ad2-91e2bf6a99fc</ID>
+    <Persist>true</Persist>
+    <Driver>EntityFrameworkDbContext</Driver>
+    <CustomAssemblyPath>C:\Users\aderb\Desktop\GServicer\IntelServ\Plataforma\Plataforma.Infrastructure.Data\bin\Debug\Plataforma.Infrastructure.Data.dll</CustomAssemblyPath>
+    <CustomTypeName>Plataforma.Infrastructure.Data.EntityConfig.EntityContext</CustomTypeName>
+    <AppConfigPath>C:\Users\aderb\Desktop\GServicer\IntelServ\Plataforma\Plataforma.Mvc\Web.config</AppConfigPath>
+  </Connection>
+</Query>
 
 class Test
 {
@@ -57,10 +66,33 @@ class Test
 		Predicate<string> isUpper = s => s.Equals(s.ToUpper());
 		Console.WriteLine(isUpper("hello!"));
 		Console.WriteLine(isUpper("HELLO!"));
+		
+		
+		///////////////////////////////Output: 1, 2, 2
+		Foo foo = new Foo(Foo1);
+	    foo += Foo2;
+	    foo();
+	    foo -= Foo1;
+	    foo();
     }
+	
+	public delegate void Foo();
+
+   	public static void Foo1()
+   	{
+      	Console.WriteLine("1");
+   	}
+
+   	public static void Foo2()
+   	{
+      	Console.WriteLine("2");
+   	}     
 }
 
 //A delegate in .NET is similar to a function pointer in C or C++. Using a delegate allows the programmer to encapsulate 
 //a reference to a method inside a delegate object. The delegate object can then be passed to code which can call the 
 //referenced method, without having to know at compile time which method will be invoked. In addition, we could use 
 //delegate to create custom event within a class.
+
+//C# delegates are similar to pointers to functions, in C or C++. A delegate is a reference type variable that holds the reference to a method. The reference can be changed at runtime.
+//Delegates are especially used for implementing events and the call-back methods. All delegates are implicitly derived from the System.Delegate class.
