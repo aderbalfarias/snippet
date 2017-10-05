@@ -1,0 +1,51 @@
+1. What is OOP, and how does it relate to the .NET framework?
+OOP stands for object-oriented programming. In an interview, a good answer to this question would point out that OOP languages such as Visual Basic.NET, C# and C++ are the core languages supported by .NET Framework. (There is also support for functional programming in the form of F#.) As a technique, OOP allows .NET developers to create classes containing methods, properties, fields, events and other logical modules. It also lets developers create modular programs, which they can assemble as applications. OOPs have four basic features: encapsulation, abstraction, polymorphism and inheritance.
+
+2. What is encapsulation?
+Encapsulation is one of four basic features of OOP and refers to the inclusion within a program object of methods and data needed for the object to function. In this .NET interview question, the candidate’s answer should mention that encapsulation helps keep data from unwanted access through binding code and data in an object, which is the basic, single self-contained unit of a system.
+Another way of understanding encapsulation is to think of it as “hiding” the state of an object as private or protected. Under this principle of information hiding, the internal workings of an object are segregated from the rest of the application. This is useful because it makes it less likely that other objects can modify the state or behavior of the object in question.
+
+3. Explain the concept of inheritance and how it works to .NET.
+In general OOP terms, inheritance means that a class can be based on another class, with the child class taking on the attributes of the parent class. For example, coders can create a class called Vehicle, and then child classes called Truck, Car, Motorcycle — all of which inherit the attributes of Vehicle.
+To demonstrate their understanding of the interview question and the framework, candidates may bring up how .NET supports single inheritance only, which means that a class can inherit only from one other class. Their answer may also touch on the transitive nature of inheritance — for example, the Ford class inherits from Car, which inherits from Vehicle.
+Need to hire a .NET developer? We can help.
+
+4. What is the difference between an abstract class and an interface?
+An abstract class is always used as a base class. It provides some abstract/virtual members that the inheriting entities must implement, as well as a partial implementation for a functionality. For extra credit during a .NET interview, your candidate might mention that this class can also declare fields. Developers cannot create an object from this class.
+An interface, on the other hand, can declare properties, methods and events only (no access modifiers). The developer must implement all declared members. In short, an interface designates a contract/behavior that implementing classes should have.
+
+5. What is the difference between a class and an object, and how do these terms relate to each other?
+A class is a comprehensive data type that is the primary building block, or template, of OOP. Class defines attributes and methods of objects, and contains an object’s behavior and data. An object, on the other hand, represents an instance of class. As a basic unit of a system, objects have identity and behavior as well as attributes.
+During the .NET interview, make sure candidates respond to the second part of this question, about how these terms are related to each other. Answer: The relationship is based on the fact that a class defines the states and properties that are common to a range of objects.
+
+6. What is a delegate in .NET?
+This interview question tests candidates’ basic knowledge of a frequently used term. A delegate is a type that encapsulates a reference to a method. Delegate objects can then be passed to code which calls the method according to the method signature, which means the developer doesn't have to know at compile time which method is being invoked. A delegate can contain references to a single method or multiple methods. Delegates are similar to function pointers in C/C++ and have the advantage of being type-safe.
+
+7. Explain the difference between a stack and a queue.
+Stacks and queues are two examples of collections. (Hash tables, bags, dictionaries and lists also fall into this category.) A stack keeps track of what is executing and contains stored value types to be accessed and processed as LIFO (Last-In-First-Out), with elements inserted and deleted from the top end.
+A queue, on the other hand, lists items on a FIFO (First-In-First-Out) basis in terms of both insertion and deletion, with items inserted from the rear end and deleting items from the front end of the queue.
+
+8. What is .NET web service?
+Web services are reusable components that allow developers to publish an application’s function over the internet to make it accessible and directly interactable with other applications and objects online. Web services communicate by using standard web protocols and data formats — including HTTP, XML and SOAP — that allow them to connect across different platforms and programming languages. ASP.NET provides a simple way to develop web services. The .NET framework provides built-in classes for building and consuming web services.
+
+9. When should you use .NET Web Forms over ASP.NET MVC?
+Traditionally, the .NET framework has been based on web forms. This was essentially an effort to create web services using Microsoft’s existing Visual tools without forcing developers to learn new scripting languages. Web Forms still allows developers to create quick and simple applications, and some legacy systems may still run as Web Forms.
+ASP.NET MVC is increasingly the standard for contemporary developers, however. In a .NET interview, a strong candidate should be able to highlight the advantages of the Model-View-Controller architectural pattern. MVC’s most important feature is that it allows applications to be broken down into discrete models, views and controllers, making them much easier to test during development.
+
+10. What is JSON data, and what is one way that .NET developers can work with JSON?
+JSON (JavaScript Object Notation) provides developers with a way to organize and store data in a way that is easy to access and read. JSON is important for developers because it allows them to manipulate JSON feeds from other sites and to load them more quickly and easily than via SML/RSS feeds. Json.NET provides a way for .NET developers to define classes to parse objects and arrays from JSON text. You can also use Json.NET if you need to serialize value types into JSON text. Json.NET runs on .NET2, .NET3 and .NET4.
+
+11. Explain the difference between managed and unmanaged code.
+.NET interview questions like this allow candidates to demonstrate their understanding of Common Language Runtime (CLR), a crucial part of the .NET framework. Code written in C# or Visual Basic.NET will, when compiled, run only in the CLR, which provides functionalities such as garbage collection and memory management. The advantage of this is that managed code is platform-independent — because it runs in the CLR rather than the operating system of the machine accessing the application.
+Code written in other languages, such as C or C++, produces unmanaged code, meaning that developers can’t rely on the CLR to provide this kind of portability. Managed and unmanaged code are interoperable. Examples of unmanaged code used in .NET include COM components, ActiveX interfaces and Win32 API functions.
+
+12. Define LINQ.
+LINQ stands for Language Integrated Query. This is a Microsoft programming model and methodology that offers developers a way to manipulate data using a succinct yet expressive syntax. It does so by instilling Microsoft .NET-based programming languages with the ability to make formal queries. It is part of C# and can be imported as a library in other languages.
+
+13. Read-only variables and constants have many similarities, but what is at least one way that they differ?
+Here are two possible answers to this .NET interview question:
+Read-only variables can support reference-type variables. Constants can hold only value-type variables.
+Developers evaluate read-only variables at the runtime. They evaluate constants at the compile time.
+
+14. What do the terms “boxing” and “unboxing” mean?
+This is one of those .NET interview questions that can reveal how much candidates know about data types and OOP principles. The idea is relatively simple: Boxing is a process that converts a value type to an object type — by “boxing” the variable inside a dedicated object or interface. Unboxing extracts this value and stores it in a value type. Boxing was essential in some old Collection types such as ArrayList, and can still be used for accurate conversion of types — for example, from a Double to an Int.
