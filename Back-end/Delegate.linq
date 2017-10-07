@@ -1,12 +1,4 @@
 <Query Kind="Program">
-  <Connection>
-    <ID>7757c89b-2ec3-4e35-9ad2-91e2bf6a99fc</ID>
-    <Persist>true</Persist>
-    <Driver>EntityFrameworkDbContext</Driver>
-    <CustomAssemblyPath>C:\Users\aderb\Desktop\GServicer\IntelServ\Plataforma\Plataforma.Infrastructure.Data\bin\Debug\Plataforma.Infrastructure.Data.dll</CustomAssemblyPath>
-    <CustomTypeName>Plataforma.Infrastructure.Data.EntityConfig.EntityContext</CustomTypeName>
-    <AppConfigPath>C:\Users\aderb\Desktop\GServicer\IntelServ\Plataforma\Plataforma.Mvc\Web.config</AppConfigPath>
-  </Connection>
 </Query>
 
 class Test
