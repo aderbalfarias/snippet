@@ -6,8 +6,7 @@ class Program
     {
         Action<int> myAction = new Action<int>(DoSomething);
         myAction(123);           // Prints out "123"
-                                 // can be also called as myAction.Invoke(123);
-
+		
         Func<int, double> myFunc = new Func<int, double>(CalculateSomething);
         Console.WriteLine(myFunc(5));   // Prints out "2.5"
     }
@@ -23,8 +22,9 @@ class Program
     }
 }
 
-//Action is a delegate (pointer) to a method, that takes zero, one or more input parameters, but does not return anything.
+//Action is a delegate (pointer) to a method, that takes zero, one or more input parameters, but does not return anything
 //
-//Func is a delegate (pointer) to a method, that takes zero, one or more input parameters, and returns a value (or reference).
+//Func is a delegate (pointer) to a method, that takes zero, one or more input parameters, and returns a value (or reference)
 //
-//Predicate is a special kind of Func often used for comparisons.
+//Predicate is a special kind of Func often used for comparisons
+//Predicate is a delegate that takes generic parameters and returns bool
