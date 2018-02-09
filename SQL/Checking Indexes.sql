@@ -1,5 +1,4 @@
 -- Index Tuning Queries
--- Glenn Berry, SQLskills.com
 
 -- These are database-specific, not instance-specific
 
@@ -99,6 +98,6 @@ ON s.[object_id] = i.[object_id]
 WHERE OBJECTPROPERTY(s.[object_id],'IsUserTable') = 1
 AND i.index_id = s.index_id
 AND s.database_id = DB_ID()
-ORDER BY s.user_updates DESC OPTION (RECOMPILE);						 -- Order by writes
+ORDER BY s.user_updates DESC OPTION (RECOMPILE); -- Order by writes
 
 -- Show which indexes in the current database are most active for Writes
