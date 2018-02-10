@@ -1,6 +1,4 @@
 -- Measuring Sequential Read Throughput
--- aka "How to humble your SAN"
--- Glenn Berry, SQLskills.com
 
 -- Flush any dirty pages
 CHECKPOINT;
