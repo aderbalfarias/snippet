@@ -29,7 +29,7 @@ class MainApp
 	/// <summary>
 	/// Entry point into console application.
 	/// </summary>
-	public static void Main () 
+	public static void Main() 
 	{
 	    //Create and run the African animal world
 	    ContinentFactory africa = new AfricaFactory();
@@ -104,7 +104,7 @@ class Lion : Carnivore
 	public override void Eat(Herbivore h) 
 	{
 		//Eat Wildebeest	
-		Console.WriteLine(this.GetType().Name + " eats " + h.GetType().Name);
+		Console.WriteLine($"{this.GetType().Name} eats {h.GetType().Name}");
 	}
 }
 
@@ -115,7 +115,7 @@ class Wolf : Carnivore
 	public override void Eat(Herbivore h) 
 	{
 		//Eat Bison
-		Console.WriteLine(this.GetType().Name + " eats " + h.GetType().Name);
+		Console.WriteLine($"{this.GetType().Name} eats {h.GetType().Name}");
 	}
 }
 

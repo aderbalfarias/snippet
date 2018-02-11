@@ -1,5 +1,7 @@
 <Query Kind="Program" />
 
+//A: Creates an instance of several derived classes. Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
+
 /// <summary>
 /// MainApp startup class for Structural 
 /// Factory Method Design Pattern.
@@ -20,7 +22,7 @@ class MainApp
 		foreach (Creator creator in creators)
 		{
 			Product product = creator.FactoryMethod();
-			Console.WriteLine("Created {0}", product.GetType().Name);
+			Console.WriteLine($"Created {product.GetType().Name}");
 		}
 	}
 }
@@ -28,23 +30,17 @@ class MainApp
 /// <summary>
 /// The 'Product' abstract class
 /// </summary>
-abstract class Product
-{
-}
+abstract class Product { }
 
 /// <summary>
 /// A 'ConcreteProduct' class
 /// </summary>
-class ConcreteProductA : Product
-{
-}
+class ConcreteProductA : Product { }
 
 /// <summary>
 /// A 'ConcreteProduct' class
 /// </summary>
-class ConcreteProductB : Product
-{
-}
+class ConcreteProductB : Product { }
 
 /// <summary>
 /// The 'Creator' abstract class
