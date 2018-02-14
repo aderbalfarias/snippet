@@ -1,6 +1,7 @@
 <Query Kind="Program" />
 
-//A: Separates an object’s interface from its implementation. Decouple an abstraction from its implementation so that the two can vary independently.
+//Bridge: Separates an object’s interface from its implementation. 
+//Decouple an abstraction from its implementation so that the two can vary independently.
 
 /// <summary>
 /// MainApp startup class for Structural
@@ -83,5 +84,3 @@ class ConcreteImplementorB : Implementor
 		Console.WriteLine("ConcreteImplementorB Operation");
 	}
 }
-
- 

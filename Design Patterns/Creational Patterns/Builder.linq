@@ -1,6 +1,8 @@
 <Query Kind="Program" />
 
-//A: Separates object construction from its representation. Separate the construction of a complex object from its representation so that the same construction processes can create different representations.
+//Builder: Separates object construction from its representation. 
+//Separate the construction of a complex object from its representation 
+//so that the same construction processes can create different representations.
 
 /// <summary>
 /// MainApp startup class for Structural

@@ -1,6 +1,7 @@
 <Query Kind="Program" />
 
-//A: A fully initialized instance to be copied or cloned. Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
+//Prototype: A fully initialized instance to be copied or cloned. 
+//Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
 /// <summary>
 /// MainApp startup class for Structural

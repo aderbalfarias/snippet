@@ -1,6 +1,8 @@
 <Query Kind="Program" />
 
-//A: Creates an instance of several derived classes. Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
+//Factory Method: Creates an instance of several derived classes. 
+//Define an interface for creating an object, but let subclasses decide which class to instantiate. 
+//Factory Method lets a class defer instantiation to subclasses.
 
 /// <summary>
 /// MainApp startup class for Structural 

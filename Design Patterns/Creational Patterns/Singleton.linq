@@ -1,6 +1,7 @@
 <Query Kind="Program" />
 
-//A: A class of which only a single instance can exist. Ensure a class only has one instance, and provide a global point of access to it.
+//Singleton: A class of which only a single instance can exist. 
+//Ensure a class only has one instance, and provide a global point of access to it.
 
 /// <summary>
 /// MainApp startup class for Structural
@@ -136,4 +137,3 @@ class LoadBalancer
 		}
 	}
 }
-
