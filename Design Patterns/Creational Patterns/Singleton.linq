@@ -51,7 +51,7 @@ class Singleton
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//Ex: 2
+//e.g: 2
 /// <summary>
 /// MainApp startup class for Real-World 
 /// Singleton Design Pattern.
