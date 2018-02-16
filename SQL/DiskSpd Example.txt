@@ -1,3 +1,8 @@
+Diskspd Utility: A Robust Storage Testing Tool (superseding SQLIO)
+A feature-rich and versatile storage testing tool, Diskspd (version 2.0.17) combines robust and granular IO workload 
+definition with flexible runtime and output options, creating an ideal tool for synthetic storage subsystem testing and validation.
+
+
 Example DiskSpd parameters for testing with SQL Server:
 
 DiskSpd.exe -c10G –d30 -r -w0 -t8 -o8 -b8K -Sh -L C:\testfile.dat
@@ -13,3 +18,25 @@ DiskSpd.exe -c10G –d30 -r -w0 -t8 -o8 -b8K -Sh -L C:\testfile.dat
 -L (Measure latency statistics)
 -C:\testfile.dat (File path and name to create for test)
 
+
+Note: Diskspd v2.0.17 has been fully tested on:
+Windows Server 2016 Technical Preview 5
+Windows 10
+Windows Server 2012 R2
+Windows 8.1
+Windows Server 2012
+Windows 8
+Windows 7
+
+Verified on the following platforms:
+Windows 10		Yes
+Windows Server 2012	No
+Windows Server 2012 R2	Yes
+Windows Server 2008 R2	No
+Windows Server 2008	No
+Windows Server 2003	No
+Windows 8		No
+Windows 7		No
+Windows Vista		No
+Windows XP		No
+Windows 2000		No
