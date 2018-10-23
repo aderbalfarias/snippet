@@ -1,3 +1,7 @@
+https://stackoverflow.com/questions/16019940/kendo-ui-update-one-columns-data-on-changing-value-in-another-column
+
+https://docs.telerik.com/kendo-ui/knowledge-base/grid-calculated-column-with-batch-editing
+
 https://docs.telerik.com/kendo-ui/knowledge-base/checkbox-selection-select-all-rows-all-pages
 
 https://stackoverflow.com/questions/20781918/kendoui-grid-select-all
