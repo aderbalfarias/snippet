@@ -15,6 +15,14 @@
 <body>
   <div id="grid"></div>
   <script>
+  function numberEditor(container, options) {
+    $('<input name="' + options.field + '"/>')
+            .appendTo(container)
+            .kendoNumericTextBox({
+                format  : "{0:n2}",
+                decimals: 2               
+            });
+}
   $(document).ready(function(){
   
   var data = [
@@ -30,6 +38,7 @@
       model: {
         id: "Id",
         fields: {
+		x: { editable: false},
           productName: { editable: false},
           quantity: { editable: true},
           price: { editable: true},
@@ -45,13 +54,19 @@
     height: 400,
     toolbar: ["create"],
     columns: [
+		{field: "x",
+		title: "<input id='checkAll' type='checkbox' class='check-box' />",
+		template: "<input type=\"checkbox\" />"  },
       { field:"productName", title: "Product Name" },
-      { field: "quantity", title:"Quantity", format: "{0:c}"},
+      { field: "quantity", title:"Quantity", 
+	  editor: numberEditor,
+    format: '{0:n2}'},
       { field: "price", title:"Price", width: "150px" },
       {  title:"Total", template: "<span class='totalSpan'>#= calculateValue(data) #</span>", width: "150px" },
       { command: ["edit", "destroy"], title: "&nbsp;" }
     ],
 	save: function (e) {
+
 		if (e.values.hasOwnProperty("quantity") || e.values.hasOwnProperty("price")) {
 			var totalSpan = e.container.closest("tr").find(".totalSpan");
 			if (e.values.hasOwnProperty("quantity")) {
@@ -61,9 +76,25 @@
 		
 		 console.log(dataSource);
 	},
+	change: function(e){
+		console.log("d");
+	},
     editable: true
   });
   
+  $("#grid").on("blur", "input", function(){
+	console.log("begin");
+	  console.log($(this).val());
+	  if ($(this).val() == ""){
+		$(this).val(0);
+	  }
+    console.log("end:");
+  });
+  
+   $("#grid").on("click", "#checkAll", function () {
+    $("input:checkbox").attr("checked", this.checked);
+	console.log(dataSource);
+});
 
   console.log(dataSource);
     
