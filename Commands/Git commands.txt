@@ -39,3 +39,10 @@ git pull
 git checkout [branchWhereDevelopmentWasDone]
 git merge [branchRoot]
 git push --set-upstream origin [branchWhereDevelopmentWasDone]
+
+Git Sync Fork: 
+git checkout master
+git remote add upstream git://github.com/REPOSITORY_ORIGIN/PROJECT_ORIGIN
+git fetch upstream
+git merge upstream/master
+git push
