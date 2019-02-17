@@ -18,19 +18,19 @@ az network vnet subnet create --resource-group "az-vms" --name "az-vms-subnet-1"
 az network vnet list --output table
 
 #4: Create a public IP
-az network public-ip create --resource-group "az-vms" --name "az-vms-ip-1"
+az network public-ip create --resource-group "az-vms" --name "az-vms-linux-ip-1"
 
 #5: Create network security group 
-az network nsg create --resource-group "az-vms" --name "az-vms-nsg-1"
+az network nsg create --resource-group "az-vms" --name "az-vms-linux-nsg-1"
 az network nsg list --output table
 
 #6: Create NIC so we can attach it to VM
-az network nic create --resource-group "az-vms" --name "az-vms-nic-1" --vnet-name "az-vms-vnet-1" --subnet "az-vms-subnet-1" --network-security-group "az-vms-nsg-1" --public-ip-address "az-vms-ip-1"
+az network nic create --resource-group "az-vms" --name "az-vms-linux-nic-1" --vnet-name "az-vms-vnet-1" --subnet "az-vms-subnet-1" --network-security-group "az-vms-linux-nsg-1" --public-ip-address "az-vms-linux-ip-1"
 az network nic list --output table
 
 #7: Create Virtual machine
 # az vm create --resource-group "az-vms" --name "vm-linux-1" --location "westeurope" --nics "az-vms-nic-1" --image "rhel" --admin-username "azvmsadmin" --authentication-type "ssh" --generate-ssh-keys
-az vm create --resource-group "az-vms" --name "vm-linux-1" --location "westeurope" --nics "az-vms-nic-1" --image "rhel" --admin-username "azvmsadmin" --authentication-type "ssh" --ssh-key-value ~/.ssh/id_rsa.pub
+az vm create --resource-group "az-vms" --name "vm-linux-1" --location "westeurope" --nics "az-vms-linux-nic-1" --image "rhel" --admin-username "azvmsadmin" --authentication-type "ssh" --ssh-key-value ~/.ssh/id_rsa.pub
 
 #help
 az vm create --help | more
