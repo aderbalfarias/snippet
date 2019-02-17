@@ -1,0 +1,54 @@
+az login
+
+#Locations of data centers
+az account list-locations 
+
+#1: Create a resource group 
+az group create --name az-vms --location westeurope
+
+#Display list of resource groups
+az group list -o table
+
+#2: Create a virtual network (vnet) and subnet for my new resource group
+az network vnet create --resource-group "az-vms" --name "az-vms-vnet-1" --address-prefix "10.10.0.0/16" 
+
+#3: Create subnet for my vnet
+az network vnet subnet create --resource-group "az-vms" --name "az-vms-subnet-1" --address-prefix "10.10.20.0/24" --vnet-name "az-vms-vnet-1" 
+
+az network vnet list --output table
+
+#4: Create a public IP
+az network public-ip create --resource-group "az-vms" --name "az-vms-ip-1"
+
+#5: Create network security group 
+az network nsg create --resource-group "az-vms" --name "az-vms-nsg-1"
+az network nsg list --output table
+
+#6: Create NIC so we can attach it to VM
+az network nic create --resource-group "az-vms" --name "az-vms-nic-1" --vnet-name "az-vms-vnet-1" --subnet "az-vms-subnet-1" --network-security-group "az-vms-nsg-1" --public-ip-address "az-vms-ip-1"
+az network nic list --output table
+
+#7: Create Virtual machine
+# az vm create --resource-group "az-vms" --name "vm-linux-1" --location "westeurope" --nics "az-vms-nic-1" --image "rhel" --admin-username "azvmsadmin" --authentication-type "ssh" --generate-ssh-keys
+az vm create --resource-group "az-vms" --name "vm-linux-1" --location "westeurope" --nics "az-vms-nic-1" --image "rhel" --admin-username "azvmsadmin" --authentication-type "ssh" --ssh-key-value ~/.ssh/id_rsa.pub
+
+#windows image 
+--image win2016datacenter 
+
+#help
+az vm create --help | more
+
+#8: Open port 22 
+az vm open-port --resource-group "az-vms" --name "vm-linux-1" --port 22
+
+#9: Grab/Get the public IP of the virtual machine
+az vm list-ip-addresses --name "vm-linux-1" --output table
+
+ssh -l azvmsadmin ip-step-9
+
+#new vm without nic
+az vm create --resource-group "az-vms" --name "vm-linux-2" --location "westeurope" --image "UbuntuLTS" --admin-username "azvmsadmin" --authentication-type "ssh" --ssh-key-value ~/.ssh/id_rsa.pub
+az vm open-port --resource-group "az-vms" --name "vm-linux-2" --port 22
+az vm list-ip-addresses --name "vm-linux-2" --output table
+ssh -l azvmsadmin ip-step-9
+
