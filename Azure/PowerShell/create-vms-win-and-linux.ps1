@@ -24,7 +24,7 @@ Connect-AzureRmAccount -Subscription 'Visual Studio Professional'
 
 #Let's create a Linux VM with PowerShell
 #1 - Get resource group created in the  demo
-$rg = Get-AzureRmResourceGroup `
+$rg = New-AzureRmResourceGroup `
   -Name 'az203-learn' `
   -Location 'westeurope'
 $rg
