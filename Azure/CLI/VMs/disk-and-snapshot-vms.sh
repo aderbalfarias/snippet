@@ -7,7 +7,6 @@
 #Setup
 #Requires a Linux VM, we're going to use psdemo-linux-1c from the m3 demo.
 
-
 #login interactively and set a subscription to be the current active subscription
 az login --subscription "Demonstration Account"
 
@@ -62,8 +61,7 @@ df -h
 #9 - Exit from the Linux VM
 exit
 
-
-
+#------------------------------------------------------------------
 
 #Resizing a disk
 #1 - Stop and deallocate the VM. this has to be an offline operation.
@@ -118,6 +116,7 @@ sudo mount -a
 #8 - Verify the added space is available
 df -h  | grep data1
 
+#------------------------------------------------------------------------
 
 #Removing a disk 
 #1 - Umount the disk in the OS, remove the disk we added above from fstab
@@ -138,7 +137,7 @@ az disk delete \
     --resource-group "psdemo-rg" \
     --name "psdemo-linux-1c-st0" 
 
-
+#-------------------------------------------------------------------
 
 #Snapshotting the OS disk
 #1 - Find the disk we want to snapshot and create a snapshot of the disk
