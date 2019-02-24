@@ -1,0 +1,30 @@
+Microsoft Azure Key Vault
+-------------------------
+https://docs.microsoft.com/en-us/azure/key-vault/key-vault-overview	 
+https://docs.microsoft.com/en-us/azure/key-vault/key-vault-get-started	 
+https://docs.microsoft.com/en-us/azure/key-vault/key-vault-use-from-web-application	 
+https://docs.microsoft.com/en-us/azure/key-vault/tutorial-web-application-keyvault	 
+https://docs.microsoft.com/en-us/azure/key-vault/quick-create-cli 
+https://docs.microsoft.com/en-us/azure/key-vault/key-vault-soft-delete-powershell
+https://docs.microsoft.com/en-us/azure/key-vault/service-to-service-authentication
+https://thinkrethink.net/2018/07/18/azure-key-vault-recover-keys-secrets-and-certificates/
+https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2
+
+Managed Service Identity
+------------------------
+https://azure.microsoft.com/en-us/blog/keep-credentials-out-of-code-introducing-azure-ad-managed-service-identity/	 
+https://docs.microsoft.com/en-us/azure/active-directory/managed-service-identity/overview	 
+https://docs.microsoft.com/en-us/azure/app-service/app-service-managed-service-identity	 
+https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-connect-msi
+https://docs.microsoft.com/en-us/azure/active-directory/managed-service-identity/services-support-msi	 
+https://stackoverflow.com/questions/43130105/entity-framework-connection-to-sql-azure-db-using-access-token	 
+https://stackoverflow.com/questions/49531754/app-service-to-entityframework-using-msi	 
+https://stackoverflow.com/questions/518535/how-to-use-ado-net-entity-framework-with-an-existing-sqlconnection/519378	 
+https://github.com/Azure-Samples/app-service-msi-keyvault-dotnet
+https://blogs.msdn.microsoft.com/visualstudio/2017/11/17/managing-secrets-securely-in-the-cloud/	 
+https://azure.microsoft.com/en-us/blog/managing-azure-secrets-on-github-repositories/
+
+Tools
+-----
+https://blogs.msdn.microsoft.com/visualstudio/2017/11/17/managing-secrets-securely-in-the-cloud/
+
