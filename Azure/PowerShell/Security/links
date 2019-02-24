@@ -24,6 +24,27 @@ https://github.com/Azure-Samples/app-service-msi-keyvault-dotnet
 https://blogs.msdn.microsoft.com/visualstudio/2017/11/17/managing-secrets-securely-in-the-cloud/	 
 https://azure.microsoft.com/en-us/blog/managing-azure-secrets-on-github-repositories/
 
+Azure storage Encryption at rest
+--------------------------------
+
+https://docs.microsoft.com/en-us/azure/storage/common/storage-service-encryption
+https://docs.microsoft.com/en-us/azure/security/azure-security-encryption-atrest	 
+https://docs.microsoft.com/en-us/azure/storage/common/storage-service-encryption-customer-managed-keys	 
+https://docs.microsoft.com/en-us/azure/security/security-storage-overview	 
+https://docs.microsoft.com/en-us/azure/security/azure-security-data-encryption-best-practices	 
+https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
+
+
+Azure Disk Encryption
+--------------------- 
+https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption-overview	 
+https://docs.microsoft.com/en-us/azure/virtual-machines/windows/encrypt-disks	 
+https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption-prerequisites	 
+https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption-windows
+https://docs.microsoft.com/en-us/azure/active-directory/authentication/concept-sspr-policy
+
+
+
 Tools
 -----
 https://blogs.msdn.microsoft.com/visualstudio/2017/11/17/managing-secrets-securely-in-the-cloud/
