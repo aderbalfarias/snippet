@@ -49,7 +49,7 @@ Set-AzureRmKeyVaultAccessPolicy -VaultName $keyvaultName `
 #To test the encryption process, create a VM
 $cred = Get-Credential
 
-$vmName = "myDEDemoVM"   # rezaadmin , Sssqloledb65!
+$vmName = "myDEDemoVM"   # aderbaladmin , Sssqloledb65!
 
 <#
 New-AzureRmVm `
