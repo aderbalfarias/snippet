@@ -1,0 +1,107 @@
+Creating a VM Image Library
+
+Microsoft Azure
+https://azure.microsoft.com/en-us/
+
+Azure Documentation
+https://docs.microsoft.com/en-us/azure/
+
+Azure Architecture Center
+https://docs.microsoft.com/en-us/azure/architecture/
+
+Azure Subscription and Service Limits
+https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits
+
+Create a managed image in Azure | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image-resource
+
+Capture an image of a Linux VM in Azure using CLI 2.0 | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/capture-image
+
+Create a Windows VM from a specialized VHD in Azure | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machines/windows/create-vm-specialized
+
+Tutorial - Create custom VM images with the Azure CLI | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machines/linux/tutorial-custom-images
+
+Create a managed image in Azure | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image-resource
+
+azure managed disk image snapshot site:docs.microsoft.com - Google Search
+https://www.google.com/search?q=azure+managed+disk+image+snapshot+site%3Adocs.microsoft.com&oq=azure+managed+disk+image+snapshot+site%3Adocs.microsoft.com+&aqs=chrome..69i57.5456j0j4&sourceid=chrome&ie=UTF-8
+
+Create a managed image in Azure | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image-resource
+
+Create a snapshot of a VHD in Azure | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machines/windows/snapshot-copy-managed-disk
+
+Azure Premium and Standard Managed Disks Overview for Windows VMs | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machines/windows/managed-disks-overview
+
+
+
+Configuring ARM Templates for Multi-VM Deployment
+
+
+Microsoft Azure
+https://azure.microsoft.com/en-us/
+
+Azure Documentation
+https://docs.microsoft.com/en-us/azure/
+
+Azure Architecture Center
+https://docs.microsoft.com/en-us/azure/architecture/
+
+Azure Subscription and Service Limits
+https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits
+
+What is role-based access control (RBAC) in Azure? | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/role-based-access-control/overview
+
+Overview of Azure Policy | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/azure-policy/azure-policy-introduction
+
+Free IDE and Developer Tools | Visual Studio Community
+https://visualstudio.microsoft.com/vs/community/
+
+Visual Studio Azure resource group projects | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/azure-resource-manager/vs-azure-tools-resource-groups-deployment-projects-create-deploy
+
+Create and deploy an Azure Resource Manager template by using the Azure portal | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal
+
+Deploy multiple instances of Azure resources | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-multiple
+
+Azure Quickstart Templates
+https://azure.microsoft.com/en-us/resources/templates/
+
+Deploy resources with PowerShell and template | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy
+deploy template powershell
+
+
+Deploying Azure VM Scale Sets
+
+
+Microsoft Azure
+https://azure.microsoft.com/en-us/
+
+Azure Documentation
+https://docs.microsoft.com/en-us/azure/
+
+Azure Architecture Center
+https://docs.microsoft.com/en-us/azure/architecture/
+
+Azure Subscription and Service Limits
+https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits
+
+Azure virtual machine scale sets overview | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview
+
+Overview of autoscale with Azure virtual machine scale sets | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview
+
+Create an Azure scale set that uses low-priority VMs (Preview) | Microsoft Docs
+https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-low-priority
