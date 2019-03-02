@@ -17,3 +17,12 @@ Clean up
     docker rm –f container-name 
     docker image rm image-name
     docker volume rm volume-name
+
+#see docker ip
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' containerId
+
+#see container status
+docker inspect -f '{{.State.Running}}' containerId
+
+#see container details
+docker inspect containerId
