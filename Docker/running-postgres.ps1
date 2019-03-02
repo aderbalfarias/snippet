@@ -9,7 +9,7 @@ docker exec -it postgres1 sh
 createdb -U postgres mydb # create a new db
 psql -U postgres mydb # connect to the db with the postgres CLI tool
 CREATE TABLE people (id int, name varchar(80)); # create a table
-INSERT INTO people (id,name) VALUES (2, 'Steph'); # insert a row into the table
+INSERT INTO people(id,name) VALUES (2, 'Steph'); # insert a row into the table
 \q # exit the postgres CLI
 exit # exit the interactive shell
 
