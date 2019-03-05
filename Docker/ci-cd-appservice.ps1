@@ -56,7 +56,7 @@ docker push pluralsightacr.azurecr.io/samplewebapp:latest
 
 # perform a slot swap
 az webapp deployment slot swap -g $resourceGroup -n $appName `
-                               --slot staging --target-slot production
+    --slot staging --target-slot production
 
 # clean up
 az group delete --name $resourceGroup --yes --no-wait
