@@ -26,6 +26,7 @@ git reset HEAD filename/*/. #> Removing files from staging area and back to curr
 git reset --hard HEAD~1 #> Removing a commit (You will lose the changes in that commit)
 git reset --soft HEAD^ #> It will reset the index to HEAD^ (previous commit), however, it will leave the changes in stage area
 git reset --hard HEAD^ #> rollback changes
+git push --force #> In case you have already pushed code you reset to remote branch
 git add . #> Adding to stage area
 git commit -m "message" #> Adding files to local repository
 git push origin [branchYouWorking] #> It pushes the code to remote branch
