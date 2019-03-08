@@ -36,5 +36,4 @@
 
 		return text;
 	}
-
 }
