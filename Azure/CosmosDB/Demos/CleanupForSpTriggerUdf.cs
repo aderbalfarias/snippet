@@ -81,9 +81,7 @@ namespace CosmosDb.ServerSide.Demos
 				{
 					await client.DeleteUserAsync(user.SelfLink);
 				}
-
 			}
 		}
-
 	}
 }
