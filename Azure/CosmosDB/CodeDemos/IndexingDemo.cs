@@ -363,6 +363,5 @@ namespace CosmosDb.DotNetSdk.Demos
 			// Delete the collection
 			await client.DeleteDocumentCollectionAsync(collectionUri);
 		}
-
 	}
 }

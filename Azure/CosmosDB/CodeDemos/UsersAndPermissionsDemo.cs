@@ -52,7 +52,6 @@ namespace CosmosDb.DotNetSdk.Demos
 		}
 
 		// Users
-
 		private static void ViewUsers(DocumentClient client)
 		{
 			Console.WriteLine();
@@ -220,6 +219,5 @@ namespace CosmosDb.DotNetSdk.Demos
 				Console.WriteLine($"ERROR: {ex.Message}");
 			}
 		}
-
 	}
 }
