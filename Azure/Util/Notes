@@ -5,3 +5,8 @@ App Registration to register Azure Key Vault and create key secret access
 App Service Cert to create a certificate SSL
 
 MSI managed service identity
+
+System Dynamic Management Views
+
+dotnet secret manager or azure key vault to store connection strings
+https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows
