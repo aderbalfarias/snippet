@@ -10,3 +10,5 @@ System Dynamic Management Views
 
 dotnet secret manager or azure key vault to store connection strings
 https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows
+
+Microsoft Azure Storage Explorer (Local) can use Microsoft Azure Storage Emulator (Locally)
