@@ -1,4 +1,4 @@
-git #Let's set our subscription context
+#Let's set our subscription context
 Connect-AzureRmAccount -Subscription "Visual Studio Professional"
 
 #And get a listing of VMs
