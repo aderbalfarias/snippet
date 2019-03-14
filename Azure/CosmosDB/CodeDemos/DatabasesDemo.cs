@@ -63,6 +63,5 @@ namespace CosmosDb.DotNetSdk.Demos
 			var databaseUri = UriFactory.CreateDatabaseUri("MyNewDatabase");
 			await client.DeleteDatabaseAsync(databaseUri);
 		}
-
 	}
 }

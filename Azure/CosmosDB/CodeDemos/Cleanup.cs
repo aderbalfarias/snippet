@@ -27,15 +27,19 @@ namespace CosmosDb.DotNetSdk.Demos
 					WHERE
 						STARTSWITH(c.name, 'New Customer') OR
 						STARTSWITH(c.id, '_meta') OR
-						IS_DEFINED(c.weekdayOff)
-				";
+						IS_DEFINED(c.weekdayOff)";
 
 				var collectionUri = UriFactory.CreateDocumentCollectionUri("mydb", "mystore");
 				var feedOptions = new FeedOptions { EnableCrossPartitionQuery = true };
 				var documentKeys = client.CreateDocumentQuery(collectionUri, sql, feedOptions).AsEnumerable();
-				foreach (var documentKey in documentKeys)
+				
+                foreach (var documentKey in documentKeys)
 				{
-					var requestOptions = new RequestOptions { PartitionKey = new PartitionKey(documentKey.postalCode) };
+					var requestOptions = new RequestOptions 
+                    { 
+                        PartitionKey = new PartitionKey(documentKey.postalCode) 
+                    };
+
 					await client.DeleteDocumentAsync(documentKey._self, requestOptions);
 				}
 
@@ -75,6 +79,5 @@ namespace CosmosDb.DotNetSdk.Demos
 
 			}
 		}
-
 	}
 }

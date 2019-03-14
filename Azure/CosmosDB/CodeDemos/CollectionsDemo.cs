@@ -104,6 +104,5 @@ namespace CosmosDb.DotNetSdk.Demos
 
 			Console.WriteLine($"Deleted collection {collectionId} from database mydb");
 		}
-
 	}
 }
