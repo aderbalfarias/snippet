@@ -29,8 +29,7 @@ namespace CosmosDb.ServerSide.Demos
 						STARTSWITH(c.id, '_meta') OR
 						IS_DEFINED(c.weekdayOff) OR
 						STARTSWITH(c.id, 'DUPEJ') OR
-						STARTSWITH(c.name, 'Bulk inserted doc ')
-				";
+						STARTSWITH(c.name, 'Bulk inserted doc ')";
 				//			 WHERE
 				//				c.id IN('NEWDOC', '_metadata') OR
 				//				c.name IN('John Doe') OR
