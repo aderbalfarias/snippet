@@ -153,9 +153,7 @@ namespace CosmosDb.DotNetSdk.Demos
 
 			Console.WriteLine($"Found {documents.Count} documents");
 			foreach (var document in documents)
-			{
 				Console.WriteLine($" Id: {document.id}; Name: {document.name};");
-			}
 			Console.WriteLine();
 		}
 
@@ -177,9 +175,7 @@ namespace CosmosDb.DotNetSdk.Demos
 			{
 				var documents = await query.ExecuteNextAsync();
 				foreach (var document in documents)
-				{
 					Console.WriteLine($" Id: {document.id}; Name: {document.name};");
-				}
 			}
 			Console.WriteLine();
 		}
@@ -270,6 +266,5 @@ namespace CosmosDb.DotNetSdk.Demos
 			Console.WriteLine($"Deleted {documentKeys.Count} new customer documents");
 			Console.WriteLine();
 		}
-
 	}
 }
