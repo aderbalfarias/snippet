@@ -26,3 +26,7 @@ docker inspect -f '{{.State.Running}}' containerId
 
 #see container details
 docker inspect containerId
+
+docker ls 
+
+docker ls -a
