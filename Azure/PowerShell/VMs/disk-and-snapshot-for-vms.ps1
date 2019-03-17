@@ -1,5 +1,5 @@
 #login interactively and set a subscription to be the current active subscription
-Connect-AzureRmAccount -Subscription 'Demonstration Account'
+Connect-AzureRmAccount -Subscription 'Visual Studio Professional'
 
 #Creating a new data disk with PowerShell and attach it to our VM. This can be done hot.
 #1 - Define a new DiskConfig, Create the DataDisk and attach the new disk
@@ -94,8 +94,7 @@ Update-AzureRmVM `
 #4 - Delete the disk from our Resource Group. This ACTUALLY DELETES the disk
 Remove-AzureRmDisk `
     -ResourceGroupName 'psdemo-rg' `
-    -DiskName 'psdemo-win-1c-st0' 
-
+    -DiskName 'psdemo-win-1c-st0'
 
 
 #Snapshotting the OS disk

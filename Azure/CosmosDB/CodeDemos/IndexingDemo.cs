@@ -42,6 +42,7 @@ namespace CosmosDb.DotNetSdk.Demos
 				Id = "autoindexing",
 				PartitionKey = partitionKeyDefinition
 			};
+            
 			var options = new RequestOptions { OfferThroughput = 1000 };
 			var collection = await client.CreateDocumentCollectionAsync(MyDbDatabaseUri, collectionDefinition, options);
 			var collectionUri = UriFactory.CreateDocumentCollectionUri("mydb", "autoindexing");

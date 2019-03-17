@@ -80,9 +80,7 @@ namespace CosmosDb.ServerSide.Demos
 				.ToList();
 
 			foreach (var sproc in sprocs)
-			{
 				Console.WriteLine($"Stored procedure {sproc.Id}; RID: {sproc.ResourceId}");
-			}
 		}
 
 		// Execute stored procedures
@@ -159,6 +157,7 @@ namespace CosmosDb.ServerSide.Demos
 					postalCode = "RG41 1QW"
 				}
 			};
+
 			var uri = UriFactory.CreateStoredProcedureUri("mydb", "mystore", "spSetNorthAmerica");
 			var options = new RequestOptions { PartitionKey = new PartitionKey("RG41 1QW") };
 			var result = await client.ExecuteStoredProcedureAsync<object>(uri, options, documentDefinition, true);
@@ -196,6 +195,7 @@ namespace CosmosDb.ServerSide.Demos
 						postalCode = "12345"
 					}
 				};
+
 				var uri = UriFactory.CreateStoredProcedureUri("mydb", "mystore", "spSetNorthAmerica");
 				var options = new RequestOptions { PartitionKey = new PartitionKey("12345") };
 				var result = await client.ExecuteStoredProcedureAsync<object>(uri, options, documentDefinition, true);
@@ -243,7 +243,8 @@ namespace CosmosDb.ServerSide.Demos
 
 			var docs = new List<dynamic>();
 			var total = 5000;
-			for (var i = 1; i <= total; i++)
+			
+            for (var i = 1; i <= total; i++)
 			{
 				dynamic doc = new
 				{
@@ -337,5 +338,4 @@ namespace CosmosDb.ServerSide.Demos
 		[JsonProperty(PropertyName = "continuationFlag")]
 		public bool ContinuationFlag { get; set; }
 	}
-
 }

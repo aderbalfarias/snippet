@@ -167,6 +167,7 @@ $vmParams = @{
     SecurityGroupName = 'az203-win-nsg-2'
     OpenPorts = 3389
 }
+
 New-AzureRmVM @vmParams 
 
 Get-AzureRmPublicIpAddress `

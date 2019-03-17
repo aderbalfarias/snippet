@@ -22,3 +22,6 @@ $params = @{
 $content = $params | ConvertFrom-Json
 $var1 = $content.Param1
 
+# dotnet secret manager or azure key vault to store connection strings
+# https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows
+dotnet user secrets set ConnectionStrings:MyDB
