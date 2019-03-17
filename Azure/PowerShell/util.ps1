@@ -13,3 +13,12 @@ Get-AzureRmVM
 
 #Run our script
 ./demo.ps1
+
+#PowerShell slapping techinique
+$params = @{
+    Param1 = "test"
+    Param2 = 1
+}
+$content = $params | ConvertFrom-Json
+$var1 = $content.Param1
+
