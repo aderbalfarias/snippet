@@ -30,7 +30,8 @@ docker inspect containerId
 docker ls 
 docker ls -a
 
-Command	            #Description
+#Docker base commands
+#Command	        Description
 docker attach	    #Attach local standard input, output, and error streams to a running container
 docker build	    #Build an image from a Dockerfile
 docker builder	    #Manage builds
