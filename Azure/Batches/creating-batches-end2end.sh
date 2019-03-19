@@ -1,3 +1,5 @@
+# Creating Group, Storage Account, Batch Account, Pool, Job and Task
+
 az group create --name az203-batches  --location westeurope
 
 az storage account create --name az203batchesstorage --resource-group az203-batches
