@@ -1,0 +1,8 @@
+Install the Linux Subsystem on Windows 10:
+https://docs.microsoft.com/en-us/windows/wsl/install-win10
+
+Download and install a Linux distribution from the Windows Store
+
+Install the Azure CLI on the Linux subsystem:
+https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt?view=azure-cli-latest
+
