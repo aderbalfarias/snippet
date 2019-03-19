@@ -1,0 +1,7 @@
+Azure CLI
+Powershell
+Microsoft Azure Storage Explorer
+Microsoft Azure Storage Emulator 
+Batch Explorer
+Azure Cosmos DB Emulator
+Azure Function Core Tools
