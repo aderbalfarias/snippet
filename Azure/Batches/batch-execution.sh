@@ -7,7 +7,7 @@ az account set -h
 az login
 
 # Select the appropriate Azure subscription
-az account set -s 12345678-1234-1234-1234-1234567890abcd
+az account set -s MySubscription
 
 # Get help on Azure Batch
 az batch -h
