@@ -32,13 +32,10 @@ az webapp show -n $appName -g $resourceGroup --query "defaultHostName" -o tsv
 
 # create a staging slot (cloning from production slot's settings)
 az webapp deployment slot create -g $resourceGroup -n $appName -s staging --configuration-source $appName
-
 az webapp show -n $appName -g $resourceGroup -s staging --query "defaultHostName" -o tsv
 
-
 # enable CD for the staging slot
-az webapp deployment container config -g $resourceGroup -n $appName `
-                                      -s staging --enable-cd true
+az webapp deployment container config -g $resourceGroup -n $appName -s staging --enable-cd true
 
 # get the webhook
 $cicdurl = az webapp deployment container show-cd-url -s staging `
