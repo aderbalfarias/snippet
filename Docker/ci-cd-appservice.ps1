@@ -10,9 +10,7 @@ az group create -l $location -n $resourceGroup
 
 # create an app service plan to host
 $planName="cicdappservice"
-az appservice plan create -n $planName -g $resourceGroup -l $location `
-                          --is-linux --sku S1
-
+az appservice plan create -n $planName -g $resourceGroup -l $location --is-linux --sku S1
 
 # n.b. can't use anything but docker hub here
 # so we have to arbitrarily pick a runtime --runtime "node|6.2" or a public image like scratch
@@ -33,8 +31,7 @@ az webapp config container set -n $appName -g $resourceGroup `
 az webapp show -n $appName -g $resourceGroup --query "defaultHostName" -o tsv
 
 # create a staging slot (cloning from production slot's settings)
-az webapp deployment slot create -g $resourceGroup -n $appName `
-                                 -s staging --configuration-source $appName
+az webapp deployment slot create -g $resourceGroup -n $appName -s staging --configuration-source $appName
 
 az webapp show -n $appName -g $resourceGroup -s staging --query "defaultHostName" -o tsv
 
