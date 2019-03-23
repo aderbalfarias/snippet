@@ -1,21 +1,18 @@
 # PART 1 -Getting Started with Azure CLI
-#
 # 1. Login:
 az login
-#
+
 # 2. See which subscription is selected
 az account show --query name -o tsv
-#
+
 # 3. See which subscriptions are available
 az account list -o table
-#
+
 # 4. Select the subscription you want to use
 az account set -s "MySub"
 
-
 # PART 2 - Getting Started with AKS
-# https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
-# 
+# https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough 
 
 # 1. Create a resource group
 $resourceGroup = "AKSDemo"
@@ -113,11 +110,8 @@ kubectl delete -f .\kubernetes-orchestration-example-vote-v2.yml
 
 # deploy a second instance to another namespace
 kubectl create namespace staging
-
 kubectl apply -f .\kubernetes-orchestration-example-vote.yml -n staging
 kubectl get service -n staging
-
-
 
 # Clean up
 az group delete -n $resourceGroup --yes --no-wait
