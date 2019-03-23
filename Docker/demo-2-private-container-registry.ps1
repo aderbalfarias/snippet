@@ -6,7 +6,7 @@ $location = "westeurope"
 az group create -n $resourceGroup -l $location
 
 # ACR we'll be using
-$acrName = "pluralsightacr"
+$acrName = "Mysubsctiption"
 
 # if we've not already created an Azure Container Registry
 # az acr create -g $resourceGroup -n $acrName --sku Basic --admin-enabled true
@@ -91,7 +91,7 @@ exit
 
 az storage file list -s $shareName -o table
 
-$downloadPath = "C:\Users\mheath\Downloads\message.txt"
+$downloadPath = "C:\Users\aderbalfarias\Downloads\message.txt"
 az storage file download -s $shareName -p "message.txt" `
     --dest $downloadPath
 Start-Process $downloadPath
