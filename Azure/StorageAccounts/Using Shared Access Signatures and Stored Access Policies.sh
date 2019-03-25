@@ -14,7 +14,7 @@ az storage container policy list --container-name marketingdocs --account-name e
 #Generate a SAS for a specific Blob, referencing a Stored Access Policy
 az storage blob generate-sas --container-name marketingdocs --name training.txt --account-name exampleorgstgacct01 --account-key c --policy-name readerpolicy --https-only
 
-#"spr=https&sv=2017-07-29&si=readerpolicy&sr=b&sig=9gwY6NcJHD7t/C4czt898gmjjAnpxUDGitdNPAXtwY4%3D"
+#"spr=https&sv=2017-07-29&si=readerpolicy&sr=b&sig=sig"
 
 #Use the SAS to show Blob properties
 az storage blob show --container-name marketingdocs --name training.txt --account-name exampleorgstgacct01 --sas-token "spr=https&sv=2017-07-29&si=readerpolicy&sr=b&sig=sig"
