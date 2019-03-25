@@ -1,0 +1,51 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "profileName": {
+            "value": "psazurestoragecdnarm"
+        },
+        "endpointName": {
+            "value": "psazurestoragecdnarm"
+        },
+        "location": {
+            "value": "Central Us"
+        },
+        "sku": {
+            "value": {
+                "name": "Standard_Akamai"
+            }
+        },
+        "profileProperties": {
+            "value": {}
+        },
+        "endpointProperties": {
+            "value": {
+                "isHttpAllowed": false,
+                "isHttpsAllowed": true,
+                "originHostHeader": "psazurestoragecdn.blob.core.windows.net",
+                "origins": [
+                    {
+                        "name": "psazurestoragecdn-blob-core-windows-net",
+                        "properties": {
+                            "hostName": "psazurestoragecdn.blob.core.windows.net",
+                            "httpPort": 80,
+                            "httpsPort": 443
+                        }
+                    }
+                ],
+                "isCompressionEnabled": true,
+                "contentTypesToCompress": [
+                    "text/plain",
+                    "text/html",
+                    "text/css",
+                    "text/javascript",
+                    "application/x-javascript",
+                    "application/javascript",
+                    "application/json",
+                    "application/xml"
+                ]
+            }
+        }
+    }
+}
