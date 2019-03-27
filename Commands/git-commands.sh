@@ -5,7 +5,14 @@ git clone [url] #> Clone a repository
 git status #> Check status 
 git fetch #> Update your remote-tracking branches 
 git pull #> It does a git fetch followed by a git merge
+git branch #> List branches (the asterisk denotes the current branch)
+git branch -a #> List all branches (local and remote)
+git branch [branch name] #> Create a new branch
+git branch -d [branch name] #> Delete a branch
+git push origin --delete [branchName] #> Delete a remote branch
 git checkout -b [nameOfYourNewBranch] #> It creates a new branch
+git checkout - #> Switch to the branch last checked out
+git checkout -- [file-name.txt] #> Discard changes to a file
 git add -A #> Add all new and changed files to the staging area
 git rm -r [file-name] #> Remove a file from staging area
 git stash save "message" #> It creates a stash that allows we pull code and then merge the code without commit it, like config files
