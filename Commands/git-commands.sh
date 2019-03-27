@@ -2,9 +2,12 @@
 cd /c/git/folder/ #> Navigate
 git checkout [branchYouWannaGo] #> Switch branches
 git clone [url] #> Clone a repository
+git status #> Check status 
 git fetch #> Update your remote-tracking branches 
 git pull #> It does a git fetch followed by a git merge
 git checkout -b [nameOfYourNewBranch] #> It creates a new branch
+git add -A #> Add all new and changed files to the staging area
+git rm -r [file-name] #> Remove a file from staging area
 git stash save "message" #> It creates a stash that allows we pull code and then merge the code without commit it, like config files
 git stash apply stash@{numberOfStash} #> Get back the files stashed
 git stash pop stash@{numberOfStash} #> Return your repository to status before the stash (you will lose changes)
