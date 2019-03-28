@@ -1,6 +1,5 @@
 #Git commands:
 cd /c/git/folder/ #> Navigate
-git checkout [branchYouWannaGo] #> Switch branches
 git clone [url] #> Clone a repository
 git status #> Check status 
 git fetch #> Update your remote-tracking branches 
@@ -9,8 +8,9 @@ git branch #> List branches (the asterisk denotes the current branch)
 git branch -a #> List all branches (local and remote)
 git branch [branch name] #> Create a new branch
 git branch -d [branch name] #> Delete a branch
-git push origin --delete [branchName] #> Delete a remote branch
+git push origin --delete [branch name] #> Delete a remote branch
 git checkout -b [nameOfYourNewBranch] #> It creates a new branch
+git checkout [branch name] #> Switch branches
 git checkout - #> Switch to the branch last checked out
 git checkout -- [file-name.txt] #> Discard changes to a file
 git add -A #> Add all new and changed files to the staging area
