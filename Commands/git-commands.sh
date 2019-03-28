@@ -4,6 +4,9 @@ git clone [url] #> Clone a repository
 git status #> Check status 
 git fetch #> Update your remote-tracking branches 
 git pull #> It does a git fetch followed by a git merge
+git add . #> Adding to staging area
+git commit -m "message" #> Adding files to local repository
+git push origin [branch name] #> It pushes the code to remote branch
 git branch #> List branches (the asterisk denotes the current branch)
 git branch -a #> List all branches (local and remote)
 git branch [branch name] #> Create a new branch
@@ -37,9 +40,6 @@ git reset --hard HEAD~1 #> Removing a commit (You will lose the changes in that 
 git reset --soft HEAD^ #> It will reset the index to HEAD^ (previous commit), however, it will leave the changes in stage area
 git reset --hard HEAD^ #> rollback changes
 git push --force #> In case you have already pushed code you reset to remote branch
-git add . #> Adding to stage area
-git commit -m "message" #> Adding files to local repository
-git push origin [branchYouWorking] #> It pushes the code to remote branch
 git log --autor=[yourName] #> To see your commits
 git gc --prune=now #> Way to delete data that has accumulated in Git but is not being referenced by anything
 git remote prune origin #> Way to delete data that has accumulated in Git but is not being referenced by anything
