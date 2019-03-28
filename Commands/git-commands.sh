@@ -46,7 +46,7 @@ git remote prune origin #> Way to delete data that has accumulated in Git but is
 :wq #> Exit merge screen in git bash
 
 #Pull Request: (You have done stashes, commits and it's ready to push)
-git checkout [branchRoot]
+git checkout [branch root]
 git pull
 git checkout [branchWhereDevelopmentWasDone]
 git merge [branchRoot]

@@ -21,7 +21,12 @@
 | `git checkout -` | Switch to the branch last checked out |
 
 
-### 
+###Pull Request: (You have done stashes, commits and it's ready to push)
 
 | Command | Description |
 | ------- | ----------- |
+| `git checkout [branch root]` | Checkout a branch |
+| `git pull` |  Get latest code |
+| `git checkout [branchWhereDevelopmentWasDone]` |  |
+| `git merge [branch origin]` | Merge branch |
+| `git push --set-upstream origin [branchWhereDevelopmentWasDone]` |  |
