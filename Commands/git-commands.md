@@ -30,3 +30,4 @@
 | `git checkout [branch name]` | Branch the code was written |
 | `git merge [branch origin]` | Merge branch origin (it may be master into created branch|
 | `git push --set-upstream origin [branch name]` | Send a pull request to origin from a branch you have created |
+|`:wq` | Exit merge screen in git bash |
