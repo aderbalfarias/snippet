@@ -21,7 +21,7 @@
 | `git checkout -` | Switch to the branch last checked out |
 
 
-###Pull Request: (You have done stashes, commits and it's ready to push)
+### Pull Request: (You have done stashes, commits and it's ready to push)
 
 | Command | Description |
 | ------- | ----------- |
