@@ -51,3 +51,13 @@
 | `git merge [branch origin]` | Merge branch origin (it may be master into created branch|
 | `git push --set-upstream origin [branch name]` | Send a pull request to origin from a branch you have created |
 |`:wq` | Exit merge screen in git bash |
+
+
+###Git Sync Fork Example 1: 
+
+| Command | 
+| `git checkout master` |
+| `git remote add upstream git://github.com/REPOSITORY_ORIGIN/PROJECT_ORIGIN` |
+| `git fetch upstream` |
+| `git merge upstream/master` |
+| `git push` |
