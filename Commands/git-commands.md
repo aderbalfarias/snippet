@@ -41,7 +41,7 @@
 | `:wq` | Exit merge screen in git bash |
 
 
-### Pull Request: (You have done stashes, commits and it's ready to push)
+### Pull Request: You have done stashes, commits and it's ready to push
 
 | Command | Description |
 | ------- | ----------- |
@@ -53,9 +53,10 @@
 |`:wq` | Exit merge screen in git bash |
 
 
-###Git Sync Fork Example 1: 
+### Git Sync Fork Example 1: 
 
 | Command | 
+| ------- |
 | `git checkout master` |
 | `git remote add upstream git://github.com/REPOSITORY_ORIGIN/PROJECT_ORIGIN` |
 | `git fetch upstream` |
@@ -63,8 +64,10 @@
 | `git push` |
 
 
-###Git Sync Fork Example 2: 
+### Git Sync Fork Example 2: 
 
+| Command | 
+| ------- |
 | `git clone git@github.com:YOUR-USERNAME/YOUR-FORKED-REPO.git` |
 | `git checkout master` |
 | `git remote add upstream git://github.com/ORIGINAL-DEV-USERNAME/REPO-YOU-FORKED-FROM.git` |
