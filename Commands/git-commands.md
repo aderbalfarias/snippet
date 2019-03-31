@@ -61,3 +61,12 @@
 | `git fetch upstream` |
 | `git merge upstream/master` |
 | `git push` |
+
+
+###Git Sync Fork Example 2: 
+
+| `git clone git@github.com:YOUR-USERNAME/YOUR-FORKED-REPO.git` |
+| `git checkout master` |
+| `git remote add upstream git://github.com/ORIGINAL-DEV-USERNAME/REPO-YOU-FORKED-FROM.git` |
+| `git fetch upstream` |
+| `git pull upstream master` |
