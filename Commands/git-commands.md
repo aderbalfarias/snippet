@@ -19,6 +19,26 @@
 | `git checkout -b [branch name]` | It creates a new branch |
 | `git checkout [branch name]` | Switch branches |
 | `git checkout -` | Switch to the branch last checked out |
+| `git checkout -- [file-name.txt]` | Discard changes to a file |
+| `git add -A` | Add all new and changed files to the staging area |
+| `git rm -r [file-name]` | Remove a file from staging area |
+| `git stash save "message"` | It creates a stash that allows we pull code and then merge the code without commit it, like config files |
+| `git stash apply stash@{numberOfStash}` | Get back the files stashed |
+| `git stash pop stash@{numberOfStash}` | Return your repository to status before the stash (you will lose changes) |
+| `git stash drop stash@{numberOfStash}` | Delete stash |
+| `git stash apply $stash_rash` | Get back the files from a deleted stash |
+| `git stash save --keep-index "message"` | Stashing files that are not in the staging area |
+| `git stash show` | show files that changed |
+| `git stash show -p` | show the full diff in the files that changed |
+| `git reset HEAD filename/*/.` | Removing files from staging area and back to current working directory |
+| `git reset --hard HEAD~1` | Removing a commit (You will lose the changes in that commit) |
+| `git reset --soft HEAD^` | It will reset the index to HEAD^ (previous commit), however, it will leave the changes in stage area |
+| `git reset --hard HEAD^` | rollback changes |
+| `git push --force` | In case you have already pushed code you reset to remote branch |
+| `git log --autor=[yourName]` | To see your commits |
+| `git gc --prune=now` | Way to delete data that has accumulated in Git but is not being referenced by anything |
+| `git remote prune origin` | Way to delete data that has accumulated in Git but is not being referenced by anything |
+| `:wq` | Exit merge screen in git bash |
 
 
 ### Pull Request: (You have done stashes, commits and it's ready to push)
