@@ -65,3 +65,4 @@ git checkout master
 git remote add upstream git://github.com/ORIGINAL-DEV-USERNAME/REPO-YOU-FORKED-FROM.git
 git fetch upstream
 git pull upstream master
+git push
