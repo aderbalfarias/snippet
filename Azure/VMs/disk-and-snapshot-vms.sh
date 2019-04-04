@@ -157,7 +157,7 @@ az disk create \
     --resource-group "psdemo-rg" \
     --name "psdemo-linux-1f-OSDisk-1" \
     --source "psdemo-linux-1c-OSDisk-1-snap-1" \
-    --size-gb "40"
+    --size-gb "20"
 
 #4 - Create a VM from the disk we just created
 az vm create \
