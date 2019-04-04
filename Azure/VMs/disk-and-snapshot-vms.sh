@@ -50,8 +50,6 @@ sudo mkdir /data1
 
 #7 - Add the following line to /etc/fstab. First find the UUID for this device, in our case it's /dev/sdc1
 sudo -i blkid | grep sdc1
-
-UUID=7d9f3af0-8927-4c73-aafe-a221e659d109      /data1  ext4   defaults        0 0
 sudo vi /etc/fstab
 
 #8 - mount the volume and verify the file system is mounted.
