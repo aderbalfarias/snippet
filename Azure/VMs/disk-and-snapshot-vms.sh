@@ -8,7 +8,7 @@
 #Requires a Linux VM, we're going to use psdemo-linux-1c from the m3 demo.
 
 #login interactively and set a subscription to be the current active subscription
-az login --subscription "Demonstration Account"
+az login --subscription "Visual Studio Professional"
 
 #Creating a new data disk with Azure CLI and attach it to our VM. This can be done hot.
 #1 - Attach the new disk
