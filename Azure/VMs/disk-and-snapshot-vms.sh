@@ -36,11 +36,11 @@ dmesg | grep SCSI
 
 #4 - partition the disk with fdisk and use the following commands to name a new primary parition
 sudo fdisk /dev/sdc
-m
-n
-p
-1
-w
+# m
+# n
+# p
+# 1
+# w
 
 #5 - format the new partition with ext4 
 sudo mkfs -t ext4 /dev/sdc1
