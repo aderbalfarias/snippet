@@ -34,6 +34,7 @@
 | `git reset --hard HEAD~1` | Removing a commit (You will lose the changes in that commit) |
 | `git reset --soft HEAD^` | It will reset the index to HEAD^ (previous commit), however, it will leave the changes in stage area |
 | `git reset --hard HEAD^` | rollback changes |
+| `git commit --amend -m` | Update message of the last commit |
 | `git push --force` | In case you have already pushed code you reset to remote branch |
 | `git log --autor=[yourName]` | To see your commits |
 | `git gc --prune=now` | Way to delete data that has accumulated in Git but is not being referenced by anything |
