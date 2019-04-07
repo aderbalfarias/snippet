@@ -21,3 +21,7 @@ chmod u+x demo.sh
 
 #Run the script
 ./demo.sh
+
+#Commands to help Azure CLI
+az webapp create -h #It gives command examples how to create a webapp
+az vm create -h #It gives command examples how to create a vm
