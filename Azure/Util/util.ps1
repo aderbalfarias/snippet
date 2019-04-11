@@ -25,3 +25,8 @@ $var1 = $content.Param1
 # dotnet secret manager or azure key vault to store connection strings
 # https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-2.2&tabs=windows
 dotnet user secrets set ConnectionStrings:MyDB
+
+
+#Commands to help with examples
+help set-azurermwebapp -ex #It gives command examples how to create a webapp
+help set-azurermvm -ex #It gives command examples how to create a vm

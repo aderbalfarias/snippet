@@ -30,6 +30,7 @@ public IEnumerable<T> GetData<T>(IEnumerable<T> items)
 		yield return item;
 }
 
+// Yield accessor
 public static IEnumerable<int> EvenNumbers
 {
 	get
