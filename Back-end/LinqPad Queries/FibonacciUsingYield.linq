@@ -21,6 +21,15 @@ static IEnumerable<int> GenerateFibonacciNumbers(int n)
 	}
 }
 
+// Yield break statement
+public IEnumerable<T> GetData<T>(IEnumerable<T> items)
+{
+    if (null == items)
+		yield break;
+	foreach (T item in items)
+		yield return item;
+}
+
 // Note:
 // You cannot have the yield return statement in a try-catch block though you can have it inside a try-finally block
 // You cannot have the yield break statement inside a finally block
