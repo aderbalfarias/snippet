@@ -4,7 +4,7 @@ az login
 az account list-locations 
 
 #1: Create a resource group 
-az group create --name az-vms --location westeurope
+az group create --name az-vms --location northeurope
 
 #Display list of resource groups
 az group list -o table
@@ -29,8 +29,8 @@ az network nic create --resource-group "az-vms" --name "az-vms-linux-nic-1" --vn
 az network nic list --output table
 
 #7: Create Virtual machine
-# az vm create --resource-group "az-vms" --name "vm-linux-1" --location "westeurope" --nics "az-vms-nic-1" --image "rhel" --admin-username "azvmsadmin" --authentication-type "ssh" --generate-ssh-keys
-az vm create --resource-group "az-vms" --name "vm-linux-1" --location "westeurope" --nics "az-vms-linux-nic-1" --image "rhel" --admin-username "azvmsadmin" --authentication-type "ssh" --ssh-key-value ~/.ssh/id_rsa.pub
+# az vm create --resource-group "az-vms" --name "vm-linux-1" --location "northeurope" --nics "az-vms-nic-1" --image "rhel" --admin-username "azvmsadmin" --authentication-type "ssh" --generate-ssh-keys
+az vm create --resource-group "az-vms" --name "vm-linux-1" --location "northeurope" --nics "az-vms-linux-nic-1" --image "rhel" --admin-username "azvmsadmin" --authentication-type "ssh" --ssh-key-value ~/.ssh/id_rsa.pub
 
 #help
 az vm create --help | more
@@ -45,7 +45,7 @@ ssh -l azvmsadmin ip-step-9
 
 
 #new vm without nic
-az vm create --resource-group "az-vms" --name "vm-linux-2" --location "westeurope" --image "UbuntuLTS" --admin-username "azvmsadmin" --authentication-type "ssh" --ssh-key-value ~/.ssh/id_rsa.pub
+az vm create --resource-group "az-vms" --name "vm-linux-2" --location "northeurope" --image "UbuntuLTS" --admin-username "azvmsadmin" --authentication-type "ssh" --ssh-key-value ~/.ssh/id_rsa.pub
 az vm open-port --resource-group "az-vms" --name "vm-linux-2" --port 22
 az vm list-ip-addresses --name "vm-linux-2" --output table
 ssh -l azvmsadmin ip-step-9
