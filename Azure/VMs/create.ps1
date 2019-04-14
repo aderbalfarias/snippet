@@ -1,6 +1,6 @@
 # Variables for common values
 $resourceGroup = "az-vms-shell"
-$location = "westeurope"
+$location = "northeurope"
 $vmName = "vm-win-1"
 
 # Create user object
