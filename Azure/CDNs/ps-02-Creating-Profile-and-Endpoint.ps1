@@ -1,7 +1,7 @@
 # Create new CDN profile
 New-AzureRmCdnProfile `
     -ProfileName psazurestoragecdn `
-    -Location 'East US' `
+    -Location 'northeurope' `
     -Sku Standard_Akamai `
     -ResourceGroupName pluralsight-azure-storage-cdn
 
@@ -11,7 +11,7 @@ New-AzureRmCdnEndpoint `
     -ProfileName psazurestoragecdn `
     -EndpointName psazurestoragecdn `
     -ResourceGroupName pluralsight-azure-storage-cdn `
-    -Location 'Central US' `
+    -Location 'northeurope' `
     -OriginName psazurestoragecdn `
     -OriginHostName psazurestoragecdn.blob.core.windows.net `
     -IsHttpAllowed:$false
