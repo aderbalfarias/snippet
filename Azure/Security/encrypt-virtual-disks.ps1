@@ -11,7 +11,7 @@ Connect-AzureRmAccount
 #Enable the Azure Key Vault provider within your Azure subscription
 $rgName = "DEDemoResourceGroup"
 $location = "northeurope"
-New-AzureRmResourceGroup -Location "East US" -Name $rgName
+New-AzureRmResourceGroup -Location "northeurope" -Name $rgName
 
 Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.KeyVault"
 

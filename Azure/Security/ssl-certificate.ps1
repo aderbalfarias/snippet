@@ -4,7 +4,7 @@ $fqdn="aderbal.com"
 $pfxPath="C:\Users\aderbal\appservicecertificate.pfx"
 $pfxPassword="OGJnm3wdQ0UYCTqAkNI8oXpWy7BhveaPVstD5i9l4R2FbL1fKZ"
 $webappname="myaddressbookplus"
-$location="East US"
+$location="northeurope"
 $resourceGroupName = "Pluralsight"
 
 Write-Host "Configure a CNAME/A record that maps $fqdn to $webappname.azurewebsites.net"
