@@ -327,7 +327,6 @@ namespace CosmosDb.ServerSide.Demos
 
 			Console.WriteLine($"Deleted stored procedure: {sprocId}");
 		}
-
 	}
 
 	public class spBulkDeleteResponse

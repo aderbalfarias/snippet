@@ -1,5 +1,4 @@
 ﻿function spEnsureUniqueId(docToCreate) {
-
 	var context = getContext();
 	var collection = context.getCollection();
 	var collectionLink = collection.getSelfLink();
