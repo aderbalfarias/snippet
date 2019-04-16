@@ -5,7 +5,7 @@ $subscriptionName = 'Pay-As-You-Go'
 $userPrincipalName = 'aderbal@aderbal.com'
 $applicationId = '386424df-c14a-4436-b872-f186ea2ddc98'
 $resourceGroupName = 'Pluralsight'
-$location = 'East US'
+$location = 'northeurope'
 $vaultName = 'AwysEncKV'
 
 $subscriptionId = (Get-AzureRmSubscription -SubscriptionName $subscriptionName).Id
