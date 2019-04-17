@@ -25,13 +25,13 @@ Connect-AzureRmAccount -Subscription 'Visual Studio Professional'
 #Let's create a Linux VM with PowerShell
 #1 - Get resource group created in the  demo
 $rg = New-AzureRmResourceGroup `
-  -Name 'az203-learn' `
-  -Location 'westeurope'
+  -Name 'vms-learn' `
+  -Location 'northeurope'
 $rg
 
 #2a - Create a subnet configuration
 $subnetConfig = New-AzureRmVirtualNetworkSubnetConfig `
-    -Name 'az203-subnet-2' `
+    -Name 'vms-subnet-2' `
     -AddressPrefix '10.2.1.0/24'
 $subnetConfig
 
@@ -39,7 +39,7 @@ $subnetConfig
 $vnet = New-AzureRmVirtualNetwork `
     -ResourceGroupName $rg.ResourceGroupName `
     -Location $rg.Location `
-    -Name 'az203-vnet-2' `
+    -Name 'vms-vnet-2' `
     -AddressPrefix '10.2.0.0/16' `
     -Subnet $subnetConfig
 $vnet
@@ -48,7 +48,7 @@ $vnet
 $pip = New-AzureRmPublicIpAddress `
     -ResourceGroupName $rg.ResourceGroupName `
     -Location $rg.Location `
-    -Name 'az203-linux-2-pip-1' `
+    -Name 'vms-linux-2-pip-1' `
     -AllocationMethod Static
 $pip
 
@@ -71,18 +71,18 @@ $rule1
 $nsg = New-AzureRmNetworkSecurityGroup `
     -ResourceGroupName $rg.ResourceGroupName `
     -Location $rg.Location `
-    -Name 'az203-linux-nsg-2' `
+    -Name 'vms-linux-nsg-2' `
     -SecurityRules $rule1
 $nsg | more
 
 #5 - Create a virtual network card and associate with public IP address and NSG
 #First, let's get an object representing our current subnet
-$subnet = $vnet.Subnets | Where-Object { $_.Name -eq 'az203-subnet-2' }
+$subnet = $vnet.Subnets | Where-Object { $_.Name -eq 'vms-subnet-2' }
 
 $nic = New-AzureRmNetworkInterface `
     -ResourceGroupName $rg.ResourceGroupName `
     -Location $rg.Location `
-    -Name 'az203-linux-2-nic-1' `
+    -Name 'vms-linux-2-nic-1' `
     -Subnet $subnet `
     -PublicIpAddress $pip `
     -NetworkSecurityGroup $nsg
@@ -90,8 +90,8 @@ $nic
 
 #6a - Create a virtual machine configuration
 $LinuxVmConfig = New-AzureRmVMConfig `
-    -VMName 'az203-linux-2' `
-    -VMSize 'Standard_D1'
+    -VMName 'vms-linux-2' `
+    -VMSize 'Standard_B2s'
 
 #6b - set the comptuer name, OS type and, auth methods.
 $password = ConvertTo-SecureString 'password123412123$%^&*' -AsPlainText -Force
@@ -100,7 +100,7 @@ $LinuxCred = New-Object System.Management.Automation.PSCredential ('demoadmin', 
 $LinuxVmConfig = Set-AzureRmVMOperatingSystem `
     -VM $LinuxVmConfig `
     -Linux `
-    -ComputerName 'az203-linux-2' `
+    -ComputerName 'vms-linux-2' `
     -DisablePasswordAuthentication `
     -Credential $LinuxCred
 
@@ -111,15 +111,15 @@ Add-AzureRmVMSshPublicKey `
     -KeyData $sshPublicKey `
     -Path "/home/demoadmin/.ssh/authorized_keys"
 
-#6d - get the VM image name, and set it in the VM config in this case RHEL/latest
-Get-AzureRmVMImageSku -Location $rg.Location -PublisherName "Redhat" -Offer "rhel"
+#6d - get the VM image name, and set it in the VM config in this case UbuntuServer/latest
+Get-AzureRmVMImageSku -Location $rg.Location -PublisherName "Canonical" -Offer "UbuntuServer"
 
 $LinuxVmConfig = Set-AzureRmVMSourceImage `
     -VM $LinuxVmConfig `
-    -PublisherName 'Redhat' `
-    -Offer 'rhel' `
-    -Skus '7.4' `
-    -Version 'latest' 
+    -PublisherName 'Canonical' `
+    -Offer 'UbuntuServer' `
+    -Skus '18.04-LTS' `
+    -Version '18.04.201804262' 
 
 #6e - assign the created network interface to the vm
 $LinuxVmConfig = Add-AzureRmVMNetworkInterface `
@@ -155,21 +155,21 @@ $WindowsCred = New-Object System.Management.Automation.PSCredential ('demoadmin'
 New-AzureRMVm -Image 
 
 $vmParams = @{
-    ResourceGroupName = 'az203-learn'
-    Name = 'az203-win-2'
-    Location = 'westeurope'
-    Size = 'Standard_D1'
+    ResourceGroupName = 'vms-learn'
+    Name = 'vms-win-2'
+    Location = 'northeurope'
+    Size = 'Standard_D2_V2'
     Image = 'Win2016Datacenter'
-    PublicIpAddressName = 'az203-win-2-pip-1'
+    PublicIpAddressName = 'vms-win-2-pip-1'
     Credential = $WindowsCred
-    VirtualNetworkName = 'az203-vnet-2'
-    SubnetName = 'az203-subnet-2'
-    SecurityGroupName = 'az203-win-nsg-2'
+    VirtualNetworkName = 'vms-vnet-2'
+    SubnetName = 'vms-subnet-2'
+    SecurityGroupName = 'vms-win-nsg-2'
     OpenPorts = 3389
 }
 
 New-AzureRmVM @vmParams 
 
 Get-AzureRmPublicIpAddress `
-    -ResourceGroupName 'az203-learn' `
-    -Name 'az203-win-2-pip-1' | Select-Object -ExpandProperty IpAddress
+    -ResourceGroupName 'vms-learn' `
+    -Name 'vms-win-2-pip-1' | Select-Object -ExpandProperty IpAddress

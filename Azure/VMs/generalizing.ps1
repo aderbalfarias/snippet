@@ -20,7 +20,7 @@ Get-AzureRmVM `
 #Find our Resource Group
 $rg = Get-AzureRmResourceGroup `
     -Name 'az203-learn' `
-    -Location 'westeurope'
+    -Location 'northeurope'
 
 #Find our VM in our Resource Group
 $vm = Get-AzureRmVm `
@@ -69,7 +69,7 @@ New-AzureRmVm `
     -ResourceGroupName $rg.ResourceGroupName `
     -Name "az203-win-1c" `
     -ImageName "az203-win-ci-1" `
-    -Location 'westeurope' `
+    -Location 'northeurope' `
     -Credential $WindowsCred `
     -VirtualNetworkName 'az203-vnet-2' `
     -SubnetName 'az203-subnet-2' `

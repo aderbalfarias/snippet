@@ -1,9 +1,6 @@
-﻿
-
-
-Param(
+﻿Param(
 	[string] $subscriptionId = '',
-	[string] $Location = 'West Europe',
+	[string] $Location = 'North Europe',
 	[string] $ResourceGroupName = 'PSBatch',
 	[string] $BatchAccountName = 'NAMEpsbatchaccount',
 	[string] $PoolName = 'RenderPool',
