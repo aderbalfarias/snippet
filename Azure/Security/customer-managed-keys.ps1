@@ -2,7 +2,7 @@
 Connect-AzureRmAccount
 
 #To use customer-managed keys with SSE, you must assign a storage account identity to the storage account. 
-Set-AzureRmStorageAccount -ResourceGroupName "Pluralsight" -Name "myaddressbookplus" -AssignIdentity
+Set-AzureRmStorageAccount -ResourceGroupName "rm-security" -Name "myaddressbookplus" -AssignIdentity
 
 #enable Soft Delete and Do Not Purge by executing the following PowerShell commands
 $vaultName = "AddressBookPlusVault03"
@@ -19,7 +19,7 @@ Set-AzureRmResource -resourceid $resource.ResourceId -Properties $resource.Prope
 #custermanagedkey01
 
 #associate the above key with an existing storage account using the following PowerShell commands
-$storageAccount = Get-AzureRmStorageAccount -ResourceGroupName "Pluralsight" -AccountName "myaddressbookplus"
+$storageAccount = Get-AzureRmStorageAccount -ResourceGroupName "rm-security" -AccountName "myaddressbookplus"
 
 $keyVault = Get-AzureRmKeyVault -VaultName $vaultName
 
