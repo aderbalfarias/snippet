@@ -4,7 +4,7 @@ Login-AzureRmAccount
 $subscriptionName = 'Pay-As-You-Go'
 $userPrincipalName = 'aderbal@aderbal.com'
 $applicationId = '386424df-c14a-4436-b872-f186ea2ddc98'
-$resourceGroupName = 'Pluralsight'
+$resourceGroupName = 'rm-security'
 $location = 'northeurope'
 $vaultName = 'AwysEncKV'
 
