@@ -2,7 +2,7 @@ Connect-AzureRmAccount
 
 # creating a new Azure Key Vault
 
-New-AzureRmKeyVault -VaultName 'AddressBookPlusVault03' -ResourceGroupName 'Pluralsight' -Location 'northeurope'
+New-AzureRmKeyVault -VaultName 'AddressBookPlusVault03' -ResourceGroupName 'rm-security' -Location 'northeurope'
 
 # convert our secret value to a "secure string"
 $secretvalue = ConvertTo-SecureString String 'myaddressbookplus.redis.cache.windows.net:6380,password=hQwiwqd+jij2nZZHzyW5AtawOTq71P4DkNn3n5BFPrw=,ssl=True,abortConnect=False' -AsPlainText -Force
