@@ -1,5 +1,5 @@
 # Variables for common values
-$resourceGroup = "az-vms-shell"
+$resourceGroup = "rg-vms-shell"
 $location = "northeurope"
 $vmName = "vm-win-1"
 
