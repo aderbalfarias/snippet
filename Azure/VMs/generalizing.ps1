@@ -13,13 +13,13 @@ Connect-AzureRmAccount -Subscription 'Visual Studio Professional'
 
 #Let's get the status of our VM and ensure it's shut down first.
 Get-AzureRmVM `
-    -ResourceGroupName 'az203-learn' `
+    -ResourceGroupName 'rg-vms' `
     -Name 'az203-win-1' `
     -Status 
 
 #Find our Resource Group
 $rg = Get-AzureRmResourceGroup `
-    -Name 'az203-learn' `
+    -Name 'rg-vms' `
     -Location 'northeurope'
 
 #Find our VM in our Resource Group
