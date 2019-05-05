@@ -42,17 +42,20 @@
 | `:wq` | Exit merge screen in git bash |
 
 
-| Command | Description |
-| ------- | ----------- |
-|`git stash save -p "message"` | Stashing changes per hunk (if you change 5 peaces in a file it will show a dialog to you choose) |
-|#Dialog: Stash this hunk [y,n,q,a,d,e,?]? |
-|#y - stash this hunk |
-|#n - do not stash this hunk |
-|#q - quit; do not stash this hunk or any of the remaining ones |
-|#a - stash this hunk and all later hunks in this file |
-|#d - do not stash this hunk or any of the later hunks in the file |
-|#e - manually edit the current hunk |
-|#? - print help |
+| Command |
+| ------- | 
+|`git stash save -p "message"` |
+| Description |
+| ----------- | 
+|Stashing changes per hunk (if you change 5 peaces in a file it will show a dialog to you choose) |
+|Dialog: Stash this hunk [y,n,q,a,d,e,?]? 
+y - stash this hunk 
+n - do not stash this hunk 
+q - quit; do not stash this hunk or any of the remaining ones 
+a - stash this hunk and all later hunks in this file 
+d - do not stash this hunk or any of the later hunks in the file 
+e - manually edit the current hunk 
+? - print help |
 
 
 ### Pull Request: You have done stashes, commits and it's ready to push
