@@ -1,5 +1,5 @@
 ﻿Param(
-	[string] $subscriptionId = '',
+	[string] $subscriptionId = 'MyId',
 	[string] $Location = 'North Europe',
 	[string] $ResourceGroupName = 'PSBatch',
 	[string] $BatchAccountName = 'NAMEpsbatchaccount',
