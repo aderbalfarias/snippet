@@ -15,10 +15,7 @@ Login-AzureRmAccount
 Select-AzureRmSubscription -SubscriptionID $subscriptionId
 
 # Create an Azure Resource Group in the Appropriate Region
-New-AzureRmResourceGroup `
-    -Name $ResourceGroupName `
-    -Location $Location `
-    -Force
+New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location -Force
 
 # Create a new Batch Account
 New-AzureRmBatchAccount `
