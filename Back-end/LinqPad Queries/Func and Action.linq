@@ -23,8 +23,8 @@ class Program
 }
 
 //Action is a delegate (pointer) to a method, that takes zero, one or more input parameters, but does not return anything
-//
+
 //Func is a delegate (pointer) to a method, that takes zero, one or more input parameters, and returns a value (or reference)
-//
+
 //Predicate is a special kind of Func often used for comparisons
 //Predicate is a delegate that takes generic parameters and returns bool
