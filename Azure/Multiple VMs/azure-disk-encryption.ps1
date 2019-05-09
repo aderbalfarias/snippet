@@ -1,5 +1,5 @@
-﻿$rgName = "vms"
-$location = "North Europe"
+﻿$rgName = "rg-vms"
+$location = "northeurope"
 
 Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.KeyVault"
 New-AzureRmResourceGroup -Location $location -Name $rgName

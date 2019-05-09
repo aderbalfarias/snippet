@@ -1,8 +1,8 @@
 # Create full VM image
 
-$vmName = 'myVM'
+$vmName = 'rg-vms'
 $rgName = 'myResourceGroup'
-$location = 'EastUS'
+$location = 'northeurope'
 $imageName = 'myImage'
 
 Stop-AzureRmVM -ResourceGroupName $rgName -Name $vmName -Force
@@ -17,8 +17,8 @@ New-AzureRmImage -Image $image -ImageName $imageName -ResourceGroupName $rgName
 
 # Create an image from a snapshot
 
-$rgName = 'myResourceGroup'
-$location = 'EastUS'
+$rgName = 'rg-vms'
+$location = 'northeurope'
 $snapshotName = 'mySnapshot'
 $imageName = 'myImage'
 
