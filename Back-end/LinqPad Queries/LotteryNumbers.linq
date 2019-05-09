@@ -2,7 +2,7 @@ void Main()
 {
 	Random randNum = new Random();
 	var ln = new List<int>();
-    int cont = 0;
+        int cont = 0;
 	int num;
 	
 	while (cont < 6)
