@@ -11,7 +11,7 @@ Get-Azurermvm -ResourceGroupName '' | Stop-AzureRmVm -Force
 $resourceGroup = ''
 $vmName = ''
 
-Get-AzureRmVMSize -Location 'southcentralus' | Out-GridView
+Get-AzureRmVMSize -Location 'northeurope' | Out-GridView
 
 Get-AzureRmVMSize -ResourceGroupName $resourceGroup -VMName $vmName
 
