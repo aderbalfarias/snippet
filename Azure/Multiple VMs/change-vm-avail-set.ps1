@@ -4,9 +4,7 @@ $vmName = 'web1'
 $newAvailSetName = 'web'
 
 # Get VM Details
-$originalVM = Get-AzureRmVm `
-    -ResourceGroupName $resourceGroup `
-    -Name $vmName
+$originalVM = Get-AzureRmVm -ResourceGroupName $resourceGroup -Name $vmName
 
 # Remove the original VM
 Remove-AzureRmVM -ResourceGroupName $resourceGroup -Name $vmName
