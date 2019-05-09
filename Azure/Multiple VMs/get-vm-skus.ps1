@@ -1,6 +1,6 @@
 # Target SKU: '2016-Datacenter'
 
-$locName = 'SouthCentralUS'
+$locName = 'northeurope'
 
 Get-AzureRmVMImagePublisher -Location $locName | where-object {$_.PublisherName -like "*windows*"} | Format-Table -Property PublisherName, Location
 
