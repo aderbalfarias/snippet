@@ -1,5 +1,5 @@
-﻿$rgName = "pluralsight"
-$location = "South Central US"
+﻿$rgName = "vms"
+$location = "North Europe"
 
 Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.KeyVault"
 New-AzureRmResourceGroup -Location $location -Name $rgName
@@ -15,12 +15,7 @@ Add-AzureKeyVaultKey -VaultName $keyVaultName `
     -Destination "Software"
 $appName = "ADE-APP"
 
-
-
 $securePassword = ConvertTo-SecureString -String "114rrwesNY" -AsPlainText -Force
-
-
-
 
 $app = New-AzureRmADApplication -DisplayName $appName `
     -HomePage "https://ade.ps.local" `
@@ -46,6 +41,5 @@ Set-AzureRmVMDiskEncryptionExtension -ResourceGroupName $rgName `
     -DiskEncryptionKeyVaultId $keyVaultResourceId `
     -KeyEncryptionKeyUrl $keyEncryptionKeyUrl `
     -KeyEncryptionKeyVaultId $keyVaultResourceId
-
 
 Get-AzureRmVmDiskEncryptionStatus  -ResourceGroupName $rgName -VMName "managedserver"
