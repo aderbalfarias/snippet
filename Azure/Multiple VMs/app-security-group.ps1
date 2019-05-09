@@ -1,8 +1,8 @@
 # Ref: https://blog.kloud.com.au/2017/11/21/azure-application-security-groups/
 
-$webAsg = New-AzureRmApplicationSecurityGroup -ResourceGroupName AppGatewayWAF -Name webAsg -Location southcentralus
+$webAsg = New-AzureRmApplicationSecurityGroup -ResourceGroupName AppGatewayWAF -Name webAsg -Location northeurope
 
-$sqlAsg = New-AzureRmApplicationSecurityGroup -ResourceGroupName AppGatewayWAF -Name sqlAsg -Location southcentralus
+$sqlAsg = New-AzureRmApplicationSecurityGroup -ResourceGroupName AppGatewayWAF -Name sqlAsg -Location northeurope
 
 $webRule = New-AzureRmNetworkSecurityRuleConfig `
     -Name "AllowHttps" `
