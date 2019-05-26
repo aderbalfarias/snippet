@@ -52,13 +52,42 @@ public class InsertionSort
 		}
 	}
 
+	// Recursive function to perform insertion sort on sub-array arr[i..n]
+	public static void InsertionSortRecursive(int[] array, int i, int n)
+	{
+		int value = array[i];
+		int j = i;
+
+		// Find index j within the sorted subset array[0..i-1]
+		// where element array[i] belongs
+		while (j > 0 && array[j - 1] > value)
+		{
+			array[j] = array[j - 1];
+			j--;
+		}
+
+		array[j] = value;
+
+		// Note that subarray array[j..i-1] is shifted to
+		// the right by one position i.e. array[j+1..i]
+		if (i + 1 <= n)
+			InsertionSortRecursive(array, i + 1, n);
+	}
+
 	public static void Main()
 	{
-		int[] arrayInput = { 3, 8, 5, 4, 1, 9, -2 };
+        //Method 1
+		int[] arrayInput = { 3, 8, 5, 4, 1, 9, -2 }; 
 
-		InsertSorted(arrayInput);
-        
+		InsertSorted(arrayInput);        
 		Console.WriteLine(string.Join(",", arrayInput));
+
+        // Method 2
+		int[] arrayRecursiveInput = { 3, 8, 5, 4, 1, 9, -2 }; 
+
+        // Start from second element (element at index 0 is already sorted)
+		InsertionSortRecursive(arrayRecursiveInput, 1, arrayRecursiveInput.Length - 1);
+		Console.WriteLine(string.Join(",", arrayRecursiveInput));
 	}
 }
 
