@@ -18,7 +18,8 @@
 // insertion sort removes next element from the unsorted subset, finds the location it belongs 
 // within the sorted subset, and inserts it there. It repeats until no input elements remain. 
 
-// i = 1    [  3  8  5  4  1  9  -2 ] i = 1 then it is using just 3
+// You can see a image on Images/InsertionSort.png
+// i = 1    [  3  8  5  4  1  9  -2 ]
 // i = 2    [  3  8  5  4  1  9  -2 ]           
 // i = 3    [  3  5  8  4  1  9  -2 ]              
 // i = 4    [  3  4  5  8  1  9  -2 ]
