@@ -32,7 +32,7 @@ public class BalancePointOfArray
     public static void Main()
     {
         //Balance point of an vetor
-        var input = new int[] {2, 7, 4, 5, -3, 8, 9, -1}; //Output: 3
+        var input = new int[] { 2, 7, 4, 5, -3, 8, 9, -1 }; //Output: 3
         Console.WriteLine(BalancePoint(input));
     }
 }

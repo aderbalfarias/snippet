@@ -32,8 +32,8 @@ public class InsertionSort
 	public static void InsertSorted(int[] array)
 	{
 		// (element at index 0 is already sorted)
-		for (int i = 1; i < array.Length; i++)
 		// Start from the second element
+        for (int i = 1; i < array.Length; i++)
 		{
 			int value = array[i];
 			int j = i;
