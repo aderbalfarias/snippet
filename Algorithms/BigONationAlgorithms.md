@@ -1,8 +1,8 @@
-#Algorithms Performance
+# Algorithms Performance
 
 Big O Notation is an Intuition that study of the performance of algorithms – or algorithmic complexity – falls into the field of algorithm analysis. Algorithm analysis answers the question of how many resources, such as disk space or time, an algorithm consumes.
 
-###Constant Time Algorithms – O(1)
+### Constant Time Algorithms – O(1)
 
 How does this input size of an algorithm affect its running time? Key to understanding Big O is understanding the rates at which things can grow. The rate in question here is time taken per input size.
 
@@ -11,7 +11,7 @@ Consider this simple piece of code:
 ```csharp
 void Main()
 {
-	int n = 1000;
+    int n = 1000;
     Console.WriteLine($"You input: { n }");
 }
 ```
@@ -23,7 +23,7 @@ Similarly:
 ```csharp
 void Main()
 {
-	int n = 1000;
+    int n = 1000;
     Console.WriteLine($"You input: { n }");
     Console.WriteLine($"You input again: { n }");
     Console.WriteLine($"You input one more time: { n }");
