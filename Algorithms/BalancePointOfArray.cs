@@ -1,12 +1,12 @@
 public class BalancePointOfArray
 {
-	//Start by assuming A[0] is a pole. Then start walking the array; 
-    //comparing each element A[i] in turn against A[0], and also tracking the current maximum.
-    //As soon as you find an i such that A[i] < A[0], you know that A[0] can no longer be a pole, 
-    //and by extension, neither can any of the elements up to and including A[i]. 
-    //So now continue walking until you find the next value that's bigger than the current maximum. 
-    //This then becomes the new proposed pole.
-    //Thus, an O(n) solution!
+	// Start by assuming A[0] is a pole. Then start walking the array; 
+    // comparing each element A[i] in turn against A[0], and also tracking the current maximum.
+    // As soon as you find an i such that A[i] < A[0], you know that A[0] can no longer be a pole, 
+    // and by extension, neither can any of the elements up to and including A[i]. 
+    // So now continue walking until you find the next value that's bigger than the current maximum. 
+    // This then becomes the new proposed pole.
+    // Thus, an O(n) solution!
 	
     public static void Main()
     {
