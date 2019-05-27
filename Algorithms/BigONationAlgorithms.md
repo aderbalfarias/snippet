@@ -62,7 +62,8 @@ The algorithm ran **log(8) = 3 times**.
 
 ### Linear Time Algorithms – O(n)
 
-After logarithmic time algorithms, we get the next fastest class: linear time algorithms.  
+After logarithmic time algorithms, we get the next fastest class: linear time algorithms.
+
 If we say something grows linearly, we mean that it grows directly proportional to the size of its inputs.
 
 Think of a simple for loop:
@@ -77,8 +78,10 @@ void Main()
 }
 ```
 
-How many times does this for loop run? n times, of course! We don't know exactly how long it will take for this to run – and we don't worry about that.  
-What we do know is that the simple algorithm presented above will grow linearly with the size of its input.  
+How many times does this for loop run? n times, of course! We don't know exactly how long it will take for this to run – and we don't worry about that.
+
+What we do know is that the simple algorithm presented above will grow linearly with the size of its input.
+
 We'd prefer a run time of **0.1n than (1000n + 1000)**, but both are still linear algorithms; they both grow directly in proportion to the size of their inputs.
 
 Again, if the algorithm was changed to the following:
