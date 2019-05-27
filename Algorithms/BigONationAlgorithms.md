@@ -12,7 +12,7 @@ Consider this simple piece of code:
 void Main()
 {
     int n = 1000;
-    Console.WriteLine($"You input: { n }");
+    Console.WriteLine($"Your input: { n }");
 }
 ```
 
@@ -24,9 +24,9 @@ Similarly:
 void Main()
 {
     int n = 1000;
-    Console.WriteLine($"You input: { n }");
-    Console.WriteLine($"You input again: { n }");
-    Console.WriteLine($"You input one more time: { n }");
+    Console.WriteLine($"Your input: { n }");
+    Console.WriteLine($"Your input again: { n }");
+    Console.WriteLine($"Your input one more time: { n }");
 } 	
 ```
 
@@ -50,11 +50,12 @@ void Main()
 } 
 ```
 
->The example above will display:
->Output: 1
->Output: 2
+>Result:  
+>Output: 1  
+>Output: 2  
 >Output: 4
->the algorithm ran log(8) = 3 times.
+
+The algorithm ran **log(8) = 3 times**.  
 
 
 ![Image of Algorithms](/Algorithms/Images/AlgorithmsPerformance.png)
