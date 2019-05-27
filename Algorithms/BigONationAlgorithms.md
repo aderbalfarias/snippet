@@ -34,5 +34,27 @@ The above example is also constant time. Even if it takes 3 times as long to run
 
 >We don't care about exactly how long it takes to run, only that it takes constant time.
 
+### Logarithmic Time Algorithms – O(log n)
+Constant time algorithms are (asymptotically) the quickest. Logarithmic time is the next quickest. Unfortunately, they're a bit trickier to imagine.
+
+One common example of a logarithmic time algorithm is the [binary search](I am gonna implement it) algorithm. 
+
+What is important here is that the running time grows in proportion to the logarithm of the input (in this case, log to the base 2):
+
+```csharp
+void Main()
+{
+    var n = 8;
+    for (int i = 1; i < n; i = i * 2)
+        Console.WriteLine($"Output: { i }");
+} 
+```
+
+>The example above will display:
+>Output: 1
+>Output: 2
+>Output: 4
+>the algorithm ran log(8) = 3 times.
+
 
 ![Image of Algorithms](/Algorithms/Images/AlgorithmsPerformance.png)
