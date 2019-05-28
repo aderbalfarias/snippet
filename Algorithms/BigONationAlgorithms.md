@@ -106,6 +106,7 @@ As with the constant time algorithms, we don't care about the specifics of the r
 
 
 ### N Log N Time Algorithms – O(n log n)
+
 n log n is the next class of algorithms. The running time grows in proportion to n log n of the input:
 
 ```csharp
@@ -120,6 +121,27 @@ void Main()
 ```
 
 For example, if the **n is 8**, then this algorithm will run **8 * log(8) = 8 * 3 = 24 times**. Whether we have strict inequality or not in the for loop is irrelevant for the sake of a Big O Notation.
+
+### Polynomial Time Algorithms – O(np)
+
+Next up we've got polynomial time algorithms. These algorithms are even slower than n log n algorithms.
+
+The term polynomial is a general term which contains quadratic (n2), cubic (n3), quartic (n4), etc. functions. What's important to know is that O(n2) is faster than O(n3) which is faster than O(n4), etc.
+
+Let's have a look at a simple example of a quadratic time algorithm:
+
+```csharp
+void Main()
+{
+    var n = 8;
+	
+    for (int i = 1; i <= n; i++)
+        for(int j = 1; j < n; j++) 
+            Console.WriteLine("Output when I: " + i + " and J: " + j);
+}
+```
+
+This algorithm will run 64 times. Note, if we were to nest another for loop, this would become an O(n3) algorithm.
 
 
 
