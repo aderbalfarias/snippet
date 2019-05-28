@@ -144,5 +144,29 @@ void Main()
 This algorithm will run 64 times. Note, if we were to nest another for loop, this would become an O(n3) algorithm.
 
 
+### Exponential Time Algorithms – O(kn)
+
+Now we are getting into dangerous territory; these algorithms grow in proportion to some factor exponentiated by the input size.
+
+For example, O(2n) algorithms double with every additional input. So, if n = 2, these algorithms will run four times; if n = 3, they will run eight times (kind of like the opposite of logarithmic time algorithms).
+
+O(3n) algorithms triple with every additional input, O(kn) algorithms will get k times bigger with every additional input.
+
+Let's have a look at a simple example of an O(2n) time algorithm:
+
+```csharp
+void Main()
+{
+    var n = 8;
+	
+    for (int i = 1; i <= Math.Pow(2, n); i++)
+        Console.WriteLine("Output I: " + i);
+}
+```
+
+This algorithm will 256 times.
+
+
+
 
 ![Image of Algorithms](/Algorithms/Images/AlgorithmsPerformance.png)
