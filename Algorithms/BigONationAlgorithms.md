@@ -176,7 +176,23 @@ An explanation of the solution to the traveling salesman problem is beyond the s
 
 Instead, let's look at a simple **O(n!)** algorithm, as in the previous sections:
 
+```csharp
+public void Main()
+{
+    var n = 8;
+    
+    for (int i = 1; i <= Factorial(n); i++)
+        Console.WriteLine("Output I: " + i);
+}
 
+public int Factorial(int number)
+{
+    if (number == 1)
+        return 1;
+    else
+        return number * Factorial(number - 1);
+}
+```
 
 where factorial(n) simply calculates **n!**. If n is 8, **this algorithm will run 8! = 40320 times**.
 
