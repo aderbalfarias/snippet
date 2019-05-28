@@ -116,7 +116,7 @@ void Main()
 	
     for (int i = 1; i <= n; i++)
         for(int j = 1; j < n; j = j * 2) 
-            Console.WriteLine("Output when i: " + i + " and j: " + j);
+            Console.WriteLine($"Output for i: { i } and j: { j }");
 }
 ```
 
@@ -137,7 +137,7 @@ void Main()
 	
     for (int i = 1; i <= n; i++)
         for(int j = 1; j < n; j++) 
-            Console.WriteLine("Output when i: " + i + " and j: " + j);
+            Console.WriteLine($"Output for i: { i } and j: { j }");
 }
 ```
 
@@ -160,7 +160,7 @@ void Main()
     var n = 8;
 	
     for (int i = 1; i <= Math.Pow(2, n); i++)
-        Console.WriteLine("Output i: " + i);
+        Console.WriteLine($"Output i: { i }");
 }
 ```
 
@@ -182,7 +182,7 @@ public void Main()
     var n = 8;
     
     for (int i = 1; i <= Factorial(n); i++)
-        Console.WriteLine("Output i: " + i);
+        Console.WriteLine($"Output i: { i }");
 }
 
 public int Factorial(int number)
