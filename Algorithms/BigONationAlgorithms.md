@@ -105,6 +105,22 @@ The runtime would still be linear in the size of its input, **n**. We denote lin
 As with the constant time algorithms, we don't care about the specifics of the runtime. **O(2n+1) is the same as O(n)**, as Big O Notation concerns itself with growth for input sizes.
 
 
+### N Log N Time Algorithms – O(n log n)
+n log n is the next class of algorithms. The running time grows in proportion to n log n of the input:
+
+```csharp
+void Main()
+{
+    var n = 8;
+	
+    for (int i = 1; i <= n; i++)
+        for(int j = 1; j < n; j = j * 2) 
+            Console.WriteLine("Output when I: " + i + " and J: " + j);
+}
+```
+
+For example, if the **n is 8**, then this algorithm will run **8 * log(8) = 8 * 3 = 24 times**. Whether we have strict inequality or not in the for loop is irrelevant for the sake of a Big O Notation.
+
 
 
 ![Image of Algorithms](/Algorithms/Images/AlgorithmsPerformance.png)
