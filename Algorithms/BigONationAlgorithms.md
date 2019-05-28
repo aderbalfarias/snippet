@@ -197,5 +197,15 @@ public int Factorial(int number)
 where factorial(n) simply calculates **n!**. If n is 8, **this algorithm will run 8! = 40320 times**.
 
 
-
 ![Image of Algorithms](/Algorithms/Images/AlgorithmsPerformance.png)
+
+## Asymptotic Functions
+
+Big O is what is known as an asymptotic function. All this means, is that it concerns itself with the performance of an algorithm at the limit – i.e. – when lots of input is thrown at it.
+
+Big O doesn't care about how well your algorithm does with inputs of small size. It's concerned with large inputs (think sorting a list of one million numbers vs. sorting a list of 5 numbers).
+
+Another thing to note is that there are other asymptotic functions. Big Θ (theta) and Big Ω (omega) also both describes algorithms at the limit (remember, the limit this just means for huge inputs).
+
+To understand the differences between these 3 important functions, we first need to know that each of Big O, Big Θ, and Big Ω describes a set (i.e., a collection of elements).
+
