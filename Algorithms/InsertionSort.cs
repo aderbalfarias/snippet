@@ -72,7 +72,7 @@ public class InsertionSort
 		// Note that subarray array[j..i-1] is shifted to
 		// the right by one position i.e. array[j+1..i]
 		if (i + 1 <= n)
-			InsertionSortRecursive(array, i + 1, n);
+			InsertionSortV2(array, i + 1, n);
 	}
 
 	public static void Main()
@@ -80,15 +80,15 @@ public class InsertionSort
         //Method 1
 		int[] arrayInput = { 3, 8, 5, 4, 1, 9, -2 }; 
 
-		InsertSorted(arrayInput);        
-		Console.WriteLine($"Normal method: \n { string.Join(",", arrayInput) }");
+		InsertionSortV1(arrayInput);        
+		Console.WriteLine($"Normal method: \n [ { string.Join(",", arrayInput) } ] \n");
 
         // Method 2
 		int[] arrayRecursiveInput = { 3, 8, 5, 4, 1, 9, -2 }; 
 
         // Start from second element (element at index 0 is already sorted)
 		InsertionSortV2(arrayRecursiveInput, 1, arrayRecursiveInput.Length - 1);
-		Console.WriteLine($"Recursive method: \n { string.Join(",", arrayRecursiveInput) }");
+		Console.WriteLine($"Recursive method: \n[ { string.Join(",", arrayRecursiveInput) } ]");
 	}
 }
 
