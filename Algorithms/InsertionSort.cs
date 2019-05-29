@@ -30,7 +30,7 @@
 public class InsertionSort
 {
 	// Function to perform insertion sort on array[]
-	public static void InsertSorted(int[] array)
+	public static void InsertionSortV1(int[] array)
 	{
 		// (element at index 0 is already sorted)
 		// Start from the second element
@@ -54,7 +54,7 @@ public class InsertionSort
 	}
 
 	// Recursive function to perform insertion sort on sub-array arr[i..n]
-	public static void InsertionSortRecursive(int[] array, int i, int n)
+	public static void InsertionSortV2(int[] array, int i, int n)
 	{
 		int value = array[i];
 		int j = i;
@@ -87,7 +87,7 @@ public class InsertionSort
 		int[] arrayRecursiveInput = { 3, 8, 5, 4, 1, 9, -2 }; 
 
         // Start from second element (element at index 0 is already sorted)
-		InsertionSortRecursive(arrayRecursiveInput, 1, arrayRecursiveInput.Length - 1);
+		InsertionSortV2(arrayRecursiveInput, 1, arrayRecursiveInput.Length - 1);
 		Console.WriteLine(string.Join(",", arrayRecursiveInput));
 	}
 }
