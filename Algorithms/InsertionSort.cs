@@ -81,14 +81,14 @@ public class InsertionSort
 		int[] arrayInput = { 3, 8, 5, 4, 1, 9, -2 }; 
 
 		InsertSorted(arrayInput);        
-		Console.WriteLine(string.Join(",", arrayInput));
+		Console.WriteLine($"Normal method: \n { string.Join(",", arrayInput) }");
 
         // Method 2
 		int[] arrayRecursiveInput = { 3, 8, 5, 4, 1, 9, -2 }; 
 
         // Start from second element (element at index 0 is already sorted)
 		InsertionSortV2(arrayRecursiveInput, 1, arrayRecursiveInput.Length - 1);
-		Console.WriteLine(string.Join(",", arrayRecursiveInput));
+		Console.WriteLine($"Recursive method: \n { string.Join(",", arrayRecursiveInput) }");
 	}
 }
 
