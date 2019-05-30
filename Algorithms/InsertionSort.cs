@@ -69,6 +69,7 @@ public class InsertionSort
 // in practice than most other simple O(n2) algorithms such as selection sort or bubble sort. 
 // Insertion sort is also used is used in Hybrid sort which combines different sorting 
 // algorithms to improve performance.
+
 // It is also a well known online algorithm as it can sort a list as it receives it. 
 // In all other algorithms we need all elements to be provided to the sorting algorithm 
 // before applying it. But an insertion sort allows we to start with partial set of elements, 
