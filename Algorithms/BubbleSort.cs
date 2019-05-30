@@ -69,6 +69,7 @@ public class BubbleSort
 // swaps are needed, which indicates that the list is sorted. In worst case, we might end up making 
 // n – 1 passes where n is the size of the input.
 
+// Image on Images/BubbleSort.png
 //               3     5     8     4     1     9    -2 
 // pass 1        3     5     4     1     8    -2     9
 // pass 2        3     4     1     5    -2     8     9
