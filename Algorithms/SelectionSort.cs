@@ -56,7 +56,7 @@ public class SelectionSort
 		
 		int[] arrayRecursive = { 3, 5, 8, 4, 1, 9, -2 };
 		
-		SelectionSortV2(arrayRecursive, 1, arrayRecursive.Length - 1);
+		SelectionSortV2(arrayRecursive, 0, arrayRecursive.Length);
 		// print the sorted array
         Console.WriteLine($"v2: [ { string.Join(", ", arrayRecursive) } ]");
 	}
