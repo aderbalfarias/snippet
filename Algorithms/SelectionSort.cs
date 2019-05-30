@@ -58,7 +58,7 @@ public class SelectionSort
 		
 		SelectionSortV2(arrayRecursive, 1, arrayRecursive.Length - 1);
 		// print the sorted array
-        Console.WriteLine($"v2: [ { string.Join(", ", array) } ]");
+        Console.WriteLine($"v2: [ { string.Join(", ", arrayRecursive) } ]");
 	}
 }
 
