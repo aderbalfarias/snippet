@@ -1,4 +1,3 @@
-//Note: Comments on the bottom of this file
 public class InsertionSort
 {
 	// Function to perform insertion sort on array[]

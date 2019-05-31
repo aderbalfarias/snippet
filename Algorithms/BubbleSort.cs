@@ -1,4 +1,3 @@
-//Note: Comments on the bottom of this file
 public class BubbleSort
 {
 	// Utility function to swap values at two indices in the array
