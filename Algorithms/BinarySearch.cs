@@ -147,4 +147,20 @@ public class BinarySearch
 // Therefore, time complexity of binary search algorithm is O(log2n) which is very efficient. 
 // Auxiliary space used by it is O(1) for iterative implementation and O(log2n) for recursive 
 // implementation due to call stack.
- 
+
+
+// Avoid Integer Overflow:
+// signed int in C/C++ takes up 4 bytes of storage i.e. It allows storage for integers 
+// between -2147483648 to 2147483647 (Note that some compilers might take up 2 bytes storage as well. 
+// The exact value can be find by cout << sizeof(int)).
+
+// So if (low + high) > 2147483647, integer overflow will happen.
+
+// int mid = (low + high)/2; // overflow can happen
+
+// To avoid integer overflow, we can use any of the below expressions:
+// int mid = low + (high – low)/2;
+// int mid = high – (high – low)/2;
+
+// Now, low + (high – low) / 2 or high – (high – low) / 2 always computes a valid index halfway between 
+// high and low, and overflow will never happen even for extreme values.
