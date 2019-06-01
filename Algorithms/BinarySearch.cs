@@ -89,7 +89,7 @@ public class BinarySearch
 
 
 // Given a sorted array of integers and a target value, find out if a target exists in the array or not 
-// in O(log(n)) time using Binary Search Algorithm in C and Java. If target exists in the array, print index of it.
+// in O(log(n)) time using Binary Search Algorithm in C#. If target exists in the array, print index of it.
 
 // For example:
 
