@@ -135,3 +135,16 @@ public class BinarySearch
 // array = [2, 3, 5, 7, 8, 10, 12, 15, 18, 20]
 // target = 7
 // Image on Images/BinarySearch.png
+
+
+// Performance of Binary Search Algorithm:
+// We know that at each step of the algorithm, our search space reduces to half. That means if initially 
+// our search space contains n elements, then after one iteration it contains n/2, then n/4 and so on..
+
+// n -> n/2 -> n/4 -> … -> 1
+// Suppose after k steps our search space is exhausted. Then, n/2k = 1; n = 2k; k = log2n
+
+// Therefore, time complexity of binary search algorithm is O(log2n) which is very efficient. 
+// Auxiliary space used by it is O(1) for iterative implementation and O(log2n) for recursive 
+// implementation due to call stack.
+ 
