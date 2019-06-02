@@ -86,4 +86,4 @@ public class QuickSort
 //     pivot and separately to the sub-array of elements with greater values than pivot.
 
 // The base case of the recursion is arrays of size 1, which never need to be sorted.
-// Image on Images/QuickSort.png
+// Image on ../Images/QuickSort.png

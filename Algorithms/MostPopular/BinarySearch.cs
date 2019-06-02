@@ -134,7 +134,7 @@ public class BinarySearch
 // We repeat the process until target is found or our search space is exhausted. 
 // array = [2, 3, 5, 7, 8, 10, 12, 15, 18, 20]
 // target = 7
-// Image on Images/BinarySearch.png
+// Image on ../Images/BinarySearch.png
 
 
 // Performance of Binary Search Algorithm:

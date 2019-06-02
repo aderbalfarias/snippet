@@ -94,4 +94,4 @@ public class MergeSort
     // Divide the unsorted array into n subarrays, each of size 1 (an array of size 1 is considered sorted).
     // Repeatedly merge subarrays to produce new sorted subarrays until only 1 subarray is left which would be our sorted array.
 
-// Image on Images/MergeSort.png
+// Image on ../Images/MergeSort.png

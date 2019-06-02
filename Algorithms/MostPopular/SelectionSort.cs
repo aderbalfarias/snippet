@@ -80,7 +80,7 @@ public class SelectionSort
 // element in the unsorted sublist, swapping it with the leftmost unsorted element 
 // (putting it in sorted order), and moving the sublist boundaries one element to the right. 
 
-// Image on Images/SelectionSort.png
+// Image on ../Images/SelectionSort.png
 //       [  3  5  8  4  1  9 -2 ]
 // i = 0 [ -2  5  8  4  1  9  3 ]
 // i = 1 [ -2  1  8  4  5  9  3 ]
