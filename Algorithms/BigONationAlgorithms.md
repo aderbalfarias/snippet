@@ -201,7 +201,7 @@ where factorial(n) simply calculates **n!**. If n is 8, **this algorithm will ru
 
 ## Asymptotic Functions
 
-Big O is what is known as an asymptotic function. All this means, is that it concerns itself with the performance of an algorithm at the limit – i.e. – when lots of input is thrown at it.
+Big O is what is known as an asymptotic function. All this means, is that it concerns itself with the performance of an algorithm at the limit (i.e. – when lots of input is thrown at it).
 
 Big O doesn't care about how well your algorithm does with inputs of small size. It's concerned with large inputs (think sorting a list of one million numbers vs. sorting a list of 5 numbers).
 
