@@ -209,3 +209,5 @@ Another thing to note is that there are other asymptotic functions. Big Θ (thet
 
 To understand the differences between these 3 important functions, we first need to know that each of Big O, Big Θ, and Big Ω describes a set (i.e., a collection of elements).
 
+
+**Note**: If you want to run the algorithms you can use a tool called [LINQPad 5](https://www.linqpad.net/) or any other C# editor.
