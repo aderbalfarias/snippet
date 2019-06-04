@@ -21,19 +21,24 @@ public class Graph
 	{
 		var adjList = new ArrayList(N);
 
-		for (int i = 0; i < N; i++) {
-			adjList.Add(i, new ArrayList());
-		}
+		for (int i = 0; i < N; i++)
+			adjList.Add(i);
 
 		// add edges to the undirected graph
-		for (int i = 0; i < edges.Count(); i++)
+		for (int i = 0; i < edges.Count; i++)
 		{
 			int src = edges[i].source;
 			int dest = edges[i].dest;
+			
+			Console.WriteLine(edges[i].source);
+			//Console.WriteLine(edges[i]);
 
-			adjList[src].Add(dest);
-			adjList[dest].Add(src);
+			adjList.Add(dest);
+			adjList.Add(src);
 		}
+		
+		for (int i = 0; i < N; i++)
+			Console.WriteLine(adjList[i]);
 	}
 }
 
