@@ -1,114 +1,136 @@
-// data structure to store graph edges
-public class Edge
+public class Algorithms 
 {
-	public int source, dest;
+    public HashSet<T> BFS<T>(Graph<T> graph, T start) 
+    {
+        var visited = new HashSet<T>();
 
-	public Edge(int source, int dest) 
+        if (!graph.AdjacencyList.ContainsKey(start))
+            return visited;
+            
+        var queue = new Queue<T>();
+        queue.Enqueue(start);
+
+        while (queue.Count > 0) 
+        {
+            var vertex = queue.Dequeue();
+
+            if (visited.Contains(vertex))
+                continue;
+
+            visited.Add(vertex);
+
+            foreach(var neighbor in graph.AdjacencyList[vertex])
+                if (!visited.Contains(neighbor))
+                    queue.Enqueue(neighbor);
+        }
+
+        return visited;
+    }
+	
+	public Func<T, IEnumerable<T>> ShortestPathFunction<T>(Graph<T> graph, T start) 
 	{
-		this.source = source;
-		this.dest = dest;
-	}
-};
-
-// class to represent a graph object
-public class Graph
-{
-	// A List of Lists to represent an adjacency list
-	public List<List<int>> adjList = null;
-
-	// Constructor
-	public Graph(List<Edge> edges, int N)
-	{
-		var adjList = new ArrayList(N);
-
-		for (int i = 0; i < N; i++)
-			adjList.Add(i);
-
-		// add edges to the undirected graph
-		for (int i = 0; i < edges.Count; i++)
+	    var previous = new Dictionary<T, T>();
+	        
+	    var queue = new Queue<T>();
+	    queue.Enqueue(start);
+	
+	    while (queue.Count > 0) 
 		{
-			int src = edges[i].source;
-			int dest = edges[i].dest;
-			
-			Console.WriteLine(edges[i].source);
-			//Console.WriteLine(edges[i]);
-
-			adjList.Add(dest);
-			adjList.Add(src);
-		}
-		
-		for (int i = 0; i < N; i++)
-			Console.WriteLine(adjList[i]);
+	        var vertex = queue.Dequeue();
+	        foreach(var neighbor in graph.AdjacencyList[vertex]) 
+			{
+	            if (previous.ContainsKey(neighbor))
+	                continue;
+	            
+	            previous[neighbor] = vertex;
+	            queue.Enqueue(neighbor);
+	        }
+	    }
+	
+	    Func<T, IEnumerable<T>> shortestPath = v => 
+		{
+	        var path = new List<T>{};
+	
+	        var current = v;
+	        while (!current.Equals(start)) 
+			{
+	            path.Add(current);
+	            current = previous[current];
+	        };
+	
+	        path.Add(start);
+	        path.Reverse();
+	
+	        return path;
+	    };
+	
+	    return shortestPath;
 	}
 }
 
-public class BFS
+public class Graph<T> 
 {
-	// Perform BFS on graph starting from vertex v
-	public static void BFSImplementation(Graph graph, int v, bool[] discovered)
-	{
-		// create a queue used to do BFS
-		Queue<int> q = new Queue<int>();
+    public Graph() {}
 
-		// mark source vertex as discovered
-		discovered[v] = true;
+    public Graph(IEnumerable<T> vertices, IEnumerable<Tuple<T,T>> edges) 
+    {
+        foreach(var vertex in vertices)
+            AddVertex(vertex);
 
-		// push source vertex into the queue
-		q.Enqueue(v);
+        foreach(var edge in edges)
+            AddEdge(edge);
+    }
 
-		// run till queue is not empty
-		while (!q.Any())
-		{
-			// pop front node from queue and print it
-			v = q.Peek();
-			Console.WriteLine(v + " ");
+    public Dictionary<T, HashSet<T>> AdjacencyList { get; } = new Dictionary<T, HashSet<T>>();
 
-			// do for every edge (v -> u)
-			foreach (int u in graph.adjList[v]) 
-			{
-				if (!discovered[u]) 
-				{
-					// mark it discovered and push it into queue
-					discovered[u] = true;
-					q.Enqueue(u);
-				}
-			}
-		}
-	}
+    public void AddVertex(T vertex) 
+    {
+        AdjacencyList[vertex] = new HashSet<T>();
+    }
+
+    public void AddEdge(Tuple<T,T> edge) 
+    {
+        if (AdjacencyList.ContainsKey(edge.Item1) 
+            && AdjacencyList.ContainsKey(edge.Item2)) 
+        {
+            AdjacencyList[edge.Item1].Add(edge.Item2);
+            AdjacencyList[edge.Item2].Add(edge.Item1);
+        }
+    }
 }
 
 // Iterative C# implementation of Breadth first search
 public static void Main()
 {
-	// List of graph edges as per above diagram
-	var edges = new List<Edge>
+	var edges = new[]
 	{
-		new Edge(1, 2), 
-		new Edge(1, 3), 
-		new Edge(1, 4),
-		new Edge(2, 5), 
-		new Edge(2, 6), 
-		new Edge(5, 9),
-		new Edge(5, 10), 
-		new Edge(4, 7), 
-		new Edge(4, 8),
-		new Edge(7, 11), 
-		new Edge(7, 12)
-		// vertex 0, 13 and 14 are single nodes
+		Tuple.Create(1, 2), 
+		Tuple.Create(1, 3), 
+		Tuple.Create(1, 4),
+		Tuple.Create(2, 5), 
+		Tuple.Create(2, 6), 
+		Tuple.Create(5, 9),
+		Tuple.Create(5, 10), 
+		Tuple.Create(4, 7), 
+		Tuple.Create(4, 8),
+		Tuple.Create(7, 11), 
+		Tuple.Create(7, 12)
 	};
 
 	// Set number of vertices in the graph
-	int n = 15;
+	int n = 12;    
+    int[] vertices = new int[n];
+    
+    for (int i = 1; i <= n; i++)
+        vertices[i - 1] = i;     
+	
+	var graph = new Graph<int>(vertices, edges);
+    var algorithms = new Algorithms();
 
-	// create a graph from edges
-	Graph graph = new Graph(edges, n);
-
-	// stores vertex is discovered or not
-	bool[] discovered = new bool[n];
-
-	// Do BFS traversal from all undiscovered nodes to
-	// cover all unconnected components of graph
-	for (int i = 0; i < n; i++)
-		if (discovered[i] == false) 
-			BFS.BFSImplementation(graph, i, discovered); // start BFS traversal from vertex i
+    Console.WriteLine(string.Join(", ", algorithms.BFS(graph, 1)));
+	
+	var shortestPath = algorithms.ShortestPathFunction(graph, 1);
+	
+    foreach (var vertex in vertices)
+        Console.WriteLine($"shortest path to { vertex }: { string.Join(", ", shortestPath(vertex)) }");
 }
