@@ -75,8 +75,8 @@ public class Stack
 		myStack.Push(4); 
 		myStack.PrintStack(); 
 		myStack.Peek(); 
-		Console.WriteLine($"Item popped from Stack : {myStack.Pop()}"); 
-		Console.WriteLine($"Item popped from Stack : {myStack.Pop()}"); 
+		Console.WriteLine($"Item popped from Stack : { myStack.Pop() }"); 
+		Console.WriteLine($"Item popped from Stack : { myStack.Pop() }"); 
 		myStack.PrintStack(); 
 	} 
 } 
