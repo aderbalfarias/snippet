@@ -9,11 +9,11 @@ public class Stack
 		return (top < 0); 
 	} 
 	
-	internal bool Push(int data) 
+	public bool Push(int data) 
 	{ 
 		if (top >= max) 
 		{ 
-			Console.WriteLine("Stack Overflow"); 
+			Console.WriteLine("\nStack Overflow"); 
 			return false; 
 		} 
 		else
@@ -23,11 +23,11 @@ public class Stack
 		} 
 	} 
 
-	internal int Pop() 
+	public int Pop() 
 	{ 
 		if (IsEmpty()) 
 		{ 
-			Console.WriteLine("Stack Underflow"); 
+			Console.WriteLine("\nStack Underflow"); 
 			return 0; 
 		} 
 		else
@@ -37,18 +37,18 @@ public class Stack
 		} 
 	} 
 
-	internal void Peek() 
+	public void Peek() 
 	{ 
 		if (IsEmpty()) 
 		{ 
-			Console.WriteLine("Stack Underflow"); 
+			Console.WriteLine("\nStack Underflow"); 
 			return; 
 		} 
 		else
-			Console.WriteLine("The topmost element of Stack is : {0}", stack[top]); 
+			Console.WriteLine("\nThe topmost element of Stack: {0}", stack[top]); 
 	} 
 
-	internal void PrintStack() 
+	public void PrintElements() 
 	{ 
 		if (IsEmpty()) 
 		{ 
@@ -57,14 +57,15 @@ public class Stack
 		} 
 		else
 		{ 
-			Console.WriteLine("Items in the Stack are :"); 
+			Console.WriteLine("Items in the Stack:"); 
 			for (int i = top; i >= 0; i--) 
-			{ 
 				Console.WriteLine(stack[i]); 
-			} 
 		} 
 	} 
+} 
 
+public class TestStack
+{
 	public static void Main() 
 	{ 
 		Stack myStack = new Stack(); 
@@ -73,10 +74,12 @@ public class Stack
 		myStack.Push(2); 
 		myStack.Push(3); 
 		myStack.Push(4); 
-		myStack.PrintStack(); 
+		myStack.PrintElements(); 
+		
 		myStack.Peek(); 
-		Console.WriteLine($"Item popped from Stack : { myStack.Pop() }"); 
-		Console.WriteLine($"Item popped from Stack : { myStack.Pop() }"); 
-		myStack.PrintStack(); 
+		Console.WriteLine($"\nItem popped from Stack: { myStack.Pop() }"); 
+		Console.WriteLine($"\nItem popped from Stack: { myStack.Pop() }"); 
+		
+		myStack.PrintElements(); 
 	} 
-} 
+}
