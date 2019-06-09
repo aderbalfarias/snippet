@@ -73,8 +73,11 @@ public class Queue
 		
         return string.Join(", ", elements);
     }
+}
 
-    public static void Main() 
+public class TestQueue
+{
+	public static void Main() 
 	{ 
 		Queue myQueue = new Queue(); 
 	
