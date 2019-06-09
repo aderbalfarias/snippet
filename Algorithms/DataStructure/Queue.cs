@@ -71,7 +71,7 @@ public class Queue
             node = node.next;
         }
 		
-        return string.Join(" ", elements);
+        return string.Join(", ", elements);
     }
 
     public static void Main() 
@@ -83,8 +83,10 @@ public class Queue
 		myQueue.Enqueue(3); 
 		myQueue.Enqueue(4); 
 		Console.WriteLine($"Item in the queue: { myQueue.PrintElements() }");
+		// Output: Item in the queue: 4, 3, 2, 1
 
         myQueue.Dequeue();
 		Console.WriteLine($"Item in the queue: { myQueue.PrintElements() }");
+		// Output: Item in the queue: 4, 3, 2
 	} 
 }
