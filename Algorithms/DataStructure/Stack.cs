@@ -45,7 +45,7 @@ public class Stack
 			return; 
 		} 
 		else
-			Console.WriteLine("\nThe topmost element of Stack: {0}", stack[top]); 
+			Console.WriteLine($"\nThe topmost element of stack: { stack[top] }"); 
 	} 
 
 	public void PrintElements() 
@@ -57,7 +57,7 @@ public class Stack
 		} 
 		else
 		{ 
-			Console.WriteLine("Items in the Stack:"); 
+			Console.WriteLine("Items in the stack:"); 
 			for (int i = top; i >= 0; i--) 
 				Console.WriteLine(stack[i]); 
 		} 
@@ -77,8 +77,8 @@ public class TestStack
 		myStack.PrintElements(); 
 		
 		myStack.Peek(); 
-		Console.WriteLine($"\nItem popped from Stack: { myStack.Pop() }"); 
-		Console.WriteLine($"\nItem popped from Stack: { myStack.Pop() }"); 
+		Console.WriteLine($"\nItem popped from stack: { myStack.Pop() }"); 
+		Console.WriteLine($"\nItem popped from stack: { myStack.Pop() }"); 
 		
 		myStack.PrintElements(); 
 	} 
