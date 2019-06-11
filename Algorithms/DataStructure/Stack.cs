@@ -4,7 +4,7 @@ public class Stack
 	int top = -1; 
 	int[] stack = new int[max]; 
 
-	bool IsEmpty() 
+	public bool IsEmpty() 
 	{ 
 		return (top < 0); 
 	} 
