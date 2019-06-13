@@ -25,14 +25,16 @@ class clsGraph
     }
 
     //Add edge from v->w
-    public void AddEdge(int v,int w) {
+    public void AddEdge(int v,int w) 
+    {
         adj[v].Add(w);
     }
 
     //Print BFS traversal
     //s-> start node
     //BFS uses queue as a base.
-    void BFS(int s) {
+    void BFS(int s) 
+    {
         bool[] visited = new bool[Vertices];
 
         //create queue for BFS
@@ -40,15 +42,18 @@ class clsGraph
         visited[s] = true;
         queue.Enqueue(s);
 
-        //loop through all nodes in queue
-        while (queue.Count!=0) {
-            //Deque a vertex from queue and print it.
+        // Loop through all nodes in queue
+        while (queue.Count!=0) 
+        {
+            // Deque a vertex from queue and print it.
             s = queue.Dequeue();
-            Console.WriteLine("next->"+s);
+            Console.WriteLine($"next-> { s }");
 
             //Get all adjacent vertices of s
-            foreach (Int32 next in adj[s]) {
-                if (!visited[next]) {
+            foreach (Int32 next in adj[s]) 
+            {
+                if (!visited[next]) 
+                {
                     visited[next] = true;
                     queue.Enqueue(next);
                 }
@@ -57,9 +62,10 @@ class clsGraph
         }
     }
 
-    //DFS traversal 
-    // DFS uses stack as a base.
-    public void DFS(int s) {
+    // DFS traversal 
+    // DFS uses stack as a base
+    public void DFS(int s) 
+    {
         bool[] visited = new bool[Vertices];
 
         //For DFS use stack
@@ -67,11 +73,15 @@ class clsGraph
         visited[s] = true;
         stack.Push(s);
 
-        while (stack.Count !=0) {
+        while (stack.Count !=0) 
+        {
             s = stack.Pop();
-            Console.WriteLine("next->"+s);
-            foreach (int i in adj[s]) {
-                if (!visited[i]) {
+            Console.WriteLine($"next-> { s }");
+
+            foreach (int i in adj[s]) 
+            {
+                if (!visited[i]) 
+                {
                     visited[i] = true;
                     stack.Push(i);
                 }
@@ -79,15 +89,17 @@ class clsGraph
         }
     }
 
-    public void PrintAdjacecnyMatrix() {
+    public void PrintAdjacecnyMatrix() 
+    {
         for (int i = 0; i < Vertices; i++)
         {
             Console.Write(i+":[");
             string s = "";
-            foreach (var k in adj[i])  {
-                s= s+(k+",");
-            }
-            s = s.Substring(0,s.Length-1);
+
+            foreach (var k in adj[i])  
+                s = s + (k + ",");
+
+            s = s.Substring(0, s.Length-1);
             s = s + "]";
             Console.Write(s);
             Console.WriteLine();
@@ -98,7 +110,7 @@ class clsGraph
     {
         clsGraph graph = new clsGraph(4);
         graph.AddEdge(0,1);
-        graph.AddEdge(0, 2);
+        graph.AddEdge(0,2);
         graph.AddEdge(1,2);
         graph.AddEdge(2,0);
         graph.AddEdge(2,3);
@@ -109,7 +121,7 @@ class clsGraph
 
         Console.WriteLine("BFS traversal starting from vertex 2:");
         graph.BFS(2);
-        
+
         Console.WriteLine("DFS traversal starting from vertex 2:");
         graph.DFS(2);
     }
