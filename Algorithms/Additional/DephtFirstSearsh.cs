@@ -1,9 +1,10 @@
 //Directed graph- Adjacency list representation
-class clsGraph
+class DephtFirstSearsh
 {
-    //total no of vertices
+    // Total no of vertices
     private int Vertices;
-    //adjency list array for all vertices.
+
+    // Adjency list array for all vertices.
     private List<Int32>[] adj;
     /* Example : vertices=4
      *      0->[1,2]
@@ -12,44 +13,42 @@ class clsGraph
      *      3->[]
      */
 
-    //constructor
-    public clsGraph(int v) {
+    public DephtFirstSearsh(int v) 
+    {
         Vertices = v;
-        adj = new List<Int32>[v];
-        //Instantiate adjacecny list for all vertices
-        for (int i = 0; i < v; i++)
-        {
-            adj[i] = new List<Int32>();
-        }
+        adj = new List<int>[v];
 
+        // Instantiate adjacecny list for all vertices
+        for (int i = 0; i < v; i++)
+            adj[i] = new List<int>();
     }
 
-    //Add edge from v->w
-    public void AddEdge(int v,int w) 
+    // Add edge from v-> w
+    public void AddEdge(int v, int w) 
     {
         adj[v].Add(w);
     }
 
-    //Print BFS traversal
-    //s-> start node
-    //BFS uses queue as a base.
+    // Print BFS traversal
+    // s-> start node
+    // BFS uses queue as a base
     void BFS(int s) 
     {
         bool[] visited = new bool[Vertices];
 
-        //create queue for BFS
+        // Create queue for BFS
         Queue<int> queue = new Queue<int>();
         visited[s] = true;
         queue.Enqueue(s);
 
         // Loop through all nodes in queue
-        while (queue.Count!=0) 
+        while (queue.Count != 0) 
         {
             // Deque a vertex from queue and print it.
             s = queue.Dequeue();
             Console.WriteLine($"next-> { s }");
 
-            //Get all adjacent vertices of s
+            // Get all adjacent vertices of s
             foreach (Int32 next in adj[s]) 
             {
                 if (!visited[next]) 
@@ -58,7 +57,6 @@ class clsGraph
                     queue.Enqueue(next);
                 }
             }
-
         }
     }
 
@@ -68,12 +66,12 @@ class clsGraph
     {
         bool[] visited = new bool[Vertices];
 
-        //For DFS use stack
+        // For DFS use stack
         Stack<int> stack = new Stack<int>();
         visited[s] = true;
         stack.Push(s);
 
-        while (stack.Count !=0) 
+        while (stack.Count != 0) 
         {
             s = stack.Pop();
             Console.WriteLine($"next-> { s }");
@@ -108,7 +106,7 @@ class clsGraph
     
     public static void Main() 
     {
-        clsGraph graph = new clsGraph(4);
+        DephtFirstSearsh graph = new DephtFirstSearsh(4);
         graph.AddEdge(0,1);
         graph.AddEdge(0,2);
         graph.AddEdge(1,2);
