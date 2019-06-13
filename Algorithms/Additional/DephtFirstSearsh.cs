@@ -93,8 +93,9 @@ class clsGraph
             Console.WriteLine();
         }
     }
-    //Calling methods
-    public static void Main() {
+    
+    public static void Main() 
+    {
         clsGraph graph = new clsGraph(4);
         graph.AddEdge(0,1);
         graph.AddEdge(0, 2);
@@ -102,11 +103,13 @@ class clsGraph
         graph.AddEdge(2,0);
         graph.AddEdge(2,3);
         graph.AddEdge(3,3);
+
         //Print adjacency matrix
         graph.PrintAdjacecnyMatrix();
 
         Console.WriteLine("BFS traversal starting from vertex 2:");
         graph.BFS(2);
+        
         Console.WriteLine("DFS traversal starting from vertex 2:");
         graph.DFS(2);
     }
