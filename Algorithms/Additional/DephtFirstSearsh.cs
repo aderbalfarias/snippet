@@ -1,5 +1,5 @@
 //Directed graph- Adjacency list representation
-class DephtFirstSearsh
+public class DephtFirstSearsh
 {
     // Total no of vertices
     private int Vertices;
