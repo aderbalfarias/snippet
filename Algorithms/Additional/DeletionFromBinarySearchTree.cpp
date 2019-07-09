@@ -169,3 +169,14 @@ int main()
 
 // Case 1: (Image on ../Images/DeletionInBSTCase1.png)
 // Deleting a node with no children: simply remove the node from the tree.
+
+// Case 2: (Image on ../Images/DeletionInBSTCase1.png)
+// Deleting a node with two children: call the node to be deleted N. Do not delete N. 
+// Instead, choose either its in-order successor node or its in-order predecessor node, R. 
+// Copy the value of R to N, then recursively call delete on R until reaching one of the 
+// first two cases. If you choose in-order successor of a node, as right sub tree is not 
+// NULL (Our present case is node has 2 children), then its in-order successor is node with 
+// least value in its right sub tree, which will have at a maximum of 1 sub tree, 
+// so deleting it would fall in one of the first 2 cases.
+
+// Case 3: Deleting a node with one child: remove the node and replace it with its child.
