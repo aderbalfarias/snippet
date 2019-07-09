@@ -166,3 +166,6 @@ int main()
 
 	return 0;
 }
+
+// Case 1: (Image on ../Images/DeletionInBSTCase1.png)
+// Deleting a node with no children: simply remove the node from the tree.
