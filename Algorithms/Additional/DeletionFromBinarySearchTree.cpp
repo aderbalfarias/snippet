@@ -181,3 +181,8 @@ int main()
 
 // Case 3: (Image on ../Images/DeletionInBSTCase3.png)
 // Deleting a node with one child: remove the node and replace it with its child.
+
+// Broadly speaking, nodes with children are harder to delete. As with all binary trees, 
+// a node’s in-order successor is its right subtree’s left-most child, and a node’s in-order 
+// predecessor is the left subtree’s right-most child. In either case, this node will have 
+// zero or one children. Delete it according to one of the two simpler cases above.
