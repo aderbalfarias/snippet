@@ -11,6 +11,10 @@ git branch #> List branches (the asterisk denotes the current branch)
 git branch -a #> List all branches (local and remote)
 git branch [branch name] #> Create a new branch
 git branch -d [branch name] #> Delete a branch
+git branch -m [old name] [new name] #> rename branch
+git branch -m [new name] #> rename current branch
+git push origin :[old name] [new name] #> delete the old name remote branch and push the new name local branch
+git push origin -u [new name] #> reset the upstream branch for the new name local branch
 git push origin --delete [branch name] #> Delete a remote branch
 git checkout -b [branch name] #> It creates a new branch
 git checkout [branch name] #> Switch branches
