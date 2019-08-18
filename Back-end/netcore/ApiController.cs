@@ -1,0 +1,1 @@
+// Example of a controller in netcore with web api
