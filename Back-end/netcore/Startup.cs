@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -45,18 +44,12 @@ namespace ProjectNameApi
             });
 
             // DI
-            services.AddTransient<ITestService, TestService>();
-            services.AddTransient<ITestRepository, TestRepository>();
+            services.Services();
+            services.Repositories();
+            services.Databases(Configuration.GetConnectionString(connectionName));
+            services.Configure<ConfigKeys>(Configuration.GetSection("ConfigKeys"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            // Add configuration for DbContext
-            // Use connection string from appsettings.json file
-            services.AddDbContext<Context>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(connectionName)));
-
-            services.AddScoped<ILogger, Logger<Context>>();
-            services.Configure<ConfigKeys>(Configuration.GetSection("ConfigKeys"));
 
             services.AddSwaggerGen(c =>
             {
