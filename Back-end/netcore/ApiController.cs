@@ -29,5 +29,12 @@ namespace ProjectNameApi.Controllers
         [EnableCors]
         [Route("getbyid/{id:int:min(1)}")]
         public IActionResult GetById(int id) => Ok(_testService.GetById(id));
+
+        // GET api/demo/getdetails/{id}/{modelId}
+        [HttpGet]
+        [EnableCors]
+        [Route("getdetails/{id:int:min(1)}/{modelId:int:min(1)}")]
+        public async Task<IActionResult> GetDetails(int id, int modelId) 
+            => Ok(await _testService.GetDetails(id, modelId));
     }
 }
