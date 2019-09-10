@@ -1,4 +1,4 @@
-using ProjectName.Extensions;
+using CoreApp.Api.Extesions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -7,24 +7,20 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace ProjectName.Middlewares
+namespace CoreApp.Api.Middlewares
 {
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IOptions<ConfigKeys> _appConfigKeys;
-        private readonly ILogger _logger;
 
-        public ExceptionMiddleware(RequestDelegate next, 
-            ILogger<ExceptionMiddleware> logger,
-            IOptions<ConfigKeys> appConfigKeys)
+        public ExceptionMiddleware(RequestDelegate next)
         {
-            _logger = logger;
             _next = next;
-            _appConfigKeys = appConfigKeys;
         }
 
-        public async Task Invoke(HttpContext httpContext, IHostingEnvironment hostingEnvironment)
+        public async Task Invoke(HttpContext httpContext, 
+            ILogger<ExceptionMiddleware> logger,
+            IOptions<ConfigKeys> appConfigKeys)
         {
             try
             {
@@ -32,29 +28,22 @@ namespace ProjectName.Middlewares
             }
             catch (Exception e)
             {
-                Log(httpContext, e, hostingEnvironment);
-                throw;
+                logger.LogError($"Exception logged in {context?.Request?.Path}, Error: {e}");
+                await HandleExceptionAsync(httpContext);
             }
         }
 
-        private void Log(HttpContext context, Exception exception, IHostingEnvironment hostingEnvironment)
+        private Task HandleExceptionAsync(HttpContext context, IOptions<ConfigKeys> appConfigKeys)
         {
-            var logsPath = _appConfigKeys.Value.LogPath;
-            var now = DateTime.UtcNow;
-            var fileName = $"{now.ToString("yyyyMMdd")}.log";
-            var filePath = Path.Combine(logsPath, hostingEnvironment.EnvironmentName, fileName);
+            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
-            _logger.LogError($"Exception logged: {now}");
-
-            // ensure that directory exists
-            new FileInfo(filePath).Directory.Create();
-
-            using (StreamWriter outputFile = new StreamWriter(filePath, true))
+            var newResponse = new
             {
-                outputFile.WriteLine($"{now.ToString("HH:mm:ss")} => {context.Request.Path}");
-                outputFile.WriteLine(exception.Message);
-                outputFile.WriteLine(Environment.NewLine);
-            }
+                context.Response.StatusCode,
+                Message = appConfigKeys.Value.ResponseErrorMessage
+            };
+
+            return context.Response.WriteAsync(newResponse.ToString());
         }
     }
 }
