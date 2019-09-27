@@ -9,3 +9,8 @@ await base.MessageSession.Send(xCommand).ConfigureAwait(false);
 
 IHandleMessages<RegisterX>
 
+endpointConfiguration.RegisterComponents(
+                registration: configureComponents =>
+                {
+                    configureComponents.RegisterSingleton(hostContext.Configuration.GetSection(appSettings).Get<AppSettings>());
+                });
