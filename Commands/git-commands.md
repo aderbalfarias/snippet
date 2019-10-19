@@ -82,7 +82,6 @@
 | `git remote add upstream git://github.com/REPOSITORY_ORIGIN/PROJECT_ORIGIN` |
 | `git fetch upstream` |
 | `git merge upstream/master` |
-| `git push` |
 
 
 ### Git Sync Fork Example 2: 
@@ -94,4 +93,3 @@
 | `git remote add upstream git://github.com/ORIGINAL-DEV-USERNAME/REPO-YOU-FORKED-FROM.git` |
 | `git fetch upstream` |
 | `git pull upstream master` |
-| `git push` |
