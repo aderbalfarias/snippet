@@ -36,8 +36,7 @@ public static IEnumerable<T> ReadExcel<T>()
     return (IEnumerable<T>) list;
 }
 
-//-----------------------------------------------------------------------------------------------------------------------------
-//Example context
+// Example context
 private readonly Context _context = new Context();
 
 public void SaveData<T>(IEnumerable<T> list)
