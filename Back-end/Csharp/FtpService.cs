@@ -21,7 +21,7 @@ namespace App.Domain.Services
             try
             {
                 // Get the object used to communicate with the server.
-                var request = (FtpWebRequest)WebRequest.Create($"{_appSettings.PrintLetterFtpUrl}/{fileName}");
+                var request = (FtpWebRequest)WebRequest.Create($"{_appSettings.FtpUrl}/{fileName}");
 
                 request.Method = WebRequestMethods.Ftp.UploadFile;
 
