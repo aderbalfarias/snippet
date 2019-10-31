@@ -112,7 +112,7 @@ namespace UnitTest.Services
             return Task.CompletedTask;
             
             // IOptions interface
-            //_appSettings.SetupGet(s => s.Value).Returns(new AppSettings { RecType = 3 });
+            //_appSettings.SetupGet(s => s.Value).Returns(new AppSettings { Id = 3 });
         }
 
         #endregion End Mocks
