@@ -84,6 +84,19 @@ namespace UnitTest.Services
 
             Assert.Contains(exceptionMessage, LogStatements);
         }
+        
+        [Theory]
+        [InlineData("Test", "Test", "Test", true, 1)]
+        [InlineData("Test 2", "", "Test", false, 1)]
+        [InlineData("Test 3", "Test", "Test", false, 1)]
+        [InlineData("Test 4", "", "", true, 1)]
+        public async Task Multiple_Test(string obj1, string obj2, string obj3, bool valid, int id)
+        {
+            //setups
+
+            Assert.Equal(1, id);
+            Assert.Contains("Test", obj1);
+        }
 
         #region Setups 
 
