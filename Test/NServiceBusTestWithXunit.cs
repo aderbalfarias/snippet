@@ -103,6 +103,17 @@ namespace UnitTest.Services
         {
             Id = 1
         };
+        
+        private Task MockAppSettings()
+        {
+            // Properties need to be virtual because we are mocking a concrete class
+            _appSettings.SetupGet(s => s.Folder).Returns("Test");
+
+            return Task.CompletedTask;
+            
+            // IOptions interface
+            //_appSettings.SetupGet(s => s.Value).Returns(new AppSettings { RecType = 3 });
+        }
 
         #endregion End Mocks
 
