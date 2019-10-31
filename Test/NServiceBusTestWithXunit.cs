@@ -89,12 +89,49 @@ namespace UnitTest.Services
 
         private Task HandleSetup()
         {
-            _mockBaseRepository.Setup(s => s.Add(It.IsAny<PrintLetterEntity>()))
+            _mockBaseRepository.Setup(s => s.Add(It.IsAny<SomeEntity>()))
                 .Returns(Task.FromResult(1));
 
             return Task.CompletedTask;
         }
 
+        private Task RepositoryGetObjectMethodSetup()
+        {
+            IQueryable<MyEntity> mocks = MockEntityDetail().AsQueryable();
+
+            _mockBaseRepository.Setup(s
+                    => s.GetObject(It.IsAny<Expression<Func<MyEntity, bool>>>(), It.IsAny<string>()))
+                .Returns<Expression<Func<MyEntity, bool>>, string>((predicate, include)
+                        => mocks.FirstOrDefault(predicate));
+
+            return Task.CompletedTask;
+        }
+
+        private Task RepositoryGetWithIncludeMethodSetup()
+        {
+            IQueryable<MyEntity> mocks = MockEntityDetail().AsQueryable();
+
+            _mockBaseRepository.Setup(s
+                    => s.GetWithInclude(It.IsAny<Expression<Func<MyEntity, bool>>>(), It.IsAny<string>()))
+                .Returns<Expression<Func<MyEntity, bool>>, string>((predicate, include)
+                        => mocks.Where(predicate));
+
+            return Task.CompletedTask;
+        }
+
+        private Task RepositoryGetWithIncludeMethodSetup()
+        {
+            var mocks = MockEntityDetail()
+                .AsQueryable();
+
+            _mockBaseRepository.Setup(s
+                    => s.GetObjectAsync(It.IsAny<Expression<Func<MyEntity, bool>>>()))
+                .Returns<Expression<Func<MyEntity, bool>>>(predicate
+                        => Task.FromResult(mocks.FirstOrDefault(predicate)));
+
+            return Task.CompletedTask;
+        }
+        
         #endregion End Setups 
 
         #region Mocks
