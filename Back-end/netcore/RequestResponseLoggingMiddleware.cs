@@ -15,6 +15,7 @@ public class RequestResponseLoggingMiddleware
 
                 var requestResponseLog = new RequestResponseLog();
                 
+                // PathString("/api") is used to filter just /api routes
                 if (request.Path.StartsWithSegments(new PathString("/api")))
                 {
                     requestResponseLog.RequestMessage = await ReadRequestBody(request);
