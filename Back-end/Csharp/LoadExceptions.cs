@@ -84,5 +84,4 @@ class ReadFromFile
         Console.WriteLine("Press any key to exit.");
         System.Console.ReadKey();
     }
-       
 }
