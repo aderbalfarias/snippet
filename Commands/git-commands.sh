@@ -46,6 +46,8 @@ git reset --hard HEAD^ #> rollback changes
 git commit --amend -m #> Update message of the last commit
 git push --force #> In case you have already pushed code you reset to remote branch
 git log --autor=[yourName] #> To see your commits
+git log #> To list all commits
+git log --oneline #> To list all commits in one line
 git gc --prune=now #> Way to delete data that has accumulated in Git but is not being referenced by anything
 git remote prune origin #> Way to delete data that has accumulated in Git but is not being referenced by anything
 :wq #> Exit merge screen in git bash
