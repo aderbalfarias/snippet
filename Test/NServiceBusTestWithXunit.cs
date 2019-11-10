@@ -46,11 +46,8 @@ namespace UnitTest.Services
             InitializeLogManager();
 
             _mockBaseRepository = new Mock<IBaseRepository>();
-            _mockPrintFileService = new Mock<IPrintFileService>();
-            _mockAuditLoggingService = new Mock<IAuditLoggingService>();
 
-            _handleResponseService = new HandleResponseService(_mockBaseRepository.Object,
-                _mockPrintFileService.Object, _mockAuditLoggingService.Object);
+            _handleResponseService = new HandleResponseService(_mockBaseRepository.Object);
 
             _context = new TestableMessageHandlerContext();
         }
