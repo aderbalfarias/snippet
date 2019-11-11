@@ -146,7 +146,7 @@ namespace UnitTest.Services
 
         #region Mocks
 
-        private PpsnAllocation MockMessage() => new MockMessage
+        private MyEntity MockMessage() => new MockMessage
         {
             Id = 1
         };
