@@ -1,0 +1,73 @@
+Do not show the Api: [ApiExplorerSettings(IgnoreApi = true)]
+
+Conditional to Startup: 
+.UseIf(!HostingEnvironment.IsDevelopment(), x => x.UseHsts())
+					
+.UseIf(env.IsDevelopment() || env.IsProduction(), x =>
+{
+	InitializeAsync(app.ApplicationServices, env).GetAwaiter().GetResult();
+	return x;
+});
+
+
+//in AddSwaggerGen
+var security = new Dictionary<string, IEnumerable<string>>
+{
+	{ "Bearer", new string[0] }
+};
+
+c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+{
+	Description = "JWT Authorization to Api",
+	Name = "Authorization",
+	In = "header",
+	Type = "apiKey"
+});
+
+
+//AppSettings
+public string Secret { get; set; }
+
+namespace WebApi.Helpers
+{
+    public class AppSettings
+    {
+        public string Secret { get; set; }
+    }
+}
+
+ "AppSettings": {
+    "Secret": "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING"
+  },
+
+
+ // configure jwt authentication
+var appSettings = appSettingsSection.Get<AppSettings>();
+var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+services.AddAuthentication(x =>
+{
+	x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(x =>
+{
+	x.RequireHttpsMetadata = false;
+	x.SaveToken = true;
+	x.TokenValidationParameters = new TokenValidationParameters
+	{
+		ValidateIssuerSigningKey = true,
+		IssuerSigningKey = new SymmetricSecurityKey(key),
+		ValidateIssuer = false,
+		ValidateAudience = false,
+		RequiredExpirationTime = false;
+		ValidateLifetime = true
+	};
+});
+
+[Route("api/[controller]")]
+[Route("api/v{version:apiVersion}/[controller]")]
+[Produces("application/json", "application/xml")]
+
+//Reference 
+https://jasonwatmore.com/post/2019/10/11/aspnet-core-3-jwt-authentication-tutorial-with-example-api
