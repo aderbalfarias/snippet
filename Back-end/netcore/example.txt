@@ -85,7 +85,7 @@ https://jasonwatmore.com/post/2019/10/11/aspnet-core-3-jwt-authentication-tutori
 
 
 
-
+https://developer.okta.com/blog/2017/06/13/add-authentication-angular-pwa
 
 
 
