@@ -352,7 +352,7 @@ namespace Api.Controllers
                     TokenUrl = authenticationOptions.TokenEndpoint
                 });
 
-                c.OperationFilter<AssignOAuth2SecurityRequirements>();
+                c.OperationFilter<SwaggerAssignOAuth2SecurityFilter>();
             });
 
             services
