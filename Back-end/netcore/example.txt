@@ -71,3 +71,410 @@ services.AddAuthentication(x =>
 
 //Reference 
 https://jasonwatmore.com/post/2019/10/11/aspnet-core-3-jwt-authentication-tutorial-with-example-api
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "Authentication": {
+    "Issuer": "http://localhost:111/",
+    "Audience": "NameAudienceApiImplementation",
+    "TokenEndpoint": "http://localhost:111/connect/token"
+  },
+  "OIDCAuthorizationServer": {
+    "Clients": [
+      {
+        "ClientId": "MyApi",
+        "ClientSecret": "00000000-0000-0000-0000-000000000000",
+        "Roles": [],
+        "ApplicationDescriptors": [
+          {
+            "Permissions": [
+              "ept:token",
+              "gt:client_credentials"
+            ]
+          }
+        ]
+      },
+      {
+        "ClientId": "MyApiAdmin",
+        "ClientSecret": "00000000-0000-0000-0000-000000000000",
+        "Roles": [ "Admin" ],
+        "ApplicationDescriptors": [
+          {
+            "Permissions": [
+              "ept:token",
+              "gt:client_credentials"
+            ]
+          }
+        ]
+      }
+    ],
+    "AccessTokenExpiration": "3600",
+    "Audience": "NameAudienceApiImplementation",
+    "SigningCertificate": {
+      "Subject": "localhost",
+      "Store": "My",
+      "Location": "LocalMachine",
+      "AllowInvalid": "true"
+    }
+  }
+  
+  
+using System.Collections.Generic;
+using OpenIddict.Abstractions;
+
+namespace Api.Options
+{
+    public class OIDCAuthorizationServerOptions
+    {
+        public Client[] Clients { get; set; }        
+
+        public CertificateOptions SigningCertificate { get; set; }
+
+        public int AccessTokenExpiration { get; set; }
+
+        public string Audience { get; set; }
+    }
+
+    public class CertificateOptions
+    {
+        public bool AllowInvalid { get; set; }
+
+        public string Subject { get; set; }
+
+        public string Store { get; set; }
+
+        public string Location { get; set; }
+    }
+
+    /// <summary>Represents an OpenIddict application descriptor.</summary>
+    public class Client
+    {
+        /// <summary>
+        /// Gets or sets the client identifier
+        /// associated with the application.
+        /// </summary>
+        public string ClientId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the client secret associated with the application.
+        /// Note: depending on the application manager used when creating it,
+        /// this property may be hashed or encrypted for security reasons.
+        /// </summary>
+        public string ClientSecret { get; set; }
+
+        public List<string> Roles { get; set; }
+
+        public OpenIddictApplicationDescriptor[] ApplicationDescriptors { get; set; }
+    }
+}
+
+using System.ComponentModel.DataAnnotations;
+
+namespace Api.Options
+{
+    public class ApplicationOptions : Framework.Options.ApplicationOptions
+    {
+        [Required] public OIDCAuthorizationServerOptions OIDCAuthorizationServer { get; set; }
+    }
+}
+
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using AspNet.Security.OpenIdConnect.Extensions;
+using AspNet.Security.OpenIdConnect.Primitives;
+using Api.Options;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using OpenIddict.Core;
+using OpenIddict.EntityFrameworkCore.Models;
+using OpenIddict.Mvc.Internal;
+using OpenIddict.Server;
+
+namespace Api.Controllers
+{
+    //[ApiExplorerSettings(IgnoreApi = true)]
+    public class AuthorizationController : ControllerBase
+    {
+        private readonly OIDCAuthorizationServerOptions _serverOptions;
+        private readonly OpenIddictApplicationManager<OpenIddictApplication> _applicationManager;
+
+        public AuthorizationController(IOptions<OIDCAuthorizationServerOptions> options,
+            OpenIddictApplicationManager<OpenIddictApplication> applicationManager)
+        {
+            _serverOptions = options.Value;
+            _applicationManager = applicationManager;
+        }
+
+        [HttpPost("~/connect/token")]
+        [Produces("application/json")]
+        public async Task<IActionResult> Exchange([ModelBinder(typeof(OpenIddictMvcBinder))]
+            OpenIdConnectRequest request)
+        {
+            if (request.IsClientCredentialsGrantType())
+            {
+                // Note: the client credentials are automatically validated by OpenIddict:
+                // if client_id or client_secret are invalid, this action won't be invoked.
+
+                var application =
+                    await _applicationManager.FindByClientIdAsync(request.ClientId, HttpContext.RequestAborted);
+
+                if (application == null)
+                    return BadRequest(new OpenIdConnectResponse
+                    {
+                        Error = OpenIdConnectConstants.Errors.InvalidClient,
+                        ErrorDescription = "The client application was not found in the database."
+                    });
+
+                // Create a new authentication ticket.
+                var ticket = CreateTicket(application);
+
+                return SignIn(ticket.Principal, ticket.Properties, ticket.AuthenticationScheme);
+            }
+
+            return BadRequest(new OpenIdConnectResponse
+            {
+                Error = OpenIdConnectConstants.Errors.UnsupportedGrantType,
+                ErrorDescription = "The specified grant type is not supported."
+            });
+        }
+
+        private AuthenticationTicket CreateTicket(OpenIddictApplication application)
+        {
+            // Create a new ClaimsIdentity containing the claims that
+            // will be used to create an id_token, a token or a code.
+            var identity = new ClaimsIdentity(
+                OpenIddictServerDefaults.AuthenticationScheme,
+                OpenIdConnectConstants.Claims.Name,
+                OpenIdConnectConstants.Claims.Role);
+
+            // Use the client_id as the subject identifier.
+            identity.AddClaim(OpenIdConnectConstants.Claims.Subject, application.ClientId,
+                OpenIdConnectConstants.Destinations.AccessToken,
+                OpenIdConnectConstants.Destinations.IdentityToken);
+
+            //identity.AddClaim(OpenIdConnectConstants.Claims.Name, application.DisplayName,
+            //    OpenIdConnectConstants.Destinations.AccessToken,
+            //    OpenIdConnectConstants.Destinations.IdentityToken);
+
+            var clients = _serverOptions.Clients.Where(x => x.ClientId == application.ClientId).ToList();
+
+            foreach (var client in clients)
+            {
+                var roles = client.Roles;
+                if (roles != null)
+                {
+                    foreach (var role in roles)
+                    {
+                        identity.AddClaim(OpenIdConnectConstants.Claims.Role, role,
+                            OpenIdConnectConstants.Destinations.AccessToken,
+                            OpenIdConnectConstants.Destinations.IdentityToken);
+                    }
+                }
+            }
+
+            // Create a new authentication ticket holding the user identity.
+            var ticket = new AuthenticationTicket(
+                new ClaimsPrincipal(identity),
+                new AuthenticationProperties(),
+                OpenIddictServerDefaults.AuthenticationScheme);
+
+            ticket.SetResources(_serverOptions.Audience);
+
+            return ticket;
+        }
+    }
+}
+
+[Authorize]
+
+    <PackageReference Include="OpenIddict" Version="2.0.0" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="OpenIddict.Mvc" Version="2.0.0" />
+
+
+
+        public Startup(IConfiguration configuration, IHostingEnvironment environment, ILogger<Startup> logger)
+        {
+            Configuration = configuration;
+            Environment = environment;
+            _logger = logger;
+        }
+
+        public IConfiguration Configuration { get; }
+
+        public IHostingEnvironment Environment { get; }
+
+		
+		
+		
+            services.ConfigureAndValidateSingleton<AuthenticationOptions>(
+                Configuration.GetSection(nameof(Options.ApplicationOptions.Authentication)));
+
+            var authenticationOptions = services.BuildServiceProvider()
+                .GetRequiredService<AuthenticationOptions>();
+		
+		
+		
+		
+                //var security = new Dictionary<string, IEnumerable<string>>
+                //{
+                //    { "Bearer", new string[0] }
+                //};
+
+                //c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                //{
+                //    Description = "JWT Authorization to MatchApi",
+                //    Name = "Authorization",
+                //    In = "header",
+                //    Type = "apiKey"
+                //});
+
+                c.AddSecurityDefinition("oauth2", new OAuth2Scheme
+                {
+                    Flow = "application",
+                    TokenUrl = authenticationOptions.TokenEndpoint
+                });
+
+                c.OperationFilter<AssignOAuth2SecurityRequirements>();
+            });
+
+            services
+                .ConfigureAndValidateSingleton<OIDCAuthorizationServerOptions>(
+                    Configuration.GetSection(nameof(Options.ApplicationOptions.OIDCAuthorizationServer)))
+                .ConfigureAndValidateSingleton<AuthenticationOptions>(
+                    Configuration.GetSection(nameof(Options.ApplicationOptions.Authentication)))
+                .AddCustomOpenIddict(Environment)
+                .AddAuthorization(options =>
+                {
+                    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+                    options.AddPolicy("Creator", policy => policy.RequireRole("Creator"));
+                });
+
+				
+				
+        /// <summary>
+        /// OpenId configuration
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        private async Task InitializeAsync(IServiceProvider services, IHostingEnvironment environment)
+        {
+            // Create a new service scope to ensure the database context is correctly disposed when this methods returns.
+            using (var scope = services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                //var context = scope.ServiceProvider.GetRequiredService<DbContext>();
+                //await context.Database.EnsureCreatedAsync();
+
+                var manager = scope.ServiceProvider
+                    .GetRequiredService<OpenIddictApplicationManager<OpenIddictApplication>>();
+
+                var openIdOptions = scope.ServiceProvider.GetRequiredService<OIDCAuthorizationServerOptions>();
+                foreach (var client in openIdOptions.Clients)
+                {
+                    foreach (var descriptor in client.ApplicationDescriptors)
+                    {
+                        //var clientId = descriptor.ClientId;
+                        descriptor.ClientId = client.ClientId;
+                        descriptor.ClientSecret = client.ClientSecret;
+
+                        if (await manager.FindByClientIdAsync(client.ClientId) != null)
+                            continue;
+
+                        await manager.CreateAsync(descriptor);
+                    }
+                }
+            }
+
+			
+			
+			    public class AssignOAuth2SecurityRequirements : IOperationFilter
+    {
+        public void Apply(Operation operation, OperationFilterContext context)
+        {
+            // Determine if the operation has the Authorize attribute
+            //var authorizeAttributes = context.MethodInfo.DeclaringType.GetTypeInfo()
+            //    .GetCustomAttributes<AuthorizeAttribute>();
+
+            var authorizeAttributes = context.MethodInfo.DeclaringType.GetCustomAttributes(true)
+            .Union(context.MethodInfo.GetCustomAttributes(true))
+            .OfType<AuthorizeAttribute>();
+
+            if (authorizeAttributes.Any())
+                operation.Security = new List<IDictionary<string, IEnumerable<string>>>()
+                {
+                    new Dictionary<string, IEnumerable<string>>()
+                    {
+                        { "oauth2", Enumerable.Empty<string>() }
+                    }
+                };
+        }
+    }
+	
+	
+using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Api.Options
+{
+    public class SwaggerAssignOAuth2SecurityFilter : IOperationFilter
+    {
+        public void Apply(Operation operation, OperationFilterContext context)
+        {
+            var authorizeAttributes = context.MethodInfo.DeclaringType.GetCustomAttributes(true)
+                .Union(context.MethodInfo.GetCustomAttributes(true))
+                .OfType<AuthorizeAttribute>();
+
+            if (authorizeAttributes.Any())
+                operation.Security = new List<IDictionary<string, IEnumerable<string>>>()
+                {
+                    new Dictionary<string, IEnumerable<string>>()
+                    {
+                        { "oauth2", Enumerable.Empty<string>() }
+                    }
+                };
+        }
+    }
+}
+
+
+///////////////////////////////
+
+    /// <summary>
+    ///     All options for the application.
+    /// </summary>
+    public partial class ApplicationOptions
+    {
+        [Required] public CacheProfileOptions CacheProfiles { get; set; }
+
+        [Required] public CompressionOptions Compression { get; set; }
+
+        [Required] public ForwardedHeadersOptions ForwardedHeaders { get; set; }
+
+        [Required] public HostFilteringOptions HostFiltering { get; set; }
+
+        [Required] public KestrelServerOptions Kestrel { get; set; }
+
+        [Required] public AuthenticationOptions Authentication { get; set; }
+    }
+
+
