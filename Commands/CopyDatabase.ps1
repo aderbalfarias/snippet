@@ -1,0 +1,1 @@
+Copy-dbEnv -SourceEnv '[Origin server]' -Dest '[Destination server]' -DatabasePattern '[db name]' -suffix '[suffix name]' -Force $True
