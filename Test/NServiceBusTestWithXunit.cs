@@ -94,6 +94,31 @@ namespace UnitTest.Services
             Assert.Equal(1, id);
             Assert.Contains("Test", obj1);
         }
+        
+        [Fact]
+        public async Task When_Test_Should_Return_Without_Exceptions()
+        {
+            await ExecuteSetups();
+
+            var exception = Record.ExceptionAsync(async () => await _consolidateJob.CallYourMethod());
+            
+            Assert.Null(exception.Result);
+        }
+        
+        [Fact]
+        public async Task When_Test1_Should_Log_Consolidated_File_Created()
+        {
+            await ExecuteSetups();
+
+            await _consolidateJob.CallYourMethod();
+
+            var successfulMessage = "Test created successfully";
+
+            _mockLogger.Verify(x =>
+                x.Log(LogLevel.Information, It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((o, t) => string.Equals(successfulMessage, o.ToString())),
+                    It.IsAny<Exception>(), (Func<It.IsAnyType, Exception, string>)It.IsAny<object>()), Times.Once);
+        }
 
         #region Setups 
 
