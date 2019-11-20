@@ -119,6 +119,22 @@ namespace UnitTest.Services
                     It.Is<It.IsAnyType>((o, t) => string.Equals(successfulMessage, o.ToString())),
                     It.IsAny<Exception>(), (Func<It.IsAnyType, Exception, string>)It.IsAny<object>()), Times.Once);
         }
+        
+        [Fact]
+        public async Task When_Handle_Should_Log_Exception()
+        {
+            await HandleSetup();
+
+            var message = MockMessage();
+            message.SerializedMessage = null;
+
+            var exception = Assert.ThrowsAnyAsync<ArgumentNullException>(()
+                    => _handleResponseService.Handle(message, _context));
+
+            var exceptionMessage = $"Error for message id: {message.id}";
+
+            Assert.Contains(exceptionMessage, LogStatements);
+        }
 
         #region Setups 
 
