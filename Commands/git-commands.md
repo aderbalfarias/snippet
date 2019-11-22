@@ -8,7 +8,7 @@
 | `git status` | Check status |
 | `git fetch` | Update your remote-tracking branches |
 | `git pull` | It does a git fetch followed by a git merge |
-| `git add .` | Adding to staging area |
+| `git add --all` | Adding all changes to staging area |
 | `git commit -m "message"` | Adding files to local repository |
 | `git push origin [branch name]` | It pushes the code to remote branch |
 | `git branch` | List branches (the asterisk denotes the current branch) |
