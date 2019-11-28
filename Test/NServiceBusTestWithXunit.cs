@@ -1,11 +1,4 @@
 //.csproj
-//<Project Sdk="Microsoft.NET.Sdk">
-
-//  <PropertyGroup>
-//    <TargetFramework>netcoreapp2.2</TargetFramework>
-//    <IsPackable>false</IsPackable>
-//  </PropertyGroup>
-
 //  <ItemGroup>
 //    <PackageReference Include="Microsoft.AspNetCore.App" />
 //    <PackageReference Include="Microsoft.CodeCoverage" Version="16.3.0" />
@@ -16,7 +9,6 @@
 //    <PackageReference Include="xunit" Version="2.4.1" />
 //    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
 //  </ItemGroup>
-
 //</Project>
 
 //--------------------------------------------------------------------------------
