@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 int main()
 {
     int rows, coef = 1, space, i, j;
