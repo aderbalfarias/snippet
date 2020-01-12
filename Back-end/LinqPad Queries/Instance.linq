@@ -25,5 +25,4 @@ class B : A
     }
 }
 
-
 //Output: 2
