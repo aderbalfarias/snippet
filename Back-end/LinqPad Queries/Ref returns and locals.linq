@@ -21,5 +21,6 @@ public ref int Find(int number, int[] numbers)
             return ref numbers[i]; // return the storage location, not the value
         }
     }
+    
     throw new IndexOutOfRangeException($"{nameof(number)} not found");
 }
