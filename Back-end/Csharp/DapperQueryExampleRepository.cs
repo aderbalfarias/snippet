@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
-using Example.Business.DataEntities;
-using Example.Business.Interfaces.Repositories;
-using Example.Infraestrutura.CrossCutting.Support.Extensions;
-using Example.Infrastructure.Data.DapperConfig;
-using Example.Infrastructure.Data.EntityConfig;
 
 namespace Example.Infrastructure.Data.Repositories
 {

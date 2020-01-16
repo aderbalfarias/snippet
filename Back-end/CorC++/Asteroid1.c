@@ -7,15 +7,15 @@ void display(void);
 void keyboard(unsigned char key, int x, int y);
 
 int main(int argc, char** argv){
-  glutInit(&argc, argv);                              // inicializa o glut
-  glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);           // especifica o uso de cores e buffers
-  glutInitWindowSize (320, 200);                          // especifica as dimensoes da janela
-  glutInitWindowPosition (100, 100);                      // especifica aonde a janela aparece na tela
-  glutCreateWindow ("Asteroides");              // cria a janela
+  glutInit(&argc, argv);  // inicializa o glut
+  glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB); // especifica o uso de cores e buffers
+  glutInitWindowSize (320, 200);  // especifica as dimensoes da janela
+  glutInitWindowPosition (100, 100);  // especifica aonde a janela aparece na tela
+  glutCreateWindow ("Asteroides");  // cria a janela
   init();
-  glutDisplayFunc(display);                               // funcao que sera redesenhada pelo GLUT
-  glutKeyboardFunc(keyboard);                             // funcoes de teclado
-  glutMainLoop();                                         // mostra todas as janelas criadas
+  glutDisplayFunc(display); // funcao que sera redesenhada pelo GLUT
+  glutKeyboardFunc(keyboard); // funcoes de teclado
+  glutMainLoop(); // mostra todas as janelas criadas
   return 0;
 }
 
@@ -25,10 +25,10 @@ void init(void){
 } 
 
 void display(void){
-  glClear(GL_COLOR_BUFFER_BIT);               // limpa a janela
-  glColor3f (0.0, 0.0, 0.0);                  // cor da linha
+  glClear(GL_COLOR_BUFFER_BIT); // limpa a janela
+  glColor3f (0.0, 0.0, 0.0);  // cor da linha
   glBegin(GL_POLYGON);
-  //glVertex2i(40,200);  glVertex2i(200,10);    // coordenadas inicial e final da linha
+  //glVertex2i(40,200);  glVertex2i(200,10);  // coordenadas inicial e final da linha
   glVertex2i(70,70); 
   glVertex2i(70,130); 
   glVertex2i(160,130); 
@@ -39,7 +39,7 @@ void display(void){
 
 void keyboard(unsigned char key, int x, int y){
   switch (key) {
-  case 27:                                         // tecla Esc (encerra o programa)
+  case 27:  // tecla Esc (encerra o programa)
 	exit(0);
 	break;
   }

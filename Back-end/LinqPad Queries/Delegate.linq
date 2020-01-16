@@ -11,21 +11,21 @@ class Test
 
     static void Main(string[] args)
     {
-        // Original delegate syntax required 
-        // initialization with a named method.
+        //Original delegate syntax required 
+        //initialization with a named method.
         TestDelegate testDelA = new TestDelegate(M);
 
-        // C# 2.0: A delegate can be initialized with
-        // inline code, called an "anonymous method." This
-        // method takes a string as an input parameter.
+        //C# 2.0: A delegate can be initialized with
+        //inline code, called an "anonymous method." This
+        //method takes a string as an input parameter.
         TestDelegate testDelB = delegate(string s) { Console.WriteLine(s); };
 
-        // C# 3.0. A delegate can be initialized with
-        // a lambda expression. The lambda also takes a string
-        // as an input parameter (x). The type of x is inferred by the compiler.
+        //C# 3.0. A delegate can be initialized with
+        //a lambda expression. The lambda also takes a string
+        //as an input parameter (x). The type of x is inferred by the compiler.
         TestDelegate testDelC = (x) => { Console.WriteLine(x); };
 
-        // Invoke the delegates.
+        //Invoke the delegates.
         testDelA("Original Delegate");
         testDelB("Delegate C# 2");
         testDelC("Delegate C# 3");
@@ -60,7 +60,7 @@ class Test
 		Console.WriteLine(isUpper("HELLO!"));
 		
 		
-		///////////////////////////////Output: 1, 2, 2
+		//Output: 1, 2, 2
 		Foo foo = new Foo(Foo1);
 	    foo += Foo2;
 	    foo();
