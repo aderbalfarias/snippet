@@ -7,7 +7,7 @@ public class IsFileLockedRetry
 	{   
 		try
 		{
-			var fileLocked = Retry(() => IsFileLocked("C:\\Disc.dat"), TimeSpan.FromSeconds(10), 5);
+			var fileLocked = Retry(() => IsFileLocked("C:\\Something.dat"), TimeSpan.FromSeconds(10), 5);
 
 			if (!fileLocked)
 			{
