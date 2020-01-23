@@ -1,3 +1,5 @@
+<Query Kind="Program" />
+
 void Main()
 {
 	string temp = "2222222A";
