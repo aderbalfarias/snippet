@@ -83,8 +83,6 @@ namespace ProjectNameApi
             if (env.IsDevelopment())
             {
                 _logger.LogInformation("In Development environment");
-                //app.UseDeveloperExceptionPage();
-                //app.UseDatabaseErrorPage();
                 app.UseExceptionHandler("/Error");
                 app.UseStatusCodePagesWithReExecute("/Error/{0}");
             }

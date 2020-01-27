@@ -28,5 +28,6 @@ class Derived : Base
     }
 }
 
+//Output:
 //Base.Foo
 //Derived.Foo
