@@ -24,3 +24,29 @@ public async Task<string> ApiCall
         return await response.Content.ReadAsStringAsync();
     }
 }
+
+
+//Using RestSharp
+
+//Get:
+var client = new RestClient("[base url]");
+var request = new RestRequest("api/item/", Method.GET);
+var queryResult = client.Execute<List<Items>>(request).Data;
+
+//Post:
+var client = new RestClient("[base url]");
+var request = new RestRequest("api/item/", Method.POST);
+request.RequestFormat = DataFormat.Json;
+request.AddBody(new Item
+{
+    ItemName = someName,
+    Price = 19.99
+});
+client.Execute(request);
+
+//Delete
+var item = new Item(){//body};
+var client = new RestClient("[base url]");
+var request = new RestRequest("api/item/{id}", Method.DELETE);
+request.AddParameter("id", idItem);
+client.Execute(request)
