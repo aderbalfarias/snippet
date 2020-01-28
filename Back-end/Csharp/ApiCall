@@ -1,0 +1,26 @@
+// Using HttpClient
+
+public async Task<string> ApiCall
+(
+    string baseUrl, 
+    string endpoint, 
+    HttpMethod requestType, 
+    string token = null, 
+    string parameters = "",
+    HttpContent content = null
+)
+{
+    using (HttpClient client = new HttpClient())
+    {
+        if (!string.IsNullOrEmpty(token))
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+        var response = requestType == HttpMethod.Post && content != null
+            ? await client.PostAsync($"{baseUrl}/{endpoint}", content)
+            : await client.GetAsync($"{baseUrl}/{endpoint}/{parameters}");
+
+        response.EnsureSuccessStatusCode();
+
+        return await response.Content.ReadAsStringAsync();
+    }
+}
