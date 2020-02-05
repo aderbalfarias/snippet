@@ -74,3 +74,7 @@ git fetch upstream
 git merge upstream/master
 git push
 
+#Git Case Sensitive Rename
+git mv casesensitive temp
+git mv temp CaseSensitive
+
