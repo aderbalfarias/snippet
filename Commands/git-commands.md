@@ -45,6 +45,7 @@
 | `git log --oneline` | To list all commits in one line |
 | `git gc --prune=now` | Way to delete data that has accumulated in Git but is not being referenced by anything |
 | `git remote prune origin` | Way to delete data that has accumulated in Git but is not being referenced by anything |
+| `git mv [old name] [new name]` | Basic rename (for case sensitive it has to be different, e.g. in this file) |
 | `:wq` | Exit merge screen in git bash |
 
 
@@ -97,3 +98,11 @@
 | `git fetch upstream` |
 | `git merge upstream/master` |
 | `git push` |
+
+
+### Git Case Sensitive Rename: 
+
+| Command | 
+| ------- |
+| `git mv casesensitive temp` |
+| `git mv temp CaseSensitive` |
