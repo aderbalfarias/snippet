@@ -48,6 +48,7 @@
 | `git mv [old name] [new name]` | Basic rename (for case sensitive it has to be different, e.g. in this file) |
 | `git merge [branch name]` | Merge items from a branch into your branch |
 | `git merge origin/[branch name]` | Merge items from a remote branch into your local branch |
+| `git grep "[your search]"` | Search the working directory for anything you meed |
 | `:wq` | Exit merge screen in git bash |
 
 
