@@ -53,6 +53,7 @@ git remote prune origin #> Way to delete data that has accumulated in Git but is
 git mv [old name] [new name] #> Basic rename (for case sensitive it has to be different, e.g. in this file)
 git merge [branch name] #> Merge items from a branch into your branch
 git merge origin/[branch name] #> Merge items from a remote branch into your local branch
+git grep "[your search]" #> Search the working directory for anything you need
 :wq #> Exit merge screen in git bash
 
 #Pull Request: (You have done stashes, commits and it's ready to push)
