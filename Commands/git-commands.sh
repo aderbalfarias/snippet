@@ -54,6 +54,7 @@ git mv [old name] [new name] #> Basic rename (for case sensitive it has to be di
 git merge [branch name] #> Merge items from a branch into your branch
 git merge origin/[branch name] #> Merge items from a remote branch into your local branch
 git grep "[your search]" #> Search the working directory for anything you need
+git commit --amend -m "[new commit message]" #> Amending the most recent commit message (you need to force (-f) the next push if it is on remote already)
 :wq #> Exit merge screen in git bash
 
 #Pull Request: (You have done stashes, commits and it's ready to push)
