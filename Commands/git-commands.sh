@@ -10,7 +10,8 @@ git push origin [branch name] #> It pushes the code to remote branch
 git branch #> List branches (the asterisk denotes the current branch)
 git branch -a #> List all branches (local and remote)
 git branch [branch name] #> Create a new branch
-git branch -d [branch name] #> Delete a branch
+git branch -d [branch name] #> Delete local branch
+git push -d [remote name] [branch name] #> Delete remote branch, note: remote name in most of the case is origin
 git branch -m [old name] [new name] #> rename local branch
 git branch -m [new name] #> rename current local branch
 git push origin :[old name] [new name] #> delete the old name remote branch and push the new name local branch
