@@ -28,9 +28,9 @@
 | `git add -A` | Add all new and changed files to the staging area |
 | `git rm -r [file-name]` | Remove a file from staging area |
 | `git stash save "message"` | It creates a stash that allows we pull code and then merge the code without commit it, like config files |
-| `git stash apply stash@{stash number}` | Get back the files stashed |
-| `git stash pop stash@{stash number}` | Return your repository to status before the stash (you will lose changes) |
-| `git stash drop stash@{stash number}` | Delete stash |
+| `git stash apply stash@{[stash number]}` | Get back the files stashed |
+| `git stash pop stash@{[stash number]}` | Return your repository to status before the stash (you will lose changes) |
+| `git stash drop stash@{[stash number]}` | Delete stash |
 | `git stash apply $stash_rash` | Get back the files from a deleted stash |
 | `git stash save --keep-index "message"` | Stashing files that are not in the staging area |
 | `git stash show` | show files that changed |
@@ -41,7 +41,7 @@
 | `git reset --hard HEAD^` | rollback changes |
 | `git commit --amend -m` | Update message of the last commit |
 | `git push --force` | In case you have already pushed code you reset to remote branch |
-| `git log --autor=[yourName]` | To see your commits |
+| `git log --autor=[your name]` | To see your commits |
 | `git log` | To list all commits |
 | `git log --oneline` | To list all commits in one line |
 | `git gc --prune=now` | Way to delete data that has accumulated in Git but is not being referenced by anything |
