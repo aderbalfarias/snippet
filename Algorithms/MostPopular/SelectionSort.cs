@@ -81,10 +81,10 @@ public class SelectionSort
 // (putting it in sorted order), and moving the sublist boundaries one element to the right. 
 
 // Image on ../Images/SelectionSort.png
-//       [  3  5  8  4  1  9 -2 ]
-// i = 0 [ -2  5  8  4  1  9  3 ]
-// i = 1 [ -2  1  8  4  5  9  3 ]
-// i = 2 [ -2  1  3  4  5  9  8 ]
-// i = 3 [ -2  1  3  4  5  9  8 ]
-// i = 4 [ -2  1  3  4  5  9  8 ]
-// i = 5 [ -2  1  3  4  5  8  9 ] Final output
+//        [  3  5  8  4  1  9 -2 ]
+// i = 0  [ -2  5  8  4  1  9  3 ]
+// i = 1  [ -2  1  8  4  5  9  3 ]
+// i = 2  [ -2  1  3  4  5  9  8 ]
+// i = 3  [ -2  1  3  4  5  9  8 ]
+// i = 4  [ -2  1  3  4  5  9  8 ]
+// i = 5  [ -2  1  3  4  5  8  9 ] Final output

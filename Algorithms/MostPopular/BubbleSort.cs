@@ -69,10 +69,10 @@ public class BubbleSort
 // n – 1 passes where n is the size of the input.
 
 // Image on ../Images/BubbleSort.png
-//               3     5     8     4     1     9    -2 
-// pass 1        3     5     4     1     8    -2     9
-// pass 2        3     4     1     5    -2     8     9
-// pass 3        3     1     4    -2     5     8     9
-// pass 4        1     3    -2     4     5     8     9
-// pass 5        1    -2     3     4     5     8     9
-// pass 6       -2     1     3     4     5     8     9
+//             3     5     8     4     1     9    -2 
+// pass 1      3     5     4     1     8    -2     9
+// pass 2      3     4     1     5    -2     8     9
+// pass 3      3     1     4    -2     5     8     9
+// pass 4      1     3    -2     4     5     8     9
+// pass 5      1    -2     3     4     5     8     9
+// pass 6     -2     1     3     4     5     8     9
