@@ -12,7 +12,7 @@ var example = function(){
 
 example.itIs();
 
-//I can't access x because it's private in this concept
+// I can't access x because it's private in this concept
 
 // Revealing Module Pattern 
-// immediately Invoked Function Expression
+// Immediately Invoked Function Expression
