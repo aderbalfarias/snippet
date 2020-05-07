@@ -1,9 +1,10 @@
 void Main()
 {
-	Console.WriteLine(Soundex("Aderbal"));
-	Console.WriteLine(Soundex("Aderval"));
-	Console.WriteLine(Soundex("Aderfal"));
-	Console.WriteLine(Soundex("Aterbal"));
+    Console.WriteLine(Soundex("Aderbal")); // 361
+	Console.WriteLine(Soundex("Aderval")); // 361
+	Console.WriteLine(Soundex("Aderfal")); // 361
+	Console.WriteLine(Soundex("Aterbal")); // 361
+	Console.WriteLine(Soundex("Aterxal")); // 362
 }
 
 public string Soundex(string data)
