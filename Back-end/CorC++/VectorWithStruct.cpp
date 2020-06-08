@@ -1,5 +1,5 @@
-/* 5∫
-seja a segunte definiÁ„o de estrutura
+/* 5¬∫
+seja a segunte defini√ß√£o de estrutura
 struct venda 
 {
     int numNotaFiscal;
@@ -7,12 +7,12 @@ struct venda
     int codvendedor;
     float valorComissao;
 } ;
-Crie um vetor global para 30 vendas realizadas numa loja. Em seguida, chamar as seguntes funÁıes:
-Receber dados: Receber os dados por digitaÁ„o das vendas com exceÁ„o do valor de comiss„o;
-Calcular comiss„o: Calcular, visualizar e armazenar no vetor o valor da comiss„o que cada 
-vendedor ir· receber pela venda realizada. Para valores de vendas menores ou iguais a um valor 
-recebido como par‚metro, calcular 6% de comiss„o sobre o valor de venda e, para valores maiores
-calcular 8% de comiss„o sobre o valor da venda.
+Crie um vetor global para 30 vendas realizadas numa loja. Em seguida, chamar as seguntes fun√ß√µes:
+Receber dados: Receber os dados por digita√ß√£o das vendas com exce√ß√£o do valor de comiss√£o;
+Calcular comiss√£o: Calcular, visualizar e armazenar no vetor o valor da comiss√£o que cada 
+vendedor ir√° receber pela venda realizada. Para valores de vendas menores ou iguais a um valor 
+recebido como par√°metro, calcular 6% de comiss√£o sobre o valor de venda e, para valores maiores
+calcular 8% de comiss√£o sobre o valor da venda.
 */
  
 #include<iostream.h>

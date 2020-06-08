@@ -1,5 +1,5 @@
-DBCC CHECKIDENT ("TABLE_NANE") -- VEFIRICA VALOR IDENTITY
+DBCC CHECKIDENT ("TABLE_NANE") -- Verify the identity level
 
-DBCC CHECKIDENT ("TABLE_NANE",NORESEED) -- DEIXA O VALOR COMO ESTE
+DBCC CHECKIDENT ("TABLE_NANE", NORESEED) -- Let the value as is
  
-DBCC CHECKIDENT ("TABLE_NANE",RESEED,valor_identity) -- MUDA O VALOR IDENTITY PELO INFORMADO NO "valor_identity"
+DBCC CHECKIDENT ("TABLE_NANE", RESEED, new_identity) -- Change the identity to the new value "new_identity"

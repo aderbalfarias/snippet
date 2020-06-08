@@ -1,6 +1,7 @@
 <Query Kind="Program" />
 
-static void Main(){
+static void Main()
+{
 	//Balance point of vetor
 	var input = new int[] {2, 7, 4, 5, -3, 8, 9, -1}; //Output: 3
 	BalancePoint(input).Dump();

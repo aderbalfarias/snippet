@@ -1,11 +1,4 @@
 //.csproj
-//<Project Sdk="Microsoft.NET.Sdk">
-
-//  <PropertyGroup>
-//    <TargetFramework>netcoreapp2.2</TargetFramework>
-//    <IsPackable>false</IsPackable>
-//  </PropertyGroup>
-
 //  <ItemGroup>
 //    <PackageReference Include="Microsoft.AspNetCore.App" />
 //    <PackageReference Include="Microsoft.CodeCoverage" Version="16.3.0" />
@@ -16,7 +9,6 @@
 //    <PackageReference Include="xunit" Version="2.4.1" />
 //    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
 //  </ItemGroup>
-
 //</Project>
 
 //--------------------------------------------------------------------------------
@@ -93,6 +85,47 @@ namespace UnitTest.Services
 
             Assert.Equal(1, id);
             Assert.Contains("Test", obj1);
+        }
+        
+        [Fact]
+        public async Task When_Test_Should_Return_Without_Exceptions()
+        {
+            await ExecuteSetups();
+
+            var exception = Record.ExceptionAsync(async () => await _consolidateJob.CallYourMethod());
+            
+            Assert.Null(exception.Result);
+        }
+        
+        [Fact]
+        public async Task When_Test1_Should_Log_Consolidated_File_Created()
+        {
+            await ExecuteSetups();
+
+            await _consolidateJob.CallYourMethod();
+
+            var successfulMessage = "Test created successfully";
+
+            _mockLogger.Verify(x =>
+                x.Log(LogLevel.Information, It.IsAny<EventId>(),
+                    It.Is<It.IsAnyType>((o, t) => string.Equals(successfulMessage, o.ToString())),
+                    It.IsAny<Exception>(), (Func<It.IsAnyType, Exception, string>)It.IsAny<object>()), Times.Once);
+        }
+        
+        [Fact]
+        public async Task When_Handle_Should_Log_Exception()
+        {
+            await HandleSetup();
+
+            var message = MockMessage();
+            message.SerializedMessage = null;
+
+            var exception = Assert.ThrowsAnyAsync<ArgumentNullException>(()
+                    => _handleResponseService.Handle(message, _context));
+
+            var exceptionMessage = $"Error for message id: {message.id}";
+
+            Assert.Contains(exceptionMessage, LogStatements);
         }
 
         #region Setups 
