@@ -18,6 +18,7 @@ git push origin :[old name] [new name] #> delete the old name remote branch and 
 git push origin -u [new name] #> reset the upstream branch for the new name local branch
 git push origin --delete [branch name] #> Delete a remote branch
 git checkout -b [branch name] #> It creates a new branch
+git checkout -b [branch name] [commit id] #> It creates a new branch from a specific commit
 git checkout [branch name] #> Switch branches
 git checkout - #> Switch to the branch last checked out
 git checkout -- [file-name.txt] #> Discard changes to a file
@@ -51,6 +52,7 @@ git log #> To list all commits
 git log --oneline #> To list all commits in one line
 git gc --prune=now #> Way to delete data that has accumulated in Git but is not being referenced by anything
 git remote prune origin #> Way to delete data that has accumulated in Git but is not being referenced by anything
+git checkout [commit id] #> it goes back back to its commit temporarily
 git mv [old name] [new name] #> Basic rename (for case sensitive it has to be different, e.g. in this file)
 git merge [branch name] #> Merge items from a branch into your branch
 git merge origin/[branch name] #> Merge items from a remote branch into your local branch
