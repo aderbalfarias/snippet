@@ -21,6 +21,7 @@
 | `git push origin -u [new name]` | reset the upstream branch for the new name local branch |
 | `git push origin --delete [branch name]` | Delete a remote branch |
 | `git checkout -b [branch name]` | It creates a new branch |
+| `git checkout -b [branch name] [commit id]` | It creates a new branch from a specif commit |
 | `git checkout [branch name]` | Switch branches |
 | `git checkout -` | Switch to the branch last checked out |
 | `git checkout -- [file-name.txt]` | Discard changes to a file |
