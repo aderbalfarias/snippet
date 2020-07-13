@@ -88,3 +88,4 @@
 
 ## Additional 
 [Practice test](https://www.examtopics.com/exams/microsoft/az-204/)
+[Azure Charts](https://azurecharts.com/highlights)
