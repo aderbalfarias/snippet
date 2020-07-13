@@ -12,22 +12,22 @@
 |Publish an image to the Azure Container Registry|[Create container and push](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-acr#push-image-to-azure-container-registry)|
 |Run containers by using Azure Container Instance|[Deploy a container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-deploy-app)|
 |<b>Create Azure App Service Web Apps</b>||
-|create an Azure App Service Web App||
-|enable diagnostics logging||
-|deploy code to a web app||
-|configure web app settings including SSL, API, and connection strings||
-|implement autoscaling rules, including scheduled autoscaling, and scaling by operational or system metrics||
+|Create an Azure App Service Web App|[Create a web app](https://docs.microsoft.com/en-us/azure/app-service/environment/app-service-web-how-to-create-a-web-app-in-an-ase)<br>[ASP.NET Core web app in Azure](https://docs.microsoft.com/en-us/azure/app-service/app-service-web-get-started-dotnet)|
+|Enable diagnostics logging|[Enable diagnostics in Azure](https://docs.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs)|
+|Deploy code to a web app|[Deploy your app to Azure](https://docs.microsoft.com/en-us/azure/app-service/deploy-zip)|
+|Configure web app settings including SSL, API, and connection strings|[TLS/SSL binding in Azure](https://docs.microsoft.com/en-us/azure/app-service/configure-ssl-bindings)<br>[Configure an App Service app](https://docs.microsoft.com/en-us/azure/app-service/configure-common)<br>[RESTful API with CORS](https://docs.microsoft.com/en-us/azure/app-service/configure-common)|
+|Implement autoscaling rules, including scheduled autoscaling, and scaling by operational or system metrics|[Autoscale in Azure](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-get-started) <br> [Autoscale Setting](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/tutorial-autoscale-performance-schedule) <br> [Autoscale patterns](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/autoscale-common-scale-patterns) <br>[Autoscaling](https://docs.microsoft.com/en-us/azure/architecture/best-practices/auto-scaling)|
 |<b>Implement Azure functions</b>||
-|implement input and output bindings for a function||
-|implement function triggers by using data operations, timers, and webhooks||
-|implement Azure Durable Functions||
+|Implement input and output bindings for a function|[Triggers and bindings concepts](https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)|
+|Implement function triggers by using data operations, timers, and webhooks|[Timer trigger](https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=csharp)<br>[Create a function in Azure](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-scheduled-function)|
+|Implement Azure Durable Functions|[Create Durable Functions](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-create-portal)|
 
 ## 2. Develop for Azure storage (10-15%)
 
 | Topic | Links |
 | ---- | ----------- |
 |<b>Develop solutions that use Cosmos DB storage</b>||
-|select the appropriate API for your solution||
+|Select the appropriate API for your solution|[Azure Cosmos DB Module](https://docs.microsoft.com/en-us/learn/modules/choose-api-for-cosmos-db/)|
 |implement partitioning schemes||
 |interact with data using the appropriate SDK||
 |set the appropriate consistency level for operations||
