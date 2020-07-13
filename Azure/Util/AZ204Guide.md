@@ -6,12 +6,11 @@
 | ---- | ----------- |
 | <b>Implement IaaS solutions</b> |
 | Provision VMs | [Create VM - PowerShell](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-powershell]) <br> [Create VM - Azure Portal](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal])|
-| Configure VMs for remote access | |
-|create ARM templates||
-|create container images for solutions by using Docker||
-|publish an image to the Azure Container Registry||
-|run containers by using Azure Container Instance||
-|Azure Kubernetes Service (AKS) is out of scope||
+| Configure VMs for remote access | [Just in time VMs](https://docs.microsoft.com/en-us/azure/security-center/security-center-just-in-time?tabs=jit-config-asc%2Cjit-request-asc) |
+|Create ARM templates| [Create and deploy ARM](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal) <br> [ARM tamplates on GitHub](https://github.com/Azure/azure-quickstart-templates) |
+|Create container images for solutions by using Docker| [Create a container image](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-app) |
+|Publish an image to the Azure Container Registry|[Create container and push](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-acr#push-image-to-azure-container-registry)|
+|Run containers by using Azure Container Instance|[Deploy a container](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-deploy-app)|
 |<b>Create Azure App Service Web Apps</b>||
 |create an Azure App Service Web App||
 |enable diagnostics logging||
