@@ -28,62 +28,62 @@
 | ---- | ----------- |
 |<b>Develop solutions that use Cosmos DB storage</b>||
 |Select the appropriate API for your solution|[Azure Cosmos DB Module](https://docs.microsoft.com/en-us/learn/modules/choose-api-for-cosmos-db/)|
-|implement partitioning schemes||
-|interact with data using the appropriate SDK||
-|set the appropriate consistency level for operations||
-|create Cosmos DB containers||
-|implement scaling (partitions, containers) ||
-|implement server-side programming including stored procedures, triggers, and change feed notifications||
+|Implement partitioning schemes|[Model and partition data](https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-model-partition-example)|
+|Interact with data using the appropriate SDK|[Azure Cosmos DB by using .NET](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-dotnet-application)<br>[Azure Cosmos DB SQL API](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-get-started)|
+|Set the appropriate consistency level for operations|[Consistency levels in Azure](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels)<br>[Consistency level](https://docs.microsoft.com/en-us/azure/cosmos-db/consistency-levels-choosing)|
+|Create Cosmos DB containers|[Create an Azure Cosmos](https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-create-container)|
+|Implement scaling (partitions, containers) |[Partitioning and horizontal scaling](https://docs.microsoft.com/en-us/azure/cosmos-db/partition-data)<br>[Provision autoscale](https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-provision-autoscale-throughput?tabs=api-async)|
+|Implement server-side programming including stored procedures, triggers, and change feed notifications|[Azure Cosmos DB Server-side](https://azure.microsoft.com/en-in/resources/videos/azure-cosmosdb-server-side-programmability/)<br>[Store Procedures](https://docs.microsoft.com/en-us/rest/api/cosmos-db/stored-procedures)<br>[Triggers](https://docs.microsoft.com/en-us/rest/api/cosmos-db/triggers)<br>[Additional](https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-write-stored-procedures-triggers-udfs)|
 |<b>Develop solutions that use blob storage</b>||
-|move items in Blob storage between storage accounts or containers||
-|set and retrieve properties and metadata||
-|interact with data using the appropriate SDK||
-|implement data archiving and retention||
-|implement hot, cool, and archive storage||
+|Move items in Blob storage between storage accounts or containers|[Move Azure storage blobs](https://docs.microsoft.com/en-us/learn/modules/copy-blobs-from-command-line-and-code/3-move-blobs-using-cli)|
+|Set and retrieve properties and metadata|[Setting properties and metadata](https://docs.microsoft.com/en-us/previous-versions/azure/storage/common/storage-import-export-tool-setting-properties-metadata-import-v1?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json)|
+|Interact with data using the appropriate SDK|[Quickstart: Azure Blob](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet)|
+|Implement data archiving and retention|[Manage the Azure Blob](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-lifecycle-management-concepts?tabs=azure-portal)|
+|Implement hot, cool, and archive storage|[Azure Blob storage tiers](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blob-storage-tiers?tabs=azure-portal)|
 
 ## 3. Implement Azure security (15-20%)
 | Topic | Links |
 | ---- | ----------- |
 |<b>Implement user authentication and authorization</b>||
-|implement OAuth2 authentication||
-|create and implement shared access signatures||
-|register apps and use Azure Active Directory to authenticate users||
-|control access to resources by using role-based access controls (RBAC)||
+|implement OAuth2 authentication|[]()|
+|create and implement shared access signatures|[]()|
+|register apps and use Azure Active Directory to authenticate users|[]()|
+|control access to resources by using role-based access controls (RBAC)|[]()|
 |<b>Implement secure cloud solutions</b>||
-|secure app configuration data by using the App Configuration and KeyVault API||
-|manage keys, secrets, and certificates by using the KeyVault API||
-|implement Managed Identities for Azure resources||
+|secure app configuration data by using the App Configuration and KeyVault API|[]()|
+|manage keys, secrets, and certificates by using the KeyVault API|[]()|
+|implement Managed Identities for Azure resources|[]()|
 
 ## 4. Monitor, troubleshoot, and optimize Azure solutions (10-15%)
 | Topic | Links |
 | ---- | ----------- |
 |<b>Integrate caching and content delivery within solutions</b>||
-|develop code to implement CDNs in solutions||
-|configure cache and expiration policies for FrontDoor, CDNs, or Redis caches Store and retrieve data in Azure Redis cache||
+|develop code to implement CDNs in solutions|[]()|
+|configure cache and expiration policies for FrontDoor, CDNs, or Redis caches Store and retrieve data in Azure Redis cache|[]()|
 |<b>Instrument solutions to support monitoring and logging</b>||
-|configure instrumentation in an app or service by using Application Insights||
-|analyze log data and troubleshoot solutions by using Azure Monitor||
-|implement Application Insights Web Test and Alerts||
-|implement code that handles transient faults||
+|configure instrumentation in an app or service by using Application Insights|[]()|
+|analyze log data and troubleshoot solutions by using Azure Monitor|[]()|
+|implement Application Insights Web Test and Alerts|[]()|
+|implement code that handles transient faults|[]()|
 
 ## 5. Connect to and consume Azure services and third-party services (25-30%)
 | Topic | Links |
 | ---- | ----------- |
 |<b>Develop an App Service Logic App</b>||
-|create a Logic App||
-|create a custom connector for Logic Apps||
-|create a custom template for Logic Apps||
+|create a Logic App|[]()|
+|create a custom connector for Logic Apps|[]()|
+|create a custom template for Logic Apps|[]()|
 |<b>Implement API Management</b>||
-|create an APIM instance||
-|configure authentication for API||
-|define policies for APIs||
+|create an APIM instance|[]()|
+|configure authentication for API|[]()|
+|define policies for APIs|[]()|
 |<b>Develop event-based solutions</b>||
-|implement solutions that use Azure Event Grid||
-|implement solutions that use Azure Notification Hubs||
-|implement solutions that use Azure Event Hub||
+|implement solutions that use Azure Event Grid|[]()|
+|implement solutions that use Azure Notification Hubs|[]()|
+|implement solutions that use Azure Event Hub|[]()|
 |<b>Develop message-based solutions</b>||
-|implement solutions that use Azure Service Bus||
-|implement solutions that use Azure Queue Storage queues||
+|implement solutions that use Azure Service Bus|[]()|
+|implement solutions that use Azure Queue Storage queues|[]()|
 
 ## Additional 
 - [Azure Charts](https://azurecharts.com/highlights)
