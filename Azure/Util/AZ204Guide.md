@@ -45,14 +45,14 @@
 | Topic | Links |
 | ---- | ----------- |
 |<b>Implement user authentication and authorization</b>||
-|implement OAuth2 authentication|[]()|
-|create and implement shared access signatures|[]()|
-|register apps and use Azure Active Directory to authenticate users|[]()|
-|control access to resources by using role-based access controls (RBAC)|[]()|
+|Implement OAuth2 authentication|[Add sign-in](https://docs.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-asp-webapp)|
+|Create and implement shared access signatures|[Grant limited access](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview)|
+|Register apps and use Azure Active Directory to authenticate users|[Quickstart: Register an app](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app)|
+|Control access to resources by using role-based access controls (RBAC)|[Add or remove Azure role](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)|
 |<b>Implement secure cloud solutions</b>||
-|secure app configuration data by using the App Configuration and KeyVault API|[]()|
-|manage keys, secrets, and certificates by using the KeyVault API|[]()|
-|implement Managed Identities for Azure resources|[]()|
+|Secure app configuration data by using the App Configuration and KeyVault API|[Securely save secret application](https://docs.microsoft.com/en-us/azure/key-vault/general/vs-secure-secret-appsettings)<br>[Use Key Vault](https://docs.microsoft.com/en-us/azure/app-service/app-service-key-vault-references)|
+|Manage keys, secrets, and certificates by using the KeyVault API|[Configure and manage secrets](https://docs.microsoft.com/en-us/learn/modules/configure-and-manage-azure-key-vault/)|
+|Implement Managed Identities for Azure resources|[Resource Manager](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-arm)|
 
 ## 4. Monitor, troubleshoot, and optimize Azure solutions (10-15%)
 | Topic | Links |
