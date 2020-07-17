@@ -58,32 +58,32 @@
 | Topic | Links |
 | ---- | ----------- |
 |<b>Integrate caching and content delivery within solutions</b>||
-|develop code to implement CDNs in solutions|[]()|
-|configure cache and expiration policies for FrontDoor, CDNs, or Redis caches Store and retrieve data in Azure Redis cache|[]()|
+|Develop code to implement CDNs in solutions|[Azure CDN development](https://docs.microsoft.com/en-us/azure/cdn/cdn-app-dev-net)|
+|Configure cache and expiration policies for FrontDoor, CDNs, or Redis caches Store and retrieve data in Azure Redis cache|[Caching with Azure](https://docs.microsoft.com/en-us/azure/frontdoor/front-door-caching)<br>[Control Azure CDN caching](https://docs.microsoft.com/en-us/azure/cdn/cdn-caching-rules)<br>[Azure Cache for Redis](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-configure)<br>[Quickstart: Use Azure Cache](https://docs.microsoft.com/en-us/azure/azure-cache-for-redis/cache-dotnet-core-quickstart)|
 |<b>Instrument solutions to support monitoring and logging</b>||
-|configure instrumentation in an app or service by using Application Insights|[]()|
-|analyze log data and troubleshoot solutions by using Azure Monitor|[]()|
-|implement Application Insights Web Test and Alerts|[]()|
-|implement code that handles transient faults|[]()|
+|Configure instrumentation in an app or service by using Application Insights|[Start Monitoring App](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/dotnetcore-quick-start#start-monitoring-in-the-azure-portal)|
+|Analyze log data and troubleshoot solutions by using Azure Monitor|[Azure Activity log](https://docs.microsoft.com/en-us/azure/azure-monitor/platform/activity-log)|
+|Implement Application Insights Web Test and Alerts|[Creating an Application Insights](https://azure.microsoft.com/en-in/blog/creating-a-web-test-alert-programmatically-with-application-insights/)|
+|Implement code that handles transient faults|[Transient Fault Handling](https://docs.microsoft.com/en-us/aspnet/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/transient-fault-handling)|
 
 ## 5. Connect to and consume Azure services and third-party services (25-30%)
 | Topic | Links |
 | ---- | ----------- |
 |<b>Develop an App Service Logic App</b>||
-|create a Logic App|[]()|
-|create a custom connector for Logic Apps|[]()|
-|create a custom template for Logic Apps|[]()|
+|Create a Logic App|[Azure Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-first-logic-app-workflow)|
+|Create a custom connector for Logic Apps|[Create a custom connector](https://docs.microsoft.com/en-us/connectors/custom-connectors/define-blank)|
+|Create a custom template for Logic Apps|[Deployment for Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-create-azure-resource-manager-templates)|
 |<b>Implement API Management</b>||
-|create an APIM instance|[]()|
-|configure authentication for API|[]()|
-|define policies for APIs|[]()|
+|Create an APIM instance|[Azure API Management](https://docs.microsoft.com/en-us/azure/api-management/get-started-create-service-instance)|
+|Configure authentication for API|[APIs using client certificate](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates-for-clients)|
+|Define policies for APIs|[Azure APIM policies](https://docs.microsoft.com/en-us/azure/api-management/set-edit-policies)|
 |<b>Develop event-based solutions</b>||
-|implement solutions that use Azure Event Grid|[]()|
-|implement solutions that use Azure Notification Hubs|[]()|
-|implement solutions that use Azure Event Hub|[]()|
+|Implement solutions that use Azure Event Grid|[Tutorial: Automate Event Grid](https://docs.microsoft.com/en-us/azure/event-grid/resize-images-on-storage-blob-upload-event?tabs=dotnet)|
+|Implement solutions that use Azure Notification Hubs|[Azure Notification Hubs](https://docs.microsoft.com/en-us/azure/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification)|
+|Implement solutions that use Azure Event Hub|[Azure Event Hubs](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-tutorial-visualize-anomalies)|
 |<b>Develop message-based solutions</b>||
-|implement solutions that use Azure Service Bus|[]()|
-|implement solutions that use Azure Queue Storage queues|[]()|
+|Implement solutions that use Azure Service Bus|[Tutorial: Update inventory](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-tutorial-topics-subscriptions-powershell)|
+|Implement solutions that use Azure Queue Storage queues|[Tutorial: Work with Azure storage](https://docs.microsoft.com/en-us/azure/storage/queues/storage-tutorial-queues?toc=%2Fazure%2Fstorage%2Fqueues%2Ftoc.json&tabs=dotnet)|
 
 ## Additional 
 - [Azure Charts](https://azurecharts.com/highlights)
