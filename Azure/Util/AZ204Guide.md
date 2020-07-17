@@ -70,7 +70,7 @@
 | Topic | Links |
 | ---- | ----------- |
 |<b>Develop an App Service Logic App</b>||
-|Create a Logic App|[Azure Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-first-logic-app-workflow)|
+|Create a Logic App|[Azure Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/quickstart-create-first-logic-app-workflow)<br>[Build automated workflows](https://www.youtube.com/watch?v=2_xksIXBRgo)|
 |Create a custom connector for Logic Apps|[Create a custom connector](https://docs.microsoft.com/en-us/connectors/custom-connectors/define-blank)|
 |Create a custom template for Logic Apps|[Deployment for Logic Apps](https://docs.microsoft.com/en-us/azure/logic-apps/logic-apps-create-azure-resource-manager-templates)|
 |<b>Implement API Management</b>||
