@@ -39,7 +39,7 @@ public class BinarySearch
 	}
 	
 	// Recursive
-    // Find out if a key x exists in the sorted array
+    	// Find out if a key x exists in the sorted array
 	// array[left..right] or not using binary search algorithm
 	public static int BinarySearchV2(int[] array, int left, int right, int x)
 	{
