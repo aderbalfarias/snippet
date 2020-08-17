@@ -10,8 +10,9 @@ class Program
         str = Console.ReadLine();  
 		
         // Displaying the reverse word  
+        Console.WriteLine($"String: {str}");  
         Console.WriteLine($"Reverse: {ReverseWord(str)}");  
-        Console.WriteLine($"Reverse: {ReverseWord(str)}");  
+        Console.WriteLine($"Reverse: {ReverseStringKeepingSpecialCharacters(str)}");  
         Console.ReadLine();  
     }  
 	
