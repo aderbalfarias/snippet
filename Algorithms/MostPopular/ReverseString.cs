@@ -9,8 +9,10 @@ class Program
         // Getting String(word) from Console  
         str = Console.ReadLine();  
 		
-        // Displaying the reverse word  
-        Console.WriteLine($"Reverse word is {ReverseWord(str)}");  
+        // Output  
+        Console.WriteLine($"String: {str}");  
+        Console.WriteLine($"Reverse: {ReverseWord(str)}");  
+        Console.WriteLine($"Reverse: {ReverseStringKeepingSpecialCharacters(str)}");  
         Console.ReadLine();  
     }  
 	
@@ -24,5 +26,36 @@ class Program
 			reverse = reverse + str[i];  
 			
 		return reverse;
+	}
+
+    public static string ReverseStringKeepingSpecialCharacters(string str)  
+    {  
+		char []strChar = str.ToCharArray();
+        
+        // Initialize left and right pointers  
+        int r = strChar.Length - 1, l = 0;  
+  
+        // Traverse string from both ends until  
+        // 'l' and 'r'  
+        while(l < r)  
+        {  
+            // Ignore special characters  
+            if (!char.IsLetterOrDigit(strChar[l]))  
+                l++;  
+            else if(!char.IsLetterOrDigit(strChar[r]))  
+                r--;  
+  
+            // Both strChar[l] and strChar[r] are not spacial  
+            else
+            {  
+                char tmp = strChar[l];  
+                strChar[l] = strChar[r];  
+                strChar[r] = tmp;  
+                l++;  
+                r--;  
+            }  
+        }  
+		
+		return new string(strChar);
 	}
 }  
