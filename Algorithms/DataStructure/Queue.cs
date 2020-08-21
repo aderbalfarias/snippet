@@ -1,74 +1,74 @@
 public class Node
 {
-    public int value;
-    public Node next;
+    public int Value;
+    public Node Next;
 }
 
 public class Queue
 {
-    private Node head;
-    private int size;
+    private Node Head;
+    private int Size;
 
     public Queue(){}
 
     public void Enqueue(int n)
     {
-        if(head == null) // queue is empty
+        if(Head == null) // queue is empty
         {
-            head = new Node
+            Head = new Node
 			{
-                value = n,
-                next = null
+                Value = n,
+                Next = null
             };
         }
         else // queue has items
         {
-            var oldHead = head;
-            head = new Node
+            var oldHead = Head;
+            Head = new Node
             {
-                value = n,
-                next = oldHead
+                Value = n,
+                Next = oldHead
             };
         }
 		
-        size++;
+        Size++;
     }
 
     public int? Dequeue()
     {
-        if (size == 0)
+        if (Size == 0)
             return null;
 
-        var node = head;
+        var node = Head;
         Node previous = node;
 		
-        while (node.next != null)
+        while (node.Next != null)
         {
             previous = node;
-            node = node.next;
+            node = node.Next;
         }
 		
-        previous.next = null;
-        size--;
+        previous.Next = null;
+        Size--;
 		
-        return node.value;
+        return node.Value;
     }
 
     public int Count
     {
-        get { return size; }
+        get { return Size; }
     }
 
     public string PrintElements()
     {
-        var node = head;
-        int[] elements = new int[size];
+        var node = Head;
+        int[] elements = new int[Size];
         int i = 0;
 		
         while (node != null)
         {
-            elements[i++] = node.value;
-            node = node.next;
+            elements[i++] = node.Value;
+            node = node.Next;
         }
 		
         return string.Join(", ", elements);
@@ -85,11 +85,15 @@ public class TestQueue
 		myQueue.Enqueue(2); 
 		myQueue.Enqueue(3); 
 		myQueue.Enqueue(4); 
-		Console.WriteLine($"Item in the queue: { myQueue.PrintElements() }");
-		// Output: Item in the queue: 4, 3, 2, 1
+		Console.WriteLine($"Items in the queue: { myQueue.PrintElements() }");
+		// Output: Items in the queue: 4, 3, 2, 1
 
         myQueue.Dequeue();
+		Console.WriteLine($"Items in the queue: { myQueue.PrintElements() }");
+		// Output: Items in the queue: 4, 3, 2
+		
+        myQueue.Dequeue();
 		Console.WriteLine($"Item in the queue: { myQueue.PrintElements() }");
-		// Output: Item in the queue: 4, 3, 2
+		// Output: Items in the queue: 4, 3
 	} 
 }
