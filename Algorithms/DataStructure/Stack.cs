@@ -58,6 +58,7 @@ public class Stack
 		else
 		{ 
 			Console.WriteLine("Items in the stack:"); 
+			
 			for (int i = top; i >= 0; i--) 
 				Console.WriteLine(stack[i]); 
 		} 
@@ -74,9 +75,11 @@ public class TestStack
 		myStack.Push(2); 
 		myStack.Push(3); 
 		myStack.Push(4); 
+		
 		myStack.PrintElements(); 
 		
 		myStack.Peek(); 
+		
 		Console.WriteLine($"\nItem popped from stack: { myStack.Pop() }"); 
 		Console.WriteLine($"\nItem popped from stack: { myStack.Pop() }"); 
 		
