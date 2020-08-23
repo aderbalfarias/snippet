@@ -5,10 +5,10 @@ public class BalancePointOfArray
         int arraySum = 0;
         int leftSum = 0;
     
-        for(int i = 0 ;i < array.Length; i++)
+        for(int i = 0; i < array.Length; i++)
             arraySum += array[i];
 
-        for(int i=0; i < array.Length; i++)
+        for(int i = 0; i < array.Length; i++)
         {
             arraySum -= array[i];
                 
