@@ -122,7 +122,7 @@ void Main()
 
 For example, if the **n is 8**, then this algorithm will run **8 * log(8) = 8 * 3 = 24 times**. Whether we have strict inequality or not in the for loop is irrelevant for the sake of a Big O Notation.
 
-### Polynomial Time Algorithms – O(np)
+### Polynomial Time Algorithms – O(np) or O(n2)
 
 Next up we've got polynomial time algorithms. These algorithms are even slower than n log n algorithms.
 
@@ -144,7 +144,7 @@ void Main()
 This algorithm will run 64 times. Note, if we were to nest another for loop, this would become an O(n3) algorithm.
 
 
-### Exponential Time Algorithms – O(kn)
+### Exponential Time Algorithms – O(kn) or O(2n)
 
 Now we are getting into dangerous territory; these algorithms grow in proportion to some factor exponentiated by the input size.
 
