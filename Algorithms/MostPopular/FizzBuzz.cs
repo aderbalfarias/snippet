@@ -4,8 +4,8 @@ public class FizzBuzz
 	{
 		for (int i = 1; i <= 100; i++)
 	    {
-	        var fizz = i % 3 == 0;
-	        var buzz = i % 5 == 0;
+	        int fizz = i % 3 == 0;
+	        int buzz = i % 5 == 0;
 	
 	        if (fizz && buzz)
 	            Console.WriteLine("FizzBuzz");
