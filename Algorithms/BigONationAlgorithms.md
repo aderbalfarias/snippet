@@ -143,6 +143,8 @@ void Main()
 
 This algorithm will run 64 times. Note, if we were to nest another for loop, this would become an O(n3) algorithm.
 
+Note: If it had diferrent arrays like **a** and **b** instead of **n**, the inner for loop goes through b iterations, then the runtimeis O(ab). 
+
 
 ### Exponential Time Algorithms – O(kn) or O(2n)
 
