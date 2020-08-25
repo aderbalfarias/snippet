@@ -199,6 +199,22 @@ public int Factorial(int number)
 where factorial(n) simply calculates **n!**. If n is 8, **this algorithm will run 8! = 40320 times**.
 
 
+### Time – O(√n)
+
+The for loop will start when x = 2 and end when x*x = n. Or, in other words, it stops when x = √n (when x equals the square root of n).
+
+```csharp
+public static bool IsPrime(int n) 
+{
+	for (int x = 2; x * x <= n; x++)
+		if (n % x == 0) 
+			return false;
+		
+	return true; 
+}
+```
+
+
 ![Image of Algorithms](/Algorithms/Images/AlgorithmsPerformance.png)
 
 ## Asymptotic Functions
