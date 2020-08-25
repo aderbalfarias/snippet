@@ -70,7 +70,7 @@ public class QuickSort
 // that it can sort items of any type for which a less-than relation is defined. In efficient 
 // implementations, it is usually not a stable sort.
 
-// Quicksort on average takes O(nlog(n)) comparisons to sort n items. In the worst case, it makes O(n2) 
+// Quicksort on average takes O(n log(n)) comparisons to sort n items. In the worst case, it makes O(n2) 
 // comparisons, though this behavior is very rare.
 
 // How Quicksort works?
