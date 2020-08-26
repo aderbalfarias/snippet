@@ -27,7 +27,7 @@ public class SelectionSort
 		}
 	}
 	
-		// Recursive function to perform selection sort on sub-array arr[i..n-1]
+    // Recursive function to perform selection sort on sub-array arr[i..n-1]
 	public static void SelectionSortV2(int[] array, int i, int n)
 	{
 		// find the minimum element in the unsorted sub-array[i..n-1]

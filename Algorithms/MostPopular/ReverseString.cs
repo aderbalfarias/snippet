@@ -11,12 +11,12 @@ class Program
 		
         // Output  
         Console.WriteLine($"String: {str}");  
-        Console.WriteLine($"Reverse: {ReverseWord(str)}");  
+        Console.WriteLine($"Reverse: {ReverseString(str)}");  
         Console.WriteLine($"Reverse: {ReverseStringKeepingSpecialCharacters(str)}");  
         Console.ReadLine();  
     }  
 	
-	public static string ReverseWord(string str)
+	public static string ReverseString(string str)
 	{
 		string reverse = string.Empty;   
 		
