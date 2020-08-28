@@ -39,7 +39,7 @@ The above example is also constant time. Even if it takes 3 times as long to run
 
 Constant time algorithms are (asymptotically) the quickest. Logarithmic time is the next quickest. Unfortunately, they're a bit trickier to imagine.
 
-One common example of a logarithmic time algorithm is the [binary search](MostPopular/BinarySearch.cs) algorithm. 
+One common example of a logarithmic time algorithm is the [binary search](Search/BinarySearch.cs) algorithm. 
 
 What is important here is that the running time grows in proportion to the logarithm of the input (in this case, log to the base 2):
 
