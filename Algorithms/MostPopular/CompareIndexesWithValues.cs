@@ -13,7 +13,7 @@ public static class CompareIndexesWithValues
     {
         // Compare indexes and array values
         // start from 1 check the previous and sum
-        // 0(a) time
+        // O(a) time, O(1) space
 
         int count = 0;
         int target = 0;
