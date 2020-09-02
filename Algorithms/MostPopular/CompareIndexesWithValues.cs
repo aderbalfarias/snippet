@@ -1,7 +1,7 @@
 public static class CompareIndexesWithValues
 {
 		
-	static void Main(string[] args)
+    static void Main(string[] args)
     {
         Console.WriteLine("Tests Algorithm");
         Console.WriteLine($"Should return 3: { Calc(new int[] { 2, 1, 3, 5, 4 }) }"); //Should be 3
