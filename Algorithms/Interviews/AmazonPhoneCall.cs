@@ -53,6 +53,32 @@ public class AmazonPhoneCall
 		return false;
 	}
 
+	// to be tested
+	public static bool IntersectsV3(List<int[]> rangeList, int n)
+	{
+		var left = 0;
+		var right = rangeList.Count - 1;
+		var midLeft = (right + left) / 2;
+		var midRight = midLeft + 1;
+
+		while (left < midLeft && midRight < right)
+		{
+			if (rangeList[left][0] <= n && rangeList[left][1] >= n)
+				return true;
+			if (rangeList[midLeft][0] <= n && rangeList[midLeft][1] >= n)
+				return true;
+			if (rangeList[midRight][0] <= n && rangeList[midRight][1] >= n)
+				return true;
+			if (rangeList[right][0] <= n && rangeList[right][1] >= n)
+				return true;
+
+			left++;
+			right--;
+			midLeft--;
+			midRight++;
+		}
+	}
+
 	public static List<int[]> GenerateListOfRanges()
 	{
 		var list = new List<int[]>();
