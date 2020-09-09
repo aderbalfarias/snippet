@@ -9,7 +9,7 @@ var json = JsonConvert.SerializeObject(data,
 
 using (HttpClient client = new HttpClient())
 {
-	client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+	client.DefaultRequestHeaders.Add("Accept", "application/json");
 	client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
 	var response = await client.PostAsync(
