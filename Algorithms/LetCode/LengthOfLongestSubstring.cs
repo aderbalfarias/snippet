@@ -51,3 +51,7 @@ public class Solution
 // Example 4:
 // Input: s = ""
 // Output: 0
+
+// Time complexity: O(n). Index j will iterate nn times.
+// Space complexity (HashMap): O(min(m, n)). Same as the previous approach.
+// Space complexity (Table): O(m). m is the size of the charset.

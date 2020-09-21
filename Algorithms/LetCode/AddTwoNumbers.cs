@@ -61,3 +61,5 @@ public class ListNode
 //Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 //Output: 7 -> 0 -> 8
 //Explanation: 342 + 465 = 807.
+
+// Time complexity : O(max(m, n)), Assume that m and n represents the length of l1 and l2 respectively
