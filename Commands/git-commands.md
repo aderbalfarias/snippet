@@ -53,7 +53,7 @@
 | `git merge origin/[branch name]` | Merge items from a remote branch into your local branch |
 | `git grep "[your search]"` | Search the working directory for anything you need |
 | `git commit --amend -m "[new commit message]"` | Amending the most recent commit message (you need to force (-f) the next push if it is on remote already) |
-| `git cherry-pick [commit id]` | Copying a commit from one branch to another
+| `git cherry-pick [commit id]` | Copying a commit from one branch to another |
 | `:wq` | Exit merge screen in git bash |
 
 
