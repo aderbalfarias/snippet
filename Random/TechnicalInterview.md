@@ -33,16 +33,16 @@ Stack is responsible for keeping track what is actually executing and where each
 Heap is responsible for keeping track of the data, or more precise objects.
 
 #### Class vs Object
-In short, a class is the definition of an object, and an object is an instance of a class.
+In short, a class is the definition of an object, and an object is an instance of a class.<br>
 The class in c# is nothing but a collection of various data members (fields, properties, events, etc.) and member functions. The object in c# is an instance of a class to access the defined properties and methods.
 
 #### Managed vs Unmanaged code
-Managed code is the code which is managed by the CLR(Common Language Runtime) in .NET Framework. Whereas the Unmanaged code is the code which is directly executed by the operating system.
+Managed code is the code which is managed by the CLR(Common Language Runtime) in .NET Framework. Whereas the Unmanaged code is the code which is directly executed by the operating system.<br>
 Managed Code: 
 - It is executed by managed runtime environment or managed by the CLR.	
 - It provides security to the application written in .NET Framework.	
-- Memory buffer overflow does not occur.
+- Memory buffer overflow does not occur.<br>
 Unmanaged Code:
 - It is executed directly by the operating system.
 - It does not provide any security to the application.
-- Memory buffer overflow may occur.
+- Memory buffer overflow may occur.<br>
