@@ -10,8 +10,8 @@ String is a class in the .NET framework in the System namespace. The fully quali
 #### Action vs Func vs Predicate
 Action: Delegate (pointer) to a method that takes zero, one or more input parameters but doesn't return anything.
 Func: Delegate (pointer) to a method that takes zero, one or more input parameters and returns a value or reference.
-Predicate: A special form of Func and mainly used to validate something and return bool. It is mainly used with collections to whether the item in the collection is valid or not. Basically, its a wrapper of Func like ```Func<T, bool>```.
-*When to use that*?
+Predicate: A special form of Func and mainly used to validate something and return bool. It is mainly used with collections to whether the item in the collection is valid or not. Basically, its a wrapper of Func like ```Func<T, bool>```.<br>
+*When to use that*?<br>
 Action is useful if we don’t want to return any result. But if we want to return result, we could use Func. Predicate is mainly to used to validate any condition.
 
 #### Deferred Execution vs Immediate Execution
@@ -28,8 +28,8 @@ Immediate Execution: Query is executed at the point of its declaration. It can b
 ```
 
 #### Stack vs Heap
-In short, in the **Stack** are stored value types (types inherited from System.ValueType like bool, int, long, decimal, float, short) and in the **Heap** are stored reference types (types inherited from System.Object such as string, object, dynamic).
-Stack is responsible for keeping track what is actually executing and where each executing thread is (each thread has its own stack) 
+In short, in the **Stack** are stored value types (types inherited from System.ValueType like bool, int, long, decimal, float, short) and in the **Heap** are stored reference types (types inherited from System.Object such as string, object, dynamic).<br>
+Stack is responsible for keeping track what is actually executing and where each executing thread is (each thread has its own stack).<br>
 Heap is responsible for keeping track of the data, or more precise objects.
 
 #### Class vs Object
@@ -38,11 +38,11 @@ The class in c# is nothing but a collection of various data members (fields, pro
 
 #### Managed vs Unmanaged code
 Managed code is the code which is managed by the CLR(Common Language Runtime) in .NET Framework. Whereas the Unmanaged code is the code which is directly executed by the operating system.<br>
-Managed Code: 
-- It is executed by managed runtime environment or managed by the CLR.	
-- It provides security to the application written in .NET Framework.	
-- Memory buffer overflow does not occur.<br>
-Unmanaged Code:
-- It is executed directly by the operating system.
-- It does not provide any security to the application.
-- Memory buffer overflow may occur.<br>
+- Managed Code: 
+    - It is executed by managed runtime environment or managed by the CLR.	
+    - It provides security to the application written in .NET Framework.	
+    - Memory buffer overflow does not occur.
+- Unmanaged Code:
+    - It is executed directly by the operating system.
+    - It does not provide any security to the application.
+    - Memory buffer overflow may occur.
