@@ -21,8 +21,28 @@ Deferred Execution: It simply means that the query is not executed at the time i
     var x = context.Products.Where(w => w.Type == "y");
     foreach(var item x) { Console.WriteLine(item.Name); } // Query executes at x point
 ```
-Immediate Execution: Query is executed at the point of its declaration. It can be useful if the database is being updated frequently in order to ensure the results where returned at the point the database query is specified. It often uses methods such as ```First(), Avarage(), Sum(), Count(), ToList(), ToArray(), ToDictionary()```.
+Immediate Execution: Query is executed at the point of its declaration. It can be useful if the database is being updated frequently in order to ensure the results where returned at the point the database query is specified. It often uses methods such as ```First(), Avarage(), Sum(), Count(), ToList(), ToArray(), ToDictionary()```.   
 ```
     var x = (from product in context.Products where product.Type == "y" select product).ToList();
     var x = context.Products.Where(w => w.Type == "y").ToList();
 ```
+
+#### Stack vs Heap
+In short, in the **Stack** are stored value types (types inherited from System.ValueType like bool, int, long, decimal, float, short) and in the **Heap** are stored reference types (types inherited from System.Object such as string, object, dynamic).
+Stack is responsible for keeping track what is actually executing and where each executing thread is (each thread has its own stack) 
+Heap is responsible for keeping track of the data, or more precise objects.
+
+#### Class vs Object
+In short, a class is the definition of an object, and an object is an instance of a class.
+The class in c# is nothing but a collection of various data members (fields, properties, events, etc.) and member functions. The object in c# is an instance of a class to access the defined properties and methods.
+
+#### Managed vs Unmanaged code
+Managed code is the code which is managed by the CLR(Common Language Runtime) in .NET Framework. Whereas the Unmanaged code is the code which is directly executed by the operating system.
+Managed Code: 
+- It is executed by managed runtime environment or managed by the CLR.	
+- It provides security to the application written in .NET Framework.	
+- Memory buffer overflow does not occur.
+Unmanaged Code:
+- It is executed directly by the operating system.
+- It does not provide any security to the application.
+- Memory buffer overflow may occur.
