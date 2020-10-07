@@ -21,7 +21,7 @@ Deferred Execution: It simply means that the query is not executed at the time i
     var x = context.Products.Where(w => w.Type == "y");
     foreach(var item x) { Console.WriteLine(item.Name); } // Query executes at x point
 ```
-Immediate Execution: Query is executed at the point of its declaration. It can be useful if the database is being updated frequently in order to ensure the results where returned at the point the database query is specified. It often uses methods such as ```First(), Avarage(), Sum(), Count(), ToList(), ToArray(), ToDictionary()``` 
+Immediate Execution: Query is executed at the point of its declaration. It can be useful if the database is being updated frequently in order to ensure the results where returned at the point the database query is specified. It often uses methods such as ```First(), Avarage(), Sum(), Count(), ToList(), ToArray(), ToDictionary()```.
 ```
     var x = (from product in context.Products where product.Type == "y" select product).ToList();
     var x = context.Products.Where(w => w.Type == "y").ToList();
