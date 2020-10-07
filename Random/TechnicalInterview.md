@@ -4,7 +4,7 @@
 An abstract class allows you to create functionality that subclasses can implement or override and it also can have have constructors. An interface only allows you to define functionality, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a class can extend only one abstract class, it can take advantage of multiple interfaces.
 
 #### String vs string
-Essentially, there is no difference between string and String in C#.
+Essentially, there is no difference between string and String in C#.<br>
 String is a class in the .NET framework in the System namespace. The fully qualified name is System.String. Whereas, the lower case string is an alias of System.String.
 
 #### Action vs Func vs Predicate
