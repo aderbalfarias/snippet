@@ -59,3 +59,6 @@ Managed code is the code which is managed by the CLR(Common Language Runtime) in
     - It is executed directly by the operating system.
     - It does not provide any security to the application.
     - Memory buffer overflow may occur.
+   
+#### Object.ToString() vs Convert.ToString()
+```Object.ToString()``` cannot handle ```null``` values which means the *Null reference exception* will be thrown when trying to use ```.ToString()``` on a object which is ```null```, in the other hand ```Convert.ToString()``` can handle ```null``` values it won't generate *Null reference exception*.
