@@ -3,6 +3,19 @@
 #### Abstract Class vs Interface
 An abstract class allows you to create functionality that subclasses can implement or override and it also can have have constructors. An interface only allows you to define functionality, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a class can extend only one abstract class, it can take advantage of multiple interfaces.
 
+#### System.String vs System.StringBuilder
+System.String: It is immutable, it means when a string object is created you cannot modify and you have always to create a new object string type in memory.<br>  
+```
+    string x = "hi";
+    x += "how are you?"; // it's a new string instance, we can't change the old one 
+```
+System.StringBuilder: It is mutable, means if you create string builder object then you can perform any operation like insert, replace or append without creating new instance for every time. It will update string at one place in memory doesn't create new space in memory.<br>
+```
+    StringBuilder strb = new StringBuilder("hi");
+    strb.Append("how are you?");
+    string x = strb.ToString();
+```
+
 #### String vs string
 Essentially, there is no difference between string and String in C#.<br>
 String is a class in the .NET framework in the System namespace. The fully qualified name is System.String. Whereas, the lower case string is an alias of System.String.
