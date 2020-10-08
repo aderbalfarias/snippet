@@ -4,12 +4,12 @@
 An abstract class allows you to create functionalities that subclasses can implement or override and it also can have have constructors. An interface only allows you to define functionalities, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a class can extend only one abstract class, it can take advantage of multiple interfaces.
 
 #### System.String vs System.StringBuilder
-System.String: It is immutable, it means when a string object is created you cannot modify and you have always to create a new object string type in memory.<br>  
+- ```System.String```: It is immutable, it means when a string object is created you cannot modify and you have always to create a new object string type in memory.<br>  
 ```
     string x = "hi";
     x += "how are you?"; // it's a new string instance, we can't change the old one 
 ```
-System.StringBuilder: It is mutable, means if you create string builder object then you can perform any operation like insert, replace or append without creating new instance for every time. It will update string at one place in memory doesn't create new space in memory.<br>
+- ```System.StringBuilder```: It is mutable, means if you create string builder object then you can perform any operation like insert, replace or append without creating new instance for every time. It will update string at one place in memory doesn't create new space in memory.<br>
 ```
     StringBuilder strb = new StringBuilder("hi");
     strb.Append("how are you?");
@@ -18,12 +18,12 @@ System.StringBuilder: It is mutable, means if you create string builder object t
 
 #### String vs string
 Essentially, there is no difference between string and String in C#.<br>
-String is a class in the .NET framework in the System namespace. The fully qualified name is System.String. Whereas, the lower case string is an alias of System.String.
+String is a class in the .NET framework in the System namespace. The fully qualified name is ```System.String```. Whereas, the lower case string is an alias of ```System.String```.
 
 #### Action vs Func vs Predicate
-Action: Delegate (pointer) to a method that takes zero, one or more input parameters but doesn't return anything.<br>
-Func: Delegate (pointer) to a method that takes zero, one or more input parameters and returns a value or reference.<br>
-Predicate: A special form of Func and mainly used to validate something and return bool. It is mainly used with collections to whether the item in the collection is valid or not. Basically, its a wrapper of Func like ```Func<T, bool>```.<br>
+- ```Action```: Delegate (pointer) to a method that takes zero, one or more input parameters but doesn't return anything.<br>
+- ```Func```: Delegate (pointer) to a method that takes zero, one or more input parameters and returns a value or reference.<br>
+- ```Predicate```: A special form of Func and mainly used to validate something and return bool. It is mainly used with collections to whether the item in the collection is valid or not. Basically, its a wrapper of Func like ```Func<T, bool>```.<br>
 *When to use that*?<br>
 Action is useful if we don’t want to return any result. But if we want to return result, we could use Func. Predicate is mainly to used to validate any condition.
 
@@ -41,7 +41,7 @@ Immediate Execution: Query is executed at the point of its declaration. It can b
 ```
 
 #### Stack vs Heap
-In short, in the **Stack** are stored value types (types inherited from System.ValueType like bool, int, long, decimal, float, short) and in the **Heap** are stored reference types (types inherited from System.Object such as string, object, dynamic).<br>
+In short, in the **Stack** are stored value types (types inherited from ```System.ValueType``` like ```bool, int, long, decimal, float, short```) and in the **Heap** are stored reference types (types inherited from ```System.Object``` such as ```string, object, dynamic```).<br>
 Stack is responsible for keeping track what is actually executing and where each executing thread is (each thread has its own stack).<br>
 Heap is responsible for keeping track of the data, or more precise objects.
 
