@@ -28,13 +28,13 @@ String is a class in the .NET framework in the System namespace. The fully quali
 Action is useful if we don’t want to return any result. But if we want to return result, we could use Func. Predicate is mainly to used to validate any condition.
 
 #### Deferred Execution vs Immediate Execution
-Deferred Execution: It simply means that the query is not executed at the time it's specified. Specifically, this is accomplished by assigning the query to a variable. When this is done the query definition is stored in the variable but the query ins't executed until the query variable is interated.
+- Deferred Execution: It simply means that the query is not executed at the time it's specified. Specifically, this is accomplished by assigning the query to a variable. When this is done the query definition is stored in the variable but the query ins't executed until the query variable is interated.
 ```
     var x = from product in context.Products where product.Type == "y" select product;
     var x = context.Products.Where(w => w.Type == "y");
     foreach(var item x) { Console.WriteLine(item.Name); } // Query executes at x point
 ```
-Immediate Execution: Query is executed at the point of its declaration. It can be useful if the database is being updated frequently in order to ensure the results where returned at the point the database query is specified. It often uses methods such as ```First(), Avarage(), Sum(), Count(), ToList(), ToArray(), ToDictionary()```.   
+- Immediate Execution: Query is executed at the point of its declaration. It can be useful if the database is being updated frequently in order to ensure the results where returned at the point the database query is specified. It often uses methods such as ```First(), Avarage(), Sum(), Count(), ToList(), ToArray(), ToDictionary()```.   
 ```
     var x = (from product in context.Products where product.Type == "y" select product).ToList();
     var x = context.Products.Where(w => w.Type == "y").ToList();
