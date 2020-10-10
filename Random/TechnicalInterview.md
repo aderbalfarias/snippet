@@ -69,3 +69,13 @@ The difference is that the ```for``` loop is used when you know how many times y
     while(condition == true){}
     for(initializer; condition; iterator){}
 ```
+
+#### Boxing vs Unboxing
+- Boxing is the process of converting a value type to type object.<br>
+- Unboxing is the extraction of the value type from the object.<br>
+While the boxing is implicit, unboxing is explicit.<br>
+```
+    int x = 10;
+    object myObj = x; // Boxing 
+    int y = (int) myObj; // Unboxing
+```
