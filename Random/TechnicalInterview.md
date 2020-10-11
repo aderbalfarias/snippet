@@ -114,3 +114,13 @@ The using keyword has three major uses:<br>
 - The using statement defines a scope at the end of which an object will be disposed.
 - The using directive creates an alias for a namespace or imports types defined in other namespaces.
 - The using static directive imports the members of a single class.
+
+#### Explain the keyword ```unsafe```?
+The ```unsafe``` keyword denotes an unsafe context, which is required for any operation involving pointers. You can use the ```unsafe``` modifier in the declaration of a type or a member. The entire textual extent of the type or member is therefore considered an unsafe context
+
+#### Explain the keyword ```sealed```?
+When applied to a class, the ```sealed``` modifier prevents other classes from inheriting from it. Like, class **B** inherits from class **A**, but no class can inherit from class **B**
+```
+    class A {}
+    sealed class B : A {}
+```
