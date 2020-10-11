@@ -83,3 +83,14 @@ While the boxing is implicit, unboxing is explicit.<br>
 #### Constants vs Readonly Variables 
 - Constants can be declared in methods or global context they are declared with ```const``` modifier, it is used for immutable values, they are evaluated at compile time, user-defined types, including classes, structs, and arrays, cannot be ```const```.
 - Readonly cannot be delcared in methods, they use ```readonly``` modifier, they are evaluated at run time, it also can hold reference-type variables, it is mostly used when its actual value is unknown before the run time and it can only be inilialised at the time of declaration or in a constructor.
+
+### C# Variety 
+
+#### Does C# support multiple inheritance?
+No, however, you can implement multiple interfaces.
+
+#### When ```break``` is used inside two nested ```for``` loops (for inside for), the ```break``` is inside second loop, what does happen? 
+It breaks from the inner loop only.
+
+#### Explain what LINQ is?
+LINQ in an acronym for Language Integrated Query, it allow data manipulation, regardless of the data source which means that it supports many data providers like .NET Framework collections, SQL Server databases, MySql databases, ADO.NET databases, XML documents, and any collection of objects that support ```IEnumerable``` or generic ```IEnumerable<T>``` interfaces, *In short, LINQ bridges the gap between the world of objects and the world of data*.
