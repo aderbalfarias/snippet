@@ -100,3 +100,17 @@ Garbage collection is a low-priority process that serves as an automatic memory 
 When **Garbage Collector** performs a collection it checks for objects in the managed heap that are no longer being used by the applications and performs the necessary operations to relcaim the memory, it will stop all running threads and find the objects in the heap that aren't being accessed by the main program and delete them, then reorganize all the objects left in the heap in order to make space and adjust all pointers to these objects in the heap and the stack.<br>
 It can be implemented by using the ```IDisposable interface```.<br>
 ```System.GC.Collect() // Force garbage collection```
+
+### C# Keywords
+
+#### Explain the keyword ```virtual```?
+The ```virtual``` keyword is used to modify a method, property, indexer, or event declaration and allow for it to be overridden in a derived class. You cannot use the virtual modifier with the ```static, abstract, private, override``` modifiers.
+
+#### Explain the keyword ```volatile```?
+The ```volatile``` keyword indicates that a field might be modified by multiple threads that are executing at the same time. The compiler, the runtime system, and even hardware may rearrange reads and writes to memory locations for performance reasons. Fields that are declared volatile are not subject to these optimizations.
+
+#### Explain the keyword ```using```?
+The using keyword has three major uses:<br>
+- The using statement defines a scope at the end of which an object will be disposed.
+- The using directive creates an alias for a namespace or imports types defined in other namespaces.
+- The using static directive imports the members of a single class.
