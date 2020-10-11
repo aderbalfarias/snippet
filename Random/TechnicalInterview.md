@@ -82,7 +82,7 @@ While the boxing is implicit, unboxing is explicit.<br>
 
 #### Constants vs Readonly Variables 
 - Constants can be declared in methods or global context they are declared with ```const``` modifier, it is used for immutable values, they are evaluated at compile time, user-defined types, including classes, structs, and arrays, cannot be ```const```.
-- Readonly cannot be delcared in methods, they use ```readonly``` modifier, they are evaluated at run time, it also can hold reference-type variables, it is mostly used when its actual value is unknown before the run time and it can only be inilialised at the time of declaration or in a constructor.
+- Readonly cannot be delcared in methods, they use ```readonly``` modifier, they are evaluated at runtime, it also can hold reference-type variables, it is mostly used when its actual value is unknown before the runtime and it can only be inilialised at the time of declaration or in a constructor.
 
 ### C# Variety 
 
@@ -94,3 +94,8 @@ It breaks from the inner loop only.
 
 #### Explain what LINQ is?
 LINQ in an acronym for Language Integrated Query, it allow data manipulation, regardless of the data source which means that it supports many data providers like .NET Framework collections, SQL Server databases, MySql databases, ADO.NET databases, XML documents, and any collection of objects that support ```IEnumerable``` or generic ```IEnumerable<T>``` interfaces, *In short, LINQ bridges the gap between the world of objects and the world of data*.
+
+#### What garbage collection is and how it works. Provide example of how you can enforce it in .NET?
+Garbage collection is a low-priority process that serves as an automatic memory manager which manages the allocation and release of memory for the applications. Each time a new object is created, the CLR allocates memory for that object from the managed **heap**. As long as free memory space is available in the managed heap the runtime continuos to allocate space for new objects. However memory is not infinite and when heap memory is full garbage collection comes to free some memory. When **Garbage Collector** performs a collection it checks for objects in the managed heap that are no longer being used by the applications and performs the necessary operations to relcaim the memory, it will stop all running threads and find the objects in the heap that aren't being accessed by the main program and delete them, then reorganize all the objects left in the heap in order to make space and adjust all pointers to these objects in the heap and the stack.<br>
+It can be implemented by using the ```IDisposable interface```.<br>
+```System.GC.Collect() // Force garbage collection```
