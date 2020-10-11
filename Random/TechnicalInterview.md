@@ -108,11 +108,34 @@ When applied to a class, the ```sealed``` modifier prevents other classes from i
     sealed class B : A {}
 ```
 
-### C# Object-oriented programming(OOP)
+### C# Object-oriented programming (OOP)
 
 
 ### C# Design Patterns
 
+#### Dependency Injection (DI)
+Dependency Injection is a software design pattern that allows us to develop loosely coupled code, which is a technique for achieving Inversion of Control (IoC) between classes and their dependencies. DI reduces tight coupling between software components and also enables us to better manage future changes and other complexity in a software. The purpose of DI is to make code maintainable.<br>
+Advantages:
+- Reduces class coupling.
+- Increases code reusability.
+- Improves code maintainability.
+- Make unit testing possible.
+
+The Dependency Injection pattern involves 3 types of classes:
+- Client Class: The client class (dependent class) is a class which depends on the service class
+- Service Class: The service class (dependency) is a class that provides service to the client class.
+- Injector Class: The injector class injects the service class object into the client class.
+
+Types of Dependency Injection: 
+- Constructor Injection: In the constructor injection, the injector supplies the service (dependency) through the client class constructor.
+- Property Injection: In the property injection (aka (also known as) the Setter Injection), the injector supplies the dependency through a public property of the client class.
+- Method Injection: In this type of injection, the client class implements an interface which declares the method(s) to supply the dependency and the injector uses this interface to supply the dependency to the client class.
+
+Dependency Lifetimes<br>
+At registration time, dependencies require a lifetime definition. The service lifetime defines the conditions under which a new service instance will be created. Below are the lifetimes defined by the ASP.Net DI framework. The terminology may be different if you choose to use a different framework.<br>
+- **Transient** – Created every time they are requested
+- **Scoped** – Created once per scope. Most of the time, scope refers to a web request. But this can also be used for any unit of work, such as the execution of an Azure Function.
+- **Singleton** – Created only for the first request. If a particular instance is specified at registration time, this instance will be provided to all consumers of the registration type.
 
 ### C# Variety 
 
