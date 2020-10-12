@@ -110,6 +110,13 @@ When applied to a class, the ```sealed``` modifier prevents other classes from i
 
 ### C# Object-oriented programming (OOP)
 
+#### What is OOP and how does it relate to the .NET Frameworks?
+OOP allows .Net developers to create classes containing methods, properties, fields, events and other logical modules. It also let developers create modular programs with they can assemble as applications and reuse code. OOP have four basic features: encapsulation, abstraction, polimorphism and inheritance.
+
+
+
+#### What is Inversion of Control?
+Inversion of control is a *Principle in softeware engineering* by which the control of objects or portions of a program is transferred to a container or framework. It is most oftem used in the context of OOP.
 
 ### C# Design Patterns
 
