@@ -113,6 +113,13 @@ When applied to a class, the ```sealed``` modifier prevents other classes from i
 #### What is OOP and how does it relate to the .NET Frameworks?
 OOP allows .Net developers to create classes containing methods, properties, fields, events and other logical modules. It also let developers create modular programs with they can assemble as applications and reuse code. OOP have four basic features: encapsulation, abstraction, polimorphism and inheritance.
 
+#### What is encapsulation?
+It is one of the four basic features of OOP and refers to an object's ability to hide data and behavior that are not necessary to its user. Encapsulation helps to keep data from unwanted access through biding code and data in an object which is the basic single self-contained unit of a system. Encapsulation is used to restrict access to the members of a class so as to prevent the user of a given class from manipulating objects in ways that are not intended by the designer, it also has the priciple of hiding the state of an object by using private or protected modifiers. Benefits of it:
+- Protection of data from accidental corruption.
+- Specification of the accessibility of each of the members of a class to the code outside the class.
+- Flexibility and extensibility of the code and reduction in complexity.
+- Lower coupling between objects and hence improvement in code maintainability.
+- Less likely that other objects can modify the state or behavior of the object in question.
 
 
 #### What is Inversion of Control?
