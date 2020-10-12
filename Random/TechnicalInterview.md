@@ -113,7 +113,7 @@ When applied to a class, the ```sealed``` modifier prevents other classes from i
 #### What is OOP and how does it relate to the .NET Frameworks?
 OOP allows .Net developers to create classes containing methods, properties, fields, events and other logical modules. It also let developers create modular programs with they can assemble as applications and reuse code. OOP have four basic features: encapsulation, abstraction, polimorphism and inheritance.
 
-#### What is encapsulation?
+#### What is Encapsulation?
 It is one of the four basic features of OOP and refers to an object's ability to hide data and behavior that are not necessary to its user. Encapsulation helps to keep data from unwanted access through biding code and data in an object which is the basic single self-contained unit of a system. Encapsulation is used to restrict access to the members of a class so as to prevent the user of a given class from manipulating objects in ways that are not intended by the designer, it also has the priciple of hiding the state of an object by using private or protected modifiers. Benefits of it:
 - Protection of data from accidental corruption.
 - Specification of the accessibility of each of the members of a class to the code outside the class.
@@ -138,7 +138,7 @@ It is one of the four basic features of OOP and refers to an object's ability to
     }
 ```
 
-#### Explain what is abstraction?
+#### What is Abstraction?
 Abstraction is a principle of OOP and it is used to hide the implementation details and display only essential features of the object. The word abstract means a concept or an idea not associated with any specific instance. We apply the same meaning of abstraction by making classes not associated with any specific instance. Abstraction is needed when we need to only inherit from a certain class, but do not need to instantiate objects of that class. In such a case the base class can be regarded as "Incomplete". Such classes are known as an "Abstract Base Class". 
 ``` 
     public abstract class Animal
@@ -157,72 +157,63 @@ Abstraction is a principle of OOP and it is used to hide the implementation deta
             this.Specie = specie;
         }
 
-        // concrete method
-        public string NameAndSpecie()
-            => $"{Name}, {Specie}";
+        public string NameAndSpecie() => $"{Name}, {Specie}"; // concrete method
 
         public abstract string AnimalType();
 
-        public virtual int AverageLifeInMonths(int years)
-        {
-            return years / 12;
-        }
+        public virtual int AverageLifeInMonths(int years) => years / 12;
     }
 
     public class Tiger : Animal
     {
-        public override string AnimalType()
-        {
-            return "Mammals";
-        }
+        public override string AnimalType() => "Mammals";
     }
 
     public class Frog : Animal
     {
-        public override string AnimalType()
-        {
-            return "Amphibians";
-        }
+        public override string AnimalType() => "Amphibians";
     }
 
     public class Salmon : Animal
     {
-        public override string AnimalType()
-        {
-            return "Fish";
-        }
+        public override string AnimalType() => "Fish";
     }
 ```
 
-#### Explain what is inheritance?
+#### What is Polymorphism?
+Polymorphism means providing an ability to take more than one form, polymorphism provides an ability for the classes to implement different methods that are called through the same name and it also provides an ability to invoke the methods of a derived class through base class reference during runtime based on our requirements.
+```
+    public void AddNumbers(int a, int b)
+    {
+        Console.WriteLine($"a + b = { a + b }");
+    }
+    
+    public void AddNumbers(int a, int b, int c)
+    {
+        Console.WriteLine($"a + b + c = { a + b + c }");
+    }
+```
+
+#### What is Inheritance?
 Inheritance is one of the core concepts of OOP languages. It is a mechanism where you can to derive a class from another ```class``` for a hierarchy of classes that share a set of attributes and methods. It allows developers to reuse, extend and modify the behavior defined in other classes, **the ```class``` whose members are inherited is called the base class and the ```class``` that inherit those members is called the derived class**. Inheritance allows you to define a base class that provides specific functionality (data and behavior) and to define derived classes that either inherit or override that functionality.<br>
 *e.g.:* A base class called ```Vehicle```, and then derived classes called ```Truck, Car, Motprcycle``` all of which inherit the attributes of vehicle.
 ```
     public class A
     {
         public string Name;
-        public void GetName()
-        {
-            Console.WriteLine("Name: {0}", Name);
-        }
+        public void GetName() => Console.WriteLine("Name: {0}", Name);
     }
 
     public class B : A
     {
         public string Location;
-        public void GetLocation()
-        {
-            Console.WriteLine("Location: {0}", Location);
-        }
+        public void GetLocation() => Console.WriteLine("Location: {0}", Location);
     }
 
     public class C : B
     {
         public int Age;
-        public void GetAge()
-        {
-            Console.WriteLine("Age: {0}", Age);
-        }
+        public void GetAge() => Console.WriteLine("Age: {0}", Age);
     }
     
     class Program
@@ -237,8 +228,6 @@ Inheritance is one of the core concepts of OOP languages. It is a mechanism wher
             c.GetName();
             c.GetLocation();
             c.GetAge();
-          
-            Console.ReadLine();
         }
     }
 ```
