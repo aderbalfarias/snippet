@@ -138,9 +138,110 @@ It is one of the four basic features of OOP and refers to an object's ability to
     }
 ```
 
+#### Explain what is abstraction?
+Abstraction is a principle of OOP and it is used to hide the implementation details and display only essential features of the object. The word abstract means a concept or an idea not associated with any specific instance. We apply the same meaning of abstraction by making classes not associated with any specific instance. Abstraction is needed when we need to only inherit from a certain class, but do not need to instantiate objects of that class. In such a case the base class can be regarded as "Incomplete". Such classes are known as an "Abstract Base Class". 
+``` 
+    public abstract class Animal
+    {
+        private string Name { get; set; }
+        private string Specie { get; set; }
+
+        public Animal()
+        {
+            Console.WriteLine("Do something");
+        }
+
+        public Animal(string name, string specie)
+        {
+            this.Name = name;
+            this.Specie = specie;
+        }
+
+        // concrete method
+        public string NameAndSpecie()
+            => $"{Name}, {Specie}";
+
+        public abstract string AnimalType();
+
+        public virtual int AverageLifeInMonths(int years)
+        {
+            return years / 12;
+        }
+    }
+
+    public class Tiger : Animal
+    {
+        public override string AnimalType()
+        {
+            return "Mammals";
+        }
+    }
+
+    public class Frog : Animal
+    {
+        public override string AnimalType()
+        {
+            return "Amphibians";
+        }
+    }
+
+    public class Salmon : Animal
+    {
+        public override string AnimalType()
+        {
+            return "Fish";
+        }
+    }
+```
+
 #### Explain what is inheritance?
 Inheritance is one of the core concepts of OOP languages. It is a mechanism where you can to derive a class from another ```class``` for a hierarchy of classes that share a set of attributes and methods. It allows developers to reuse, extend and modify the behavior defined in other classes, **the ```class``` whose members are inherited is called the base class and the ```class``` that inherit those members is called the derived class**. Inheritance allows you to define a base class that provides specific functionality (data and behavior) and to define derived classes that either inherit or override that functionality.<br>
 *e.g.:* A base class called ```Vehicle```, and then derived classes called ```Truck, Car, Motprcycle``` all of which inherit the attributes of vehicle.
+```
+    public class A
+    {
+        public string Name;
+        public void GetName()
+        {
+            Console.WriteLine("Name: {0}", Name);
+        }
+    }
+
+    public class B : A
+    {
+        public string Location;
+        public void GetLocation()
+        {
+            Console.WriteLine("Location: {0}", Location);
+        }
+    }
+
+    public class C : B
+    {
+        public int Age;
+        public void GetAge()
+        {
+            Console.WriteLine("Age: {0}", Age);
+        }
+    }
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            C c = new C();
+            c.Name = "Test Name";
+            c.Location = "Test Location";
+            c.Age = 32;
+
+            c.GetName();
+            c.GetLocation();
+            c.GetAge();
+          
+            Console.ReadLine();
+        }
+    }
+```
 
 #### What is Inversion of Control?
 Inversion of control is a *Principle in softeware engineering* by which the control of objects or portions of a program is transferred to a container or framework. It is most oftem used in the context of OOP.
@@ -198,5 +299,6 @@ It can be implemented by using the ```IDisposable interface```.<br>
 Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios you might want to write a custom middleware. Middleware should follow the Explicit Dependencies Principle by exposing its dependencies in its constructor. Middleware is constructed once per application lifetime, it is possible to create a middleware pipeline with ```IApplicationBuilder``` inside the method ```public void Configure(IApplicationBuilder app)```. The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other.
 
 
-https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles#explicit-dependencies
+[Architectural principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
+SOLID
 
