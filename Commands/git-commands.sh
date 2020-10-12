@@ -26,6 +26,7 @@ git add -A #> Add all new and changed files to the staging area
 git rm -r [file-name] #> Remove a file from staging area
 git stash save "message" #> It creates a stash that allows we pull code and then merge the code without commit it, like config files
 git stash apply stash@{[stash number]} #> Get back the files stashed
+git stash list #> Get list of stashes
 git stash pop stash@{[stash number]} #> Return your repository to status before the stash (you will lose changes)
 git stash drop stash@{[stash number]} #> Delete stash
 git stash apply $stash_rash #> Get back the files from a deleted stash
