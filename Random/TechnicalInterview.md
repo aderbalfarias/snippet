@@ -120,7 +120,27 @@ It is one of the four basic features of OOP and refers to an object's ability to
 - Flexibility and extensibility of the code and reduction in complexity.
 - Lower coupling between objects and hence improvement in code maintainability.
 - Less likely that other objects can modify the state or behavior of the object in question.
+```
+    public class Bank
+    {
+        private double balance;
+        public double Balance
+        {
+            get
+            {
+                return balance;
+            }
+            set
+            {
+                balance = value;
+            }
+        }
+    }
+```
 
+#### Explain what is inheritance?
+Inheritance is one of the core concepts of OOP languages. It is a mechanism where you can to derive a class from another ```class``` for a hierarchy of classes that share a set of attributes and methods. It allows developers to reuse, extend and modify the behavior defined in other classes, **the ```class``` whose members are inherited is called the base class and the ```class``` that inherit those members is called the derived class**. Inheritance allows you to define a base class that provides specific functionality (data and behavior) and to define derived classes that either inherit or override that functionality.<br>
+*e.g.:* A base class called ```Vehicle```, and then derived classes called ```Truck, Car, Motprcycle``` all of which inherit the attributes of vehicle.
 
 #### What is Inversion of Control?
 Inversion of control is a *Principle in softeware engineering* by which the control of objects or portions of a program is transferred to a container or framework. It is most oftem used in the context of OOP.
@@ -171,4 +191,12 @@ Garbage collection is a low-priority process that serves as an automatic memory 
 When **Garbage Collector** performs a collection it checks for objects in the managed heap that are no longer being used by the applications and performs the necessary operations to relcaim the memory, it will stop all running threads and find the objects in the heap that aren't being accessed by the main program and delete them, then reorganize all the objects left in the heap in order to make space and adjust all pointers to these objects in the heap and the stack.<br>
 It can be implemented by using the ```IDisposable interface```.<br>
 ```System.GC.Collect() // Force garbage collection```
+
+### .NET Core
+
+#### Explain what is a Middlaware?
+Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios you might want to write a custom middleware. Middleware should follow the Explicit Dependencies Principle by exposing its dependencies in its constructor. Middleware is constructed once per application lifetime, it is possible to create a middleware pipeline with ```IApplicationBuilder``` inside the method ```public void Configure(IApplicationBuilder app)```. The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other.
+
+
+https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles#explicit-dependencies
 
