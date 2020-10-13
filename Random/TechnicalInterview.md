@@ -285,9 +285,159 @@ It can be implemented by using the ```IDisposable interface```.<br>
 ### .NET Core
 
 #### Explain what is a Middlaware?
-Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios you might want to write a custom middleware. Middleware should follow the Explicit Dependencies Principle by exposing its dependencies in its constructor. Middleware is constructed once per application lifetime, it is possible to create a middleware pipeline with ```IApplicationBuilder``` inside the method ```public void Configure(IApplicationBuilder app)```. The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other.
+Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios you might want to write a custom middleware. Middleware should follow the Explicit Dependencies Principle by exposing its dependencies in its constructor. Middleware is constructed once per application lifetime, it is possible to create a middleware pipeline with ```IApplicationBuilder``` inside the method ```public void Configure(IApplicationBuilder app)```. The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other.<br>
+The incoming requests are passes through this pipeline where all middleware is configured, and middleware can perform some action on the request before passes it to the next middleware. Same as for the responses, they are also passing through the middleware but in reverse order.
+
+#### What are the advantages of ASP.NET Core over ASP.NET?
+There are following advantages of ASP.NET Core over ASP.NET:
+- It is cross-platform, so it can be run on Windows, Linux, and Mac.
+- There is no dependency on framework installation because all the required dependencies are ship with our application.
+- ASP.NET Core can handle more request than the ASP.NET.
+- Multiple deployment options available withASP.NET Core.
+
+#### What is the startup class in ASP.NET core?
+Startup class is the entry point of the ASP.NET Core application. Every .NET Core application must have this class. This class contains the application configuration. It is not necessary that class name must "Startup.cs", it can be anything, we can configure startup class in Program class.
+```
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+            .ConfigureLogging(logging =>
+            {
+                logging.AddConsole();
+                logging.AddDebug();
+            })
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            })
+            .UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
+    }
+    
+    public class Startup
+    {
+        private const string DemoConnection = "DemoConnection";
+        private const string corsSettings = "CorsOrigin";
+        private string[] Schemes = { JwtBearerDefaults.AuthenticationScheme, "ADFS" };
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+        {
+            Configuration = configuration;
+            Environment = environment;
+        }
+
+        public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Environment { get; }
+
+        // This method gets called by the runtime. 
+        // Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            var corsOrigin = Configuration.GetSection(corsSettings).Get<string[]>();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins(corsOrigin).AllowAnyHeader().AllowAnyMethod();
+                });
+            });
+
+            // Dependency Injection
+            services.Services();
+            services.Repositories();
+            services.Databases(Configuration.GetConnectionString(DemoConnection));
+            services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
+
+            var authenticationOption = Configuration
+                .GetSection(nameof(ApplicationOptions.Authentication))
+                .Get<AuthenticationOptions>();
+
+            services.AddSingleton(authenticationOption);
+
+            services.AddHealthChecks()
+                .AddSqlServer(Configuration.GetConnectionString(DemoConnection));
+
+            services.AddControllers();
+            services.AddApiVersioning();
+            services.AddSwagger(authenticationOption);
+
+            var oidc = Configuration
+                .GetSection(nameof(ApplicationOptions.OidcAuthorizationServer))
+                .Get<OidcAuthorizationServerOptions>();
+
+            services.AddSingleton(oidc);
+            services.AddAuthorization(options =>
+            {
+                options.DefaultPolicy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .AddAuthenticationSchemes(Schemes)
+                    .Build();
+            });
+
+            services.AddBearers(Environment, oidc, authenticationOption, Schemes);
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+        {
+            app.UseAuthentication();
+
+            logger.LogInformation($"In {env.EnvironmentName} environment");
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("../swagger/v1/swagger.json", "Core App v1");
+                c.RoutePrefix = string.Empty;
+            });
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseMiddleware<ExceptionMiddleware>();
+            }
+            else
+            {
+                app.UseMiddleware<ExceptionMiddleware>();
+                app.UseExceptionHandler("/Error");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
+                app.UseHsts();
+
+                app.UseHttpsRedirection();
+            }
+
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseStaticFiles();
+            app.UseCors();
+            app.UseHealthChecks();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+    }
+```
+
+#### What is the use of ```ConfigureServices(IServiceCollection services)``` method of startup class?
+This is an optional method of startup class. It can be used to configure the services that are used by the application. This method calls first when the application is requested for the first time. Using this method, we can do things like adding services to the DI container, so services are available as a dependency in controller constructor.
+
+#### What is the use of the ```Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)``` method of startup class?
+It defines how the application will respond to each HTTP request. We can configure the request pipeline by configuring the middleware. It accepts IApplicationBuilder as a parameter and also it has two optional parameters: IWebHostEnvironment and ILogger. Using this method, we can configure built-in middleware such as routing, authentication, session, etc. as well as third-party or custom middlewares.
+
+#### What is the difference between ```IApplicationBuilder.Use()``` and ```IApplicationBuilder.Run()```?
+We can use both the methods in Configure methods of startup class. Both are used to add middleware delegate to the application request pipeline. 
+- ```IApplicationBuilder.Use()``` may call the next middleware in the pipeline 
+- ```IApplicationBuilder.Run()``` method never calls the subsequent or next middleware. After ```IApplicationBuilder.Run``` method, system stop adding middleware in request. pipeline.
 
 
-[Architectural principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
+[Architectural principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)<br>
 SOLID
 
