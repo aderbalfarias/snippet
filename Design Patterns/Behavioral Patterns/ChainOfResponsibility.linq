@@ -1,9 +1,17 @@
 <Query Kind="Program" />
 
-//Chain of Responsibility: A way of passing a request between a chain of objects. 
-//Avoid coupling the sender of a request to its receiver by giving more than one object a  chance to handle the request. 
-//Chain the receiving objects and pass the request along the chain until an object handles it.
+// Chain of Responsibility: A way of passing a request between a chain of objects. 
+// Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. 
+// Chain the receiving objects and pass the request along the chain until an object handles it.
+    
+// Make sure there exists a "safety net" to "catch" any requests which go unhandled.
+    
+// Do not use Chain of Responsibility when each request is only handled by one handler, 
+// or, when the client object knows which service object should handle the request.
 
+// The derived classes know how to satisfy Client requests. If the "current" object is not available or sufficient,
+// then it delegates to the base class, which delegates to the "next" object, and the circle of life continues.
+    
 /// <summary>
 /// MainApp startup class for Structural
 /// Chain of Responsibility Design Pattern.
@@ -54,7 +62,6 @@ abstract class Handler
 /// </summary>
 
 class ConcreteHandler1 : Handler
-
 {
     public override void HandleRequest(int request)
     {
@@ -91,7 +98,6 @@ class ConcreteHandler2 : Handler
 /// The 'ConcreteHandler3' class
 /// </summary>
 class ConcreteHandler3 : Handler
-
 {
     public override void HandleRequest(int request)
     {
