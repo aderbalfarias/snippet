@@ -237,6 +237,15 @@ Inversion of control is a *Principle in softeware engineering* by which the cont
 
 ### C# Design Patterns
 
+#### Repository
+Repositories are classes or components that encapsulate the logic required to access data sources. They centralize common data access functionality, providing better maintainability and decoupling the infrastructure or technology used to access databases from the domain model layer.<br>
+The Repository pattern is a well-documented way of working with a data source. In the book Patterns of Enterprise Application Architecture, Martin Fowler describes a repository as follows:<br>
+*A repository performs the tasks of an intermediary between the domain model layers and data mapping, acting in a similar way to a set of domain objects in memory. Client objects declaratively build queries and send them to the repositories for answers. Conceptually, a repository encapsulates a set of objects stored in the database and operations that can be performed on them, providing a way that is closer to the persistence layer. Repositories, also, support the purpose of separating, clearly and in one direction, the dependency between the work domain and the data allocation or mapping.*<br>
+Basically, a repository allows you to populate data in memory that comes from the database in the form of the domain entities. Once the entities are in memory, they can be changed and then persisted back to the database through transactions.<br>
+A Repository Pattern can be implemented in Following ways:<br>
+- **One repository per entity (non-generic)**: This type of implementation involves the use of one repository class for each entity. For example, if you have two entities Order and Customer, each entity will have its own repository.
+- **Generic repository**: A generic repository is the one that can be used for all the entities, in other words it can be either used for Order or Customer or any other entity.
+
 #### Dependency Injection (DI)
 Dependency Injection is a software design pattern that allows us to develop loosely coupled code, which is a technique for achieving Inversion of Control (IoC) between classes and their dependencies. DI reduces tight coupling between software components and also enables us to better manage future changes and other complexity in a software. The purpose of DI is to make code maintainable.<br>
 Advantages:
@@ -471,6 +480,28 @@ Routing is functionality that map incoming request to the route handler. The rou
 
 ### SOLID
 
+#### S - Single responsibility Principle
+The Single Responsibility Principle states that every module or class should have responsibility for a single part of the functionality provided by the software.
+
+#### O - Open-Closed Principle
+The open/closed principle states that software entities (classes, modules, functions) should be open for extensions, but closed for modification.
+
+#### L - Liskov Substitution Principle
+The Liskov substitution principle states that if S is a subtype of T, then objects of type T may be replaced (or substituted) with objects of type S.<br>
+We can formulate this mathematically as:
+- Let ϕ(x) be a property provable about objects x of type T.
+- Then ϕ(y) should be valid for objects y of type S, where S is a subtype of T.
+More generally, it states that objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.
+
+#### I - Interface Segregation Principle
+The interface segregation principle states not to force a client to depend on methods it does not use. Do not add additional functionality to an existing interface by adding new methods. Instead, create a new interface and let your class implement multiple interfaces if needed.
+
+#### D - Dependency Inversion Principle (Dependency injection)
+The dependency inversion principle is a way to decouple software modules. This principle states that:
+- High-level modules should not depend on low-level modules. Both should depend on abstractions.
+- Abstractions should not depend on details. Details should depend on abstractions.
+To comply with this principle, we need to use a design pattern known as a dependency inversion pattern, most often solved by using dependency injection.
+ 
 ### Sql Server
 
 ### Front-end Angular
