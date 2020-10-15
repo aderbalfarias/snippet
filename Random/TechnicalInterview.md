@@ -504,7 +504,17 @@ To comply with this principle, we need to use a design pattern known as a depend
  
 ### Sql Server
 
+### Front-end Javascript
+
 ### Front-end Angular
+
+#### What is a Directive?
+At the core, a directive is a function that executes whenever the Angular compiler finds it in the DOM. Angular directives are used to extend the power of the HTML by giving it new syntax. Each directive has a name, either one from the Angular predefined like ```ng-repeat```, or a custom one which you can name as you prefer.
+- **Component Directives** These form the main class having details of how the component should be processed, instantiated and used at runtime.
+- **Structural Directives** basically deals with manipulating the DOM elements. Structural directives have a * sign before the directive. For example, *ngIf and *ngFor.
+- **Attribute Directives** they deal with changing the look and behavior of the dom element. You can create your own directives.
+
+How to Create Custom Directives
 
 ### Architecture Basic
 
