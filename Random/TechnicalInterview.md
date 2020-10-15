@@ -595,7 +595,7 @@ Angular organizes the ```$scope``` objects into a hierarchy that is typically us
 In a scope hierarchy, each view has its own $scope. Hence, the variables set by a view's view controller will remain hidden to other view controllers. Following is a typical representation of a Scope Hierarchy:
 - Root $scope
 	- $scope for Controller 1
-	- $scope for Controller 2
+	- $scope for Controller 2 
 	- $scope for Controller n
 	
 #### How to generate a class in Angular using CLI?
