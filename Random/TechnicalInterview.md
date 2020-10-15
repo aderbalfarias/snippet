@@ -611,3 +611,65 @@ There are essentially 9 building blocks of an Angular application. These are:
 - **Routing**: An Angular router is responsible for interpreting a browser URL as an instruction to navigate to a client-generated view. The router is bound to links on a page to tell Angular to navigate the application view when a user clicks on it.
 - **Services**: A very broad category, a service can be anything ranging from a value and function to a feature that is required by an Angular app. Technically, a service is a class with a well-defined purpose.
 - **Template**: Each component's view is associated with its companion template. A template in Angular is a form of HTML tags that lets Angular know that how it is meant to render the component.
+
+#### Explain the differences between Angular and jQuery?
+The single biggest difference between Angular and jQuery is that while the former is a JS frontend framework, the latter is a JS library. Despite this, there are some similarities between the two, such as both features DOM manipulation and provides support for animation.<br>
+Nonetheless, notable differences between Angular and jQuery are:
+- Angular has two-way data binding, jQuery does not
+- Angular provides support for RESTful API while jQuery doesn't
+- jQuery doesn't offer deep linking routing though Angular supports it
+- There is no form validation in jQuery whereas it is present in Angular
+
+#### What is Angular Material?
+It is a UI component library. Angular Material helps in creating attractive, consistent, and fully functional web pages as well as web applications. It does so while following modern web design principles, including browser portability and graceful degradation.
+
+#### What is Data Binding? How many ways it can be done?
+In order to connect application data with the DOM (Data Object Model), data binding is used. It happens between the template (HTML) and component (TypeScript). There are 3 ways to achieve data binding:
+- **Event Binding**: Enables the application to respond to user input in the target environment
+```
+import { Component } from '@angular/core';    
+@Component({    
+  selector: 'app-root',    
+  templateUrl: './app.component.html',    
+  styleUrls: ['./app.component.css']    
+})    
+export class AppComponent {      
+  onSave($event){    
+    console.log("Save button is clicked!", $event);    
+  }    
+}    
+
+<button (click)="onSave($event)">Save</button> <!--Event Binding-->  
+```
+- **Property Binding**: Enables interpolation of values computed from application data into the HTML
+```
+import { Component } from '@angular/core';    
+@Component({    
+  selector: 'app-root',    
+  templateUrl: './app.component.html',    
+  styleUrls: ['./app.component.css']    
+})    
+export class AppComponent {    
+  title = "Data binding using Property Binding";      
+  imgUrl="https://xxxxxx.png";    
+}   
+
+<h2>{{ title }}</h2> <!-- String Interpolation -->    
+<img [src]="imgUrl" /> <!-- Property Binding -->   
+```
+- **Two-way Binding**: Changes made in the application state gets automatically reflected in the view and vice-versa. The ```ngModel``` directive is used for achieving this type of data binding.
+```
+import { Component } from "@angular/core";    
+@Component({    
+  selector: "app-root",    
+  templateUrl: "./app.component.html",    
+  styleUrls: ["./app.component.css"]    
+})    
+export class AppComponent {    
+  fullName: string = "Hello JavaTpoint";    
+}    
+
+<h2>Two-way Binding Example</h2>    
+   <input [(ngModel)]="fullName" /> <br/><br/>  <!-- Two-Way Binding -->    
+<p> {{fullName}} </p>  
+```
