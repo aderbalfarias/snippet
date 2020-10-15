@@ -504,6 +504,10 @@ To comply with this principle, we need to use a design pattern known as a depend
  
 ### Sql Server
 
+### Architecture Basic
+
+### [Architectural Principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
+
 ### Front-end Javascript
 
 ### Front-end Angular
@@ -514,8 +518,106 @@ At the core, a directive is a function that executes whenever the Angular compil
 - **Structural Directives** basically deals with manipulating the DOM elements. Structural directives have a * sign before the directive. For example, *ngIf and *ngFor.
 - **Attribute Directives** they deal with changing the look and behavior of the dom element. You can create your own directives.
 
-How to Create Custom Directives
+#### What are Lifecycle hooks in Angular? Explain some of them
+Angular components enter its lifecycle from the time it is created to the time it is destroyed. Angular hooks provide ways to tap into these phases and trigger changes at specific phases in a lifecycle.
+- ```ngOnChanges( ): This method is called whenever one or more input properties of the component changes. The hook receives a SimpleChanges object containing the previous and current values of the property.
+- ```ngOnInit()```: This hook gets called once, after the ```ngOnChanges``` hook. It initializes the component and sets the input properties of the component.
+- ```ngDoCheck()```: It gets called after ```ngOnChanges``` and ```ngOnInit``` and is used to detect and act on changes that cannot be detected by Angular. We can implement our change detection algorithm in this hook. 
+- ```ngAfterContentInit()```: It gets called after the first ```ngDoCheck``` hook. This hook responds after the content gets projected inside the component.
+- ```ngAfterContentChecked()```: It gets called after ngAfterContentInit and every subsequent ```ngDoCheck```. It responds after the projected content is checked.
+- ```ngAfterViewInit()```: It responds after a component's view, or a child component's view is initialized.
+- ```ngAfterViewChecked()```: It gets called after ```ngAfterViewInit```, and it responds after the component's view, or the child component's view is checked.
+- ```ngOnDestroy()```: It gets called just before Angular destroys the component. This hook can be used to clean up the code and detach event handlers.
 
-### Architecture Basic
+#### What are Lifecycle hooks in Angular? Explain some of them
+Angular components enter its lifecycle from the time it is created to the time it is destroyed. Angular hooks provide ways to tap into these phases and trigger changes at specific phases in a lifecycle.
+- ```ngOnChanges( ): This method is called whenever one or more input properties of the component changes. The hook receives a SimpleChanges object containing the previous and current values of the property.
+- ```ngOnInit()```: This hook gets called once, after the ```ngOnChanges``` hook. It initializes the component and sets the input properties of the component.
+- ```ngDoCheck()```: It gets called after ```ngOnChanges``` and ```ngOnInit``` and is used to detect and act on changes that cannot be detected by Angular. We can implement our change detection algorithm in this hook. 
+- ```ngAfterContentInit()```: It gets called after the first ```ngDoCheck``` hook. This hook responds after the content gets projected inside the component.
+- ```ngAfterContentChecked()```: It gets called after ngAfterContentInit and every subsequent ```ngDoCheck```. It responds after the projected content is checked.
+- ```ngAfterViewInit()```: It responds after a component's view, or a child component's view is initialized.
+- ```ngAfterViewChecked()```: It gets called after ```ngAfterViewInit```, and it responds after the component's view, or the child component's view is checked.
+- ```ngOnDestroy()```: It gets called just before Angular destroys the component. This hook can be used to clean up the code and detach event handlers.
 
-### [Architectural Principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
+#### Explain Dependency Injection in Angular?
+Dependency injection is an application design pattern that is implemented by Angular and forms the core concepts of Angular. <br>
+Dependencies in Angular are services which have a functionality. Various components and directives in an application can need these functionalities of the service. Angular provides a smooth mechanism by which these dependencies are injected into components and directives.
+
+#### Describe the MVVM architecture?
+MVVM architecture removes tight coupling between each component. The MVVM architecture comprises of three parts:
+- **Model**: It represents the data and the business logic of an application, or we may say it contains the structure of an entity. It consists of the business logic - local and remote data source, model classes, repository.
+- **View**: View is a visual layer of the application, and so consists of the UI Code(in Angular- HTML template of a component.). It sends the user action to the ViewModel but does not get the response back directly. It has to subscribe to the observables which ViewModel exposes to it to get the response. 
+- **ViewModel**: It is an abstract layer of the application and acts as a bridge between the View and Model(business logic). It does not have any clue which View has to use it as it does not have a direct reference to the View. View and ViewModel are connected with data-binding so, any change in the View the ViewModel takes note and changes the data inside the Model. It interacts with the Model and exposes the observable that can be observed by the View.
+
+#### How to navigating between different routes in an Angular app?
+The following snippet demonstrate how to do that:
+```
+	import from "@angular/router";
+	@Component({
+		selector: 'app-header',
+		template: `
+			<nav class="navbar navbar-light bg-faded">
+				<a class="navbar-brand" (click)="goHome()">Search App</a> 
+				<ul class="nav navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" (click)="goHome()">Home</a> 
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" (click)="goSearch()">Search</a> 
+					</li>
+				</ul>
+			</nav>
+		`
+	})
+	class HeaderComponent {
+		constructor(private router: Router) {} 
+		goHome() {
+			this.router.navigate(['']); 
+		}
+		goSearch() {
+			this.router.navigate(['search']); 
+		}
+	}
+```
+
+#### What is the AOT (Ahead-Of-Time) Compilation? What are its advantages?
+An angular application consists of components and templates which a browser cannot understand. Therefore, every Angular application needs to be compiled before running inside the browser. The Angular compiler takes in the JS code, compiles it, and then produces some JS code. It is known as AOT compilation and happens only once per occasion per user.<br> 
+There are two kinds of compilation that Angular provides:
+- **JIT(Just-in-Time) compilation**: the application compiles inside the browser during runtime
+- **AOT(Ahead-of-Time) compilation**: the application compiles during the build time.
+Advantages of AOT compilation:
+- **Fast Rendering**: The browser loads the executable code and renders it immediately as the application is compiled before running inside the browser. 
+- **Fewer Ajax Requests**: The compiler sends the external HTML and CSS files along with the application, eliminating AJAX requests for those source files. 
+- **Minimizing Errors**: Easy to detect and handle errors during the building phase. 
+- **Better Security**: Before an application runs inside the browser, the AOT compiler adds HTML and templates into the JS files, so there are no extra HTML files to be read, thus providing better security for the application.
+
+#### Could you explain services in Angular?
+Singleton objects in Angular that get instantiated only once during the lifetime of an application are called services. An Angular service contains methods that maintain the data throughout the life of an application.<br> 
+The primary intent of an Angular service is to organize as well as share business logic, models, or data and functions with various components of an Angular application.<br> 
+The functions offered by an Angular service can be invoked from any Angular component, such as a controller or directive.
+
+#### What is string interpolation in Angular?
+Also referred to as moustache syntax, string interpolation in Angular refers to a special type of syntax that makes use of template expressions in order to display the component data. These template expressions are enclosed within double curly braces i.e. ```{{ }}```.
+
+#### Can you explain the concept of scope hierarchy in Angular?
+Angular organizes the ```$scope``` objects into a hierarchy that is typically used by views. This is known as the scope hierarchy in Angular. It has a root scope that can further contain one or several scopes called child scopes.<br>
+In a scope hierarchy, each view has its own $scope. Hence, the variables set by a view's view controller will remain hidden to other view controllers. Following is a typical representation of a Scope Hierarchy:
+- Root $scope
+	- $scope for Controller 1
+	- $scope for Controller 2
+	- $scope for Controller n
+	
+#### How to generate a class in Angular using CLI?
+```ng generate class MyClassName [options]```
+
+#### How do Observables differ from Promises?
+As soon as a promise is made, the execution takes place. However, this is not the case with observables because they are lazy. This means that nothing happens until a subscription is made. While promises handle a single event, observable is a stream that allows passing of more than one event. A callback is made for each event in an observable.
+
+#### Could you explain the concept of templates in Angular?
+Written with HTML, templates in Angular contains Angular-specific attributes and elements. Combined with information coming from the controller and model, templates are then further rendered to cater the user with the dynamic view.
+
+#### Explain the difference between an Annotation and a Decorator in Angular?
+- **Annotations** are used for creating an annotation array. They are only metadata set of the class using the Reflect Metadata library.
+- **Decorators** are design patterns used for separating decoration or modification of some class without changing the original source code.
+
