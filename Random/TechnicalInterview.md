@@ -6,14 +6,14 @@ An abstract class allows you to create functionalities that subclasses can imple
 #### ```System.String``` vs ```System.StringBuilder```
 - ```System.String```: It is immutable, it means when a string object is created you cannot modify and you have always to create a new object string type in memory.<br>  
 ```
-    string x = "hi";
-    x += "how are you?"; // it's a new string instance, we can't change the old one 
+string x = "hi";
+x += "how are you?"; // it's a new string instance, we can't change the old one 
 ```
 - ```System.StringBuilder```: It is mutable, means if you create string builder object then you can perform any operation like insert, replace or append without creating new instance for every time. It will update string at one place in memory doesn't create new space in memory.<br>
 ```
-    StringBuilder strb = new StringBuilder("hi");
-    strb.Append("how are you?");
-    string x = strb.ToString();
+StringBuilder strb = new StringBuilder("hi");
+strb.Append("how are you?");
+string x = strb.ToString();
 ```
 
 #### ```String``` vs ```string```
@@ -30,14 +30,14 @@ Action is useful if we don’t want to return any result. But if we want to retu
 #### Deferred Execution vs Immediate Execution
 - Deferred Execution: It simply means that the query is not executed at the time it's specified. Specifically, this is accomplished by assigning the query to a variable. When this is done the query definition is stored in the variable but the query ins't executed until the query variable is interated.
 ```
-    var x = from product in context.Products where product.Type == "y" select product;
-    var x = context.Products.Where(w => w.Type == "y");
-    foreach(var item x) { Console.WriteLine(item.Name); } // Query executes at x point
+var x = from product in context.Products where product.Type == "y" select product;
+var x = context.Products.Where(w => w.Type == "y");
+foreach(var item x) { Console.WriteLine(item.Name); } // Query executes at x point
 ```
 - Immediate Execution: Query is executed at the point of its declaration. It can be useful if the database is being updated frequently in order to ensure the results where returned at the point the database query is specified. It often uses methods such as ```First(), Avarage(), Sum(), Count(), ToList(), ToArray(), ToDictionary()```.   
 ```
-    var x = (from product in context.Products where product.Type == "y" select product).ToList();
-    var x = context.Products.Where(w => w.Type == "y").ToList();
+var x = (from product in context.Products where product.Type == "y" select product).ToList();
+var x = context.Products.Where(w => w.Type == "y").ToList();
 ```
 
 #### Stack vs Heap
@@ -66,8 +66,8 @@ Managed code is the code which is managed by the CLR(Common Language Runtime) in
 #### ```while``` vs ```for```
 The difference is that the ```for``` loop is used when you know how many times you need to interate through the code, on the other hand, the ```while``` loop is used when you need to repeat something until a given statement is true.
 ```
-    while(condition == true){}
-    for(initializer; condition; iterator){}
+while(condition == true){}
+for(initializer; condition; iterator){}
 ```
 
 #### Boxing vs Unboxing
@@ -75,9 +75,9 @@ The difference is that the ```for``` loop is used when you know how many times y
 - Unboxing is the extraction of the value type from the object.<br>
 While the boxing is implicit, unboxing is explicit.<br>
 ```
-    int x = 10;
-    object myObj = x; // Boxing 
-    int y = (int) myObj; // Unboxing
+int x = 10;
+object myObj = x; // Boxing 
+int y = (int) myObj; // Unboxing
 ```
 
 #### Constants vs Readonly Variables 
@@ -104,8 +104,8 @@ The ```unsafe``` keyword denotes an unsafe context, which is required for any op
 #### Explain the keyword ```sealed```?
 When applied to a class, the ```sealed``` modifier prevents other classes from inheriting from it. Like, class **B** inherits from class **A**, but no class can inherit from class **B**
 ```
-    class A {}
-    sealed class B : A {}
+class A {}
+sealed class B : A {}
 ```
 
 ### C# Object-oriented programming (OOP)
@@ -121,115 +121,115 @@ It is one of the four basic features of OOP and refers to an object's ability to
 - Lower coupling between objects and hence improvement in code maintainability.
 - Less likely that other objects can modify the state or behavior of the object in question.
 ```
-    public class Bank
-    {
-        private double balance;
-        public double Balance
-        {
-            get
-            {
-                return balance;
-            }
-            set
-            {
-                balance = value;
-            }
-        }
-    }
+public class Bank
+{
+	private double balance;
+	public double Balance
+	{
+		get
+		{
+			return balance;
+		}
+		set
+		{
+			balance = value;
+		}
+	}
+}
 ```
 
 #### What is Abstraction?
 Abstraction is a principle of OOP and it is used to hide the implementation details and display only essential features of the object. The word abstract means a concept or an idea not associated with any specific instance. We apply the same meaning of abstraction by making classes not associated with any specific instance. Abstraction is needed when we need to only inherit from a certain class, but do not need to instantiate objects of that class. In such a case the base class can be regarded as "Incomplete". Such classes are known as an "Abstract Base Class". 
 ``` 
-    public abstract class Animal
-    {
-        private string Name { get; set; }
-        private string Specie { get; set; }
+public abstract class Animal
+{
+	private string Name { get; set; }
+	private string Specie { get; set; }
 
-        public Animal()
-        {
-            Console.WriteLine("Do something");
-        }
+	public Animal()
+	{
+		Console.WriteLine("Do something");
+	}
 
-        public Animal(string name, string specie)
-        {
-            this.Name = name;
-            this.Specie = specie;
-        }
+	public Animal(string name, string specie)
+	{
+		this.Name = name;
+		this.Specie = specie;
+	}
 
-        public string NameAndSpecie() => $"{Name}, {Specie}"; // concrete method
+	public string NameAndSpecie() => $"{Name}, {Specie}"; // concrete method
 
-        public abstract string AnimalType();
+	public abstract string AnimalType();
 
-        public virtual int AverageLifeInMonths(int years) => years / 12;
-    }
+	public virtual int AverageLifeInMonths(int years) => years / 12;
+}
 
-    public class Tiger : Animal
-    {
-        public override string AnimalType() => "Mammals";
-    }
+public class Tiger : Animal
+{
+	public override string AnimalType() => "Mammals";
+}
 
-    public class Frog : Animal
-    {
-        public override string AnimalType() => "Amphibians";
-    }
+public class Frog : Animal
+{
+	public override string AnimalType() => "Amphibians";
+}
 
-    public class Salmon : Animal
-    {
-        public override string AnimalType() => "Fish";
-    }
+public class Salmon : Animal
+{
+	public override string AnimalType() => "Fish";
+}
 ```
 
 #### What is Polymorphism?
 Polymorphism means providing an ability to take more than one form, polymorphism provides an ability for the classes to implement different methods that are called through the same name and it also provides an ability to invoke the methods of a derived class through base class reference during runtime based on our requirements.
 ```
-    public void AddNumbers(int a, int b)
-    {
-        Console.WriteLine($"a + b = { a + b }");
-    }
-    
-    public void AddNumbers(int a, int b, int c)
-    {
-        Console.WriteLine($"a + b + c = { a + b + c }");
-    }
+public void AddNumbers(int a, int b)
+{
+	Console.WriteLine($"a + b = { a + b }");
+}
+
+public void AddNumbers(int a, int b, int c)
+{
+	Console.WriteLine($"a + b + c = { a + b + c }");
+}
 ```
 
 #### What is Inheritance?
 Inheritance is one of the core concepts of OOP languages. It is a mechanism where you can to derive a class from another ```class``` for a hierarchy of classes that share a set of attributes and methods. It allows developers to reuse, extend and modify the behavior defined in other classes, **the ```class``` whose members are inherited is called the base class and the ```class``` that inherit those members is called the derived class**. Inheritance allows you to define a base class that provides specific functionality (data and behavior) and to define derived classes that either inherit or override that functionality.<br>
 *e.g.:* A base class called ```Vehicle```, and then derived classes called ```Truck, Car, Motprcycle``` all of which inherit the attributes of vehicle.
 ```
-    public class A
-    {
-        public string Name;
-        public void GetName() => Console.WriteLine("Name: {0}", Name);
-    }
+public class A
+{
+	public string Name;
+	public void GetName() => Console.WriteLine("Name: {0}", Name);
+}
 
-    public class B : A
-    {
-        public string Location;
-        public void GetLocation() => Console.WriteLine("Location: {0}", Location);
-    }
+public class B : A
+{
+	public string Location;
+	public void GetLocation() => Console.WriteLine("Location: {0}", Location);
+}
 
-    public class C : B
-    {
-        public int Age;
-        public void GetAge() => Console.WriteLine("Age: {0}", Age);
-    }
-    
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            C c = new C();
-            c.Name = "Test Name";
-            c.Location = "Test Location";
-            c.Age = 32;
+public class C : B
+{
+	public int Age;
+	public void GetAge() => Console.WriteLine("Age: {0}", Age);
+}
 
-            c.GetName();
-            c.GetLocation();
-            c.GetAge();
-        }
-    }
+class Program
+{
+	static void Main(string[] args)
+	{
+		C c = new C();
+		c.Name = "Test Name";
+		c.Location = "Test Location";
+		c.Age = 32;
+
+		c.GetName();
+		c.GetLocation();
+		c.GetAge();
+	}
+}
 ```
 
 #### What is Inversion of Control?
@@ -336,132 +336,133 @@ There are following advantages of ASP.NET Core over ASP.NET:
 #### What is the startup class in ASP.NET core?
 Startup class is the entry point of the ASP.NET Core application. Every .NET Core application must have this class. This class contains the application configuration. It is not necessary that class name must "Startup.cs", it can be anything, we can configure startup class in Program class.
 ```
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+public class Program
+{
+	public static void Main(string[] args)
+	{
+	    CreateHostBuilder(args).Build().Run();
+	}
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-            .ConfigureLogging(logging =>
-            {
-                logging.AddConsole();
-                logging.AddDebug();
-            })
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            })
-            .UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
-    }
-    
-    public class Startup
-    {
-        private const string DemoConnection = "DemoConnection";
-        private const string corsSettings = "CorsOrigin";
-        private string[] Schemes = { JwtBearerDefaults.AuthenticationScheme, "ADFS" };
+	public static IHostBuilder CreateHostBuilder(string[] args) =>
+	    Host.CreateDefaultBuilder(args)
+	    .ConfigureLogging(logging =>
+	    {
+			logging.AddConsole();
+			logging.AddDebug();
+	    })
+	    .ConfigureWebHostDefaults(webBuilder =>
+	    {
+			webBuilder.UseStartup<Startup>();
+	    })
+	    .UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
+	}
+}
 
-        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
-        {
-            Configuration = configuration;
-            Environment = environment;
-        }
+public class Startup
+{
+	private const string DemoConnection = "DemoConnection";
+	private const string corsSettings = "CorsOrigin";
+	private string[] Schemes = { JwtBearerDefaults.AuthenticationScheme, "ADFS" };
 
-        public IConfiguration Configuration { get; }
-        public IWebHostEnvironment Environment { get; }
+	public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+	{
+		Configuration = configuration;
+		Environment = environment;
+	}
 
-        // This method gets called by the runtime. 
-        // Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            var corsOrigin = Configuration.GetSection(corsSettings).Get<string[]>();
+	public IConfiguration Configuration { get; }
+	public IWebHostEnvironment Environment { get; }
 
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder.WithOrigins(corsOrigin).AllowAnyHeader().AllowAnyMethod();
-                });
-            });
+	// This method gets called by the runtime. 
+	// Use this method to add services to the container.
+	public void ConfigureServices(IServiceCollection services)
+	{
+		var corsOrigin = Configuration.GetSection(corsSettings).Get<string[]>();
 
-            // Dependency Injection
-            services.Services();
-            services.Repositories();
-            services.Databases(Configuration.GetConnectionString(DemoConnection));
-            services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
+		services.AddCors(options =>
+		{
+			options.AddDefaultPolicy(builder =>
+			{
+				builder.WithOrigins(corsOrigin).AllowAnyHeader().AllowAnyMethod();
+			});
+		});
 
-            var authenticationOption = Configuration
-                .GetSection(nameof(ApplicationOptions.Authentication))
-                .Get<AuthenticationOptions>();
+		// Dependency Injection
+		services.Services();
+		services.Repositories();
+		services.Databases(Configuration.GetConnectionString(DemoConnection));
+		services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
 
-            services.AddSingleton(authenticationOption);
+		var authenticationOption = Configuration
+			.GetSection(nameof(ApplicationOptions.Authentication))
+			.Get<AuthenticationOptions>();
 
-            services.AddHealthChecks()
-                .AddSqlServer(Configuration.GetConnectionString(DemoConnection));
+		services.AddSingleton(authenticationOption);
 
-            services.AddControllers();
-            services.AddApiVersioning();
-            services.AddSwagger(authenticationOption);
+		services.AddHealthChecks()
+			.AddSqlServer(Configuration.GetConnectionString(DemoConnection));
 
-            var oidc = Configuration
-                .GetSection(nameof(ApplicationOptions.OidcAuthorizationServer))
-                .Get<OidcAuthorizationServerOptions>();
+		services.AddControllers();
+		services.AddApiVersioning();
+		services.AddSwagger(authenticationOption);
 
-            services.AddSingleton(oidc);
-            services.AddAuthorization(options =>
-            {
-                options.DefaultPolicy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .AddAuthenticationSchemes(Schemes)
-                    .Build();
-            });
+		var oidc = Configuration
+			.GetSection(nameof(ApplicationOptions.OidcAuthorizationServer))
+			.Get<OidcAuthorizationServerOptions>();
 
-            services.AddBearers(Environment, oidc, authenticationOption, Schemes);
-        }
+		services.AddSingleton(oidc);
+		services.AddAuthorization(options =>
+		{
+			options.DefaultPolicy = new AuthorizationPolicyBuilder()
+				.RequireAuthenticatedUser()
+				.AddAuthenticationSchemes(Schemes)
+				.Build();
+		});
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
-        {
-            app.UseAuthentication();
+		services.AddBearers(Environment, oidc, authenticationOption, Schemes);
+	}
 
-            logger.LogInformation($"In {env.EnvironmentName} environment");
+	// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+	public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+	{
+	    app.UseAuthentication();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("../swagger/v1/swagger.json", "Core App v1");
-                c.RoutePrefix = string.Empty;
-            });
+	    logger.LogInformation($"In {env.EnvironmentName} environment");
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseMiddleware<ExceptionMiddleware>();
-            }
-            else
-            {
-                app.UseMiddleware<ExceptionMiddleware>();
-                app.UseExceptionHandler("/Error");
-                app.UseStatusCodePagesWithReExecute("/Error/{0}");
-                app.UseHsts();
+	    app.UseSwagger();
+	    app.UseSwaggerUI(c =>
+	    {
+			c.SwaggerEndpoint("../swagger/v1/swagger.json", "Core App v1");
+			c.RoutePrefix = string.Empty;
+	    });
 
-                app.UseHttpsRedirection();
-            }
+	    if (env.IsDevelopment())
+	    {
+			app.UseDeveloperExceptionPage();
+			app.UseMiddleware<ExceptionMiddleware>();
+	    }
+	    else
+	    {
+			app.UseMiddleware<ExceptionMiddleware>();
+			app.UseExceptionHandler("/Error");
+			app.UseStatusCodePagesWithReExecute("/Error/{0}");
+			app.UseHsts();
 
-            app.UseRouting();
-            app.UseAuthorization();
-            app.UseStaticFiles();
-            app.UseCors();
-            app.UseHealthChecks();
+			app.UseHttpsRedirection();
+	    }
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
-    }
+	    app.UseRouting();
+	    app.UseAuthorization();
+	    app.UseStaticFiles();
+	    app.UseCors();
+	    app.UseHealthChecks();
+
+	    app.UseEndpoints(endpoints =>
+	    {
+			endpoints.MapControllers();
+	    });
+	}
+}
 ```
 
 #### What is the use of ```ConfigureServices(IServiceCollection services)``` method of startup class?
@@ -513,25 +514,14 @@ To comply with this principle, we need to use a design pattern known as a depend
 ### Front-end Angular
 
 #### What is a Directive?
-At the core, a directive is a function that executes whenever the Angular compiler finds it in the DOM. Angular directives are used to extend the power of the HTML by giving it new syntax. Each directive has a name, either one from the Angular predefined like ```ng-repeat```, or a custom one which you can name as you prefer.
+At the core, a directive is a function that executes whenever the Angular compiler finds it in the DOM. Angular directives are used to extend the power of the HTML by giving it new syntax. Each directive has a name, either one from the Angular predefined like ```ng-repeat```, or a custom one which you can name as you prefer. There are 3 types of directives:
 - **Component Directives** These form the main class having details of how the component should be processed, instantiated and used at runtime.
 - **Structural Directives** basically deals with manipulating the DOM elements. Structural directives have a * sign before the directive. For example, *ngIf and *ngFor.
 - **Attribute Directives** they deal with changing the look and behavior of the dom element. You can create your own directives.
 
 #### What are Lifecycle hooks in Angular? Explain some of them
 Angular components enter its lifecycle from the time it is created to the time it is destroyed. Angular hooks provide ways to tap into these phases and trigger changes at specific phases in a lifecycle.
-- ```ngOnChanges( ): This method is called whenever one or more input properties of the component changes. The hook receives a SimpleChanges object containing the previous and current values of the property.
-- ```ngOnInit()```: This hook gets called once, after the ```ngOnChanges``` hook. It initializes the component and sets the input properties of the component.
-- ```ngDoCheck()```: It gets called after ```ngOnChanges``` and ```ngOnInit``` and is used to detect and act on changes that cannot be detected by Angular. We can implement our change detection algorithm in this hook. 
-- ```ngAfterContentInit()```: It gets called after the first ```ngDoCheck``` hook. This hook responds after the content gets projected inside the component.
-- ```ngAfterContentChecked()```: It gets called after ngAfterContentInit and every subsequent ```ngDoCheck```. It responds after the projected content is checked.
-- ```ngAfterViewInit()```: It responds after a component's view, or a child component's view is initialized.
-- ```ngAfterViewChecked()```: It gets called after ```ngAfterViewInit```, and it responds after the component's view, or the child component's view is checked.
-- ```ngOnDestroy()```: It gets called just before Angular destroys the component. This hook can be used to clean up the code and detach event handlers.
-
-#### What are Lifecycle hooks in Angular? Explain some of them
-Angular components enter its lifecycle from the time it is created to the time it is destroyed. Angular hooks provide ways to tap into these phases and trigger changes at specific phases in a lifecycle.
-- ```ngOnChanges( ): This method is called whenever one or more input properties of the component changes. The hook receives a SimpleChanges object containing the previous and current values of the property.
+- ```ngOnChanges()```: This method is called whenever one or more input properties of the component changes. The hook receives a SimpleChanges object containing the previous and current values of the property.
 - ```ngOnInit()```: This hook gets called once, after the ```ngOnChanges``` hook. It initializes the component and sets the input properties of the component.
 - ```ngDoCheck()```: It gets called after ```ngOnChanges``` and ```ngOnInit``` and is used to detect and act on changes that cannot be detected by Angular. We can implement our change detection algorithm in this hook. 
 - ```ngAfterContentInit()```: It gets called after the first ```ngDoCheck``` hook. This hook responds after the content gets projected inside the component.
@@ -553,32 +543,32 @@ MVVM architecture removes tight coupling between each component. The MVVM archit
 #### How to navigating between different routes in an Angular app?
 The following snippet demonstrate how to do that:
 ```
-	import from "@angular/router";
-	@Component({
-		selector: 'app-header',
-		template: `
-			<nav class="navbar navbar-light bg-faded">
-				<a class="navbar-brand" (click)="goHome()">Search App</a> 
-				<ul class="nav navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" (click)="goHome()">Home</a> 
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" (click)="goSearch()">Search</a> 
-					</li>
-				</ul>
-			</nav>
-		`
-	})
-	class HeaderComponent {
-		constructor(private router: Router) {} 
-		goHome() {
-			this.router.navigate(['']); 
-		}
-		goSearch() {
-			this.router.navigate(['search']); 
-		}
+import from "@angular/router";
+@Component({
+	selector: 'app-header',
+	template: `
+		<nav class="navbar navbar-light bg-faded">
+			<a class="navbar-brand" (click)="goHome()">Search App</a> 
+			<ul class="nav navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" (click)="goHome()">Home</a> 
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" (click)="goSearch()">Search</a> 
+				</li>
+			</ul>
+		</nav>
+	`
+})
+class HeaderComponent {
+	constructor(private router: Router) {} 
+	goHome() {
+		this.router.navigate(['']); 
 	}
+	goSearch() {
+		this.router.navigate(['search']); 
+	}
+}
 ```
 
 #### What is the AOT (Ahead-Of-Time) Compilation? What are its advantages?
@@ -621,3 +611,14 @@ Written with HTML, templates in Angular contains Angular-specific attributes and
 - **Annotations** are used for creating an annotation array. They are only metadata set of the class using the Reflect Metadata library.
 - **Decorators** are design patterns used for separating decoration or modification of some class without changing the original source code.
 
+#### What are the building blocks of Angular?
+There are essentially 9 building blocks of an Angular application. These are:
+- **Components**: A component controls one or more views. Each view is some specific section of the screen. Every Angular application has at least one component, known as the root component. It is bootstrapped inside the main module, known as the root module. A component contains application logic defined inside a class. This class is responsible for interacting with the view via an API of properties and methods.
+- **Data Binding**: The mechanism by which parts of a template coordinates with parts of a component is known as data binding. In order to let Angular know how to connect both sides (template and its component), the binding markup is added to the template HTML.
+- **Dependency Injection (DI)**: Angular makes use of DI to provide required dependencies to new components. Typically, dependencies required by a component are services. A component's constructor parameters tell Angular about the services that a component requires. So, a dependency injection offers a way to supply fully-formed dependencies required by a new instance of a class.
+- **Directives**: The templates used by Angular are dynamic in nature. Directives are responsible for instructing Angular about how to transform the DOM when rendering a template. Actually, components are directives with a template. Other types of directives are attribute and structural directives.
+- **Metadata**: In order to let Angular know how to process a class, metadata is attached to the class. For doing so decorators are used.
+- **Modules**: Also known as ```NgModules```, a module is an organized block of code with a specific set of capabilities. It has a specific application domain or a workflow. Like components, any Angular application has at least one module. This is known as the root module. Typically, an Angular application has several modules.
+- **Routing**: An Angular router is responsible for interpreting a browser URL as an instruction to navigate to a client-generated view. The router is bound to links on a page to tell Angular to navigate the application view when a user clicks on it.
+- **Services**: A very broad category, a service can be anything ranging from a value and function to a feature that is required by an Angular app. Technically, a service is a class with a well-defined purpose.
+- **Template**: Each component's view is associated with its companion template. A template in Angular is a form of HTML tags that lets Angular know that how it is meant to render the component.
