@@ -673,3 +673,6 @@ export class AppComponent {
    <input [(ngModel)]="fullName" /> <br/><br/>  <!-- Two-Way Binding -->    
 <p> {{fullName}} </p>  
 ```
+
+#### What is ```ngOnInit()```? How to define it?
+```ngOnInit()``` is a lifecycle hook that is called after Angular has finished initializing all data-bound properties of a directive.
