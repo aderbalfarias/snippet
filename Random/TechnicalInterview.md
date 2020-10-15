@@ -121,62 +121,52 @@ It is one of the four basic features of OOP and refers to an object's ability to
 - Lower coupling between objects and hence improvement in code maintainability.
 - Less likely that other objects can modify the state or behavior of the object in question.
 ```
-public class Bank
-{
-	private double balance;
-	public double Balance
-	{
-		get
-		{
-			return balance;
-		}
-		set
-		{
-			balance = value;
-		}
-	}
+public class Bank {
+    private double balance;
+    public double Balance {
+        get {
+            return balance;
+        }
+        set {
+            balance = value;
+        }
+    }
 }
 ```
 
 #### What is Abstraction?
 Abstraction is a principle of OOP and it is used to hide the implementation details and display only essential features of the object. The word abstract means a concept or an idea not associated with any specific instance. We apply the same meaning of abstraction by making classes not associated with any specific instance. Abstraction is needed when we need to only inherit from a certain class, but do not need to instantiate objects of that class. In such a case the base class can be regarded as "Incomplete". Such classes are known as an "Abstract Base Class". 
 ``` 
-public abstract class Animal
-{
-	private string Name { get; set; }
-	private string Specie { get; set; }
+public abstract class Animal {
+    private string Name { get; set; }
+    private string Specie { get; set; }
 
-	public Animal()
-	{
-		Console.WriteLine("Do something");
-	}
+    public Animal() {
+        Console.WriteLine ("Do something");
+    }
 
-	public Animal(string name, string specie)
-	{
-		this.Name = name;
-		this.Specie = specie;
-	}
+    public Animal(string name, string specie) {
+        this.Name = name;
+        this.Specie = specie;
+    }
 
-	public string NameAndSpecie() => $"{Name}, {Specie}"; // concrete method
+    public string NameAndSpecie() => $"{Name}, {Specie}"; // concrete method
 
-	public abstract string AnimalType();
+    public abstract string AnimalType();
 
-	public virtual int AverageLifeInMonths(int years) => years / 12;
+    public virtual int AverageLifeInMonths(int years) => years / 12;
 }
 
-public class Tiger : Animal
-{
-	public override string AnimalType() => "Mammals";
+public class Tiger : Animal {
+    public override string AnimalType() => "Mammals";
 }
 
-public class Frog : Animal
-{
-	public override string AnimalType() => "Amphibians";
+public class Frog : Animal {
+    public override string AnimalType() => "Amphibians";
 }
 
-public class Salmon : Animal
-{
-	public override string AnimalType() => "Fish";
+public class Salmon : Animal {
+    public override string AnimalType() => "Fish";
 }
 ```
 
@@ -185,12 +175,12 @@ Polymorphism means providing an ability to take more than one form, polymorphism
 ```
 public void AddNumbers(int a, int b)
 {
-	Console.WriteLine($"a + b = { a + b }");
+    Console.WriteLine($"a + b = { a + b }");
 }
 
 public void AddNumbers(int a, int b, int c)
 {
-	Console.WriteLine($"a + b + c = { a + b + c }");
+    Console.WriteLine($"a + b + c = { a + b + c }");
 }
 ```
 
@@ -200,35 +190,35 @@ Inheritance is one of the core concepts of OOP languages. It is a mechanism wher
 ```
 public class A
 {
-	public string Name;
-	public void GetName() => Console.WriteLine("Name: {0}", Name);
+    public string Name;
+    public void GetName() => Console.WriteLine("Name: {0}", Name);
 }
 
 public class B : A
 {
-	public string Location;
-	public void GetLocation() => Console.WriteLine("Location: {0}", Location);
+    public string Location;
+    public void GetLocation() => Console.WriteLine("Location: {0}", Location);
 }
 
 public class C : B
 {
-	public int Age;
-	public void GetAge() => Console.WriteLine("Age: {0}", Age);
+    public int Age;
+    public void GetAge() => Console.WriteLine("Age: {0}", Age);
 }
 
 class Program
 {
-	static void Main(string[] args)
-	{
-		C c = new C();
-		c.Name = "Test Name";
-		c.Location = "Test Location";
-		c.Age = 32;
+    static void Main(string[] args)
+    {
+        C c = new C();
+        c.Name = "Test Name";
+        c.Location = "Test Location";
+        c.Age = 32;
 
-		c.GetName();
-		c.GetLocation();
-		c.GetAge();
-	}
+        c.GetName();
+        c.GetLocation();
+        c.GetAge();
+    }
 }
 ```
 
@@ -338,130 +328,129 @@ Startup class is the entry point of the ASP.NET Core application. Every .NET Cor
 ```
 public class Program
 {
-	public static void Main(string[] args)
-	{
-	    CreateHostBuilder(args).Build().Run();
-	}
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
 
-	public static IHostBuilder CreateHostBuilder(string[] args) =>
-	    Host.CreateDefaultBuilder(args)
-	    .ConfigureLogging(logging =>
-	    {
-			logging.AddConsole();
-			logging.AddDebug();
-	    })
-	    .ConfigureWebHostDefaults(webBuilder =>
-	    {
-			webBuilder.UseStartup<Startup>();
-	    })
-	    .UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
-	}
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+    .ConfigureLogging(logging =>
+    {
+        logging.AddConsole();
+        logging.AddDebug();
+    })
+    .ConfigureWebHostDefaults(webBuilder =>
+    {
+        webBuilder.UseStartup<Startup>();
+    })
+    .UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
 }
 
 public class Startup
 {
-	private const string DemoConnection = "DemoConnection";
-	private const string corsSettings = "CorsOrigin";
-	private string[] Schemes = { JwtBearerDefaults.AuthenticationScheme, "ADFS" };
+    private const string DemoConnection = "DemoConnection";
+    private const string corsSettings = "CorsOrigin";
+    private string[] Schemes = { JwtBearerDefaults.AuthenticationScheme, "ADFS" };
 
-	public Startup(IConfiguration configuration, IWebHostEnvironment environment)
-	{
-		Configuration = configuration;
-		Environment = environment;
-	}
+    public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+    {
+        Configuration = configuration;
+        Environment = environment;
+    }
 
-	public IConfiguration Configuration { get; }
-	public IWebHostEnvironment Environment { get; }
+    public IConfiguration Configuration { get; }
+    public IWebHostEnvironment Environment { get; }
 
-	// This method gets called by the runtime. 
-	// Use this method to add services to the container.
-	public void ConfigureServices(IServiceCollection services)
-	{
-		var corsOrigin = Configuration.GetSection(corsSettings).Get<string[]>();
+    // This method gets called by the runtime. 
+    // Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        var corsOrigin = Configuration.GetSection(corsSettings).Get<string[]>();
 
-		services.AddCors(options =>
-		{
-			options.AddDefaultPolicy(builder =>
-			{
-				builder.WithOrigins(corsOrigin).AllowAnyHeader().AllowAnyMethod();
-			});
-		});
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+    {
+            builder.WithOrigins(corsOrigin).AllowAnyHeader().AllowAnyMethod();
+        });
+        });
 
-		// Dependency Injection
-		services.Services();
-		services.Repositories();
-		services.Databases(Configuration.GetConnectionString(DemoConnection));
-		services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
+        // Dependency Injection
+        services.Services();
+        services.Repositories();
+        services.Databases(Configuration.GetConnectionString(DemoConnection));
+        services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
 
-		var authenticationOption = Configuration
-			.GetSection(nameof(ApplicationOptions.Authentication))
-			.Get<AuthenticationOptions>();
+        var authenticationOption = Configuration
+        .GetSection(nameof(ApplicationOptions.Authentication))
+        .Get<AuthenticationOptions>();
 
-		services.AddSingleton(authenticationOption);
+        services.AddSingleton(authenticationOption);
 
-		services.AddHealthChecks()
-			.AddSqlServer(Configuration.GetConnectionString(DemoConnection));
+        services.AddHealthChecks()
+        .AddSqlServer(Configuration.GetConnectionString(DemoConnection));
 
-		services.AddControllers();
-		services.AddApiVersioning();
-		services.AddSwagger(authenticationOption);
+        services.AddControllers();
+        services.AddApiVersioning();
+        services.AddSwagger(authenticationOption);
 
-		var oidc = Configuration
-			.GetSection(nameof(ApplicationOptions.OidcAuthorizationServer))
-			.Get<OidcAuthorizationServerOptions>();
+        var oidc = Configuration
+        .GetSection(nameof(ApplicationOptions.OidcAuthorizationServer))
+        .Get<OidcAuthorizationServerOptions>();
 
-		services.AddSingleton(oidc);
-		services.AddAuthorization(options =>
-		{
-			options.DefaultPolicy = new AuthorizationPolicyBuilder()
-				.RequireAuthenticatedUser()
-				.AddAuthenticationSchemes(Schemes)
-				.Build();
-		});
+        services.AddSingleton(oidc);
+        services.AddAuthorization(options =>
+        {
+            options.DefaultPolicy = new AuthorizationPolicyBuilder()
+    .RequireAuthenticatedUser()
+    .AddAuthenticationSchemes(Schemes)
+    .Build();
+        });
 
-		services.AddBearers(Environment, oidc, authenticationOption, Schemes);
-	}
+        services.AddBearers(Environment, oidc, authenticationOption, Schemes);
+    }
 
-	// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-	public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
-	{
-	    app.UseAuthentication();
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+    {
+        app.UseAuthentication();
 
-	    logger.LogInformation($"In {env.EnvironmentName} environment");
+        logger.LogInformation($"In {env.EnvironmentName} environment");
 
-	    app.UseSwagger();
-	    app.UseSwaggerUI(c =>
-	    {
-			c.SwaggerEndpoint("../swagger/v1/swagger.json", "Core App v1");
-			c.RoutePrefix = string.Empty;
-	    });
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("../swagger/v1/swagger.json", "Core App v1");
+            c.RoutePrefix = string.Empty;
+        });
 
-	    if (env.IsDevelopment())
-	    {
-			app.UseDeveloperExceptionPage();
-			app.UseMiddleware<ExceptionMiddleware>();
-	    }
-	    else
-	    {
-			app.UseMiddleware<ExceptionMiddleware>();
-			app.UseExceptionHandler("/Error");
-			app.UseStatusCodePagesWithReExecute("/Error/{0}");
-			app.UseHsts();
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseMiddleware<ExceptionMiddleware>();
+        }
+        else
+        {
+            app.UseMiddleware<ExceptionMiddleware>();
+            app.UseExceptionHandler("/Error");
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            app.UseHsts();
 
-			app.UseHttpsRedirection();
-	    }
+            app.UseHttpsRedirection();
+        }
 
-	    app.UseRouting();
-	    app.UseAuthorization();
-	    app.UseStaticFiles();
-	    app.UseCors();
-	    app.UseHealthChecks();
+        app.UseRouting();
+        app.UseAuthorization();
+        app.UseStaticFiles();
+        app.UseCors();
+        app.UseHealthChecks();
 
-	    app.UseEndpoints(endpoints =>
-	    {
-			endpoints.MapControllers();
-	    });
-	}
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
+    }
 }
 ```
 
@@ -545,29 +534,29 @@ The following snippet demonstrate how to do that:
 ```
 import from "@angular/router";
 @Component({
-	selector: 'app-header',
-	template: `
-		<nav class="navbar navbar-light bg-faded">
-			<a class="navbar-brand" (click)="goHome()">Search App</a> 
-			<ul class="nav navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" (click)="goHome()">Home</a> 
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" (click)="goSearch()">Search</a> 
-				</li>
-			</ul>
-		</nav>
-	`
+selector: 'app-header',
+template: `
+    <nav class="navbar navbar-light bg-faded">
+    <a class="navbar-brand" (click)="goHome()">Search App</a> 
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" (click)="goHome()">Home</a> 
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="goSearch()">Search</a> 
+            </li>
+        </ul>
+    </nav>
+`
 })
 class HeaderComponent {
-	constructor(private router: Router) {} 
-	goHome() {
-		this.router.navigate(['']); 
-	}
-	goSearch() {
-		this.router.navigate(['search']); 
-	}
+    constructor(private router: Router) {} 
+    goHome() {
+        this.router.navigate(['']); 
+    }
+    goSearch() {
+        this.router.navigate(['search']); 
+    }
 }
 ```
 
