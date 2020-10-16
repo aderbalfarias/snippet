@@ -570,14 +570,6 @@ git pull
 git checkout [branchWhereDevelopmentWasDone]
 git merge [branchRoot]
 git push --set-upstream origin [branchWhereDevelopmentWasDone]
-
-#Git Sync Fork Example 1: 
-git clone https://github.com/[Your Git Username]/[Repository in your git].git
-git checkout master
-git remote add upstream git://github.com/[Original Git Username]/[Repository you forked from].git
-git fetch upstream
-git pull upstream master
-git push
 ```
 
 ### Front-end Javascript
@@ -1028,3 +1020,13 @@ import { SettingsService } from './services/settings.service';
 })
 export class AppModule { }
 ```
+
+### Tools
+
+- **SQL Server**: SQL Server Profile and SQL Monitor both in the SQL Server Managment Studio
+- **Back-end**: Visual Studio, Visual Code, LinqPad, PowerShell, Git Bash
+- **Front-end**: Visual Code, Git Bash
+- **Source Control**: Git, VSTS
+- **Requests**: Postman or Swagger
+- **CI/CD**: Jenkins
+- **Package Management**: NPM, Nuget, Angular CLI
