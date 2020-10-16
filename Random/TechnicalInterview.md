@@ -532,9 +532,104 @@ We can formulate this mathematically as:
 - Let ϕ(x) be a property provable about objects x of type T.
 - Then ϕ(y) should be valid for objects y of type S, where S is a subtype of T.
 More generally, it states that objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.<br>
-**Example**: <br>
-**Why**: <br>
+**Example**: 
+- Violation of Liskov Substitution Principle
+```
+public interface IBankAccount
+{
+    bool Withdrawal(decimal amount);
+}
+
+public class SalaryAccount : IBankAccount
+{
+    public bool Withdrawal(decimal amount) => amount >= 0 && amount <= 10000 ? true : false;
+}
+
+public class RegularAccount : IBankAccount
+{
+    public bool Withdrawal(decimal amount) => amount >= 0 ? true : false;
+}
+
+public class FixDepositAccount : IBankAccount
+{
+    public bool Withdrawal(decimal amount) => throw new Excpetion("Function not supported by this account type"); 
+}
+```
+In the preceding code the ```IBankAccount``` interface is implemented by a different kind of account types of the bank, like Regular, Salary and FixDeposit savings account, however, the ```FixDeposit``` doesn't provide a withdrawal facility whereas another bank account might provide a withdrawal facility. If you try to call it an excepition will be displayed:
+```
+public static class AccountManager
+{
+    public static bool WithdrawalFromAccount(IBankAccount bankAccount)
+    {
+        return bankAccount.Withdrawal(10);
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        // Calling AccountManager
+        AccountManager.WithdrawalFromAccount(new RegularAccount()); // ok  
+        AccountManager.WithdrawalFromAccount(new SalaryAccount());  // ok  
+        AccountManager.WithdrawalFromAccount(new FixDepositAccount()); // throws exception at runtime as withdrawal is not supported  
+    }
+}
+```
+- Implementing Liskov Substitution Principle
+```
+public interface IBankAccount
+{
+}
+
+public class AccountWithWithdrawal : IBankAccount
+{
+    public virtual bool Withdrawal(decimal amount) => false;
+}
+
+public class AccountWithoutWithdrawal : IBankAccount
+{
+}
+
+public class SalaryAccount : AccountWithWithdrawal
+{
+    public override bool Withdrawal(decimal amount) => amount >= 0 && amount <= 10000 ? true : false;
+}
+
+public class RegularAccount : AccountWithWithdrawal
+{
+    public override bool Withdrawal(decimal amount) => amount >= 0 ? true : false;
+}
+
+public class FixDepositAccount : AccountWithoutWithdrawal
+{
+}
+
+public class AccountManager
+{
+    public static bool WithdrawalFromAccount(AccountWithWithdrawal bankAccount)
+    {
+        return bankAccount.Withdrawal(10);
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
+        // Calling AccountManager
+        AccountManager.WithdrawalFromAccount(new RegularAccount()); // ok, Output: true  
+        AccountManager.WithdrawalFromAccount(new SalaryAccount());  // ok, Output: true  
+        //AccountManager.WithdrawalFromAccount(new FixDepositAccount()); // compiler gives error, it should be removed
+    }
+}
+```
+It's not always true that one must make changes in the inheritance tree but making changes at the class and method level also resolves problems, but the solution above was done by changing the inheritance tree.<br>
+**Why**: Places in implementation (class/function) that use a base class (in other words consume a service of a base class), must work correctly when the base class object is replaced by a child class (derived class) object.<br>
 **Benefits**:
+- Compatibility, it enables the binary compatibility between multiple releases and patches. In other words, It keeps the client code away from being impacted.
+- Type Safety, it's the easiest approach to handle type safety with inheritance, as types are not allowed to vary when inheriting.
+- Maintainability, code that adheres to Liskov substitution is loosely dependent on each other, makes the right abstraction, and encourages code reusability.
 
 #### I - Interface Segregation Principle
 **Definition**: The interface segregation principle states not to force a client to depend on methods it does not use. Do not add additional functionality to an existing interface by adding new methods. Instead, create a new interface and let your class implement multiple interfaces if needed.<br>
