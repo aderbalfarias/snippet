@@ -471,26 +471,28 @@ Routing is functionality that map incoming request to the route handler. The rou
 ### SOLID
 
 #### S - Single responsibility Principle
-The Single Responsibility Principle states that every module or class should have responsibility for a single part of the functionality provided by the software.
+**Definition**: The Single Responsibility Principle states that every module or class should have responsibility for a single part of the functionality provided by the software.<br>
+**Example**: It means if we have two reasons to change a class, we have to split the functionality into two classes. Each class will handle only one responsibility lets say you have ```class Client``` which has register client and sends email functionalities, that is wrong, they should be splitted in two different classes (```class Client``` and ```class Email```) each one responsible for its own functionality.<br>
+**Why** If we put more than one functionality in one class then it introduces coupling between two functionalities. So, if we change one functionality there is a chance we broke coupled functionality, which requires another round of testing to avoid any bug in the production environment. It reduces bug fixes and testing time once an application goes into the maintenance phase.
 
 #### O - Open-Closed Principle
-The open/closed principle states that software entities (classes, modules, functions) should be open for extensions, but closed for modification.
+**Definition**: The open/closed principle states that software entities (classes, modules, functions) should be open for extensions, but closed for modification.<br>
 
 #### L - Liskov Substitution Principle
-The Liskov substitution principle states that if S is a subtype of T, then objects of type T may be replaced (or substituted) with objects of type S.<br>
+**Definition**: The Liskov substitution principle states that if S is a subtype of T, then objects of type T may be replaced (or substituted) with objects of type S.<br>
 We can formulate this mathematically as:
 - Let ϕ(x) be a property provable about objects x of type T.
 - Then ϕ(y) should be valid for objects y of type S, where S is a subtype of T.
-More generally, it states that objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.
+More generally, it states that objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.<br>
 
 #### I - Interface Segregation Principle
-The interface segregation principle states not to force a client to depend on methods it does not use. Do not add additional functionality to an existing interface by adding new methods. Instead, create a new interface and let your class implement multiple interfaces if needed.
+**Definition**: The interface segregation principle states not to force a client to depend on methods it does not use. Do not add additional functionality to an existing interface by adding new methods. Instead, create a new interface and let your class implement multiple interfaces if needed.<br>
 
 #### D - Dependency Inversion Principle (Dependency injection)
-The dependency inversion principle is a way to decouple software modules. This principle states that:
+**Definition**: The dependency inversion principle is a way to decouple software modules. This principle states that:
 - High-level modules should not depend on low-level modules. Both should depend on abstractions.
 - Abstractions should not depend on details. Details should depend on abstractions.
-To comply with this principle, we need to use a design pattern known as a dependency inversion pattern, most often solved by using dependency injection.
+To comply with this principle, we need to use a design pattern known as a dependency inversion pattern, most often solved by using dependency injection.<br>
  
 ### Sql Server
 
