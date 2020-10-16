@@ -472,11 +472,59 @@ Routing is functionality that map incoming request to the route handler. The rou
 
 #### S - Single responsibility Principle
 **Definition**: The Single Responsibility Principle states that every module or class should have responsibility for a single part of the functionality provided by the software.<br>
-**Example**: It means if we have two reasons to change a class, we have to split the functionality into two classes. Each class will handle only one responsibility lets say you have ```class Client``` which has register client and sends email functionalities, that is wrong, they should be splitted in two different classes (```class Client``` and ```class Email```) each one responsible for its own functionality.<br>
-**Why** If we put more than one functionality in one class then it introduces coupling between two functionalities. So, if we change one functionality there is a chance we broke coupled functionality, which requires another round of testing to avoid any bug in the production environment. It reduces bug fixes and testing time once an application goes into the maintenance phase.
+**Example**: If we have two reasons to change a class, we have to split the functionality into two classes. Each class will handle only one responsibility lets say you have ```class Client``` which has register client and sends email functionalities, that is wrong, they should be splitted in two different classes (```class Client``` and ```class Email```) each one responsible for its own functionality.<br>
+**Why**: If we put more than one functionality in one class then it introduces coupling between two functionalities. So, if we change one functionality there is a chance we broke coupled functionality, which requires another round of testing to avoid any bug in the production environment. It reduces bug fixes and testing time once an application goes into the maintenance phase.<br>
+**Benefits**:
+- Reduction in complexity of a code. A code is based on its functionality. A method holds logic for a single functionality or task. So, it reduces the code complexity.
+- Increased readability, extensibility, and maintenance. Each method has a single functionality so it is easy to read and maintain. 
+- Reusability and reduced error. As code separates based functionality so if the same functionality uses somewhere else in an application then don't write it again.
+- Better testability. In the maintenance, when a functionality changes then we don't need to test the entire model.
+- Reduced coupling. It reduced the dependency code. A method's code doesn't depend on other methods.
 
 #### O - Open-Closed Principle
 **Definition**: The open/closed principle states that software entities (classes, modules, functions) should be open for extensions, but closed for modification.<br>
+**Example**: An implementation (of a class or function), once its logic and/or functionality is created, should be closed for further modification, you may use code refactoring in order to resolve errors of implementation, in the other hand the implementation (of a class or function) is open for extension of its logic and/or functionality.
+- Wrong Implementation for Mortgage class:
+```
+public class Mortgage
+{
+    public decimal CalculateInterest(MortgageType mortgageType)
+    {
+        decimal interest = 0;
+
+        if (mortgageType == "FixedRate")
+            interest = Loan * 0.4;
+        else if (mortgageType == "VariableRate")
+            interest = Loan * Variant;
+
+        return interest;
+    }
+}
+```
+The implementation above is not following the Open Closed principle because if in the future a new Mortgage type is introduced then there will be a requirement to modify this method in order to add a new condition for calculating the interest for the new mortgage type. That means the method is always open for modification.
+- Correct Implementation for Mortgage class following Open Closed principle:
+```
+interface IMortgage
+{
+    decimal CalculateInterest();
+}
+
+public class FixedRateMortgage : IMortgage
+{
+    public decimal CalculateInterest() => Loan * 0.5;
+}
+
+public class VariableRateMortgage : IMortgage
+{
+    public decimal CalculateInterest() => Loan * Variant;
+}
+```
+So if there is a new mortgage type added there is no need to modify the logic of exiting classes, just extend the functionality by inheriting an interface (Mortgage interface in this case and create a new class which will have the implementation for ```CalculateInterest()``` method. I am using an interface but it could be an abstract class as well.<br>
+**Why**: When a single change to a program results in a cascade of changes to dependent modules, that program exhibits the undesirable attributes that we have come to associate with 'bad' design. The program becomes fragile, rigid, unpredictable, and unreusable. A function that is doing too many things outside the realm of its responsibilities creates unnecessary entanglements that makes it harder to read and debug.<br>
+**Benefits**:
+- Extensibility, where the design modules never change. When requirements change, you extend the behavior of such modules by adding new code, not by changing old code that already works in order to prevent cascade changes to dependent modules.
+- Maintainability, the main benefit of this approach is that an interface introduces an additional level of abstraction which enables loose coupling. The implementations of an interface are independent of each other and don't need to share any code.
+- It makes the code readable, testable, changeable, and reusable.
 
 #### L - Liskov Substitution Principle
 **Definition**: The Liskov substitution principle states that if S is a subtype of T, then objects of type T may be replaced (or substituted) with objects of type S.<br>
@@ -484,16 +532,25 @@ We can formulate this mathematically as:
 - Let ϕ(x) be a property provable about objects x of type T.
 - Then ϕ(y) should be valid for objects y of type S, where S is a subtype of T.
 More generally, it states that objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.<br>
+**Example**: <br>
+**Why**: <br>
+**Benefits**:
 
 #### I - Interface Segregation Principle
 **Definition**: The interface segregation principle states not to force a client to depend on methods it does not use. Do not add additional functionality to an existing interface by adding new methods. Instead, create a new interface and let your class implement multiple interfaces if needed.<br>
+**Example**: <br>
+**Why**: <br>
+**Benefits**:
 
 #### D - Dependency Inversion Principle (Dependency injection)
 **Definition**: The dependency inversion principle is a way to decouple software modules. This principle states that:
 - High-level modules should not depend on low-level modules. Both should depend on abstractions.
 - Abstractions should not depend on details. Details should depend on abstractions.
 To comply with this principle, we need to use a design pattern known as a dependency inversion pattern, most often solved by using dependency injection.<br>
- 
+**Example**: <br>
+**Why**: <br>
+**Benefits**:
+
 ### Sql Server
 
 ### Architecture
