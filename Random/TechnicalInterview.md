@@ -498,6 +498,8 @@ To comply with this principle, we need to use a design pattern known as a depend
 
 ### [Architectural Principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
 
+### [Git Commands](https://github.com/AderbalFarias/snippet/blob/master/Commands/git-commands.md)
+
 ### Front-end Javascript
 
 ### Front-end Angular
@@ -676,3 +678,273 @@ export class AppComponent {
 
 #### What is ```ngOnInit()```? How to define it?
 ```ngOnInit()``` is a lifecycle hook that is called after Angular has finished initializing all data-bound properties of a directive.
+
+#### How to generate a Component in Angular using CLI?
+```ng generate component MyComponentName```
+
+#### How to generate a Service in Angular using CLI?
+```ng generate service MyServiceName --module=app```
+
+#### Samples of Component and Service in Angular
+- Component TypeScript clients.component.ts
+```
+import { Component, OnInit } from '@angular/core';
+import { ClientService } from '../../services/client.service';
+
+import { Client } from '../../models/Client';
+
+@Component({
+    selector: 'app-clients',
+    templateUrl: './clients.component.html',
+    styleUrls: ['./clients.component.css']
+})
+export class ClientsComponent implements OnInit {
+    clients: Client[];
+    totalOwed: number;
+
+    constructor(private clientService: ClientService) { }
+
+    ngOnInit() {
+        this.clientService.getClients().subscribe(clients => {
+            this.clients = clients;
+            this.getTotalOwed();
+        });
+    }
+
+    getTotalOwed() {
+        this.totalOwed = this.clients.reduce((total, client) => {
+            return total + parseFloat(client.balance.toString());
+        }, 0);
+    }
+}
+```
+- Component Template clients.component.html
+```
+<div class="row">
+    <div class="col-md-6">
+        <h2>
+            <i class="fa fa-users"></i> Clients</h2>
+    </div>
+    <div class="col-md-6">
+        <h5 class="text-right text-secondary">Total Owed: {{ totalOwed | currency:"USD":"symbol" }}</h5>
+    </div>
+</div>
+<table *ngIf="clients?.length > 0;else noClients" class="table table-striped">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Balance</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of clients">
+            <td>{{ client.firstName }} {{ client.lastName }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.balance | currency:"USD":"symbol" }}</td>
+            <td>
+                <a routerLink="client/{{ client.id }}" class="btn btn-secondary btn-sm">
+                    <i class="fa fa-arrow-circle-o-right"></i> Details</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<ng-template #noClients>
+    <hr>
+    <h5>There are no clients in the system</h5>
+</ng-template> 
+```
+- Model Client.ts
+```
+export interface Client {
+    id?: string;
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+    balance?: number;
+}
+```
+- Service client.service.ts
+```
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+
+import { Client } from '../models/Client';
+
+@Injectable()
+export class ClientService {
+    clientsCollection: AngularFirestoreCollection<Client>;
+    clientDoc: AngularFirestoreDocument<Client>;
+    clients: Observable<Client[]>;
+    client: Observable<Client>;
+
+    constructor(private afs: AngularFirestore) {
+        this.clientsCollection = this.afs.collection('clients', ref => ref.orderBy('lastName', 'asc'));
+    }
+
+    getClients(): Observable<Client[]> {
+        // Get clients with the id
+        this.clients = this.clientsCollection.snapshotChanges().map(changes => {
+            return changes.map(action => {
+                const data = action.payload.doc.data() as Client;
+                data.id = action.payload.doc.id;
+                return data;
+            });
+        });
+
+        return this.clients;
+    }
+
+    newClient(client: Client) {
+        this.clientsCollection.add(client);
+    }
+
+    getClient(id: string): Observable<Client> {
+        this.clientDoc = this.afs.doc<Client>(`clients/${id}`);
+        this.client = this.clientDoc.snapshotChanges().map(action => {
+            if (action.payload.exists === false) {
+                return null;
+            } else {
+                const data = action.payload.data() as Client;
+                data.id = action.payload.id;
+                return data;
+            }
+        });
+
+        return this.client;
+    }
+
+    updateClient(client: Client) {
+        this.clientDoc = this.afs.doc(`clients/${client.id}`);
+        this.clientDoc.update(client);
+    }
+
+    deleteClient(client: Client) {
+        this.clientDoc = this.afs.doc(`clients/${client.id}`);
+        this.clientDoc.delete();
+    }
+}
+```
+
+#### app.routing.ts Sample
+```
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AuthGuard } from './guards/auth.guard';
+import { RegisterGuard } from './guards/register.guard';
+
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AddClientComponent } from './components/add-client/add-client.component';
+import { EditClientComponent } from './components/edit-client/edit-client.component';
+import { ClientDetailsComponent } from './components/client-details/client-details.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+
+const routes: Routes = [
+    { path: '', component: DashboardComponent, canActivate:[AuthGuard] },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent, canActivate:[RegisterGuard] },
+    { path: 'client/add', component: AddClientComponent, canActivate:[AuthGuard] },
+    { path: 'client/edit/:id', component: EditClientComponent, canActivate:[AuthGuard] },
+    { path: 'client/:id', component: ClientDetailsComponent, canActivate:[AuthGuard] },
+    { path: 'settings', component: SettingsComponent, canActivate:[AuthGuard] },
+    { path: '**', component: DashboardComponent }
+];
+
+@NgModule({
+    exports: [RouterModule],
+    imports: [
+        RouterModule.forRoot(routes)
+    ],
+    providers: [AuthGuard, RegisterGuard]
+})
+export class AppRoutingModule { }
+```
+
+#### app.component.html Sample
+```
+<app-navbar></app-navbar>
+<div class="container">
+    <flash-messages></flash-messages>
+    <router-outlet></router-outlet>
+</div>
+```
+
+#### app.component.ts Sample
+```
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'app';
+}
+```
+
+#### app.module.ts Sample
+```
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/Forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ClientsComponent } from './components/clients/clients.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AddClientComponent } from './components/add-client/add-client.component';
+import { EditClientComponent } from './components/edit-client/edit-client.component';
+import { ClientDetailsComponent } from './components/client-details/client-details.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { ClientService } from './services/client.service';
+import { AuthService } from './services/auth.service';
+import { SettingsService } from './services/settings.service';
+
+@NgModule({
+    declarations: [
+        AppComponent,
+        NavbarComponent,
+        DashboardComponent,
+        ClientsComponent,
+        SidebarComponent,
+        AddClientComponent,
+        EditClientComponent,
+        ClientDetailsComponent,
+        LoginComponent,
+        RegisterComponent,
+        SettingsComponent,
+        NotFoundComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        FlashMessagesModule.forRoot(),
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebase, 'clientpanel'),
+        AngularFirestoreModule,
+        AngularFireAuthModule
+    ],
+    providers: [ClientService, AuthService, SettingsService],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
