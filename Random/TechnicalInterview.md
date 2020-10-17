@@ -971,7 +971,97 @@ Number, String, Boolean, Object, Undefined.
 - **Undeclared variables** are those that do not exist in a program and are not declared. If the program tries to read the value of an undeclared variable, then a runtime error is encountered.
 - **Undefined variables** are those that are declared in the program but have not been given any value. If the program tries to read the value of an undefined variable, an undefined value is returned.
 
-9 = https://www.guru99.com/javascript-interview-questions-answers.html
+#### What are global variables? How are these variable declared and what are the problems associated with using them?
+
+Global variables are those that are available throughout the length of the code, that is, these have no scope. The ```var``` keyword is used to declare a local variable or object. If the var keyword is omitted, a global variable is declared.<br>
+The problems faced by using global variables are the clash of variable names of local and global scope. Also, it is difficult to debug and test the code that relies on global variables.
+```
+globalVariable = "Test"; // it is global 
+var test = "Test" // it is local
+```
+
+#### What is ```this``` keyword in JavaScript?
+```this``` keyword refers to the object from where it was called.
+
+#### Explain the working of timers in JavaScript? Also elucidate the drawbacks of using the timer, if any?
+Timers are used to execute a piece of code at a set time or also to repeat the code in a given interval of time. This is done by using the functions setTimeout, setInterval and clearInterval:
+- ```setTimeout(function, delay)```, function is used to start a timer that calls a particular function after the mentioned delay.
+- ```setInterval(function, delay)```, function is used to repeatedly execute the given function in the mentioned delay and only halts when cancelled.
+- ```clearInterval(id)```, function instructs the timer to stop.
+The drawbacks, timers are operated within a single thread, and thus events might queue up, waiting to be executed.
+
+#### What is the difference between ViewState and SessionState?
+- ViewState is specific to a page in a session.
+- SessionState is specific to user specific data that can be accessed across all pages in the web application.
+
+#### What is ```===``` operator?
+```===``` is called as strict equality operator which returns true when the two operands are having the same value without any type conversion.
+
+#### Explain how can you submit a form using JavaScript?
+```document.form[0].submit();```
+
+#### What is called Variable typing in Javascript?
+Variable typing is used to assign a number to a variable and the same variable can be assigned to a string.
+```
+// This is variable typing
+i = 10;
+i = "string"; 
+```
+#### How can you convert the string of any base to integer in JavaScript?
+The ```parseInt()``` function is used to convert numbers between different bases. ```parseInt()``` takes the string to be converted as its first parameter, and the second parameter is the base of the given string. In order to convert 4F (of base 16) to integer, the code used will be ```parseInt ("4F", 16);```
+
+#### Explain the difference between ```==``` and ```===```?
+```==```checks only for equality in value whereas ```===``` is a stricter equality test and returns false if either the value or the type of the two variables are different.
+
+#### What would be the result of 3 + 2 + "7"?
+Since 3 and 2 are integers, they will be added numerically. And since 7 is a string, its concatenation will be done. So the result would be 57.
+
+#### What do mean by ```null``` in Javascript?
+The ```null``` value is used to represent no value or no object. It implies no object or null string, no valid boolean value, no number and no array object.
+
+#### What is an undefined value in JavaScript?
+Undefined value means the: 
+- Variable used in the code doesn't exist.
+- Variable is not assigned to any value.
+- Property doesn't exist.
+
+#### What are all the types of Pop up boxes available in JavaScript?
+Alert, Confirm and Prompt.
+
+#### Explain what is ```pop()``` method in JavaScript?
+The ```pop()``` method is similar as the ```shift()`` method but the difference is that the Shift method works at the start of the ```array```. Also the ```pop()``` method take the last element off of the given array and returns it. The array on which is called is then altered.
+```
+var cloths = ["Shirt", "Pant", "TShirt"];
+cloths.pop(); // now, cloths = ["Shirt", "Pant"];
+```
+
+#### Whether JavaScript has concept level scope?
+No. JavaScript does not have concept level scope. The variable declared inside the function has scope inside the function.
+
+#### What are the different types of errors in JavaScript?
+There are three types of errors:
+- **Load time errors**: Errors which come up when loading a web page like improper syntax errors are known as Load time errors and it generates the errors dynamically.
+- **Run time errors**: Errors that come due to misuse of the command inside the HTML language.
+- **Logical Errors**: These are the errors that occur due to the bad logic performed on a function which is having different operation.
+
+#### What is the ```strict``` mode in JavaScript and how can it be enabled?
+Strict Mode adds certain compulsions to JavaScript. Under the strict mode, JavaScript shows errors for a piece of codes, which did not show an error before, but might be problematic and potentially unsafe. Strict mode also solves some mistakes that hamper the JavaScript engines to work efficiently.<br>
+Strict mode can be enabled by adding the string literal ```use strict``` above the file. This can be illustrated by the given example:
+```
+function myfunction() {
+    "use strict";
+    var v = "This is a strict mode function";
+}
+```
+
+#### 
+#### 
+#### 
+#### 
+#### 
+#### 
+#### 
+#### 
 
 ### Front-end Angular
 
