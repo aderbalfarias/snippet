@@ -121,13 +121,17 @@ It is one of the four basic features of OOP and refers to an object's ability to
 - Lower coupling between objects and hence improvement in code maintainability.
 - Less likely that other objects can modify the state or behavior of the object in question.
 ```
-public class Bank {
+public class Bank 
+{
     private double balance;
-    public double Balance {
-        get {
+    public double Balance 
+    {
+        get 
+	{
             return balance;
         }
-        set {
+        set 
+	{
             balance = value;
         }
     }
@@ -137,15 +141,18 @@ public class Bank {
 #### What is Abstraction?
 Abstraction is a principle of OOP and it is used to hide the implementation details and display only essential features of the object. The word abstract means a concept or an idea not associated with any specific instance. We apply the same meaning of abstraction by making classes not associated with any specific instance. Abstraction is needed when we need to only inherit from a certain class, but do not need to instantiate objects of that class. In such a case the base class can be regarded as "Incomplete". Such classes are known as an "Abstract Base Class". 
 ``` 
-public abstract class Animal {
+public abstract class Animal 
+{
     private string Name { get; set; }
     private string Specie { get; set; }
 
-    public Animal() {
+    public Animal() 
+    {
         Console.WriteLine ("Do something");
     }
 
-    public Animal(string name, string specie) {
+    public Animal(string name, string specie) 
+    {
         this.Name = name;
         this.Specie = specie;
     }
@@ -157,15 +164,18 @@ public abstract class Animal {
     public virtual int AverageLifeInMonths(int years) => years / 12;
 }
 
-public class Tiger : Animal {
+public class Tiger : Animal 
+{
     public override string AnimalType() => "Mammals";
 }
 
-public class Frog : Animal {
+public class Frog : Animal 
+{
     public override string AnimalType() => "Amphibians";
 }
 
-public class Salmon : Animal {
+public class Salmon : Animal 
+{
     public override string AnimalType() => "Fish";
 }
 ```
@@ -363,17 +373,17 @@ public class Program
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-    .ConfigureLogging(logging =>
-    {
-        logging.AddConsole();
-        logging.AddDebug();
-    })
-    .ConfigureWebHostDefaults(webBuilder =>
-    {
-        webBuilder.UseStartup<Startup>();
-    })
-    .UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
+        Host.CreateDefaultBuilder(args)
+        .ConfigureLogging(logging =>
+        {
+            logging.AddConsole();
+            logging.AddDebug();
+        })
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+        })
+        .UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
 }
 
 public class Startup
@@ -400,9 +410,9 @@ public class Startup
         services.AddCors(options =>
         {
             options.AddDefaultPolicy(builder =>
-    {
-            builder.WithOrigins(corsOrigin).AllowAnyHeader().AllowAnyMethod();
-        });
+            {
+                builder.WithOrigins(corsOrigin).AllowAnyHeader().AllowAnyMethod();
+            });
         });
 
         // Dependency Injection
@@ -412,29 +422,29 @@ public class Startup
         services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
 
         var authenticationOption = Configuration
-        .GetSection(nameof(ApplicationOptions.Authentication))
-        .Get<AuthenticationOptions>();
+            .GetSection(nameof(ApplicationOptions.Authentication))
+            .Get<AuthenticationOptions>();
 
         services.AddSingleton(authenticationOption);
 
         services.AddHealthChecks()
-        .AddSqlServer(Configuration.GetConnectionString(DemoConnection));
+            .AddSqlServer(Configuration.GetConnectionString(DemoConnection));
 
         services.AddControllers();
         services.AddApiVersioning();
         services.AddSwagger(authenticationOption);
 
         var oidc = Configuration
-        .GetSection(nameof(ApplicationOptions.OidcAuthorizationServer))
-        .Get<OidcAuthorizationServerOptions>();
+            .GetSection(nameof(ApplicationOptions.OidcAuthorizationServer))
+            .Get<OidcAuthorizationServerOptions>();
 
         services.AddSingleton(oidc);
         services.AddAuthorization(options =>
         {
             options.DefaultPolicy = new AuthorizationPolicyBuilder()
-    .RequireAuthenticatedUser()
-    .AddAuthenticationSchemes(Schemes)
-    .Build();
+                .RequireAuthenticatedUser()
+                .AddAuthenticationSchemes(Schemes)
+                .Build();
         });
 
         services.AddBearers(Environment, oidc, authenticationOption, Schemes);
