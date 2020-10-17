@@ -633,9 +633,76 @@ It's not always true that one must make changes in the inheritance tree but maki
 
 #### I - Interface Segregation Principle
 **Definition**: The interface segregation principle states not to force a client to depend on methods it does not use. Do not add additional functionality to an existing interface by adding new methods. Instead, create a new interface and let your class implement multiple interfaces if needed.<br>
-**Example**: <br>
-**Why**: <br>
+**Example**: If there is big fat interface then break it into a set of small interfaces with the related method(s) in it. It's similar to normalizing our database like normalizing database from 1NF to 3NF where a big table is broken into tables with related columns.
+- Violation of Interface Segregation
+```
+public interface IMachine 
+{
+    void Print();
+    void Fax();
+    void Scan();
+}
+
+public class MultiFunctionPrinter : IMachine // It is ok
+{  
+    public void Print() => Console.WriteLine("Print Document");
+    public void Fax() => Console.WriteLine("Send Document");
+    public void Scan() => Console.WriteLine("Scan Document");
+}
+
+public class Printer : IMachine // It is not ok
+{  
+    public void Print() => Console.WriteLine("Print Document");
+    public void Fax() => throw new NotImplementedException();
+    public void Scan() => throw new NotImplementedException();
+}
+
+public class Scanner : IMachine // It is not ok
+{  
+    public void Print() => throw new NotImplementedException();
+    public void Fax() => throw new NotImplementedException();
+    public void Scan() => Console.WriteLine("Scan Document");
+}
+```
+- Implementing Interface Segregation
+```
+public interface IPrinter 
+{
+    void Print();
+}
+
+public interface IFaxer
+{
+    void Fax();
+}
+
+public interface IScanner
+{
+    void Scan();
+}
+
+public class MultiFunctionPrinter : IPrinter, IFaxer, IScanner // It is ok
+{  
+    public void Print() => Console.WriteLine("Print Document");
+    public void Fax() => Console.WriteLine("Send Document");
+    public void Scan() => Console.WriteLine("Scan Document");
+}
+
+public class Printer : IPrinter // It is ok
+{  
+    public void Print() => Console.WriteLine("Print Document");
+}
+
+public class Scanner : IScanner // It is ok
+{  
+    public void Scan() => Console.WriteLine("Scan Document");
+}
+```
+**Why**: Do not design a big fat interface that forces the client to implement a method that is not required by it, instead design a small interface. So by doing this class only implement the required set of interface(s).<br>
 **Benefits**:
+- Faster Compilation. If you have violated interface segregation i.e. stuffed methods together in the interface, and when method signature changes, you need to recompile all the derived classes.
+- Reusability, "fat interfaces" (interfaces with additional useless methods) lead to inadvertent coupling between classes. Thus, an experienced dev knows coupling is the bane of reusability.
+- Maintainability, by avoiding unneeded dependencies, the system becomes easier to understand, lighter to test, quicker to change. Similarly, to the reader of your code, it would be harder to get an idea of what your class does from the class declaration line. So, if dev sees only the one god-interface that may have inherited other interfaces it will likely not be obvious. Compare ```MyMachine : IMachine``` to ```MyMachine : IPrinter, IScanner, IFaxer```. The latter tells you a lot, the first makes you guess at best.
 
 #### D - Dependency Inversion Principle (Dependency injection)
 **Definition**: The dependency inversion principle is a way to decouple software modules. This principle states that:
