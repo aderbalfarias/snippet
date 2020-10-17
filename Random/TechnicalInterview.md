@@ -1532,12 +1532,3 @@ export class AppModule { }
 ### Architecture
 
 #### [Principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
-
-### Tools
-- **SQL Server**: SQL Server Profile and SQL Monitor both in the SQL Server Managment Studio
-- **Back-end**: Visual Studio, Visual Code, LinqPad, PowerShell, Git Bash
-- **Front-end**: Visual Code, Git Bash
-- **Source Control**: Git, VSTS
-- **Requests**: Postman or Swagger
-- **CI/CD**: Jenkins
-- **Package Management**: NPM, Nuget, Angular CLI
