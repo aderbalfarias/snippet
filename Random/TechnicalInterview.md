@@ -497,6 +497,17 @@ We can use both the methods in Configure methods of startup class. Both are used
 #### What is routing in ASP.NET Core?
 Routing is functionality that map incoming request to the route handler. The route can have values (extract them from URL) that used to process the request. The Routing uses routes for map incoming request with route handler and Generate URL that used in response.
 
+#### What are the available HTTP Methods? 
+- **GET**, Retrieve data.
+- **HEAD**, Like get without response.
+- **POST**, Submit entity.
+- **PUT**, Changes which requires payload. 
+- **DELETE**, Delete data.
+- **TRACE**, Performs a message loop-back test along the path to the target resource.
+- **OPTIONS**, Used to describe the communication options for the target resource.
+- **CONNECT**, Estabilishes tunnels. Proxy server to tunnel the TCP connection to the desired destination.
+- **PATCH**, Making partial changes to an existing resource.
+
 ### SOLID
 
 #### S - Single responsibility Principle
@@ -843,15 +854,29 @@ Triggers are used to execute a batch of SQL code when insert or update or delete
 #### What is an IDENTITY column in insert statements?
 IDENTITY column is used in table columns to make that column as Auto incremental number or a surrogate key.
 
-#### What is the difference between UNION and UNION ALL?
+#### What is the difference between ```UNION``` and ```UNION ALL```?
 - ```UNION```: To select related information from two tables ```UNION``` command is used. It is similar to ```JOIN``` command.
 - ```UNION ALL```: The ```UNION ALL``` command is equal to the ```UNION``` command, except that ```UNION ALL``` selects all values. It will not remove duplicate rows, instead it will retrieve all rows from all tables.
 ```
 TableA = 1, 2, 3, 4
 TableB = 3, 4, 5, 6
 
-select * from TableA UNION select * from TableB = 1, 2, 3, 4, 5, 6
-select * from TableA UNION ALL select * from TableB = 1, 2, 3, 4, 3, 4, 5, 6
+select * from TableA UNION select * from TableB -- = 1, 2, 3, 4, 5, 6
+select * from TableA UNION ALL select * from TableB -- = 1, 2, 3, 4, 3, 4, 5, 6
+```
+
+#### JOIN!
+```
+TableA = 1, 2, 3, 4
+TableB = 3, 4, 5, 6
+
+select * from TableA a INNER JOIN TableB b on a.Key = b.Key -- = 3, 4 
+select * from TableA a LEFT JOIN TableB b on a.Key = b.Key -- = 1, 2, 3, 4
+select * from TableA a LEFT JOIN TableB b on a.Key = b.Key where b.Key is NULL -- = 1, 2
+select * from TableA a RIGHT JOIN TableB b on a.Key = b.Key -- = 3, 4, 5, 6
+select * from TableA a RIGHT JOIN TableB b on a.Key = b.Key where a.Key is NULL -- = 5, 6
+select * from TableA a FULL OUTER JOIN TableB b on a.Key = b.Key -- = 1, 2, 3, 4, 5, 6
+select * from TableA a FULL OUTER JOIN TableB b on a.Key = b.Key where a.Key is NULL OR b.Key is NULL -- = 1, 2, 5, 6
 ```
 
 #### How Global temporary tables are represented and its scope?
@@ -959,7 +984,7 @@ git merge [branchRoot]
 git push --set-upstream origin [branchWhereDevelopmentWasDone]
 ```
 
-### Front-end Javascript
+### Front-end JavaScript
 
 #### What are JavaScript Data Types?
 Number, String, Boolean, Object, Undefined.
@@ -1054,14 +1079,8 @@ function myfunction() {
 }
 ```
 
-#### 
-#### 
-#### 
-#### 
-#### 
-#### 
-#### 
-#### 
+#### What is the difference between ```ex = 1;``` and ```var ex = 1;``` in JavaScript?
+If you're in the global scope there is no difference but if you are in a function ```var``` will create a local variable whereas ```ex = 1;``` will look up the scope until it finds the variable or hits the global scope. 
 
 ### Front-end Angular
 
