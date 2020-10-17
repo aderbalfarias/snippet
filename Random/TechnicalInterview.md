@@ -310,6 +310,35 @@ When **Garbage Collector** performs a collection it checks for objects in the ma
 It can be implemented by using the ```IDisposable interface```.<br>
 ```System.GC.Collect() // Force garbage collection```
 
+#### How to pass a method as parameter in C#?
+Using Action if it doesn't return anything or Func if it does return value or reference
+```
+var result = await Retry(async () => await MyMethodAsync(), TimeSpan.FromSeconds(10), 5);
+
+private async Task<T> Retry<T>(Func<Task<T>> action, TimeSpan retryInterval, int maxAttemptCount = 3)
+{
+    var exceptions = new List<Exception>();
+
+    for (int attempted = 0; attempted < maxAttemptCount; attempted++)
+    {
+        try
+        {
+            if (attempted > 0)
+                await Task.Delay(retryInterval);
+
+            return await action();
+        }
+        catch (Exception ex)
+        {
+            exceptions.Add(ex);
+        }
+    }
+
+    throw new AggregateException(exceptions);
+}
+
+```
+
 ### .NET Core
 
 #### Explain what is a Middlaware?
