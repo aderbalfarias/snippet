@@ -754,6 +754,17 @@ public class EmployeeDetailsModified
 
     public float GetSalary() => _salaryCalculator.CalculateSalary(HoursWorked, HourlyRate);
 }
+
+public class Program
+{
+    public static void Main()
+    {
+        var employeeDetailsModified = new EmployeeDetailsModified(new SalaryCalculatorModified());  
+        employeeDetailsModified.HourlyRate = 50;  
+        employeeDetailsModified.HoursWorked = 168;  
+        Console.WriteLine($"The Total Pay is { employeeDetailsModified.GetSalary() }");
+    }
+}
 ```
 **Why**: The principle says that high-level modules should depend on abstraction, not on the details, of low level modules, in other words not the implementation of the low level module. Abstraction should not depend on details. Details should depend on abstraction. In simple words the principle says that there should not be a tight coupling among components (in other words two modules, two classes) of software and to avoid that, the components should depend on abstraction, in other words a contract (interface or abstract class).<br>
 **Benefits**:
@@ -762,9 +773,88 @@ public class EmployeeDetailsModified
 
 ### Sql Server
 
-### Architecture
+#### What is SQL Profiler?
+SQL Profiler is a tool which allows system administrator to monitor events in the SQL server. This is mainly used to capture and save data about each event of a file or a table for analysis.
 
-#### [Principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
+#### What is recursive stored procedure?
+SQL Server supports recursive stored procedure which calls by itself. Recursive stored procedure can be defined as a method of problem solving wherein the solution is arrived repetitively. It can nest up to 32 levels.
+```
+CREATE PROCEDURE[dbo].[Fact]
+(
+    @Number Integer,
+    @RetVal Integer OUTPUT
+)
+AS
+DECLARE @In Integer
+DECLARE @Out Integer
+IF @Number != 1
+BEGIN
+    SELECT @In = @Number - 1
+    EXEC Fact @In, @Out OUTPUT -- Same stored procedure has been called again(Recursively)
+    SELECT @RetVal = @Number * @Out
+END
+ELSE
+BEGIN
+    SELECT @RetVal = 1
+END
+RETURN
+GO
+```
+
+#### What are the differences between local and global temporary tables?
+- Local temporary tables are visible when there is a connection, and are deleted when the connection is closed ```CREATE TABLE #[table name]```
+- Global temporary tables are visible to all users, and are deleted when the connection that created it is closed ```CREATE TABLE ##[table name]```
+
+#### Can we check locks in database? If so, how can we do this lock check?
+Yes, we can check locks in the database. It can be achieved by using in-built stored procedure called sp_lock.
+
+#### What is a Trigger?
+Triggers are used to execute a batch of SQL code when insert or update or delete commands are executed against a table. Triggers are automatically triggered or executed when the data is modified. It can be executed automatically on insert, delete and update operations.
+
+#### What is an IDENTITY column in insert statements?
+IDENTITY column is used in table columns to make that column as Auto incremental number or a surrogate key.
+
+#### What is the difference between UNION and UNION ALL?
+- ```UNION```: To select related information from two tables ```UNION``` command is used. It is similar to ```JOIN``` command.
+- ```UNION ALL```: The ```UNION ALL``` command is equal to the ```UNION``` command, except that ```UNION ALL``` selects all values. It will not remove duplicate rows, instead it will retrieve all rows from all tables.
+```
+TableA = 1, 2, 3, 4
+TableB = 3, 4, 5, 6
+
+select * from TableA UNION select * from TableB = 1, 2, 3, 4, 5, 6
+select * from TableA UNION ALL select * from TableB = 1, 2, 3, 4, 3, 4, 5, 6
+```
+
+#### How Global temporary tables are represented and its scope?
+Global temporary tables are represented with **##** before the table name. Scope will be the outside the session whereas local temporary tables are inside the session. Session ID can be found using ```@@SPID```.
+
+#### What is Collation?
+Collation is defined to specify the sort order in a table. There are three types of sort order:
+- Case sensitive
+- Case Insensitive
+- Binary
+
+#### Which SQL Server table is used to hold the stored procedure scripts?
+```select * from Sys.SQL_Modules``` is a SQL Server table used to store the script of stored procedure. Name of the stored procedure is saved in the table called ```Sys.Procedures```.
+
+#### What is the difference between SUBSTR and CHARINDEX in the SQL Server?
+The SUBSTR function is used to return specific portion of string in a given string. But, CHARINDEX function gives character position in a given specified string.
+```
+SUBSTRING('Smiley', 1, 3) -- Gives result as Smi
+CHARINDEX('i', 'Smiley', 1) -- Gives 3 as result as I appears in 3rd position of the string
+```
+
+#### What is ISNULL() operator?
+```ISNULL``` function is used to check whether value given is ```NULL``` or not ```NULL``` in sql server. This function also provides to replace a value with the ```NULL```.
+
+#### What is the difference between COMMIT and ROLLBACK?
+Every statement between BEGIN and COMMIT becomes persistent to database when the COMMIT is executed. Every statement between BEGIN and ROOLBACK are reverted to the state when the ROLLBACK was executed.
+
+#### What is the use of ```@@SPID```?
+A ```@@SPID``` returns the session ID of the current user process.
+
+#### What is Filtered Index?
+Filtered Index is used to filter some portion of rows in a table to improve query performance, index maintenance and reduces index storage costs. When the index is created with ```WHERE``` clause, then it is called Filtered Index.
 
 ### [Git Commands](https://github.com/AderbalFarias/snippet/blob/master/Commands/git-commands.md)
 
@@ -841,6 +931,18 @@ git push --set-upstream origin [branchWhereDevelopmentWasDone]
 ```
 
 ### Front-end Javascript
+
+#### What are JavaScript Data Types?
+Number, String, Boolean, Object, Undefined.
+
+#### What is the use of ```isNaN``` function?
+```isNan``` function returns true if the argument is not a number otherwise it is false.
+
+#### What are undeclared and undefined variables?
+- **Undeclared variables** are those that do not exist in a program and are not declared. If the program tries to read the value of an undeclared variable, then a runtime error is encountered.
+- **Undefined variables** are those that are declared in the program but have not been given any value. If the program tries to read the value of an undefined variable, an undefined value is returned.
+
+9 = https://www.guru99.com/javascript-interview-questions-answers.html
 
 ### Front-end Angular
 
@@ -1289,8 +1391,11 @@ import { SettingsService } from './services/settings.service';
 export class AppModule { }
 ```
 
-### Tools
+### Architecture
 
+#### [Principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
+
+### Tools
 - **SQL Server**: SQL Server Profile and SQL Monitor both in the SQL Server Managment Studio
 - **Back-end**: Visual Studio, Visual Code, LinqPad, PowerShell, Git Bash
 - **Front-end**: Visual Code, Git Bash
