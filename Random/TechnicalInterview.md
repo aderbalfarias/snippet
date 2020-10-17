@@ -522,8 +522,8 @@ public class VariableRateMortgage : IMortgage
 So if there is a new mortgage type added there is no need to modify the logic of exiting classes, just extend the functionality by inheriting an interface (Mortgage interface in this case and create a new class which will have the implementation for ```CalculateInterest()``` method. I am using an interface but it could be an abstract class as well.<br>
 **Why**: When a single change to a program results in a cascade of changes to dependent modules, that program exhibits the undesirable attributes that we have come to associate with 'bad' design. The program becomes fragile, rigid, unpredictable, and unreusable. A function that is doing too many things outside the realm of its responsibilities creates unnecessary entanglements that makes it harder to read and debug.<br>
 **Benefits**:
-- Extensibility, where the design modules never change. When requirements change, you extend the behavior of such modules by adding new code, not by changing old code that already works in order to prevent cascade changes to dependent modules.
-- Maintainability, the main benefit of this approach is that an interface introduces an additional level of abstraction which enables loose coupling. The implementations of an interface are independent of each other and don't need to share any code.
+- Extensibility. Where the design modules never change. When requirements change, you extend the behavior of such modules by adding new code, not by changing old code that already works in order to prevent cascade changes to dependent modules.
+- Maintainability. The main benefit of this approach is that an interface introduces an additional level of abstraction which enables loose coupling. The implementations of an interface are independent of each other and don't need to share any code.
 - It makes the code readable, testable, changeable, and reusable.
 
 #### L - Liskov Substitution Principle
@@ -627,9 +627,9 @@ public class Program
 It's not always true that one must make changes in the inheritance tree but making changes at the class and method level also resolves problems, but the solution above was done by changing the inheritance tree.<br>
 **Why**: Places in implementation (class/function) that use a base class (in other words consume a service of a base class), must work correctly when the base class object is replaced by a child class (derived class) object.<br>
 **Benefits**:
-- Compatibility, it enables the binary compatibility between multiple releases and patches. In other words, It keeps the client code away from being impacted.
-- Type Safety, it's the easiest approach to handle type safety with inheritance, as types are not allowed to vary when inheriting.
-- Maintainability, code that adheres to Liskov substitution is loosely dependent on each other, makes the right abstraction, and encourages code reusability.
+- Compatibility. It enables the binary compatibility between multiple releases and patches. In other words, It keeps the client code away from being impacted.
+- Type Safety. It's the easiest approach to handle type safety with inheritance, as types are not allowed to vary when inheriting.
+- Maintainability. Code that adheres to Liskov substitution is loosely dependent on each other, makes the right abstraction, and encourages code reusability.
 
 #### I - Interface Segregation Principle
 **Definition**: The interface segregation principle states not to force a client to depend on methods it does not use. Do not add additional functionality to an existing interface by adding new methods. Instead, create a new interface and let your class implement multiple interfaces if needed.<br>
@@ -701,17 +701,64 @@ public class Scanner : IScanner // It is ok
 **Why**: Do not design a big fat interface that forces the client to implement a method that is not required by it, instead design a small interface. So by doing this class only implement the required set of interface(s).<br>
 **Benefits**:
 - Faster Compilation. If you have violated interface segregation i.e. stuffed methods together in the interface, and when method signature changes, you need to recompile all the derived classes.
-- Reusability, "fat interfaces" (interfaces with additional useless methods) lead to inadvertent coupling between classes. Thus, an experienced dev knows coupling is the bane of reusability.
-- Maintainability, by avoiding unneeded dependencies, the system becomes easier to understand, lighter to test, quicker to change. Similarly, to the reader of your code, it would be harder to get an idea of what your class does from the class declaration line. So, if dev sees only the one god-interface that may have inherited other interfaces it will likely not be obvious. Compare ```MyMachine : IMachine``` to ```MyMachine : IPrinter, IScanner, IFaxer```. The latter tells you a lot, the first makes you guess at best.
+- Reusability. "Fat interfaces" (interfaces with additional useless methods) lead to inadvertent coupling between classes. Thus, an experienced dev knows coupling is the bane of reusability.
+- Maintainability. By avoiding unneeded dependencies, the system becomes easier to understand, lighter to test, quicker to change. Similarly, to the reader of your code, it would be harder to get an idea of what your class does from the class declaration line. So, if dev sees only the one god-interface that may have inherited other interfaces it will likely not be obvious. Compare ```MyMachine : IMachine``` to ```MyMachine : IPrinter, IScanner, IFaxer```. The latter tells you a lot, the first makes you guess at best.
 
 #### D - Dependency Inversion Principle (Dependency injection)
 **Definition**: The dependency inversion principle is a way to decouple software modules. This principle states that:
 - High-level modules should not depend on low-level modules. Both should depend on abstractions.
 - Abstractions should not depend on details. Details should depend on abstractions.
 To comply with this principle, we need to use a design pattern known as a dependency inversion pattern, most often solved by using dependency injection.<br>
-**Example**: <br>
-**Why**: <br>
+**Example**:<br>
+- Not following the Dependency Inversion
+```
+public class SalaryCalculator
+{
+    public float CalculateSalary(int hoursWorked, float hourlyRate) => hoursWorked * hourlyRate;
+}
+
+public class EmployeeDetails
+{
+    public int HoursWorked { get; set; }
+    public int HourlyRate { get; set; }
+    public float GetSalary()
+    {
+        var salaryCalculator = new SalaryCalculator();
+        return salaryCalculator.CalculateSalary(HoursWorked, HourlyRate);
+    }
+}
+```
+- Implementing the Dependency Inversion
+```
+public interface ISalaryCalculator
+{
+    float CalculateSalary(int hoursWorked, float hourlyRate);
+}
+
+public class SalaryCalculatorModified : ISalaryCalculator
+{
+    public float CalculateSalary(int hoursWorked, float hourlyRate) => hoursWorked * hourlyRate;
+}
+
+public class EmployeeDetailsModified
+{
+    public int HoursWorked { get; set; }
+    public int HourlyRate { get; set; }
+
+    private readonly ISalaryCalculator _salaryCalculator;
+
+    public EmployeeDetailsModified(ISalaryCalculator salaryCalculator)
+    {
+        _salaryCalculator = salaryCalculator;
+    }
+
+    public float GetSalary() => _salaryCalculator.CalculateSalary(HoursWorked, HourlyRate);
+}
+```
+**Why**: The principle says that high-level modules should depend on abstraction, not on the details, of low level modules, in other words not the implementation of the low level module. Abstraction should not depend on details. Details should depend on abstraction. In simple words the principle says that there should not be a tight coupling among components (in other words two modules, two classes) of software and to avoid that, the components should depend on abstraction, in other words a contract (interface or abstract class).<br>
 **Benefits**:
+- Reusability. Effectively, the dependency inversion reduces coupling between different pieces of code. Thus we get reusable code.
+- Maintainability. It is also important to mention that changing already implemented modules is risky. By depending on abstraction and not on concrete implementation, we can reduce that risk by not having to change high-level modules in our project. It also gives us flexibility and stability at the level of the entire architecture of our application. Our application will be able to evolve more securely and become stable and robust.
 
 ### Sql Server
 
