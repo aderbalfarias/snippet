@@ -11,8 +11,8 @@ There are following advantages of ASP.NET Core over ASP.NET:
 - ASP.NET Core can handle more request than the ASP.NET.
 - Multiple deployment options available withASP.NET Core.
 
-#### What is the startup class in ASP.NET core?
-Startup class is the entry point of the ASP.NET Core application. Every .NET Core application must have this class. This class contains the application configuration. It is not necessary that class name must "Startup.cs", it can be anything, we can configure startup class in Program class.
+#### What is the startup ```class``` in ASP.NET core?
+Startup ```class``` is the entry point of the ASP.NET Core application. Every .NET Core application must have this ```class```. This ```class``` contains the application configuration. It is not necessary that ```class``` name must "Startup.cs", it can be anything, we can configure startup ```class``` in Program ```class```.
 ```
 public class Program
 {
@@ -142,14 +142,14 @@ public class Startup
 }
 ```
 
-#### What is the use of ```ConfigureServices(IServiceCollection services)``` method of startup class?
-This is an optional method of startup class. It can be used to configure the services that are used by the application. This method calls first when the application is requested for the first time. Using this method, we can do things like adding services to the DI container, so services are available as a dependency in controller constructor.
+#### What is the use of ```ConfigureServices(IServiceCollection services)``` method of startup ```class```?
+This is an optional method of startup ```class```. It can be used to configure the services that are used by the application. This method calls first when the application is requested for the first time. Using this method, we can do things like adding services to the DI container, so services are available as a dependency in controller constructor.
 
-#### What is the use of the ```Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)``` method of startup class?
+#### What is the use of the ```Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)``` method of startup ```class```?
 It defines how the application will respond to each HTTP request. We can configure the request pipeline by configuring the middleware. It accepts IApplicationBuilder as a parameter and also it has two optional parameters: IWebHostEnvironment and ILogger. Using this method, we can configure built-in middleware such as routing, authentication, session, etc. as well as third-party or custom middlewares.
 
 #### What is the difference between ```IApplicationBuilder.Use()``` and ```IApplicationBuilder.Run()```?
-We can use both the methods in Configure methods of startup class. Both are used to add middleware delegate to the application request pipeline. 
+We can use both the methods in Configure methods of startup ```class```. Both are used to add middleware delegate to the application request pipeline. 
 - ```IApplicationBuilder.Use()``` may call the next middleware in the pipeline 
 - ```IApplicationBuilder.Run()``` method never calls the subsequent or next middleware. After ```IApplicationBuilder.Run``` method, system stop adding middleware in request. pipeline.
 
@@ -172,7 +172,7 @@ Routing is functionality that map incoming request to the route handler. The rou
 ### C# Versus
 
 #### ```abstract class``` vs ```interface```
-An abstract class allows you to create functionalities that subclasses can implement or override and it also can have have constructors. An interface only allows you to define functionalities, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a class can extend only one abstract class, it can take advantage of multiple interfaces.
+An ```abstract class``` allows you to create functionalities that subclasses can implement or override and it also can have have constructors. An interface only allows you to define functionalities, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a ```class``` can extend only one ```abstract class```, it can take advantage of multiple interfaces.
 
 #### ```System.String``` vs ```System.StringBuilder```
 - ```System.String```: It is immutable, it means when a string object is created you cannot modify and you have always to create a new object string type in memory.<br>  
@@ -189,7 +189,7 @@ string x = strb.ToString();
 
 #### ```String``` vs ```string```
 Essentially, there is no difference between string and String in C#.<br>
-String is a class in the .NET framework in the System namespace. The fully qualified name is ```System.String```. Whereas, the lower case string is an alias of ```System.String```.
+```String``` is a ```class``` in the .NET framework in the System namespace. The fully qualified name is ```System.String```. Whereas, the lower case ```string``` is an alias of ```System.String```.
 
 #### ```Action``` vs ```Func``` vs ```Predicate```
 - ```Action```: Delegate (pointer) to a method that takes zero, one or more input parameters but doesn't return anything.<br>
@@ -217,8 +217,8 @@ Stack is responsible for keeping track what is actually executing and where each
 Heap is responsible for keeping track of the data, or more precise objects.
 
 #### ```class``` vs Object
-In short, a class is the definition of an object, and an object is an instance of a class.<br>
-The class in c# is nothing but a collection of various data members (fields, properties, events, etc.) and member functions. The object in c# is an instance of a class to access the defined properties and methods.
+In short, a ```class``` is the definition of an object, and an object is an instance of a ```class```.<br>
+The ```class``` in c# is nothing but a collection of various data members (fields, properties, events, etc.) and member functions. The object in c# is an instance of a ```class``` to access the defined properties and methods.
 
 #### Managed vs Unmanaged code
 Managed code is the code which is managed by the CLR(Common Language Runtime) in .NET Framework. Whereas the Unmanaged code is the code which is directly executed by the operating system.<br>
@@ -251,17 +251,27 @@ object myObj = x; // Boxing
 int y = (int) myObj; // Unboxing
 ```
 
+#### Value Type vs Reference Type
+- A value type holds a data value within its own memory space. ```int x = 30;```
+- Reference type stores the address of the object where the value is being stored. It is a pointer to another memory location. ```string y = "Hello World!";```
+
 #### Constants vs Readonly Variables 
 - Constants can be declared in methods or global context they are declared with ```const``` modifier, it is used for immutable values, they are evaluated at compile time, user-defined types, including classes, structs, and arrays, cannot be ```const```.
 - Readonly cannot be delcared in methods, they use ```readonly``` modifier, they are evaluated at runtime, it also can hold reference-type variables, it is mostly used when its actual value is unknown before the runtime and it can only be inilialised at the time of declaration or in a constructor.
 
 #### ```public``` vs ```static``` vs ```void``` 
 - ```public``` declared variables or methods are accessible anywhere in the application. 
-- ```static``` declared variables or methods are globally accessible without creating an instance of the class. Static member are by default not globally accessible it depends upon the type of access modified used. The compiler stores the address of the method as the entry point and uses this information to begin execution before any objects are created. 
+- ```static``` declared variables or methods are globally accessible without creating an instance of the ```class```. ```static``` member are by default not globally accessible it depends upon the type of access modified used. The compiler stores the address of the method as the entry point and uses this information to begin execution before any objects are created. 
 - ```void``` is a type modifier that states that the method or variable does not return any value.
 
 #### ```ref``` vs ```out``` parameters
 An argument passed as ```ref``` must be initialized before passing to the method whereas ```out``` parameter needs not to be initialized before passing to a method.
+
+#### ```Array``` vs ```Arraylist```?
+In an ```array```, we can have items of the same type only. The size of the ```array``` is fixed when compared. To an ```arraylist``` is similar to an array, but it doesn't have a fixed size.
+
+#### ```System.Array.CopyTo()``` and ```System.Array.Clone()```
+Using ```Clone()``` method, we creates a new array object containing all the elements in the original Array and using ```CopyTo()``` method all the elements of existing array copies into another existing array. Both methods perform a shallow copy.
 
 <hr>
 
@@ -277,13 +287,13 @@ The ```volatile``` keyword indicates that a field might be modified by multiple 
 The using keyword has three major uses:<br>
 - The using statement defines a scope at the end of which an object will be disposed.
 - The using directive creates an alias for a namespace or imports types defined in other namespaces.
-- The using static directive imports the members of a single class.
+- The using static directive imports the members of a single ```class```.
 
 #### Explain the keyword ```unsafe```?
 The ```unsafe``` keyword denotes an unsafe context, which is required for any operation involving pointers. You can use the ```unsafe``` modifier in the declaration of a type or a member. The entire textual extent of the type or member is therefore considered an unsafe context
 
 #### Explain the keyword ```sealed```?
-When applied to a class, the ```sealed``` modifier prevents other classes from inheriting from it. Like, class **B** inherits from class **A**, but no class can inherit from class **B**
+When applied to a ```class```, the ```sealed``` modifier prevents other classes from inheriting from it. Like, ```class``` **B** inherits from ```class``` **A**, but no ```class``` can inherit from ```class``` **B**
 ```
 class A {}
 sealed class B : A {}
@@ -308,7 +318,7 @@ LINQ in an acronym for Language Integrated Query, it allow data manipulation, re
 
 #### Explain the difference between Task and Thread in .NET?
 - Thread represents an actual OS-level thread, with its own stack and kernel resources. Thread allows the highest degree of control; you can ```Abort()``` or ```Suspend()``` or ```Resume()``` a thread, you can observe its state, and you can set thread-level properties like the stack size, apartment state, or culture. ThreadPool is a wrapper around a pool of threads maintained by the CLR.
-- The Task class from the Task Parallel Library offers the best of both worlds. Like the ThreadPool, a task does not create its own OS thread. Instead, tasks are executed by a TaskScheduler; the default scheduler simply runs on the ThreadPool. Unlike the ThreadPool, Task also allows you to find out when it finishes, and (via the generic Task) to return a result.
+- The ```Task class``` from the Task Parallel Library offers the best of both worlds. Like the ThreadPool, a task does not create its own OS thread. Instead, tasks are executed by a TaskScheduler; the default scheduler simply runs on the ThreadPool. Unlike the ThreadPool, Task also allows you to find out when it finishes, and (via the generic Task) to return a result.
 
 #### What garbage collection is and how it works. Provide example of how you can enforce it in .NET?
 Garbage collection is a low-priority process that serves as an automatic memory manager which manages the allocation and release of memory for the applications. Each time a new object is created, the CLR allocates memory for that object from the managed **heap**. As long as free memory space is available in the managed heap the runtime continuos to allocate space for new objects. However memory is not infinite and when heap memory is full garbage collection comes to free some memory.<br>
@@ -348,6 +358,24 @@ private async Task<T> Retry<T>(Func<Task<T>> action, TimeSpan retryInterval, int
 #### Can we use ```this``` command within a static method?
 We can't use ```this``` in a static method because we can only use static variables/methods in a static method.
 
+#### Can a ```private virtual``` method can be overridden?
+No, because they are not accessible outside the ```class```.
+
+#### How can we sort the elements of the Array in descending order?
+Using ```Sort()``` methods followed by ```Reverse()``` method.
+
+#### What are generics in C#?
+Generics are used to make reusable code classes to decrease the code redundancy, increase type safety, and performance. Using generics, we can create collection classes. To create generic collection, ```System.Collections.Generic``` namespace should be used instead of classes such as ```ArrayList``` in the ```System.Collections``` namespace. Generics promotes the usage of parameterized types.
+
+#### What are the access modifiers in C# and list them?
+All types and type members have an accessibility level. The accessibility level controls whether they can be used from other code in your assembly or other assemblies. Use the following access modifiers to specify the accessibility of a type or member when you declare it:
+- ```public```: The type or member can be accessed by any other code in the same assembly or another assembly that references it.
+- ```private```: The type or member can be accessed only by code in the same ```class``` or ```struct```.
+- ```protected```: The type or member can be accessed only by code in the same ```class```, or in a ```class``` that is derived from that ```class```.
+- ```internal```: The type or member can be accessed by any code in the same assembly, but not from another assembly.
+- ```protected internal```: The type or member can be accessed by any code in the assembly in which it's declared, or from within a derived ```class``` in another assembly.
+- ```private protected```: The type or member can be accessed only within its declaring assembly, by code in the same ```class``` or in a type that is derived from that ```class```.
+
 <hr>
 
 ### Object-oriented programming (OOP)
@@ -356,9 +384,9 @@ We can't use ```this``` in a static method because we can only use static variab
 OOP allows .Net developers to create classes containing methods, properties, fields, events and other logical modules. It also let developers create modular programs with they can assemble as applications and reuse code. OOP have four basic features: encapsulation, abstraction, polimorphism and inheritance.
 
 #### What is Encapsulation?
-It is one of the four basic features of OOP and refers to an object's ability to hide data and behavior that are not necessary to its user. Encapsulation helps to keep data from unwanted access through biding code and data in an object which is the basic single self-contained unit of a system. Encapsulation is used to restrict access to the members of a class so as to prevent the user of a given class from manipulating objects in ways that are not intended by the designer, it also has the priciple of hiding the state of an object by using private or protected modifiers. Benefits of it:
+It is one of the four basic features of OOP and refers to an object's ability to hide data and behavior that are not necessary to its user. Encapsulation helps to keep data from unwanted access through biding code and data in an object which is the basic single self-contained unit of a system. Encapsulation is used to restrict access to the members of a ```class``` so as to prevent the user of a given ```class``` from manipulating objects in ways that are not intended by the designer, it also has the priciple of hiding the state of an object by using private or protected modifiers. Benefits of it:
 - Protection of data from accidental corruption.
-- Specification of the accessibility of each of the members of a class to the code outside the class.
+- Specification of the accessibility of each of the members of a ```class``` to the code outside the ```class```.
 - Flexibility and extensibility of the code and reduction in complexity.
 - Lower coupling between objects and hence improvement in code maintainability.
 - Less likely that other objects can modify the state or behavior of the object in question.
@@ -381,7 +409,7 @@ public class Bank
 ```
 
 #### What is Abstraction?
-Abstraction is a principle of OOP and it is used to hide the implementation details and display only essential features of the object. The word abstract means a concept or an idea not associated with any specific instance. We apply the same meaning of abstraction by making classes not associated with any specific instance. Abstraction is needed when we need to only inherit from a certain class, but do not need to instantiate objects of that class. In such a case the base class can be regarded as "Incomplete". Such classes are known as an "Abstract Base Class". 
+Abstraction is a principle of OOP and it is used to hide the implementation details and display only essential features of the object. The word abstract means a concept or an idea not associated with any specific instance. We apply the same meaning of abstraction by making classes not associated with any specific instance. Abstraction is needed when we need to only inherit from a certain ```class```, but do not need to instantiate objects of that ```class```. In such a case the base ```class``` can be regarded as "Incomplete". Such classes are known as an "```abstract``` Base ```class```". 
 ``` 
 public abstract class Animal 
 {
@@ -423,7 +451,7 @@ public class Salmon : Animal
 ```
 
 #### What is Polymorphism?
-Polymorphism means providing an ability to take more than one form, polymorphism provides an ability for the classes to implement different methods that are called through the same name and it also provides an ability to invoke the methods of a derived class through base class reference during runtime based on our requirements.
+Polymorphism means providing an ability to take more than one form, polymorphism provides an ability for the classes to implement different methods that are called through the same name and it also provides an ability to invoke the methods of a derived ```class``` through base ```class``` reference during runtime based on our requirements.
 ```
 public void AddNumbers(int a, int b)
 {
@@ -437,8 +465,8 @@ public void AddNumbers(int a, int b, int c)
 ```
 
 #### What is Inheritance?
-Inheritance is one of the core concepts of OOP languages. It is a mechanism where you can to derive a class from another ```class``` for a hierarchy of classes that share a set of attributes and methods. It allows developers to reuse, extend and modify the behavior defined in other classes, **the ```class``` whose members are inherited is called the base class and the ```class``` that inherit those members is called the derived class**. Inheritance allows you to define a base class that provides specific functionality (data and behavior) and to define derived classes that either inherit or override that functionality.<br>
-*e.g.:* A base class called ```Vehicle```, and then derived classes called ```Truck, Car, Motprcycle``` all of which inherit the attributes of vehicle.
+Inheritance is one of the core concepts of OOP languages. It is a mechanism where you can to derive a ```class``` from another ```class``` for a hierarchy of classes that share a set of attributes and methods. It allows developers to reuse, extend and modify the behavior defined in other classes, **the ```class``` whose members are inherited is called the base ```class``` and the ```class``` that inherit those members is called the derived ```class```**. Inheritance allows you to define a base class that provides specific functionality (data and behavior) and to define derived classes that either inherit or override that functionality.<br>
+*e.g.:* A base ```class``` called ```Vehicle```, and then derived classes called ```Truck, Car, Motprcycle``` all of which inherit the attributes of vehicle.
 ```
 public class A
 {
@@ -487,26 +515,26 @@ The Repository pattern is a well-documented way of working with a data source. I
 *A repository performs the tasks of an intermediary between the domain model layers and data mapping, acting in a similar way to a set of domain objects in memory. Client objects declaratively build queries and send them to the repositories for answers. Conceptually, a repository encapsulates a set of objects stored in the database and operations that can be performed on them, providing a way that is closer to the persistence layer. Repositories, also, support the purpose of separating, clearly and in one direction, the dependency between the work domain and the data allocation or mapping.*<br>
 Basically, a repository allows you to populate data in memory that comes from the database in the form of the domain entities. Once the entities are in memory, they can be changed and then persisted back to the database through transactions.<br>
 A Repository Pattern can be implemented in Following ways:<br>
-- **One repository per entity (non-generic)**: This type of implementation involves the use of one repository class for each entity. For example, if you have two entities Order and Customer, each entity will have its own repository.
+- **One repository per entity (non-generic)**: This type of implementation involves the use of one repository ```class``` for each entity. For example, if you have two entities Order and Customer, each entity will have its own repository.
 - **Generic repository**: A generic repository is the one that can be used for all the entities, in other words it can be either used for Order or Customer or any other entity.
 
 #### Dependency Injection (DI)
 Dependency Injection is a software design pattern that allows us to develop loosely coupled code, which is a technique for achieving Inversion of Control (IoC) between classes and their dependencies. DI reduces tight coupling between software components and also enables us to better manage future changes and other complexity in a software. The purpose of DI is to make code maintainable.<br>
 Advantages:
-- Reduces class coupling.
+- Reduces ```class``` coupling.
 - Increases code reusability.
 - Improves code maintainability.
 - Make unit testing possible.
 
 The Dependency Injection pattern involves 3 types of classes:
-- Client Class: The client class (dependent class) is a class which depends on the service class
-- Service Class: The service class (dependency) is a class that provides service to the client class.
-- Injector Class: The injector class injects the service class object into the client class.
+- Client ```class```: The client ```class``` (dependent ```class```) is a ```class``` which depends on the service ```class```
+- Service ```class```: The service ```class``` (dependency) is a ```class``` that provides service to the client ```class```.
+- Injector ```class```: The injector ```class``` injects the service ```class``` object into the client ```class```.
 
 Types of Dependency Injection: 
-- Constructor Injection: In the constructor injection, the injector supplies the service (dependency) through the client class constructor.
-- Property Injection: In the property injection (aka (also known as) the Setter Injection), the injector supplies the dependency through a public property of the client class.
-- Method Injection: In this type of injection, the client class implements an interface which declares the method(s) to supply the dependency and the injector uses this interface to supply the dependency to the client class.
+- Constructor Injection: In the constructor injection, the injector supplies the service (dependency) through the client ```class``` constructor.
+- Property Injection: In the property injection (aka (also known as) the Setter Injection), the injector supplies the dependency through a public property of the client ```class```.
+- Method Injection: In this type of injection, the client ```class``` implements an interface which declares the method(s) to supply the dependency and the injector uses this interface to supply the dependency to the client ```class```.
 
 Dependency Lifetimes<br>
 At registration time, dependencies require a lifetime definition. The service lifetime defines the conditions under which a new service instance will be created. Below are the lifetimes defined by the ASP.Net DI framework. The terminology may be different if you choose to use a different framework.<br>
@@ -516,7 +544,7 @@ At registration time, dependencies require a lifetime definition. The service li
 
 #### [Chain of Responsibility](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/ChainOfResponsibility.linq)
 Chain of Responsibility is a **Behavioral Pattern** that simplifies object interconnections. Instead of senders and receivers maintaining references to all candidate receivers, each sender keeps a single reference to the head of the chain, and each receiver keeps a single reference to its immediate successor in the chain.<br>
-The derived classes know how to satisfy Client requests. If the "current" object is not available or sufficient, then it delegates to the base class, which delegates to the "next" object, and the circle of life continues.
+The derived classes know how to satisfy Client requests. If the "current" object is not available or sufficient, then it delegates to the base ```class```, which delegates to the "next" object, and the circle of life continues.
 
 #### [Observer](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/Observer.linq)
 Observer is a **Behavioral Pattern** in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.<br>
@@ -527,26 +555,26 @@ Abstract Factory is a **Creational Pattern** that lets you produce families of r
 Provide a level of indirection that abstracts the creation of families of related or dependent objects without directly specifying their concrete classes. The "factory" object has the responsibility for providing creation services for the entire platform family. Clients never create platform objects directly, they ask the factory to do that for them.
 
 #### [Singleton](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Creational%20Patterns/Singleton.linq)
-Singleton is a **Creational Pattern** which makes the class of the single instance object responsible for creation, initialization, access, and enforcement. Declare the instance as a private static data member. Provide a public static member function that encapsulates all initialization code, and provides access to the instance.<br>
+Singleton is a **Creational Pattern** which makes the ```class``` of the single instance object responsible for creation, initialization, access, and enforcement. Declare the instance as a private static data member. Provide a public static member function that encapsulates all initialization code, and provides access to the instance.<br>
 The Singleton pattern can be extended to support access to an application-specific number of instances.<br>
-The Singleton pattern ensures that a class has only one instance and provides a global point of access to that instance. It is named after the singleton set, which is defined to be a set containing one element. The office of the President of the United States is a Singleton.
+The Singleton pattern ensures that a ```class``` has only one instance and provides a global point of access to that instance. It is named after the singleton set, which is defined to be a set containing one element. The office of the President of the United States is a Singleton.
 
 #### [Facade](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Facade.linq)
-Facade is a **Structural Pattern** that hides the complexities of the system and provides an interface to the client using which the client can access the system. This pattern involves a single class which provides simplified methods required by client and delegates calls to methods of existing system classes.<br>
+Facade is a **Structural Pattern** that hides the complexities of the system and provides an interface to the client using which the client can access the system. This pattern involves a single ```class``` which provides simplified methods required by client and delegates calls to methods of existing system classes.<br>
 The facade pattern is appropriate when you have a complex system that you want to expose to clients in a simplified way, or you want to make an external communication layer over an existing system which is incompatible with the system. Facade deals with interfaces, not implementation. Its purpose is to hide internal complexity behind a single interface that appears simple on the outside.
 
 #### [Adapter](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Adapter.linq)
-Adapter is a **Structural Pattern** which converts the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.<br>
-Suppose you have a Bird class with ```fly()```, and ```makeSound()``` methods. And also a ToyDuck class with ```squeak()``` method. Let’s assume that you are short on ToyDuck objects and you would like to use Bird objects in their place. Birds have some similar functionality but implement a different interface, so we can't use them directly. So we will use adapter pattern.
+Adapter is a **Structural Pattern** which converts the interface of a ```class``` into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.<br>
+Suppose you have a Bird ```class``` with ```fly()```, and ```makeSound()``` methods. And also a ToyDuck ```class``` with ```squeak()``` method. Let’s assume that you are short on ToyDuck objects and you would like to use Bird objects in their place. Birds have some similar functionality but implement a different interface, so we can't use them directly. So we will use adapter pattern.
 
 <hr>
 
 ### SOLID
 
 #### S - Single responsibility Principle
-**Definition**: The Single Responsibility Principle states that every module or class should have responsibility for a single part of the functionality provided by the software.<br>
-**Example**: If we have two reasons to change a class, we have to split the functionality into two classes. Each class will handle only one responsibility lets say you have ```class Client``` which has register client and sends email functionalities, that is wrong, they should be splitted in two different classes (```class Client``` and ```class Email```) each one responsible for its own functionality.<br>
-**Why**: If we put more than one functionality in one class then it introduces coupling between two functionalities. So, if we change one functionality there is a chance we broke coupled functionality, which requires another round of testing to avoid any bug in the production environment. It reduces bug fixes and testing time once an application goes into the maintenance phase.<br>
+**Definition**: The Single Responsibility Principle states that every module or ```class``` should have responsibility for a single part of the functionality provided by the software.<br>
+**Example**: If we have two reasons to change a ```class```, we have to split the functionality into two classes. Each ```class``` will handle only one responsibility lets say you have ```class Client``` which has register client and sends email functionalities, that is wrong, they should be splitted in two different classes (```class Client``` and ```class Email```) each one responsible for its own functionality.<br>
+**Why**: If we put more than one functionality in one ```class``` then it introduces coupling between two functionalities. So, if we change one functionality there is a chance we broke coupled functionality, which requires another round of testing to avoid any bug in the production environment. It reduces bug fixes and testing time once an application goes into the maintenance phase.<br>
 **Benefits**:
 - Reduction in complexity of a code. A code is based on its functionality. A method holds logic for a single functionality or task. So, it reduces the code complexity.
 - Increased readability, extensibility, and maintenance. Each method has a single functionality so it is easy to read and maintain. 
@@ -556,8 +584,8 @@ Suppose you have a Bird class with ```fly()```, and ```makeSound()``` methods. A
 
 #### O - Open-Closed Principle
 **Definition**: The open/closed principle states that software entities (classes, modules, functions) should be open for extensions, but closed for modification.<br>
-**Example**: An implementation (of a class or function), once its logic and/or functionality is created, should be closed for further modification, you may use code refactoring in order to resolve errors of implementation, in the other hand the implementation (of a class or function) is open for extension of its logic and/or functionality.
-- Wrong Implementation for Mortgage class:
+**Example**: An implementation (of a ```class``` or ```function```), once its logic and/or functionality is created, should be closed for further modification, you may use code refactoring in order to resolve errors of implementation, in the other hand the implementation (of a ```class``` or function) is open for extension of its logic and/or functionality.
+- Wrong Implementation for Mortgage ```class```:
 ```
 public class Mortgage
 {
@@ -592,7 +620,7 @@ public class VariableRateMortgage : IMortgage
     public decimal CalculateInterest() => Loan * Variant;
 }
 ```
-So if there is a new mortgage type added there is no need to modify the logic of exiting classes, just extend the functionality by inheriting an interface (Mortgage interface in this case and create a new class which will have the implementation for ```CalculateInterest()``` method. I am using an interface but it could be an abstract class as well.<br>
+So if there is a new mortgage type added there is no need to modify the logic of exiting classes, just extend the functionality by inheriting an interface (Mortgage interface in this case and create a new ```class``` which will have the implementation for ```CalculateInterest()``` method. I am using an interface but it could be an ```abstract class``` as well.<br>
 **Why**: When a single change to a program results in a cascade of changes to dependent modules, that program exhibits the undesirable attributes that we have come to associate with 'bad' design. The program becomes fragile, rigid, unpredictable, and unreusable. A function that is doing too many things outside the realm of its responsibilities creates unnecessary entanglements that makes it harder to read and debug.<br>
 **Benefits**:
 - Extensibility. Where the design modules never change. When requirements change, you extend the behavior of such modules by adding new code, not by changing old code that already works in order to prevent cascade changes to dependent modules.
@@ -697,15 +725,15 @@ public class Program
     }
 }
 ```
-It's not always true that one must make changes in the inheritance tree but making changes at the class and method level also resolves problems, but the solution above was done by changing the inheritance tree.<br>
-**Why**: Places in implementation (class/function) that use a base class (in other words consume a service of a base class), must work correctly when the base class object is replaced by a child class (derived class) object.<br>
+It's not always true that one must make changes in the inheritance tree but making changes at the ```class``` and method level also resolves problems, but the solution above was done by changing the inheritance tree.<br>
+**Why**: Places in implementation (```class```/```function```) that use a base ```class``` (in other words consume a service of a base ```class```), must work correctly when the base ```class``` object is replaced by a child ```class``` (derived class) object.<br>
 **Benefits**:
 - Compatibility. It enables the binary compatibility between multiple releases and patches. In other words, It keeps the client code away from being impacted.
 - Type Safety. It's the easiest approach to handle type safety with inheritance, as types are not allowed to vary when inheriting.
 - Maintainability. Code that adheres to Liskov substitution is loosely dependent on each other, makes the right abstraction, and encourages code reusability.
 
 #### I - Interface Segregation Principle
-**Definition**: The interface segregation principle states not to force a client to depend on methods it does not use. Do not add additional functionality to an existing interface by adding new methods. Instead, create a new interface and let your class implement multiple interfaces if needed.<br>
+**Definition**: The interface segregation principle states not to force a client to depend on methods it does not use. Do not add additional functionality to an existing interface by adding new methods. Instead, create a new interface and let your ```class``` implement multiple interfaces if needed.<br>
 **Example**: If there is big fat interface then break it into a set of small interfaces with the related method(s) in it. It's similar to normalizing our database like normalizing database from 1NF to 3NF where a big table is broken into tables with related columns.
 - Violation of Interface Segregation
 ```
@@ -771,11 +799,11 @@ public class Scanner : IScanner // It is ok
     public void Scan() => Console.WriteLine("Scan Document");
 }
 ```
-**Why**: Do not design a big fat interface that forces the client to implement a method that is not required by it, instead design a small interface. So by doing this class only implement the required set of interface(s).<br>
+**Why**: Do not design a big fat interface that forces the client to implement a method that is not required by it, instead design a small interface. So by doing this ```class``` only implement the required set of interface(s).<br>
 **Benefits**:
 - Faster Compilation. If you have violated interface segregation i.e. stuffed methods together in the interface, and when method signature changes, you need to recompile all the derived classes.
 - Reusability. "Fat interfaces" (interfaces with additional useless methods) lead to inadvertent coupling between classes. Thus, an experienced dev knows coupling is the bane of reusability.
-- Maintainability. By avoiding unneeded dependencies, the system becomes easier to understand, lighter to test, quicker to change. Similarly, to the reader of your code, it would be harder to get an idea of what your class does from the class declaration line. So, if dev sees only the one god-interface that may have inherited other interfaces it will likely not be obvious. Compare ```MyMachine : IMachine``` to ```MyMachine : IPrinter, IScanner, IFaxer```. The latter tells you a lot, the first makes you guess at best.
+- Maintainability. By avoiding unneeded dependencies, the system becomes easier to understand, lighter to test, quicker to change. Similarly, to the reader of your code, it would be harder to get an idea of what your ```class``` does from the ```class``` declaration line. So, if dev sees only the one god-interface that may have inherited other interfaces it will likely not be obvious. Compare ```MyMachine : IMachine``` to ```MyMachine : IPrinter, IScanner, IFaxer```. The latter tells you a lot, the first makes you guess at best.
 
 #### D - Dependency Inversion Principle (Dependency injection)
 **Definition**: The dependency inversion principle is a way to decouple software modules. This principle states that:
@@ -839,7 +867,7 @@ public class Program
     }
 }
 ```
-**Why**: The principle says that high-level modules should depend on abstraction, not on the details, of low level modules, in other words not the implementation of the low level module. Abstraction should not depend on details. Details should depend on abstraction. In simple words the principle says that there should not be a tight coupling among components (in other words two modules, two classes) of software and to avoid that, the components should depend on abstraction, in other words a contract (interface or abstract class).<br>
+**Why**: The principle says that high-level modules should depend on abstraction, not on the details, of low level modules, in other words not the implementation of the low level module. Abstraction should not depend on details. Details should depend on abstraction. In simple words the principle says that there should not be a tight coupling among components (in other words two modules, two classes) of software and to avoid that, the components should depend on abstraction, in other words a contract (```interface``` or ```abstract class```).<br>
 **Benefits**:
 - Reusability. Effectively, the dependency inversion reduces coupling between different pieces of code. Thus we get reusable code.
 - Maintainability. It is also important to mention that changing already implemented modules is risky. By depending on abstraction and not on concrete implementation, we can reduce that risk by not having to change high-level modules in our project. It also gives us flexibility and stability at the level of the entire architecture of our application. Our application will be able to evolve more securely and become stable and robust.
@@ -1127,7 +1155,7 @@ If you're in the global scope there is no difference but if you are in a functio
 
 #### What is a Directive?
 At the core, a directive is a function that executes whenever the Angular compiler finds it in the DOM. Angular directives are used to extend the power of the HTML by giving it new syntax. Each directive has a name, either one from the Angular predefined like ```ng-repeat```, or a custom one which you can name as you prefer. There are 3 types of directives:
-- **Component Directives** These form the main class having details of how the component should be processed, instantiated and used at runtime.
+- **Component Directives** These form the main ```class``` having details of how the component should be processed, instantiated and used at runtime.
 - **Structural Directives** basically deals with manipulating the DOM elements. Structural directives have a * sign before the directive. For example, *ngIf and *ngFor.
 - **Attribute Directives** they deal with changing the look and behavior of the dom element. You can create your own directives.
 
@@ -1210,7 +1238,7 @@ In a scope hierarchy, each view has its own $scope. Hence, the variables set by 
 	- $scope for Controller 2 
 	- $scope for Controller n
 	
-#### How to generate a class in Angular using CLI?
+#### How to generate a ```class``` in Angular using CLI?
 ```ng generate class MyClassName [options]```
 
 #### How do Observables differ from Promises?
@@ -1220,19 +1248,19 @@ As soon as a promise is made, the execution takes place. However, this is not th
 Written with HTML, templates in Angular contains Angular-specific attributes and elements. Combined with information coming from the controller and model, templates are then further rendered to cater the user with the dynamic view.
 
 #### Explain the difference between an Annotation and a Decorator in Angular?
-- **Annotations** are used for creating an annotation array. They are only metadata set of the class using the Reflect Metadata library.
-- **Decorators** are design patterns used for separating decoration or modification of some class without changing the original source code.
+- **Annotations** are used for creating an annotation array. They are only metadata set of the ```class``` using the Reflect Metadata library.
+- **Decorators** are design patterns used for separating decoration or modification of some ```class``` without changing the original source code.
 
 #### What are the building blocks of Angular?
 There are essentially 9 building blocks of an Angular application. These are:
-- **Components**: A component controls one or more views. Each view is some specific section of the screen. Every Angular application has at least one component, known as the root component. It is bootstrapped inside the main module, known as the root module. A component contains application logic defined inside a class. This class is responsible for interacting with the view via an API of properties and methods.
+- **Components**: A component controls one or more views. Each view is some specific section of the screen. Every Angular application has at least one component, known as the root component. It is bootstrapped inside the main module, known as the root module. A component contains application logic defined inside a ```class```. This ```class``` is responsible for interacting with the view via an API of properties and methods.
 - **Data Binding**: The mechanism by which parts of a template coordinates with parts of a component is known as data binding. In order to let Angular know how to connect both sides (template and its component), the binding markup is added to the template HTML.
-- **Dependency Injection (DI)**: Angular makes use of DI to provide required dependencies to new components. Typically, dependencies required by a component are services. A component's constructor parameters tell Angular about the services that a component requires. So, a dependency injection offers a way to supply fully-formed dependencies required by a new instance of a class.
+- **Dependency Injection (DI)**: Angular makes use of DI to provide required dependencies to new components. Typically, dependencies required by a component are services. A component's constructor parameters tell Angular about the services that a component requires. So, a dependency injection offers a way to supply fully-formed dependencies required by a new instance of a ```class```.
 - **Directives**: The templates used by Angular are dynamic in nature. Directives are responsible for instructing Angular about how to transform the DOM when rendering a template. Actually, components are directives with a template. Other types of directives are attribute and structural directives.
-- **Metadata**: In order to let Angular know how to process a class, metadata is attached to the class. For doing so decorators are used.
+- **Metadata**: In order to let Angular know how to process a ```class```, metadata is attached to the ```class```. For doing so decorators are used.
 - **Modules**: Also known as ```NgModules```, a module is an organized block of code with a specific set of capabilities. It has a specific application domain or a workflow. Like components, any Angular application has at least one module. This is known as the root module. Typically, an Angular application has several modules.
 - **Routing**: An Angular router is responsible for interpreting a browser URL as an instruction to navigate to a client-generated view. The router is bound to links on a page to tell Angular to navigate the application view when a user clicks on it.
-- **Services**: A very broad category, a service can be anything ranging from a value and function to a feature that is required by an Angular app. Technically, a service is a class with a well-defined purpose.
+- **Services**: A very broad category, a service can be anything ranging from a value and function to a feature that is required by an Angular app. Technically, a service is a ```class``` with a well-defined purpose.
 - **Template**: Each component's view is associated with its companion template. A template in Angular is a form of HTML tags that lets Angular know that how it is meant to render the component.
 
 #### Explain the differences between Angular and jQuery?
