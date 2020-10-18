@@ -267,11 +267,18 @@ int y = (int) myObj; // Unboxing
 #### ```ref``` vs ```out``` parameters
 An argument passed as ```ref``` must be initialized before passing to the method whereas ```out``` parameter needs not to be initialized before passing to a method.
 
-#### ```Array``` vs ```Arraylist```?
+#### ```Array``` vs ```Arraylist```
 In an ```array```, we can have items of the same type only. The size of the ```array``` is fixed when compared. To an ```arraylist``` is similar to an array, but it doesn't have a fixed size.
 
 #### ```System.Array.CopyTo()``` and ```System.Array.Clone()```
 Using ```Clone()``` method, we creates a new array object containing all the elements in the original Array and using ```CopyTo()``` method all the elements of existing array copies into another existing array. Both methods perform a shallow copy.
+
+#### ```is``` vs ```as``` operators
+- ```is``` operator is used to check the compatibility of an object with a given type, and it returns the result as ```Boolean```.
+- ```as``` operator is used for casting of an object to a type or a ```class```
+
+#### ```throw``` vs ```throw ex```
+```throw``` statement preserves original error stack whereas ```throw ex``` have the stack trace from their ```throw``` point. It is always advised to use ```throw``` because it provides more accurate error information.
 
 <hr>
 
@@ -375,6 +382,15 @@ All types and type members have an accessibility level. The accessibility level 
 - ```internal```: The type or member can be accessed by any code in the same assembly, but not from another assembly.
 - ```protected internal```: The type or member can be accessed by any code in the assembly in which it's declared, or from within a derived ```class``` in another assembly.
 - ```private protected```: The type or member can be accessed only within its declaring assembly, by code in the same ```class``` or in a type that is derived from that ```class```.
+
+#### What are circular references?
+Circular reference is situation in which two or more resources are interdependent on each other causes the lock condition and make the resources unusable.
+
+#### List down the commonly used types of exceptions
+```NullReferenceException, ArgumentException, ArgumentNullException, ArithmeticException, OverflowException, IndexOutOfRangeException, InvalidCastException, OutOfMemoryException, StackOverflowException```
+
+#### What are the different ways a method can be overloaded?
+Methods can be overloaded using different data types for a parameter, different order of parameters, and different number of parameters.
 
 <hr>
 
