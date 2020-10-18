@@ -1618,4 +1618,13 @@ export class AppModule { }
 
 ### Architecture
 
+#### What is Bounded Context in DDD?
+It is the delimited applicability of a particular model. Gives team members a clear and shared underestanding of what has to be consistent and what can be developed independently. Bounded Context is a central pattern in Domain-Driven Design when dealing with large models and teams, it is used in order to devide the models of underlying domain implementing **ubiquotous language** to help the communication between devs domain experts.
+
+#### What is Ubiquotous Language in DDD?
+Ubiquotous Language is a design approach, which consists notably of striving to use the vocabulary of a business domain in the all way into the product source code, which can achieve the practice of building up a common, rigorous communication between developers and users (domain experts).
+
+#### What is Value Object in DDD?
+Value object is an immutable type that is destinguished only by the state of its properties. In C# the type must have all of its state passed in at construction, any property must be read-only, which can be achieved using private setters ```public int n { get; private set; }```. **Value objects cannot be changed once they are created**. 
+
 #### [Principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
