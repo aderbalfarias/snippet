@@ -167,6 +167,8 @@ Routing is functionality that map incoming request to the route handler. The rou
 - **CONNECT**, Estabilishes tunnels. Proxy server to tunnel the TCP connection to the desired destination.
 - **PATCH**, Making partial changes to an existing resource.
 
+<hr>
+
 ### C# Versus
 
 #### ```abstract class``` vs ```interface```
@@ -261,6 +263,8 @@ int y = (int) myObj; // Unboxing
 #### ```ref``` vs ```out``` parameters
 An argument passed as ```ref``` must be initialized before passing to the method whereas ```out``` parameter needs not to be initialized before passing to a method.
 
+<hr>
+
 ### C# Keywords
 
 #### Explain the keyword ```virtual```?
@@ -284,6 +288,8 @@ When applied to a class, the ```sealed``` modifier prevents other classes from i
 class A {}
 sealed class B : A {}
 ```
+
+<hr>
 
 ### C# General 
 
@@ -341,6 +347,8 @@ private async Task<T> Retry<T>(Func<Task<T>> action, TimeSpan retryInterval, int
 
 #### Can we use ```this``` command within a static method?
 We can't use ```this``` in a static method because we can only use static variables/methods in a static method.
+
+<hr>
 
 ### Object-oriented programming (OOP)
 
@@ -469,6 +477,8 @@ class Program
 #### What is Inversion of Control?
 Inversion of control is a *Principle in softeware engineering* by which the control of objects or portions of a program is transferred to a container or framework. It is most oftem used in the context of OOP.
 
+<hr>
+
 ### Design Patterns
 
 #### Repository
@@ -528,6 +538,8 @@ The facade pattern is appropriate when you have a complex system that you want t
 #### [Adapter](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Adapter.linq)
 Adapter is a **Structural Pattern** which converts the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.<br>
 Suppose you have a Bird class with ```fly()```, and ```makeSound()``` methods. And also a ToyDuck class with ```squeak()``` method. Let’s assume that you are short on ToyDuck objects and you would like to use Bird objects in their place. Birds have some similar functionality but implement a different interface, so we can't use them directly. So we will use adapter pattern.
+
+<hr>
 
 ### SOLID
 
@@ -832,6 +844,8 @@ public class Program
 - Reusability. Effectively, the dependency inversion reduces coupling between different pieces of code. Thus we get reusable code.
 - Maintainability. It is also important to mention that changing already implemented modules is risky. By depending on abstraction and not on concrete implementation, we can reduce that risk by not having to change high-level modules in our project. It also gives us flexibility and stability at the level of the entire architecture of our application. Our application will be able to evolve more securely and become stable and robust.
 
+<hr>
+
 ### Sql Server
 
 #### What is SQL Profiler?
@@ -931,6 +945,8 @@ A ```@@SPID``` returns the session ID of the current user process.
 #### What is Filtered Index?
 Filtered Index is used to filter some portion of rows in a table to improve query performance, index maintenance and reduces index storage costs. When the index is created with ```WHERE``` clause, then it is called Filtered Index.
 
+<hr>
+
 ### [Git Commands](https://github.com/AderbalFarias/snippet/blob/master/Commands/git-commands.md)
 
 The code below is meant to be used in shell scripts where the comments are done using the **#** character
@@ -1004,6 +1020,8 @@ git checkout [branchWhereDevelopmentWasDone]
 git merge [branchRoot]
 git push --set-upstream origin [branchWhereDevelopmentWasDone]
 ```
+
+<hr>
 
 ### Front-end JavaScript
 
@@ -1102,6 +1120,8 @@ function myfunction() {
 
 #### What is the difference between ```ex = 1;``` and ```var ex = 1;``` in JavaScript?
 If you're in the global scope there is no difference but if you are in a function ```var``` will create a local variable whereas ```ex = 1;``` will look up the scope until it finds the variable or hits the global scope. 
+
+<hr>
 
 ### Front-end Angular
 
@@ -1549,6 +1569,8 @@ import { SettingsService } from './services/settings.service';
 })
 export class AppModule { }
 ```
+
+<hr>
 
 ### Architecture
 
