@@ -1635,9 +1635,21 @@ Ubiquotous Language is a design approach, which consists notably of striving to 
 Value object is an immutable type that is destinguished only by the state of its properties. In C# the type must have all of its state passed in at construction, any property must be read-only, which can be achieved using private setters ```public int n { get; private set; }```. **Value objects cannot be changed once they are created**. 
 
 #### What is the difference between Layers and Tiers?
+A layer is a part of your code (logical), if your application is a cake, this is a slice. <br>
+A tier is a machine, a server (physical). A tier hosts one or more layers. <br>
 - **Layers (logical)** are merely a way of organizing your code. Typical layers include Presentation, Business (Business Logic Layer, BLL) and Data (Database Access Layer DAL). The same as the traditional 3-tier model. But when we're talking about layers, we're only talking about logical organization of code. In no way is it implied that these layers might run on different computers or in different processes on a single computer or even in a single process on a single computer. All we are doing is discussing a way of organizing a code into a set of layers defined by specific function.
-- **Tiers(physical)** are only about where the code runs. Specifically, tiers are places where layers are deployed and where layers run. In other words, tiers are the physical deployment of layers.<br>
-A layer is a part of your code (logical), if your application is a cake, this is a slice.<br>
-A tier is a machine, a server (physical). A tier hosts one or more layers.
+- **Tiers(physical)** are only about where the code runs. Specifically, tiers are places where layers are deployed and where layers run. In other words, tiers are the physical deployment of layers.
+
+#### What is dead letter queue?
+Dead letter queue is a service implementation to store messages that meet one or more of the following criteria:
+- Message that is sent to a queue that does not exist.
+- Queue length limit exceeded.
+- Message length limit exceeded.
+- Message is rejected by another queue exchange.
+- Message reaches a threshold read counter number, because it is not consumed. Sometimes this is called a "back out queue".
+
+#### What is difference between Durable and Non-Durable queues?
+- Durable queues keep the message around persistently for any suitable customer to consume them.
+- Non-Durable queues handle just if the subscribe is online at the moment the message is sent/published.
 
 #### [Principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
