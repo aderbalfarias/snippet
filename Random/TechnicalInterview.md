@@ -167,6 +167,13 @@ Routing is functionality that map incoming request to the route handler. The rou
 - **CONNECT**, Estabilishes tunnels. Proxy server to tunnel the TCP connection to the desired destination.
 - **PATCH**, Making partial changes to an existing resource.
 
+#### What are the advantages of ASP.NET Core over ASP.NET?
+There are following advantages of ASP.NET Core over ASP.NET :
+- It is cross-platform, so it can be run on Windows, Linux, and Mac.
+- There is no dependency on framework installation because all the required dependencies are ship with our application.
+- ASP.NET Core can handle more request than the ASP.NET.
+- Multiple deployment options available with ASP.NET Core.
+
 <hr>
 
 ### C# Versus
