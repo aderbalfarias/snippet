@@ -174,6 +174,40 @@ There are following advantages of ASP.NET Core over ASP.NET :
 - ASP.NET Core can handle more request than the ASP.NET.
 - Multiple deployment options available with ASP.NET Core.
 
+#### Explain constraints on type parameters?
+Constraints inform the compiler about the capabilities a type argument must have. Without any constraints, the type argument could be any type. Constraints are specified by using the ```where``` contextual keyword. The following table lists the various types of constraints:
+- ```where T : struct``` The type argument must be a non-nullable value type. Because all value types have an accessible parameterless constructor, the struct constraint implies the ```new()``` constraint and can't be combined with the ```new()``` constraint. You can't combine the ```struct``` constraint with the ```unmanaged``` constraint
+- ```where T : class```	The type argument must be a reference type. This constraint applies also to any ```class```, ```interface```, ```delegate```, or ```array``` type. T must be a non-nullable reference type.
+- ```where T : class?``` The type argument must be a reference type, either nullable or non-nullable. This constraint applies also to any ```class```, ```interface```, ```delegate```, or ```array``` type.
+- ```where T : notnull``` The type argument must be a non-nullable type. The argument can be a non-nullable reference type or value type.
+- ```where T : unmanaged``` The type argument must be a non-nullable unmanaged type. The unmanaged constraint implies the struct constraint and can't be combined with either the ```struct``` or ```new()``` constraints.
+- ```where T : new()```	The type argument must have a ```public``` parameterless constructor. When used together with other constraints, the ```new()``` constraint must be specified last. The ```new()``` constraint can't be combined with the ```struct``` and ```unmanaged``` constraints.
+- ```where T : <base class name>``` The type argument must be or derive from the specified base ```class```. T must be a non-nullable reference type derived from the specified base ```class```.
+- ```where T : <base class name>?``` The type argument must be or derive from the specified base ```class```. T may be either a nullable or non-nullable type derived from the specified base ```class```.
+- ```where T : <interface name>``` The type argument must be or implement the specified ```interface```. Multiple ```interface``` constraints can be specified. The constraining interface can also be generic. T must be a non-nullable type that implements the specified ```interface```.
+- ```where T : <interface name>?``` The type argument must be or implement the specified ```interface```. Multiple ```interface``` constraints can be specified. The constraining interface can also be generic. T may be a nullable reference type, a non-nullable reference type, or a value type. T may not be a nullable value type.
+- ```where T : U``` The type argument supplied for T must be or derive from the argument supplied for U. In a nullable context, if U is a non-nullable reference type, T must be non-nullable reference type. If U is a nullable reference type, T may be either nullable or non-nullable.
+```
+public class EmployeeList<T> where T : Employee, IEmployee, System.IComparable<T>, new() {}
+
+public class GenericList<T> where T : Employee {}
+
+public static void OpEqualsTest<T>(T s, T t) where T : class {}
+
+// Multiple parameters, and multiple constraints to a single parameter
+class Base { }
+class Test<T, U>
+    where U : struct
+    where T : Base, new()
+{ }
+
+// T is a type constraint in the context of the Add method, and an unbounded type parameter in the context of the List class
+public class List<T>
+{
+    public void Add<U>(List<U> items) where U : T {/*...*/}
+}
+```
+
 <hr>
 
 ### C# Versus
