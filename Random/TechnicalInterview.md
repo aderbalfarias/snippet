@@ -1218,14 +1218,14 @@ At the core, a directive is a function that executes whenever the Angular compil
 
 #### What are Lifecycle hooks in Angular? Explain some of them
 Angular components enter its lifecycle from the time it is created to the time it is destroyed. Angular hooks provide ways to tap into these phases and trigger changes at specific phases in a lifecycle.
-- ```ngOnChanges()```: This method is called whenever one or more input properties of the component changes. The hook receives a SimpleChanges object containing the previous and current values of the property.
-- ```ngOnInit()```: This hook gets called once, after the ```ngOnChanges``` hook. It initializes the component and sets the input properties of the component.
-- ```ngDoCheck()```: It gets called after ```ngOnChanges``` and ```ngOnInit``` and is used to detect and act on changes that cannot be detected by Angular. We can implement our change detection algorithm in this hook. 
-- ```ngAfterContentInit()```: It gets called after the first ```ngDoCheck``` hook. This hook responds after the content gets projected inside the component.
-- ```ngAfterContentChecked()```: It gets called after ngAfterContentInit and every subsequent ```ngDoCheck```. It responds after the projected content is checked.
-- ```ngAfterViewInit()```: It responds after a component's view, or a child component's view is initialized.
-- ```ngAfterViewChecked()```: It gets called after ```ngAfterViewInit```, and it responds after the component's view, or the child component's view is checked.
-- ```ngOnDestroy()```: It gets called just before Angular destroys the component. This hook can be used to clean up the code and detach event handlers.
+- ```ngOnChanges()```: Respond when Angular sets or resets data-bound input properties. The method receives a SimpleChanges object of current and previous property values. Called before ```ngOnInit()``` and whenever one or more data-bound input properties change. If your component has no inputs or you use it without providing any inputs it won't be called.
+- ```ngOnInit()```: Initialize the directive or component after Angular first displays the data-bound properties and sets the directive or component's input properties. Called once, after the first ```ngOnChanges()```. 
+- ```ngDoCheck()```: Detect and act upon changes that Angular can't or won't detect on its own. Called immediately after ```ngOnChanges()``` on every change detection run, and immediately after ```ngOnInit()``` on the first run.
+- ```ngAfterContentInit()```: Respond after Angular projects external content into the component's view, or into the view that a directive is in. Called once after the first ```ngDoCheck()```.
+- ```ngAfterContentChecked()```: Respond after Angular checks the content projected into the directive or component. Called after ```ngAfterContentInit()``` and every subsequent ```ngDoCheck()```.
+- ```ngAfterViewInit()```: Respond after Angular initializes the component's views and child views, or the view that contains the directive. Called once after the first ```ngAfterContentChecked()```.
+- ```ngAfterViewChecked()```: Respond after Angular checks the component's views and child views, or the view that contains the directive. Called after the ```ngAfterViewInit()``` and every subsequent ```ngAfterContentChecked()```.
+- ```ngOnDestroy()```: Cleanup just before Angular destroys the directive or component. Unsubscribe Observables and detach event handlers to avoid memory leaks. Called immediately before Angular destroys the directive or component.
 
 #### Explain Dependency Injection in Angular?
 Dependency injection is an application design pattern that is implemented by Angular and forms the core concepts of Angular. <br>
