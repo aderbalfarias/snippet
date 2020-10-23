@@ -321,6 +321,10 @@ Using ```Clone()``` method, we creates a new array object containing all the ele
 #### ```throw``` vs ```throw ex```
 ```throw``` statement preserves original error stack whereas ```throw ex``` have the stack trace from their ```throw``` point. It is always advised to use ```throw``` because it provides more accurate error information.
 
+#### Sync vs Async
+- Synchronous, data is sent in form of blocks or frames. Full duplex type, compulsory sincronization.
+- Asynchronous, data is sent in form of byte or character. Half duplex transmission, start bits and stop bits are added with data it does not require synchronization.
+
 <hr>
 
 ### C# Keywords
