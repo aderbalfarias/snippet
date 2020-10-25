@@ -151,7 +151,7 @@ It defines how the application will respond to each HTTP request. We can configu
 #### What is the difference between ```IApplicationBuilder.Use()``` and ```IApplicationBuilder.Run()```?
 We can use both the methods in Configure methods of startup ```class```. Both are used to add middleware delegate to the application request pipeline. 
 - ```IApplicationBuilder.Use()``` may call the next middleware in the pipeline 
-- ```IApplicationBuilder.Run()``` method never calls the subsequent or next middleware. After ```IApplicationBuilder.Run``` method, system stop adding middleware in request. pipeline.
+- ```IApplicationBuilder.Run()``` method never calls the subsequent or next middleware. After ```IApplicationBuilder.Run``` method, system stop adding middleware in the request. pipeline.
 
 #### What is routing in ASP.NET Core?
 Routing is functionality that map incoming request to the route handler. The route can have values (extract them from URL) that used to process the request. The Routing uses routes for map incoming request with route handler and Generate URL that used in response.
@@ -164,15 +164,8 @@ Routing is functionality that map incoming request to the route handler. The rou
 - **DELETE**, Delete data.
 - **TRACE**, Performs a message loop-back test along the path to the target resource.
 - **OPTIONS**, Used to describe the communication options for the target resource.
-- **CONNECT**, Estabilishes tunnels. Proxy server to tunnel the TCP connection to the desired destination.
+- **CONNECT**, Establishes tunnels. Proxy server to tunnel the TCP connection to the desired destination.
 - **PATCH**, Making partial changes to an existing resource.
-
-#### What are the advantages of ASP.NET Core over ASP.NET?
-There are following advantages of ASP.NET Core over ASP.NET :
-- It is cross-platform, so it can be run on Windows, Linux, and Mac.
-- There is no dependency on framework installation because all the required dependencies are ship with our application.
-- ASP.NET Core can handle more request than the ASP.NET.
-- Multiple deployment options available with ASP.NET Core.
 
 #### Explain constraints on type parameters?
 Constraints inform the compiler about the capabilities a type argument must have. Without any constraints, the type argument could be any type. Constraints are specified by using the ```where``` contextual keyword. The following table lists the various types of constraints:
@@ -213,7 +206,7 @@ public class List<T>
 ### C# Versus
 
 #### ```abstract class``` vs ```interface```
-An ```abstract class``` allows you to create functionalities that subclasses can implement or override and it also can have have constructors. An interface only allows you to define functionalities, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a ```class``` can extend only one ```abstract class```, it can take advantage of multiple interfaces.
+An ```abstract class``` allows you to create functionalities, it can be be partial implemented with methods and operations which allow subclasses to implement or override and ```abstract class``` can have constructors. An interface only allows you to define functionalities, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a ```class``` can extend only one ```abstract class```, it can take advantage of multiple interfaces.
 
 #### ```System.String``` vs ```System.StringBuilder```
 - ```System.String```: It is immutable, it means when a string object is created you cannot modify and you have always to create a new object string type in memory.<br>  
