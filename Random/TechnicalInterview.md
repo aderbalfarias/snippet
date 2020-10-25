@@ -9,7 +9,7 @@ There are following advantages of ASP.NET Core over ASP.NET:
 - It is cross-platform, so it can be run on Windows, Linux, and Mac.
 - There is no dependency on framework installation because all the required dependencies are ship with our application.
 - ASP.NET Core can handle more request than the ASP.NET.
-- Multiple deployment options available withASP.NET Core.
+- Multiple deployment options available with ASP.NET Core.
 
 #### What is the startup ```class``` in ASP.NET core?
 Startup ```class``` is the entry point of the ASP.NET Core application. Every .NET Core application must have this ```class```. This ```class``` contains the application configuration. It is not necessary that ```class``` name must "Startup.cs", it can be anything, we can configure startup ```class``` in Program ```class```.
