@@ -206,7 +206,7 @@ public class List<T>
 ### C# Versus
 
 #### ```abstract class``` vs ```interface```
-An ```abstract class``` allows you to create functionalities, it can be be partial implemented with methods and operations which allow subclasses to implement or override and ```abstract class``` can have constructors. An interface only allows you to define functionalities, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a ```class``` can extend only one ```abstract class```, it can take advantage of multiple interfaces.
+An ```abstract class``` allows you to create functionalities, it can be partially implemented with methods and operations which allow subclasses to implement or override and ```abstract class``` can have constructors. An interface only allows you to define functionalities, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a ```class``` can extend only one ```abstract class```, it can take advantage of multiple interfaces.
 
 #### ```System.String``` vs ```System.StringBuilder```
 - ```System.String```: It is immutable, it means when a string object is created you cannot modify and you have always to create a new object string type in memory.<br>  
@@ -228,9 +228,9 @@ Essentially, there is no difference between string and String in C#.<br>
 #### ```Action``` vs ```Func``` vs ```Predicate```
 - ```Action```: Delegate (pointer) to a method that takes zero, one or more input parameters but doesn't return anything.<br>
 - ```Func```: Delegate (pointer) to a method that takes zero, one or more input parameters and returns a value or reference.<br>
-- ```Predicate```: A special form of Func and mainly used to validate something and return bool. It is mainly used with collections to whether the item in the collection is valid or not. Basically, its a wrapper of Func like ```Func<T, bool>```.<br>
+- ```Predicate```: A special form of Func and mainly used to validate something and return a bool. It is mainly used with collections to whether the item in the collection is valid or not. Basically, its a wrapper of Func like ```Func<T, bool>```.<br>
 *When to use that*?<br>
-Action is useful if we don’t want to return any result. But if we want to return result, we could use Func. Predicate is mainly to used to validate any condition.
+Action is useful if we don’t want to return any result. But if we want to return a result, we could use Func. The predicate is mainly used to validate any condition.
 
 #### Deferred Execution vs Immediate Execution
 - Deferred Execution: It simply means that the query is not executed at the time it's specified. Specifically, this is accomplished by assigning the query to a variable. When this is done the query definition is stored in the variable but the query ins't executed until the query variable is interated.
@@ -266,10 +266,10 @@ Managed code is the code which is managed by the CLR(Common Language Runtime) in
     - Memory buffer overflow may occur.
    
 #### ```Object.ToString()``` vs ```Convert.ToString()```
-```Object.ToString()``` cannot handle ```null``` values which means the *Null reference exception* will be thrown when trying to use ```.ToString()``` on a object which is ```null```, in the other hand ```Convert.ToString()``` can handle ```null``` values it won't generate *Null reference exception*.
+```Object.ToString()``` cannot handle ```null``` values which means the *Null reference exception* will be thrown when trying to use ```.ToString()``` on an object which is ```null```, in the other hand ```Convert.ToString()``` can handle ```null``` values it won't generate *Null reference exception*.
 
 #### ```while``` vs ```for```
-The difference is that the ```for``` loop is used when you know how many times you need to interate through the code, on the other hand, the ```while``` loop is used when you need to repeat something until a given statement is true.
+The difference is that the ```for``` loop is used when you know how many times you need to iterate through the code, on the other hand, the ```while``` loop is used when you need to repeat something until a given statement is true.
 ```
 while(condition == true){}
 for(initializer; condition; iterator){}
