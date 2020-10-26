@@ -686,7 +686,7 @@ So if there is a new mortgage type added there is no need to modify the logic of
 We can formulate this mathematically as:
 - Let ϕ(x) be a property provable about objects x of type T.
 - Then ϕ(y) should be valid for objects y of type S, where S is a subtype of T. <br> 
-More generally, it states that objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.<br>
+##### More generally, it states that objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.
 **Example**: 
 - Violation of Liskov Substitution Principle
 ```
