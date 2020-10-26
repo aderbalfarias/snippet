@@ -519,8 +519,8 @@ public void AddNumbers(int a, int b, int c)
 ```
 
 #### What is Inheritance?
-Inheritance is one of the core concepts of OOP languages. It is a mechanism where you can to derive a ```class``` from another ```class``` for a hierarchy of classes that share a set of attributes and methods. It allows developers to reuse, extend and modify the behavior defined in other classes, **the ```class``` whose members are inherited is called the base ```class``` and the ```class``` that inherit those members is called the derived ```class```**. Inheritance allows you to define a base class that provides specific functionality (data and behavior) and to define derived classes that either inherit or override that functionality.<br>
-*e.g.:* A base ```class``` called ```Vehicle```, and then derived classes called ```Truck, Car, Motprcycle``` all of which inherit the attributes of vehicle.
+Inheritance is one of the core concepts of OOP languages. It is a mechanism where you can to derive a ```class``` from another ```class``` for a hierarchy of classes that share a set of attributes and methods. It allows developers to reuse, extend and modify the behaviour defined in other classes, **the ```class``` whose members are inherited is called the base ```class``` and the ```class``` that inherit those members is called the derived ```class```**. Inheritance allows you to define a base class that provides specific functionality (data and behaviour) and to define derived classes that either inherit or override that functionality.<br>
+*e.g.:* A base ```class``` called ```Vehicle```, and then derived classes called ```Truck, Car, Motorcycle``` all of which inherit the attributes of vehicle.
 ```
 public class A
 {
@@ -557,7 +557,7 @@ class Program
 ```
 
 #### What is Inversion of Control?
-Inversion of control is a *Principle in softeware engineering* by which the control of objects or portions of a program is transferred to a container or framework. It is most oftem used in the context of OOP.
+Inversion of control is a *Principle in software engineering* by which the control of objects or portions of a program is transferred to a container or framework. It is most often used in the context of OOP.
 
 <hr>
 
