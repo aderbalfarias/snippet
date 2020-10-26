@@ -626,7 +626,7 @@ Suppose you have a Bird ```class``` with ```fly()```, and ```makeSound()``` meth
 ### SOLID
 
 #### S - Single responsibility Principle
-**Definition**: The Single Responsibility Principle states that every module or ```class``` should have responsibility for a single part of the functionality provided by the software.<br>
+**Definition**: The Single responsibility principle states that every module or ```class``` should have responsibility for a single part of the functionality provided by the software.<br>
 **Example**: If we have two reasons to change a ```class```, we have to split the functionality into two classes. Each ```class``` will handle only one responsibility lets say you have ```class Client``` which has register client and sends email functionalities, that is wrong, they should be splitted in two different classes (```class Client``` and ```class Email```) each one responsible for its own functionality.<br>
 **Why**: If we put more than one functionality in one ```class``` then it introduces coupling between two functionalities. So, if we change one functionality there is a chance we broke coupled functionality, which requires another round of testing to avoid any bug in the production environment. It reduces bug fixes and testing time once an application goes into the maintenance phase.<br>
 **Benefits**:
@@ -685,7 +685,7 @@ So if there is a new mortgage type added there is no need to modify the logic of
 **Definition**: The Liskov substitution principle states that if S is a subtype of T, then objects of type T may be replaced (or substituted) with objects of type S.<br>
 We can formulate this mathematically as:
 - Let ϕ(x) be a property provable about objects x of type T.
-- Then ϕ(y) should be valid for objects y of type S, where S is a subtype of T.
+- Then ϕ(y) should be valid for objects y of type S, where S is a subtype of T. <br> 
 More generally, it states that objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.<br>
 **Example**: 
 - Violation of Liskov Substitution Principle
