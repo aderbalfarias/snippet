@@ -862,7 +862,8 @@ public class Scanner : IScanner // It is ok
 #### D - Dependency Inversion Principle (Dependency injection)
 **Definition**: The dependency inversion principle is a way to decouple software modules. This principle states that:
 - High-level modules should not depend on low-level modules. Both should depend on abstractions.
-- Abstractions should not depend on details. Details should depend on abstractions.
+- Abstractions should not depend on details. Details should depend on abstractions.<br>
+##### 
 To comply with this principle, we need to use a design pattern known as a dependency inversion pattern, most often solved by using dependency injection.<br>
 **Example**:<br>
 - Not following the Dependency Inversion
