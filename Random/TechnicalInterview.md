@@ -1134,7 +1134,8 @@ var test = "Test" // it is local
 Timers are used to execute a piece of code at a set time or also to repeat the code in a given interval of time. This is done by using the functions setTimeout, setInterval and clearInterval:
 - ```setTimeout(function, delay)```, function is used to start a timer that calls a particular function after the mentioned delay.
 - ```setInterval(function, delay)```, function is used to repeatedly execute the given function in the mentioned delay and only halts when cancelled.
-- ```clearInterval(id)```, function instructs the timer to stop.
+- ```clearInterval(id)```, function instructs the timer to stop.<br>
+######
 The drawbacks, timers are operated within a single thread, and thus events might queue up, waiting to be executed.
 
 #### What is the difference between ViewState and SessionState?
