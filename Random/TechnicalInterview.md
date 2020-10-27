@@ -853,7 +853,7 @@ public class Scanner : IScanner // It is ok
     public void Scan() => Console.WriteLine("Scan Document");
 }
 ```
-**Why**: Do not design a big fat interface that forces the client to implement a method that is not required by it, instead design a small interface. So by doing this ```class``` only implement the required set of interface(s).<br>
+**Why**: Do not design a big fat interface that forces the client to implement a method that is not required by it, instead of designing a small interface. So by doing this ```class``` only implement the required set of interface(s).<br>
 **Benefits**:
 - Faster Compilation. If you have violated interface segregation i.e. stuffed methods together in the interface, and when method signature changes, you need to recompile all the derived classes.
 - Reusability. "Fat interfaces" (interfaces with additional useless methods) lead to inadvertent coupling between classes. Thus, an experienced dev knows coupling is the bane of reusability.
@@ -922,7 +922,7 @@ public class Program
     }
 }
 ```
-**Why**: The principle says that high-level modules should depend on abstraction, not on the details, of low level modules, in other words not the implementation of the low level module. Abstraction should not depend on details. Details should depend on abstraction. In simple words the principle says that there should not be a tight coupling among components (in other words two modules, two classes) of software and to avoid that, the components should depend on abstraction, in other words a contract (```interface``` or ```abstract class```).<br>
+**Why**: The principle says that high-level modules should depend on abstraction, not on the details, of low-level modules, in other words not the implementation of the low-level module. Abstraction should not depend on details. Details should depend on abstraction. In simple words the principle says that there should not be a tight coupling among components (in other words two modules, two classes) of software and to avoid that, the components should depend on abstraction, in other words, a contract (```interface``` or ```abstract class```).<br>
 **Benefits**:
 - Reusability. Effectively, the dependency inversion reduces coupling between different pieces of code. Thus we get reusable code.
 - Maintainability. It is also important to mention that changing already implemented modules is risky. By depending on abstraction and not on concrete implementation, we can reduce that risk by not having to change high-level modules in our project. It also gives us flexibility and stability at the level of the entire architecture of our application. Our application will be able to evolve more securely and become stable and robust.
@@ -935,7 +935,7 @@ public class Program
 SQL Profiler is a tool which allows system administrator to monitor events in the SQL server. This is mainly used to capture and save data about each event of a file or a table for analysis.
 
 #### What is recursive stored procedure?
-SQL Server supports recursive stored procedure which calls by itself. Recursive stored procedure can be defined as a method of problem solving wherein the solution is arrived repetitively. It can nest up to 32 levels.
+SQL Server supports recursive stored procedure which calls by itself. A recursive stored procedure can be defined as a method of problem-solving wherein the solution arrives repetitively. It can nest up to 32 levels.
 ```
 CREATE PROCEDURE[dbo].[Fact]
 (
@@ -961,10 +961,10 @@ GO
 
 #### What are the differences between local and global temporary tables?
 - Local temporary tables are visible when there is a connection, and are deleted when the connection is closed ```CREATE TABLE #[table name]```
-- Global temporary tables are visible to all users, and are deleted when the connection that created it is closed ```CREATE TABLE ##[table name]```
+- Global temporary tables are visible to all users and are deleted when the connection that created it is closed ```CREATE TABLE ##[table name]```
 
-#### Can we check locks in database? If so, how can we do this lock check?
-Yes, we can check locks in the database. It can be achieved by using in-built stored procedure called sp_lock.
+#### Can we check locks in the database? If so, how can we do this lock check?
+Yes, we can check locks in the database. It can be achieved by using an in-built stored procedure called sp_lock.
 
 #### What is a Trigger?
 Triggers are used to execute a batch of SQL code when insert or update or delete commands are executed against a table. Triggers are automatically triggered or executed when the data is modified. It can be executed automatically on insert, delete and update operations.
@@ -974,7 +974,7 @@ IDENTITY column is used in table columns to make that column as Auto incremental
 
 #### What is the difference between ```UNION``` and ```UNION ALL```?
 - ```UNION```: To select related information from two tables ```UNION``` command is used. It is similar to ```JOIN``` command.
-- ```UNION ALL```: The ```UNION ALL``` command is equal to the ```UNION``` command, except that ```UNION ALL``` selects all values. It will not remove duplicate rows, instead it will retrieve all rows from all tables.
+- ```UNION ALL```: The ```UNION ALL``` command is equal to the ```UNION``` command, except that ```UNION ALL``` selects all values. It will not remove duplicate rows, instead, it will retrieve all rows from all tables.
 ```
 TableA = 1, 2, 3, 4
 TableB = 3, 4, 5, 6
@@ -1025,8 +1025,8 @@ Every statement between BEGIN and COMMIT becomes persistent to database when the
 #### What is the use of ```@@SPID```?
 A ```@@SPID``` returns the session ID of the current user process.
 
-#### What is Filtered Index?
-Filtered Index is used to filter some portion of rows in a table to improve query performance, index maintenance and reduces index storage costs. When the index is created with ```WHERE``` clause, then it is called Filtered Index.
+#### What is filtered Index?
+Filtered Index is used to filter some portion of rows in a table to improve query performance, index maintenance and reduces index storage costs. When the index is created with ```WHERE``` clause, then it is called filtered Index.
 
 <hr>
 
