@@ -1025,6 +1025,44 @@ Every statement between BEGIN and COMMIT becomes persistent to database when the
 #### What is the use of ```@@SPID```?
 A ```@@SPID``` returns the session ID of the current user process.
 
+#### What is the difference between Clustered and Non-Clustered Indexes in SQL Server?
+Indexes are used to speed up the query process in SQL Server, resulting in high performance. Without indexes, a database has to go through all the records in the table in order to retrieve the desired results. **This process is called table-scanning and is extremely slow**. On the other hand, if you create indexes, the database goes to that index first and then retrieves the corresponding table records directly.<br>
+To see all the indexes on a particular table execute ```EXECUTE sp_helpindex [Table name]``` or viewing directly by going to *Object Explorer -> Databases -> Database Name -> Tables -> Table Name -> Indexes* <br>
+- There can be only one clustered index per table. However, you can create multiple non-clustered indexes on a single table.
+- Clustered indexes only sort tables. Therefore, they do not consume extra storage. Non-clustered indexes are stored in a separate place from the actual table claiming more storage space.
+- Clustered indexes are faster than non-clustered indexes since they don't involve any extra lookup step.
+######
+**Clustered Index**<br>
+A clustered index defines the order in which data is physically stored in a table. Table data can be sorted in only one way, therefore, there can be **only one clustered index per table (it may use more than one column which we call "composite index")**. In SQL Server, the primary key constraint automatically creates a clustered index on that particular column. 
+```
+CREATE TABLE Test
+(
+    Id int PRIMARY KEY, -- by default it will be created as a clustered index
+	Name varchar(50) NOT NULL,
+	Gender varchar(10) NOT NULL,
+	Score int NOT NULL
+)
+```
+The clustered index stores the records in the table following the ascending order of the ```Id```. Therefore, if the inserted record has the ```Id``` of 5, the record will be inserted in the 5th row of the table instead of the first row. Similarly, if the fourth record has an ```Id``` of 3, it will be inserted in the third row instead of the fourth row. This is because the clustered index has to maintain the physical order of the stored records according to the indexed column.<br>
+You can create your own custom index as well the default clustered index. To create a new clustered index on a table you first have to delete the previous index. See below the script to create a new clustered index, using a **composite index** in this case:<br>
+```
+-- CREATE CLUSTERED INDEX IX_Test_Gender ON Test(Gender ASC) -- basic clustered index
+CREATE CLUSTERED INDEX IX_Test_Gender_Score ON Test(Gender ASC, Score DESC) -- composite index
+```
+The above index first sorts all the records in the ascending order of the gender. If gender is the same for two or more records, the records are sorted in the descending order of the values in their ```Score``` column.<br>
+In order to create a clustered index, you have to use the keyword ```CLUSTERED``` before ```INDEX```.<br>
+An index that is created on more than one column is called "composite index".
+######
+**Non-Clustered Index**<br>
+The syntax for creating a non-clustered index is similar to a clustered index. However, in case of a non-clustered index keyword ```NONCLUSTERED``` is used instead of ```CLUSTERED```. Take a look at the following script:
+```
+CREATE NONCLUSTERED INDEX IX_Test_Name ON Test(Name ASC)
+```
+The above script creates a non-clustered index on the ```Name``` column of the Test table. The index sorts by name in ascending order. The table data and index will be stored in different places. The table records will be sorted by a clustered index if there is one then the non-clustered index will be sorted according to its definition and will be stored separately from the table.<br>
+The non-clustered index is a copy of the data(of the column reference) which stores both values and a pointer to actual row that holds the data.<br>
+**IndexNewData(Name, Row Address (Pointer))** it means that every row has a column that stores the address of the row to which the name belongs what we call pointer. So if a query is issued to retrieve the gender and score of the test named "xxxx", the database will first search the name "xxxx" inside the index. It will then read the row address of "xxxx" and will go directly to that row in the test table to fetch gender and score of "xxxx".<br>
+
+
 #### What is filtered Index?
 Filtered Index is used to filter some portion of rows in a table to improve query performance, index maintenance and reduces index storage costs. When the index is created with ```WHERE``` clause, then it is called filtered Index.
 
