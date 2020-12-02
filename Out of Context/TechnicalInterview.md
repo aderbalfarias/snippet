@@ -1,7 +1,7 @@
 ### .NET Core and .NET
 
-#### Explain what is a Middlaware?
-Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios you might want to write a custom middleware. Middleware should follow the Explicit Dependencies Principle by exposing its dependencies in its constructor. Middleware is constructed once per application lifetime, it is possible to create a middleware pipeline with ```IApplicationBuilder``` inside the method ```public void Configure(IApplicationBuilder app)```. The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other.<br>
+#### Explain what is a Middleware?
+Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios, you might want to write a custom middleware. Middleware should follow the Explicit Dependencies Principle by exposing its dependencies in its constructor. Middleware is constructed once per application lifetime, it is possible to create a middleware pipeline with ```IApplicationBuilder``` inside the method ```public void Configure(IApplicationBuilder app)```. The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other.<br>
 The incoming requests are passes through this pipeline where all middleware is configured, and middleware can perform some action on the request before passes it to the next middleware. Same as for the responses, they are also passing through the middleware but in reverse order.
 
 #### What are the advantages of ASP.NET Core over ASP.NET?
@@ -9,7 +9,7 @@ There are following advantages of ASP.NET Core over ASP.NET:
 - It is cross-platform, so it can be run on Windows, Linux, and Mac.
 - There is no dependency on framework installation because all the required dependencies are ship with our application.
 - ASP.NET Core can handle more request than the ASP.NET.
-- Multiple deployment options available withASP.NET Core.
+- Multiple deployment options available with ASP.NET Core.
 
 #### What is the startup ```class``` in ASP.NET core?
 Startup ```class``` is the entry point of the ASP.NET Core application. Every .NET Core application must have this ```class```. This ```class``` contains the application configuration. It is not necessary that ```class``` name must "Startup.cs", it can be anything, we can configure startup ```class``` in Program ```class```.
@@ -151,7 +151,7 @@ It defines how the application will respond to each HTTP request. We can configu
 #### What is the difference between ```IApplicationBuilder.Use()``` and ```IApplicationBuilder.Run()```?
 We can use both the methods in Configure methods of startup ```class```. Both are used to add middleware delegate to the application request pipeline. 
 - ```IApplicationBuilder.Use()``` may call the next middleware in the pipeline 
-- ```IApplicationBuilder.Run()``` method never calls the subsequent or next middleware. After ```IApplicationBuilder.Run``` method, system stop adding middleware in request. pipeline.
+- ```IApplicationBuilder.Run()``` method never calls the subsequent or next middleware. After ```IApplicationBuilder.Run``` method, system stop adding middleware in the request. pipeline.
 
 #### What is routing in ASP.NET Core?
 Routing is functionality that map incoming request to the route handler. The route can have values (extract them from URL) that used to process the request. The Routing uses routes for map incoming request with route handler and Generate URL that used in response.
@@ -164,15 +164,49 @@ Routing is functionality that map incoming request to the route handler. The rou
 - **DELETE**, Delete data.
 - **TRACE**, Performs a message loop-back test along the path to the target resource.
 - **OPTIONS**, Used to describe the communication options for the target resource.
-- **CONNECT**, Estabilishes tunnels. Proxy server to tunnel the TCP connection to the desired destination.
+- **CONNECT**, Establishes tunnels. Proxy server to tunnel the TCP connection to the desired destination.
 - **PATCH**, Making partial changes to an existing resource.
+
+#### Explain constraints on type parameters?
+Constraints inform the compiler about the capabilities a type argument must have. Without any constraints, the type argument could be any type. Constraints are specified by using the ```where``` contextual keyword. The following table lists the various types of constraints:
+- ```where T : struct``` The type argument must be a non-nullable value type. Because all value types have an accessible parameterless constructor, the struct constraint implies the ```new()``` constraint and can't be combined with the ```new()``` constraint. You can't combine the ```struct``` constraint with the ```unmanaged``` constraint
+- ```where T : class```	The type argument must be a reference type. This constraint applies also to any ```class```, ```interface```, ```delegate```, or ```array``` type. T must be a non-nullable reference type.
+- ```where T : class?``` The type argument must be a reference type, either nullable or non-nullable. This constraint applies also to any ```class```, ```interface```, ```delegate```, or ```array``` type.
+- ```where T : notnull``` The type argument must be a non-nullable type. The argument can be a non-nullable reference type or value type.
+- ```where T : unmanaged``` The type argument must be a non-nullable unmanaged type. The unmanaged constraint implies the struct constraint and can't be combined with either the ```struct``` or ```new()``` constraints.
+- ```where T : new()```	The type argument must have a ```public``` parameterless constructor. When used together with other constraints, the ```new()``` constraint must be specified last. The ```new()``` constraint can't be combined with the ```struct``` and ```unmanaged``` constraints.
+- ```where T : <base class name>``` The type argument must be or derive from the specified base ```class```. T must be a non-nullable reference type derived from the specified base ```class```.
+- ```where T : <base class name>?``` The type argument must be or derive from the specified base ```class```. T may be either a nullable or non-nullable type derived from the specified base ```class```.
+- ```where T : <interface name>``` The type argument must be or implement the specified ```interface```. Multiple ```interface``` constraints can be specified. The constraining interface can also be generic. T must be a non-nullable type that implements the specified ```interface```.
+- ```where T : <interface name>?``` The type argument must be or implement the specified ```interface```. Multiple ```interface``` constraints can be specified. The constraining interface can also be generic. T may be a nullable reference type, a non-nullable reference type, or a value type. T may not be a nullable value type.
+- ```where T : U``` The type argument supplied for T must be or derive from the argument supplied for U. In a nullable context, if U is a non-nullable reference type, T must be non-nullable reference type. If U is a nullable reference type, T may be either nullable or non-nullable.
+```
+public class EmployeeList<T> where T : Employee, IEmployee, System.IComparable<T>, new() {}
+
+public class GenericList<T> where T : Employee {}
+
+public static void OpEqualsTest<T>(T s, T t) where T : class {}
+
+// Multiple parameters, and multiple constraints to a single parameter
+class Base { }
+class Test<T, U>
+    where U : struct
+    where T : Base, new()
+{ }
+
+// T is a type constraint in the context of the Add method, and an unbounded type parameter in the context of the List class
+public class List<T>
+{
+    public void Add<U>(List<U> items) where U : T {/*...*/}
+}
+```
 
 <hr>
 
 ### C# Versus
 
 #### ```abstract class``` vs ```interface```
-An ```abstract class``` allows you to create functionalities that subclasses can implement or override and it also can have have constructors. An interface only allows you to define functionalities, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a ```class``` can extend only one ```abstract class```, it can take advantage of multiple interfaces.
+An ```abstract class``` allows you to create functionalities, it can be partially implemented with methods and operations which allow subclasses to implement or override and ```abstract class``` can have constructors. An interface only allows you to define functionalities, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a ```class``` can extend only one ```abstract class```, it can take advantage of multiple interfaces.
 
 #### ```System.String``` vs ```System.StringBuilder```
 - ```System.String```: It is immutable, it means when a string object is created you cannot modify and you have always to create a new object string type in memory.<br>  
@@ -194,9 +228,9 @@ Essentially, there is no difference between string and String in C#.<br>
 #### ```Action``` vs ```Func``` vs ```Predicate```
 - ```Action```: Delegate (pointer) to a method that takes zero, one or more input parameters but doesn't return anything.<br>
 - ```Func```: Delegate (pointer) to a method that takes zero, one or more input parameters and returns a value or reference.<br>
-- ```Predicate```: A special form of Func and mainly used to validate something and return bool. It is mainly used with collections to whether the item in the collection is valid or not. Basically, its a wrapper of Func like ```Func<T, bool>```.<br>
+- ```Predicate```: A special form of Func and mainly used to validate something and return a bool. It is mainly used with collections to whether the item in the collection is valid or not. Basically, its a wrapper of Func like ```Func<T, bool>```.<br>
 *When to use that*?<br>
-Action is useful if we don’t want to return any result. But if we want to return result, we could use Func. Predicate is mainly to used to validate any condition.
+Action is useful if we don’t want to return any result. But if we want to return a result, we could use Func. The predicate is mainly used to validate any condition.
 
 #### Deferred Execution vs Immediate Execution
 - Deferred Execution: It simply means that the query is not executed at the time it's specified. Specifically, this is accomplished by assigning the query to a variable. When this is done the query definition is stored in the variable but the query ins't executed until the query variable is interated.
@@ -232,10 +266,10 @@ Managed code is the code which is managed by the CLR(Common Language Runtime) in
     - Memory buffer overflow may occur.
    
 #### ```Object.ToString()``` vs ```Convert.ToString()```
-```Object.ToString()``` cannot handle ```null``` values which means the *Null reference exception* will be thrown when trying to use ```.ToString()``` on a object which is ```null```, in the other hand ```Convert.ToString()``` can handle ```null``` values it won't generate *Null reference exception*.
+```Object.ToString()``` cannot handle ```null``` values which means the *Null reference exception* will be thrown when trying to use ```.ToString()``` on an object which is ```null```, in the other hand ```Convert.ToString()``` can handle ```null``` values it won't generate *Null reference exception*.
 
 #### ```while``` vs ```for```
-The difference is that the ```for``` loop is used when you know how many times you need to interate through the code, on the other hand, the ```while``` loop is used when you need to repeat something until a given statement is true.
+The difference is that the ```for``` loop is used when you know how many times you need to iterate through the code, on the other hand, the ```while``` loop is used when you need to repeat something until a given statement is true.
 ```
 while(condition == true){}
 for(initializer; condition; iterator){}
@@ -279,6 +313,10 @@ Using ```Clone()``` method, we creates a new array object containing all the ele
 
 #### ```throw``` vs ```throw ex```
 ```throw``` statement preserves original error stack whereas ```throw ex``` have the stack trace from their ```throw``` point. It is always advised to use ```throw``` because it provides more accurate error information.
+
+#### Sync vs Async
+- Synchronous, data is sent in form of blocks or frames. Full duplex type, compulsory sincronization.
+- Asynchronous, data is sent in form of byte or character. Half duplex transmission, start bits and stop bits are added with data it does not require synchronization.
 
 <hr>
 
@@ -397,15 +435,15 @@ Methods can be overloaded using different data types for a parameter, different 
 ### Object-oriented programming (OOP)
 
 #### What is OOP and how does it relate to the .NET Frameworks?
-OOP allows .Net developers to create classes containing methods, properties, fields, events and other logical modules. It also let developers create modular programs with they can assemble as applications and reuse code. OOP have four basic features: encapsulation, abstraction, polimorphism and inheritance.
+OOP allows .NET developers to create classes containing methods, properties, fields, events and other logical modules. It also lets developers create modular programs with they can assemble as applications and reuse code. OOP has four basic features: encapsulation, abstraction, polymorphism and inheritance.
 
 #### What is Encapsulation?
-It is one of the four basic features of OOP and refers to an object's ability to hide data and behavior that are not necessary to its user. Encapsulation helps to keep data from unwanted access through biding code and data in an object which is the basic single self-contained unit of a system. Encapsulation is used to restrict access to the members of a ```class``` so as to prevent the user of a given ```class``` from manipulating objects in ways that are not intended by the designer, it also has the priciple of hiding the state of an object by using private or protected modifiers. Benefits of it:
+It is one of the four basic features of OOP and refers to an object's ability to hide data and behaviour that are not necessary to its user. Encapsulation helps to keep data from unwanted access through biding code and data in an object which is the basic single self-contained unit of a system. Encapsulation is used to restrict access to the members of a ```class``` so as to prevent the user of a given ```class``` from manipulating objects in ways that are not intended by the designer, it also has the principle of hiding the state of an object by using private or protected modifiers. Benefits of it:
 - Protection of data from accidental corruption.
 - Specification of the accessibility of each of the members of a ```class``` to the code outside the ```class```.
 - Flexibility and extensibility of the code and reduction in complexity.
 - Lower coupling between objects and hence improvement in code maintainability.
-- Less likely that other objects can modify the state or behavior of the object in question.
+- Less likely that other objects can modify the state or behaviour of the object in question.
 ```
 public class Bank 
 {
@@ -481,8 +519,8 @@ public void AddNumbers(int a, int b, int c)
 ```
 
 #### What is Inheritance?
-Inheritance is one of the core concepts of OOP languages. It is a mechanism where you can to derive a ```class``` from another ```class``` for a hierarchy of classes that share a set of attributes and methods. It allows developers to reuse, extend and modify the behavior defined in other classes, **the ```class``` whose members are inherited is called the base ```class``` and the ```class``` that inherit those members is called the derived ```class```**. Inheritance allows you to define a base class that provides specific functionality (data and behavior) and to define derived classes that either inherit or override that functionality.<br>
-*e.g.:* A base ```class``` called ```Vehicle```, and then derived classes called ```Truck, Car, Motprcycle``` all of which inherit the attributes of vehicle.
+Inheritance is one of the core concepts of OOP languages. It is a mechanism where you can to derive a ```class``` from another ```class``` for a hierarchy of classes that share a set of attributes and methods. It allows developers to reuse, extend and modify the behaviour defined in other classes, **the ```class``` whose members are inherited is called the base ```class``` and the ```class``` that inherit those members is called the derived ```class```**. Inheritance allows you to define a base class that provides specific functionality (data and behaviour) and to define derived classes that either inherit or override that functionality.<br>
+*e.g.:* A base ```class``` called ```Vehicle```, and then derived classes called ```Truck, Car, Motorcycle``` all of which inherit the attributes of vehicle.
 ```
 public class A
 {
@@ -519,7 +557,7 @@ class Program
 ```
 
 #### What is Inversion of Control?
-Inversion of control is a *Principle in softeware engineering* by which the control of objects or portions of a program is transferred to a container or framework. It is most oftem used in the context of OOP.
+Inversion of control is a *Principle in software engineering* by which the control of objects or portions of a program is transferred to a container or framework. It is most often used in the context of OOP.
 
 <hr>
 
@@ -530,12 +568,12 @@ Repositories are classes or components that encapsulate the logic required to ac
 The Repository pattern is a well-documented way of working with a data source. In the book Patterns of Enterprise Application Architecture, Martin Fowler describes a repository as follows:<br>
 *A repository performs the tasks of an intermediary between the domain model layers and data mapping, acting in a similar way to a set of domain objects in memory. Client objects declaratively build queries and send them to the repositories for answers. Conceptually, a repository encapsulates a set of objects stored in the database and operations that can be performed on them, providing a way that is closer to the persistence layer. Repositories, also, support the purpose of separating, clearly and in one direction, the dependency between the work domain and the data allocation or mapping.*<br>
 Basically, a repository allows you to populate data in memory that comes from the database in the form of the domain entities. Once the entities are in memory, they can be changed and then persisted back to the database through transactions.<br>
-A Repository Pattern can be implemented in Following ways:<br>
+A Repository Pattern can be implemented in the following ways:<br>
 - **One repository per entity (non-generic)**: This type of implementation involves the use of one repository ```class``` for each entity. For example, if you have two entities Order and Customer, each entity will have its own repository.
-- **Generic repository**: A generic repository is the one that can be used for all the entities, in other words it can be either used for Order or Customer or any other entity.
+- **Generic repository**: A generic repository is the one that can be used for all the entities, in other words, it can be either used for Order or Customer or any other entity.
 
 #### Dependency Injection (DI)
-Dependency Injection is a software design pattern that allows us to develop loosely coupled code, which is a technique for achieving Inversion of Control (IoC) between classes and their dependencies. DI reduces tight coupling between software components and also enables us to better manage future changes and other complexity in a software. The purpose of DI is to make code maintainable.<br>
+Dependency Injection is a software design pattern that allows us to develop loosely coupled code, which is a technique for achieving Inversion of Control (IoC) between classes and their dependencies. DI reduces tight coupling between software components and also enables us to better manage future changes and other complexity in software. The purpose of DI is to make code maintainable.<br>
 Advantages:
 - Reduces ```class``` coupling.
 - Increases code reusability.
@@ -553,31 +591,31 @@ Types of Dependency Injection:
 - Method Injection: In this type of injection, the client ```class``` implements an interface which declares the method(s) to supply the dependency and the injector uses this interface to supply the dependency to the client ```class```.
 
 Dependency Lifetimes<br>
-At registration time, dependencies require a lifetime definition. The service lifetime defines the conditions under which a new service instance will be created. Below are the lifetimes defined by the ASP.Net DI framework. The terminology may be different if you choose to use a different framework.<br>
+At registration time, dependencies require a lifetime definition. The service lifetime defines the conditions under which a new service instance will be created. Below are the lifetimes defined by the ASP.NET DI framework. The terminology may be different if you choose to use a different framework.<br>
 - **Transient** – Created every time they are requested
 - **Scoped** – Created once per scope. Most of the time, scope refers to a web request. But this can also be used for any unit of work, such as the execution of an Azure Function.
 - **Singleton** – Created only for the first request. If a particular instance is specified at registration time, this instance will be provided to all consumers of the registration type.
 
 #### [Chain of Responsibility](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/ChainOfResponsibility.linq)
-Chain of Responsibility is a **Behavioral Pattern** that simplifies object interconnections. Instead of senders and receivers maintaining references to all candidate receivers, each sender keeps a single reference to the head of the chain, and each receiver keeps a single reference to its immediate successor in the chain.<br>
+Chain of Responsibility is a **Behavioural Pattern** that simplifies object interconnections. Instead of senders and receivers maintaining references to all candidate receivers, each sender keeps a single reference to the head of the chain, and each receiver keeps a single reference to its immediate successor in the chain.<br>
 The derived classes know how to satisfy Client requests. If the "current" object is not available or sufficient, then it delegates to the base ```class```, which delegates to the "next" object, and the circle of life continues.
 
 #### [Observer](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/Observer.linq)
-Observer is a **Behavioral Pattern** in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.<br>
-Observer pattern is used when there is one-to-many relationship between objects such as if one object is modified, its depenedent objects are to be notified automatically. Observer pattern falls under behavioral pattern category.
+Observer is a **Behavioural Pattern** in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.<br>
+Observer pattern is used when there is a one-to-many relationship between objects such as if one object is modified, its dependent objects are to be notified automatically. Observer pattern falls under behavioural pattern category.
 
 #### [Abstract Factory](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Creational%20Patterns/AbstractFactory.linq)
 Abstract Factory is a **Creational Pattern** that lets you produce families of related objects without specifying their concrete classes.<br>
 Provide a level of indirection that abstracts the creation of families of related or dependent objects without directly specifying their concrete classes. The "factory" object has the responsibility for providing creation services for the entire platform family. Clients never create platform objects directly, they ask the factory to do that for them.
 
 #### [Singleton](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Creational%20Patterns/Singleton.linq)
-Singleton is a **Creational Pattern** which makes the ```class``` of the single instance object responsible for creation, initialization, access, and enforcement. Declare the instance as a private static data member. Provide a public static member function that encapsulates all initialization code, and provides access to the instance.<br>
+Singleton is a **Creational Pattern** which makes the ```class``` of the single instance object responsible for the creation, initialization, access, and enforcement. Declare the instance as a private static data member. Provide a public static member function that encapsulates all initialization code, and provides access to the instance.<br>
 The Singleton pattern can be extended to support access to an application-specific number of instances.<br>
 The Singleton pattern ensures that a ```class``` has only one instance and provides a global point of access to that instance. It is named after the singleton set, which is defined to be a set containing one element. The office of the President of the United States is a Singleton.
 
 #### [Facade](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Facade.linq)
 Facade is a **Structural Pattern** that hides the complexities of the system and provides an interface to the client using which the client can access the system. This pattern involves a single ```class``` which provides simplified methods required by client and delegates calls to methods of existing system classes.<br>
-The facade pattern is appropriate when you have a complex system that you want to expose to clients in a simplified way, or you want to make an external communication layer over an existing system which is incompatible with the system. Facade deals with interfaces, not implementation. Its purpose is to hide internal complexity behind a single interface that appears simple on the outside.
+The facade pattern is appropriate when you have a complex system that you want to expose to clients in a simplified way, or you want to make an external communication layer over an existing system which is incompatible with the system. Facade deals with interfaces, not implementation. Its purpose is to hide the internal complexity behind a single interface that appears simple on the outside.
 
 #### [Adapter](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Adapter.linq)
 Adapter is a **Structural Pattern** which converts the interface of a ```class``` into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.<br>
@@ -588,7 +626,7 @@ Suppose you have a Bird ```class``` with ```fly()```, and ```makeSound()``` meth
 ### SOLID
 
 #### S - Single responsibility Principle
-**Definition**: The Single Responsibility Principle states that every module or ```class``` should have responsibility for a single part of the functionality provided by the software.<br>
+**Definition**: The Single responsibility principle states that every module or ```class``` should have responsibility for a single part of the functionality provided by the software.<br>
 **Example**: If we have two reasons to change a ```class```, we have to split the functionality into two classes. Each ```class``` will handle only one responsibility lets say you have ```class Client``` which has register client and sends email functionalities, that is wrong, they should be splitted in two different classes (```class Client``` and ```class Email```) each one responsible for its own functionality.<br>
 **Why**: If we put more than one functionality in one ```class``` then it introduces coupling between two functionalities. So, if we change one functionality there is a chance we broke coupled functionality, which requires another round of testing to avoid any bug in the production environment. It reduces bug fixes and testing time once an application goes into the maintenance phase.<br>
 **Benefits**:
@@ -637,9 +675,9 @@ public class VariableRateMortgage : IMortgage
 }
 ```
 So if there is a new mortgage type added there is no need to modify the logic of exiting classes, just extend the functionality by inheriting an interface (Mortgage interface in this case and create a new ```class``` which will have the implementation for ```CalculateInterest()``` method. I am using an interface but it could be an ```abstract class``` as well.<br>
-**Why**: When a single change to a program results in a cascade of changes to dependent modules, that program exhibits the undesirable attributes that we have come to associate with 'bad' design. The program becomes fragile, rigid, unpredictable, and unreusable. A function that is doing too many things outside the realm of its responsibilities creates unnecessary entanglements that makes it harder to read and debug.<br>
+**Why**: When a single change to a program results in a cascade of changes to dependent modules, that program exhibits the undesirable attributes that we have come to associate with 'bad' design. The program becomes fragile, rigid, unpredictable, and unreusable. A function that is doing too many things outside the realm of its responsibilities creates unnecessary entanglements that make it harder to read and debug.<br>
 **Benefits**:
-- Extensibility. Where the design modules never change. When requirements change, you extend the behavior of such modules by adding new code, not by changing old code that already works in order to prevent cascade changes to dependent modules.
+- Extensibility. Where the design modules never change. When requirements change, you extend the behaviour of such modules by adding new code, not by changing old code that already works in order to prevent cascade changes to dependent modules.
 - Maintainability. The main benefit of this approach is that an interface introduces an additional level of abstraction which enables loose coupling. The implementations of an interface are independent of each other and don't need to share any code.
 - It makes the code readable, testable, changeable, and reusable.
 
@@ -647,8 +685,8 @@ So if there is a new mortgage type added there is no need to modify the logic of
 **Definition**: The Liskov substitution principle states that if S is a subtype of T, then objects of type T may be replaced (or substituted) with objects of type S.<br>
 We can formulate this mathematically as:
 - Let ϕ(x) be a property provable about objects x of type T.
-- Then ϕ(y) should be valid for objects y of type S, where S is a subtype of T.
-More generally, it states that objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.<br>
+- Then ϕ(y) should be valid for objects y of type S, where S is a subtype of T. <br> 
+##### More generally, it states that objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.
 **Example**: 
 - Violation of Liskov Substitution Principle
 ```
@@ -815,7 +853,7 @@ public class Scanner : IScanner // It is ok
     public void Scan() => Console.WriteLine("Scan Document");
 }
 ```
-**Why**: Do not design a big fat interface that forces the client to implement a method that is not required by it, instead design a small interface. So by doing this ```class``` only implement the required set of interface(s).<br>
+**Why**: Do not design a big fat interface that forces the client to implement a method that is not required by it, instead of designing a small interface. So by doing this ```class``` only implement the required set of interface(s).<br>
 **Benefits**:
 - Faster Compilation. If you have violated interface segregation i.e. stuffed methods together in the interface, and when method signature changes, you need to recompile all the derived classes.
 - Reusability. "Fat interfaces" (interfaces with additional useless methods) lead to inadvertent coupling between classes. Thus, an experienced dev knows coupling is the bane of reusability.
@@ -824,7 +862,8 @@ public class Scanner : IScanner // It is ok
 #### D - Dependency Inversion Principle (Dependency injection)
 **Definition**: The dependency inversion principle is a way to decouple software modules. This principle states that:
 - High-level modules should not depend on low-level modules. Both should depend on abstractions.
-- Abstractions should not depend on details. Details should depend on abstractions.
+- Abstractions should not depend on details. Details should depend on abstractions.<br>
+##### 
 To comply with this principle, we need to use a design pattern known as a dependency inversion pattern, most often solved by using dependency injection.<br>
 **Example**:<br>
 - Not following the Dependency Inversion
@@ -883,7 +922,7 @@ public class Program
     }
 }
 ```
-**Why**: The principle says that high-level modules should depend on abstraction, not on the details, of low level modules, in other words not the implementation of the low level module. Abstraction should not depend on details. Details should depend on abstraction. In simple words the principle says that there should not be a tight coupling among components (in other words two modules, two classes) of software and to avoid that, the components should depend on abstraction, in other words a contract (```interface``` or ```abstract class```).<br>
+**Why**: The principle says that high-level modules should depend on abstraction, not on the details, of low-level modules, in other words not the implementation of the low-level module. Abstraction should not depend on details. Details should depend on abstraction. In simple words the principle says that there should not be a tight coupling among components (in other words two modules, two classes) of software and to avoid that, the components should depend on abstraction, in other words, a contract (```interface``` or ```abstract class```).<br>
 **Benefits**:
 - Reusability. Effectively, the dependency inversion reduces coupling between different pieces of code. Thus we get reusable code.
 - Maintainability. It is also important to mention that changing already implemented modules is risky. By depending on abstraction and not on concrete implementation, we can reduce that risk by not having to change high-level modules in our project. It also gives us flexibility and stability at the level of the entire architecture of our application. Our application will be able to evolve more securely and become stable and robust.
@@ -896,7 +935,7 @@ public class Program
 SQL Profiler is a tool which allows system administrator to monitor events in the SQL server. This is mainly used to capture and save data about each event of a file or a table for analysis.
 
 #### What is recursive stored procedure?
-SQL Server supports recursive stored procedure which calls by itself. Recursive stored procedure can be defined as a method of problem solving wherein the solution is arrived repetitively. It can nest up to 32 levels.
+SQL Server supports recursive stored procedure which calls by itself. A recursive stored procedure can be defined as a method of problem-solving wherein the solution arrives repetitively. It can nest up to 32 levels.
 ```
 CREATE PROCEDURE[dbo].[Fact]
 (
@@ -922,10 +961,10 @@ GO
 
 #### What are the differences between local and global temporary tables?
 - Local temporary tables are visible when there is a connection, and are deleted when the connection is closed ```CREATE TABLE #[table name]```
-- Global temporary tables are visible to all users, and are deleted when the connection that created it is closed ```CREATE TABLE ##[table name]```
+- Global temporary tables are visible to all users and are deleted when the connection that created it is closed ```CREATE TABLE ##[table name]```
 
-#### Can we check locks in database? If so, how can we do this lock check?
-Yes, we can check locks in the database. It can be achieved by using in-built stored procedure called sp_lock.
+#### Can we check locks in the database? If so, how can we do this lock check?
+Yes, we can check locks in the database. It can be achieved by using an in-built stored procedure called sp_lock.
 
 #### What is a Trigger?
 Triggers are used to execute a batch of SQL code when insert or update or delete commands are executed against a table. Triggers are automatically triggered or executed when the data is modified. It can be executed automatically on insert, delete and update operations.
@@ -935,7 +974,7 @@ IDENTITY column is used in table columns to make that column as Auto incremental
 
 #### What is the difference between ```UNION``` and ```UNION ALL```?
 - ```UNION```: To select related information from two tables ```UNION``` command is used. It is similar to ```JOIN``` command.
-- ```UNION ALL```: The ```UNION ALL``` command is equal to the ```UNION``` command, except that ```UNION ALL``` selects all values. It will not remove duplicate rows, instead it will retrieve all rows from all tables.
+- ```UNION ALL```: The ```UNION ALL``` command is equal to the ```UNION``` command, except that ```UNION ALL``` selects all values. It will not remove duplicate rows, instead, it will retrieve all rows from all tables.
 ```
 TableA = 1, 2, 3, 4
 TableB = 3, 4, 5, 6
@@ -986,8 +1025,46 @@ Every statement between BEGIN and COMMIT becomes persistent to database when the
 #### What is the use of ```@@SPID```?
 A ```@@SPID``` returns the session ID of the current user process.
 
-#### What is Filtered Index?
-Filtered Index is used to filter some portion of rows in a table to improve query performance, index maintenance and reduces index storage costs. When the index is created with ```WHERE``` clause, then it is called Filtered Index.
+#### What is the difference between Clustered and Non-Clustered Indexes in SQL Server?
+Indexes are used to speed up the query process in SQL Server, resulting in high performance. Without indexes, a database has to go through all the records in the table in order to retrieve the desired results. **This process is called table-scanning and is extremely slow**. On the other hand, if you create indexes, the database goes to that index first and then retrieves the corresponding table records directly.<br>
+To see all the indexes on a particular table execute ```EXECUTE sp_helpindex [Table name]``` or viewing directly by going to *Object Explorer -> Databases -> Database Name -> Tables -> Table Name -> Indexes* <br>
+- There can be only one clustered index per table. However, you can create multiple non-clustered indexes on a single table.
+- Clustered indexes only sort tables. Therefore, they do not consume extra storage. Non-clustered indexes are stored in a separate place from the actual table claiming more storage space.
+- Clustered indexes are faster than non-clustered indexes since they don't involve any extra lookup step.
+######
+**Clustered Index**<br>
+A clustered index defines the order in which data is physically stored in a table. Table data can be sorted in only one way, therefore, there can be **only one clustered index per table (it may use more than one column which we call "composite index")**. In SQL Server, the primary key constraint automatically creates a clustered index on that particular column. 
+```
+CREATE TABLE Test
+(
+    Id int PRIMARY KEY, -- by default it will be created as a clustered index
+	Name varchar(50) NOT NULL,
+	Gender varchar(10) NOT NULL,
+	Score int NOT NULL
+)
+```
+The clustered index stores the records in the table following the ascending order of the ```Id```. Therefore, if the inserted record has the ```Id``` of 5, the record will be inserted in the 5th row of the table instead of the first row. Similarly, if the fourth record has an ```Id``` of 3, it will be inserted in the third row instead of the fourth row. This is because the clustered index has to maintain the physical order of the stored records according to the indexed column.<br>
+You can create your own custom index as well the default clustered index. To create a new clustered index on a table you first have to delete the previous index. See below the script to create a new clustered index, using a **composite index** in this case:<br>
+```
+-- CREATE CLUSTERED INDEX IX_Test_Gender ON Test(Gender ASC) -- basic clustered index
+CREATE CLUSTERED INDEX IX_Test_Gender_Score ON Test(Gender ASC, Score DESC) -- composite index
+```
+The above index first sorts all the records in the ascending order of the gender. If gender is the same for two or more records, the records are sorted in the descending order of the values in their ```Score``` column.<br>
+In order to create a clustered index, you have to use the keyword ```CLUSTERED``` before ```INDEX```.<br>
+An index that is created on more than one column is called "composite index".
+######
+**Non-Clustered Index**<br>
+The syntax for creating a non-clustered index is similar to a clustered index. However, in case of a non-clustered index keyword ```NONCLUSTERED``` is used instead of ```CLUSTERED```. Take a look at the following script:
+```
+CREATE NONCLUSTERED INDEX IX_Test_Name ON Test(Name ASC)
+```
+The above script creates a non-clustered index on the ```Name``` column of the Test table. The index sorts by name in ascending order. The table data and index will be stored in different places. The table records will be sorted by a clustered index if there is one then the non-clustered index will be sorted according to its definition and will be stored separately from the table.<br>
+The non-clustered index is a copy of the data(of the column reference) which stores both values and a pointer to actual row that holds the data.<br>
+**IndexNewData(Name, Row Address (Pointer))** it means that every row has a column that stores the address of the row to which the name belongs what we call pointer. So if a query is issued to retrieve the gender and score of the test named "xxxx", the database will first search the name "xxxx" inside the index. It will then read the row address of "xxxx" and will go directly to that row in the test table to fetch gender and score of "xxxx".<br>
+
+
+#### What is filtered Index?
+Filtered Index is used to filter some portion of rows in a table to improve query performance, index maintenance and reduces index storage costs. When the index is created with ```WHERE``` clause, then it is called filtered Index.
 
 <hr>
 
@@ -1095,7 +1172,8 @@ var test = "Test" // it is local
 Timers are used to execute a piece of code at a set time or also to repeat the code in a given interval of time. This is done by using the functions setTimeout, setInterval and clearInterval:
 - ```setTimeout(function, delay)```, function is used to start a timer that calls a particular function after the mentioned delay.
 - ```setInterval(function, delay)```, function is used to repeatedly execute the given function in the mentioned delay and only halts when cancelled.
-- ```clearInterval(id)```, function instructs the timer to stop.
+- ```clearInterval(id)```, function instructs the timer to stop.<br>
+######
 The drawbacks, timers are operated within a single thread, and thus events might queue up, waiting to be executed.
 
 #### What is the difference between ViewState and SessionState?
@@ -1137,7 +1215,7 @@ Undefined value means the:
 Alert, Confirm and Prompt.
 
 #### Explain what is ```pop()``` method in JavaScript?
-The ```pop()``` method is similar as the ```shift()`` method but the difference is that the Shift method works at the start of the ```array```. Also the ```pop()``` method take the last element off of the given array and returns it. The array on which is called is then altered.
+The ```pop()``` method is similar as the ```shift()``` method but the difference is that the Shift method works at the start of the ```array```. Also the ```pop()``` method take the last element off of the given array and returns it. The array on which is called is then altered.
 ```
 var cloths = ["Shirt", "Pant", "TShirt"];
 cloths.pop(); // now, cloths = ["Shirt", "Pant"];
@@ -1173,18 +1251,18 @@ If you're in the global scope there is no difference but if you are in a functio
 At the core, a directive is a function that executes whenever the Angular compiler finds it in the DOM. Angular directives are used to extend the power of the HTML by giving it new syntax. Each directive has a name, either one from the Angular predefined like ```ng-repeat```, or a custom one which you can name as you prefer. There are 3 types of directives:
 - **Component Directives** These form the main ```class``` having details of how the component should be processed, instantiated and used at runtime.
 - **Structural Directives** basically deals with manipulating the DOM elements. Structural directives have a * sign before the directive. For example, *ngIf and *ngFor.
-- **Attribute Directives** they deal with changing the look and behavior of the dom element. You can create your own directives.
+- **Attribute Directives** they deal with changing the look and behaviour of the dom element. You can create your own directives.
 
 #### What are Lifecycle hooks in Angular? Explain some of them
 Angular components enter its lifecycle from the time it is created to the time it is destroyed. Angular hooks provide ways to tap into these phases and trigger changes at specific phases in a lifecycle.
-- ```ngOnChanges()```: This method is called whenever one or more input properties of the component changes. The hook receives a SimpleChanges object containing the previous and current values of the property.
-- ```ngOnInit()```: This hook gets called once, after the ```ngOnChanges``` hook. It initializes the component and sets the input properties of the component.
-- ```ngDoCheck()```: It gets called after ```ngOnChanges``` and ```ngOnInit``` and is used to detect and act on changes that cannot be detected by Angular. We can implement our change detection algorithm in this hook. 
-- ```ngAfterContentInit()```: It gets called after the first ```ngDoCheck``` hook. This hook responds after the content gets projected inside the component.
-- ```ngAfterContentChecked()```: It gets called after ngAfterContentInit and every subsequent ```ngDoCheck```. It responds after the projected content is checked.
-- ```ngAfterViewInit()```: It responds after a component's view, or a child component's view is initialized.
-- ```ngAfterViewChecked()```: It gets called after ```ngAfterViewInit```, and it responds after the component's view, or the child component's view is checked.
-- ```ngOnDestroy()```: It gets called just before Angular destroys the component. This hook can be used to clean up the code and detach event handlers.
+- ```ngOnChanges()```: Respond when Angular sets or resets data-bound input properties. The method receives a SimpleChanges object of current and previous property values. Called before ```ngOnInit()``` and whenever one or more data-bound input properties change. If your component has no inputs or you use it without providing any inputs it won't be called.
+- ```ngOnInit()```: Initialize the directive or component after Angular first displays the data-bound properties and sets the directive or component's input properties. Called once, after the first ```ngOnChanges()```. 
+- ```ngDoCheck()```: Detect and act upon changes that Angular can't or won't detect on its own. Called immediately after ```ngOnChanges()``` on every change detection run, and immediately after ```ngOnInit()``` on the first run.
+- ```ngAfterContentInit()```: Respond after Angular projects external content into the component's view, or into the view that a directive is in. Called once after the first ```ngDoCheck()```.
+- ```ngAfterContentChecked()```: Respond after Angular checks the content projected into the directive or component. Called after ```ngAfterContentInit()``` and every subsequent ```ngDoCheck()```.
+- ```ngAfterViewInit()```: Respond after Angular initializes the component's views and child views, or the view that contains the directive. Called once after the first ```ngAfterContentChecked()```.
+- ```ngAfterViewChecked()```: Respond after Angular checks the component's views and child views, or the view that contains the directive. Called after the ```ngAfterViewInit()``` and every subsequent ```ngAfterContentChecked()```.
+- ```ngOnDestroy()```: Cleanup just before Angular destroys the directive or component. Unsubscribe Observables and detach event handlers to avoid memory leaks. Called immediately before Angular destroys the directive or component.
 
 #### Explain Dependency Injection in Angular?
 Dependency injection is an application design pattern that is implemented by Angular and forms the core concepts of Angular. <br>
@@ -1232,6 +1310,7 @@ An angular application consists of components and templates which a browser cann
 There are two kinds of compilation that Angular provides:
 - **JIT(Just-in-Time) compilation**: the application compiles inside the browser during runtime
 - **AOT(Ahead-of-Time) compilation**: the application compiles during the build time.
+######
 Advantages of AOT compilation:
 - **Fast Rendering**: The browser loads the executable code and renders it immediately as the application is compiled before running inside the browser. 
 - **Fewer Ajax Requests**: The compiler sends the external HTML and CSS files along with the application, eliminating AJAX requests for those source files. 
@@ -1505,21 +1584,17 @@ import { RegisterGuard } from './guards/register.guard';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { EditClientComponent } from './components/edit-client/edit-client.component';
 import { ClientDetailsComponent } from './components/client-details/client-details.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent, canActivate:[AuthGuard] },
     { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent, canActivate:[RegisterGuard] },
     { path: 'client/add', component: AddClientComponent, canActivate:[AuthGuard] },
     { path: 'client/edit/:id', component: EditClientComponent, canActivate:[AuthGuard] },
     { path: 'client/:id', component: ClientDetailsComponent, canActivate:[AuthGuard] },
-    { path: 'settings', component: SettingsComponent, canActivate:[AuthGuard] },
     { path: '**', component: DashboardComponent }
 ];
 
@@ -1561,24 +1636,8 @@ export class AppComponent {
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/Forms';
-import { FlashMessagesModule } from 'angular2-flash-messages';
-import { environment } from '../environments/environment';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ClientsComponent } from './components/clients/clients.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { AddClientComponent } from './components/add-client/add-client.component';
-import { EditClientComponent } from './components/edit-client/edit-client.component';
-import { ClientDetailsComponent } from './components/client-details/client-details.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { SettingsComponent } from './components/settings/settings.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
@@ -1588,25 +1647,15 @@ import { SettingsService } from './services/settings.service';
     declarations: [
         AppComponent,
         NavbarComponent,
-        DashboardComponent,
-        ClientsComponent,
-        SidebarComponent,
-        AddClientComponent,
-        EditClientComponent,
         ClientDetailsComponent,
         LoginComponent,
-        RegisterComponent,
-        SettingsComponent,
         NotFoundComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         FlashMessagesModule.forRoot(),
-        AppRoutingModule,
-        AngularFireModule.initializeApp(environment.firebase, 'clientpanel'),
-        AngularFirestoreModule,
-        AngularFireAuthModule
+        AppRoutingModule
     ],
     providers: [ClientService, AuthService, SettingsService],
     bootstrap: [AppComponent]
@@ -1619,12 +1668,45 @@ export class AppModule { }
 ### Architecture
 
 #### What is Bounded Context in DDD?
-It is the delimited applicability of a particular model. Gives team members a clear and shared underestanding of what has to be consistent and what can be developed independently. Bounded Context is a central pattern in Domain-Driven Design when dealing with large models and teams, it is used in order to devide the models of underlying domain implementing **ubiquotous language** to help the communication between devs domain experts.
+It is the delimited applicability of a particular model. Gives team members a clear and shared understanding of what has to be consistent and what can be developed independently. Bounded Context is a central pattern in Domain-Driven Design when dealing with large models and teams, it is used in order to divide the models of underlying domain implementing **ubiquitous language** to help the communication between devs domain experts.
 
-#### What is Ubiquotous Language in DDD?
-Ubiquotous Language is a design approach, which consists notably of striving to use the vocabulary of a business domain in the all way into the product source code, which can achieve the practice of building up a common, rigorous communication between developers and users (domain experts).
+#### What is Ubiquitous Language in DDD?
+The ubiquitous language is a design approach, which consists notably of striving to use the vocabulary of a business domain in the all way into the product source code, which can achieve the practice of building up a common, rigorous communication between developers and users (domain experts).
 
 #### What is Value Object in DDD?
-Value object is an immutable type that is destinguished only by the state of its properties. In C# the type must have all of its state passed in at construction, any property must be read-only, which can be achieved using private setters ```public int n { get; private set; }```. **Value objects cannot be changed once they are created**. 
+Value object is an immutable type that is distinguished only by the state of its properties. In C# the type must have all of its state passed in at construction, any property must be read-only, which can be achieved using private setters ```public int n { get; private set; }```. **Value objects cannot be changed once they are created**. 
 
-#### [Principles](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles)
+#### What is the difference between Layers and Tiers?
+A layer is a part of your code (logical), if your application is a cake, this is a slice. <br>
+A tier is a machine, a server (physical). A tier hosts one or more layers. <br>
+- **Layers (logical)** are merely a way of organizing your code. Typical layers include Presentation, Business (Business Logic Layer, BLL) and Data (Database Access Layer DAL). The same as the traditional 3-tier model. But when we're talking about layers, we're only talking about logical organization of code. In no way is it implied that these layers might run on different computers or in different processes on a single computer or even in a single process on a single computer. All we are doing is discussing a way of organizing a code into a set of layers defined by specific function.
+- **Tiers(physical)** are only about where the code runs. Specifically, tiers are places where layers are deployed and where layers run. In other words, tiers are the physical deployment of layers.
+
+#### What is dead letter queue?
+Dead letter queue is a service implementation to store messages that meet one or more of the following criteria:
+- Message that is sent to a queue that does not exist.
+- Queue length limit exceeded.
+- Message length limit exceeded.
+- Message is rejected by another queue exchange.
+- Message reaches a threshold read counter number, because it is not consumed. Sometimes this is called a "back out queue".
+
+#### What is the difference between Durable and Non-Durable queues?
+- Durable queues keep the message around persistently for any suitable customer to consume them.
+- Non-Durable queues handle just if the subscribe is online at the moment the message is sent/published.
+
+#### Architectural principle: Separation of concerns
+A guiding principle when developing is Separation of Concerns. This principle asserts that software should be separated based on the kinds of work it performs. For instance, consider an application that includes logic for identifying noteworthy items to display to the user, and which formats such items in a particular way to make them more noticeable. The behaviour responsible for choosing which items to format should be kept separate from the behaviour responsible for formatting the items, since these behaviours are separate concerns that are only coincidentally related to one another.<br>
+Architecturally, applications can be logically built to follow this principle by separating core business behaviour from infrastructure and user-interface logic. Ideally, business rules and logic should reside in a separate project, which should not depend on other projects in the application. This separation helps ensure that the business model is easy to test and can evolve without being tightly coupled to low-level implementation details. Separation of concerns is a key consideration behind the use of layers in application architectures.
+
+#### Architectural principle: Dependency inversion
+The direction of dependency within the application should be in the direction of abstraction, not implementation details. Most applications are written such that compile-time dependency flows in the direction of runtime execution, producing a direct dependency graph.<br>
+Dependency inversion is a key part of building loosely coupled applications, since implementation details can be written to depend on and implement higher-level abstractions, rather than the other way around. The resulting applications are more testable, modular, and maintainable as a result. The practice of dependency injection is made possible by following the dependency inversion principle.
+
+#### Architectural principle: Single responsibility
+The single responsibility principle applies to object-oriented design, but can also be considered as an architectural principle similar to the separation of concerns. It states that objects should have only one responsibility and that they should have only one reason to change. Specifically, the only situation in which the object should change is if the manner in which it performs its one responsibility must be updated. Following this principle helps to produce more loosely coupled and modular systems, since many kinds of new behaviour can be implemented as new classes rather than by adding additional responsibility to existing classes. Adding new classes is always safer than changing existing classes, since no code yet depends on the new classes.<br>
+In a monolithic application, we can apply the single responsibility principle at a high level to the layers in the application. Presentation responsibility should remain in the UI project, while data access responsibility should be kept within an infrastructure project. Business logic should be kept in the application core project, where it can be easily tested and can evolve independently from other responsibilities.<br>
+When this principle is applied to application architecture and taken to its logical endpoint, you get microservices. A given microservice should have a single responsibility. If you need to extend the behaviour of a system, it's usually better to do it by adding additional microservices, rather than by adding responsibility to an existing one.
+
+#### Architectural principle: Don't repeat yourself (DRY)
+The application should avoid specifying behaviour related to a particular concept in multiple places as this practice is a frequent source of errors. At some point, a change in requirements will require changing this behaviour. It's likely that at least one instance of the behaviour will fail to be updated, and the system will behave inconsistently.<br>
+Rather than duplicating logic, encapsulate it in a programming construct. Make this construct the single authority over this behaviour, and have any other part of the application that requires this behaviour using the new construct.
