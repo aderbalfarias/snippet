@@ -2,7 +2,7 @@ public class GetBinarianLength
 {
 	public static void Main(string[] args)
 	{
-        Console.WriteLine(Q3.solution(new int[] { 1, 0, 2, 0, 0, 2 })); //Should be 3
+        Console.WriteLine(Q3.solution(new int[] { 1, 0, 2, 0, 0, 2 })); // Should be 3
 	}
 		
     public static int Calc(string S)

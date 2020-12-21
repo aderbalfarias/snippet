@@ -1,10 +1,6 @@
 /*
  *Given a number(N) and list of ranges find if the number intersects any of the entries in the list.
- *[ 0,16,
- *  31-64,
- *  65-128,
- *  129-256]
- *
+ *[ 0-16, 31-64, 65-128, 129-256 ]
  *N = 12 > True
  *N = 17 > False
 **/

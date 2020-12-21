@@ -1,6 +1,6 @@
-//Given an input sequence of several integer value modelling the price of a stock in a given day (quotes), write a method / function that calculates the maximum profit 
-//that could be done by date by buying 1 unit of the stock at a point in time that day and selling the same stock at a later point in time the same day.
-//If no buy and sell combination returns a profit, we can think of the case where the stock is bought and sold fast enough that the price did not change, hence 0 profit.
+// Given an input sequence of several integer value modelling the price of a stock in a given day (quotes), write a method / function that calculates the maximum profit 
+// that could be done by date by buying 1 unit of the stock at a point in time that day and selling the same stock at a later point in time the same day.
+// If no buy and sell combination returns a profit, we can think of the case where the stock is bought and sold fast enough that the price did not change, hence 0 profit.
 
 using System;
 
