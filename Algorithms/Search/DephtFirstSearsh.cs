@@ -1,4 +1,4 @@
-//Directed graph- Adjacency list representation
+// Directed graph- Adjacency list representation
 public class DephtFirstSearsh
 {
     // Total no of vertices

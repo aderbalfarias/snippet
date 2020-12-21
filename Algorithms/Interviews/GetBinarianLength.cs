@@ -2,9 +2,9 @@ public class GetBinarianLength
 {
 	public static void Main(string[] args)
 	{
-		Console.WriteLine(Calc("011100")); //Should be 7
-		Console.WriteLine(Calc("111")); //Should be 5
-		Console.WriteLine(Calc("1111010101111")); //Should be 22
+		Console.WriteLine(Calc("011100")); // Should be 7
+		Console.WriteLine(Calc("111")); // Should be 5
+		Console.WriteLine(Calc("1111010101111")); // Should be 22
 		
 		string test = "";
 		for (int i = 0; i < 400000; i++)
