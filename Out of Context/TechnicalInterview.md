@@ -121,7 +121,6 @@ public class Startup
         else
         {
             app.UseMiddleware<ExceptionMiddleware>();
-            app.UseExceptionHandler("/Error");
             app.UseStatusCodePagesWithReExecute("/Error/{0}");
             app.UseHsts();
 
