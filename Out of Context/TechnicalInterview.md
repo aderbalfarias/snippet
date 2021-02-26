@@ -317,6 +317,9 @@ Using ```Clone()``` method, we creates a new array object containing all the ele
 - Synchronous, data is sent in form of blocks or frames. Full duplex type, compulsory sincronization.
 - Asynchronous, data is sent in form of byte or character. Half duplex transmission, start bits and stop bits are added with data it does not require synchronization.
 
+#### ```break``` vs ```continue```
+```break``` leaves the loop completely and executes the statements after the loop. Whereas ```continue``` leaves the current iteration and executes with the next value in the loop. ```creak``` completely exits the loop. ```continue``` skips the statements after the ```continue``` statement and keeps looping.
+
 <hr>
 
 ### C# Keywords
@@ -347,9 +350,10 @@ sealed class B : A {}
 
 ### C# General 
 
-#### What is ```delegate```?
+#### What is ```delegate``` and how to use it?
 A ```delegate``` is a type that represents references to methods with a particular parameter list and return type. When you instantiate a delegate, you can associate its instance with any method with a compatible signature and return type. You can invoke (or call) the method through the delegate instance.<br>
-*Delegates are used to pass methods as arguments to other methods*. Event handlers are nothing more than methods that are invoked through delegates. 
+*Delegates are used to pass methods as arguments to other methods*. Event handlers are nothing more than methods that are invoked through delegates.<br>
+*See versus section ```Action``` vs ```Func``` vs ```Predicate```* 
 
 #### Does C# support multiple inheritance?
 No, however, you can implement multiple interfaces.
@@ -428,6 +432,10 @@ Circular reference is situation in which two or more resources are interdependen
 
 #### What are the different ways a method can be overloaded?
 Methods can be overloaded using different data types for a parameter, different order of parameters, and different number of parameters.
+
+#### Explain property in C#?
+A property is a member that provides a flexible mechanism to read, write, or compute the value of a private field. Properties can be used as if they are public data members, but they are actually special methods called accessors. This enables data to be accessed easily and still helps promote the safety and flexibility of methods.
+
 
 <hr>
 
