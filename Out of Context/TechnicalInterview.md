@@ -1436,6 +1436,23 @@ export class AppComponent {
 #### How to generate a Service in Angular using CLI?
 ```ng generate service MyServiceName --module=app```
 
+#### What is RxJS? 
+RxJS is a library for composing asynchronous and event-based programs by using observable sequences. It provides one core type, the Observable, satellite types (Observer, Schedulers, Subjects) and operators inspired by Array#extras (map, filter, reduce, every, etc) to allow handling asynchronous events as collections.<br>
+Observable: represents the idea of an invokable collection of future values or events.<br>
+Observer: is a collection of callbacks that knows how to listen to values delivered by the Observable
+
+#### What is Lazy-loading in Angular?
+The lazy load is implemented in the routes using # in the route of the special keyword loadChildren
+```
+{
+	path: 'xxxx'
+	loadChildren: 'app/xxxx/xxxx.module#child'
+}
+```
+
+#### What are Route Guards?
+Angular’s route guards are interfaces which can tell the router whether or not it should allow navigation to a requested route. They make this decision by looking for a true or false return value from a class which implements the given guard interface. The guards are: CanActivate, CanActivateChild, CanDeactivate, CanLoad, Resolve.
+
 #### Samples of Component and Service in Angular
 - Component TypeScript clients.component.ts
 ```
