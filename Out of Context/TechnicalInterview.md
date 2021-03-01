@@ -436,6 +436,9 @@ Methods can be overloaded using different data types for a parameter, different 
 #### Explain property in C#?
 A property is a member that provides a flexible mechanism to read, write, or compute the value of a private field. Properties can be used as if they are public data members, but they are actually special methods called accessors. This enables data to be accessed easily and still helps promote the safety and flexibility of methods.
 
+#### What is Regular Expression?
+A regular expression is a sequence of characters that specifies a search pattern.<br>
+In C#, Regular Expression/Regex is a pattern which is used to parse and check whether the given input text is matching with the given pattern or not.
 
 <hr>
 
@@ -1250,6 +1253,9 @@ function myfunction() {
 #### What is the difference between ```ex = 1;``` and ```var ex = 1;``` in JavaScript?
 If you're in the global scope there is no difference but if you are in a function ```var``` will create a local variable whereas ```ex = 1;``` will look up the scope until it finds the variable or hits the global scope. 
 
+#### SASS vs CSS
+Sass is a meta-language on top of CSS that's used to describe the style of a document cleanly and structurally, with more power than flat CSS allows. Sass both provides a simpler, more elegant syntax for CSS and implements various features that are useful for creating manageable stylesheets. More specifically, Sass is an extension of CSS3.
+
 <hr>
 
 ### Front-end Angular
@@ -1452,6 +1458,12 @@ The lazy load is implemented in the routes using # in the route of the special k
 
 #### What are Route Guards?
 Angular’s route guards are interfaces which can tell the router whether or not it should allow navigation to a requested route. They make this decision by looking for a true or false return value from a class which implements the given guard interface. The guards are: CanActivate, CanActivateChild, CanDeactivate, CanLoad, Resolve.
+
+#### What is View Encapsulation?
+In Angular, component CSS styles are encapsulated into the component's view and don't affect the rest of the application. To control how this encapsulation happens on a per component basis, you can set the view encapsulation mode in the component metadata.<br>
+To set the component's encapsulation mode, use the encapsulation property in the component metadata encapsulation as ShadowDom, Emulated or None 
+```encapsulation: ViewEncapsulation.ShadowDom```
+
 
 #### Samples of Component and Service in Angular
 - Component TypeScript clients.component.ts
