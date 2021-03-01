@@ -1076,6 +1076,33 @@ The non-clustered index is a copy of the data(of the column reference) which sto
 #### What is filtered Index?
 Filtered Index is used to filter some portion of rows in a table to improve query performance, index maintenance and reduces index storage costs. When the index is created with ```WHERE``` clause, then it is called filtered Index.
 
+#### What is constraints in SQL?
+SQL constraint is used to specify rules for the data in a table. Constraints are used to limit the type of data that can go into a table. Constraints can be column level or table level
+
+#### What are Noncorrelated and Correlated Subqueries?
+Subqueries can be categorized into two types:<br>
+- A noncorrelated (simple) subquery obtains its results independently of its containing (outer) statement.
+- A correlated subquery requires values from its outer query in order to execute.<br>
+Noncorrelated<br>
+```
+	SELECT name, street, city, state FROM addresses WHERE state IN (SELECT state FROM states)
+	SELECT COUNT(*) FROM SubQ1 GROUP BY SubQ1.a HAVING SubQ1.a = (SubQ1.a & (SELECT y from SubQ2)
+```
+Correlated<br>
+```
+	SELECT name, street, city, state FROM addresses
+		WHERE EXISTS (SELECT * FROM states WHERE states.state = addresses.state)
+```
+
+#### What is a user-defined function in SQL?
+SQL Server user-defined functions are routines that accept parameters, perform an action, such as a complex calculation, and return the result of that action as a value. The return value can either be a single scalar value or a result set.
+
+#### What are aggregate and scalar function?
+Aggregate functions operate against a collection of values and return a single summarizing value. Scalar functions return a single value based on scalar input arguments. Some scalar functions, such as CURRENT_TIME, do not require any arguments.
+
+#### What operator is used to pattern matching 
+LIKE
+
 <hr>
 
 ### [Git Commands](https://github.com/AderbalFarias/snippet/blob/master/Commands/git-commands.md)
