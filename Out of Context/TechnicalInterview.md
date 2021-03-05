@@ -436,6 +436,9 @@ Methods can be overloaded using different data types for a parameter, different 
 #### Explain property in C#?
 A property is a member that provides a flexible mechanism to read, write, or compute the value of a private field. Properties can be used as if they are public data members, but they are actually special methods called accessors. This enables data to be accessed easily and still helps promote the safety and flexibility of methods.
 
+#### What is Regular Expression?
+A regular expression is a sequence of characters that specifies a search pattern.<br>
+In C#, Regular Expression/Regex is a pattern which is used to parse and check whether the given input text is matching with the given pattern or not.
 
 <hr>
 
@@ -1073,6 +1076,31 @@ The non-clustered index is a copy of the data(of the column reference) which sto
 #### What is filtered Index?
 Filtered Index is used to filter some portion of rows in a table to improve query performance, index maintenance and reduces index storage costs. When the index is created with ```WHERE``` clause, then it is called filtered Index.
 
+#### What is constraints in SQL?
+SQL constraint is used to specify rules for the data in a table. Constraints are used to limit the type of data that can go into a table. Constraints can be column level or table level
+
+#### What are Noncorrelated and Correlated Subqueries?
+Subqueries can be categorized into two types:<br>
+- A noncorrelated (simple) subquery obtains its results independently of its containing (outer) statement.
+```
+	SELECT name, street, city, state FROM addresses WHERE state IN (SELECT state FROM states)
+	SELECT COUNT(*) FROM SubQ1 GROUP BY SubQ1.a HAVING SubQ1.a = (SubQ1.a & (SELECT y from SubQ2)
+```
+- A correlated subquery requires values from its outer query in order to execute.<br>
+```
+	SELECT name, street, city, state FROM addresses
+		WHERE EXISTS (SELECT * FROM states WHERE states.state = addresses.state)
+```
+
+#### What is a user-defined function in SQL?
+SQL Server user-defined functions are routines that accept parameters, perform an action, such as a complex calculation, and return the result of that action as a value. The return value can either be a single scalar value or a result set.
+
+#### What are aggregate and scalar function?
+Aggregate functions operate against a collection of values and return a single summarizing value. Scalar functions return a single value based on scalar input arguments. Some scalar functions, such as CURRENT_TIME, do not require any arguments.
+
+#### What operator is used to pattern matching 
+LIKE
+
 <hr>
 
 ### [Git Commands](https://github.com/AderbalFarias/snippet/blob/master/Commands/git-commands.md)
@@ -1249,6 +1277,9 @@ function myfunction() {
 
 #### What is the difference between ```ex = 1;``` and ```var ex = 1;``` in JavaScript?
 If you're in the global scope there is no difference but if you are in a function ```var``` will create a local variable whereas ```ex = 1;``` will look up the scope until it finds the variable or hits the global scope. 
+
+#### SASS vs CSS
+Sass is a meta-language on top of CSS that's used to describe the style of a document cleanly and structurally, with more power than flat CSS allows. Sass both provides a simpler, more elegant syntax for CSS and implements various features that are useful for creating manageable stylesheets. More specifically, Sass is an extension of CSS3.
 
 <hr>
 
@@ -1452,6 +1483,12 @@ The lazy load is implemented in the routes using # in the route of the special k
 
 #### What are Route Guards?
 Angular’s route guards are interfaces which can tell the router whether or not it should allow navigation to a requested route. They make this decision by looking for a true or false return value from a class which implements the given guard interface. The guards are: CanActivate, CanActivateChild, CanDeactivate, CanLoad, Resolve.
+
+#### What is View Encapsulation?
+In Angular, component CSS styles are encapsulated into the component's view and don't affect the rest of the application. To control how this encapsulation happens on a per component basis, you can set the view encapsulation mode in the component metadata.<br>
+To set the component's encapsulation mode, use the encapsulation property in the component metadata encapsulation as ShadowDom, Emulated or None 
+```encapsulation: ViewEncapsulation.ShadowDom```
+
 
 #### Samples of Component and Service in Angular
 - Component TypeScript clients.component.ts
