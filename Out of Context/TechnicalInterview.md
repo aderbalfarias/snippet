@@ -1082,13 +1082,11 @@ SQL constraint is used to specify rules for the data in a table. Constraints are
 #### What are Noncorrelated and Correlated Subqueries?
 Subqueries can be categorized into two types:<br>
 - A noncorrelated (simple) subquery obtains its results independently of its containing (outer) statement.
-- A correlated subquery requires values from its outer query in order to execute.<br>
-Noncorrelated<br>
 ```
 	SELECT name, street, city, state FROM addresses WHERE state IN (SELECT state FROM states)
 	SELECT COUNT(*) FROM SubQ1 GROUP BY SubQ1.a HAVING SubQ1.a = (SubQ1.a & (SELECT y from SubQ2)
 ```
-Correlated<br>
+- A correlated subquery requires values from its outer query in order to execute.<br>
 ```
 	SELECT name, street, city, state FROM addresses
 		WHERE EXISTS (SELECT * FROM states WHERE states.state = addresses.state)
