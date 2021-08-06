@@ -1441,7 +1441,8 @@ export class AppComponent {
 <h2>{{ title }}</h2> <!-- String Interpolation -->    
 <img [src]="imgUrl" /> <!-- Property Binding -->   
 ```
-- **Two-way Binding**: Changes made in the application state gets automatically reflected in the view and vice-versa. The ```ngModel``` directive is used for achieving this type of data binding.
+- **Two-way Binding**: Changes made in the application state gets automatically reflected in the view and vice-versa. The ```ngModel``` directive is used for achieving this type of data binding.<br>
+```[(ngModel)]``` where the parentheses ```()``` are used to **bind in HTML to component direction** typically used in order to respond to events whereas the calibraces ```[]``` are used to **bind in the componenet to HTML direction** which displays data from component in the page, the reason it is often used is because normally we are editing existing data.
 ```
 import { Component } from "@angular/core";    
 @Component({    
