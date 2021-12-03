@@ -440,6 +440,10 @@ A property is a member that provides a flexible mechanism to read, write, or com
 A regular expression is a sequence of characters that specifies a search pattern.<br>
 In C#, Regular Expression/Regex is a pattern which is used to parse and check whether the given input text is matching with the given pattern or not.
 
+
+#### Explain Hashtable in C#
+The Hashtable is a non-generic collection that stores key-value pairs, similar to generic `Dictionary<TKey, TValue>` collection. It optimizes lookups by computing the hash code of each key and stores it in a different bucket internally and then matches the hash code of the specified key at the time of accessing values.
+
 <hr>
 
 ### Object-oriented programming (OOP)
