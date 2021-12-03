@@ -1052,9 +1052,9 @@ A clustered index defines the order in which data is physically stored in a tabl
 CREATE TABLE Test
 (
     Id int PRIMARY KEY, -- by default it will be created as a clustered index
-	Name varchar(50) NOT NULL,
-	Gender varchar(10) NOT NULL,
-	Score int NOT NULL
+    Name varchar(50) NOT NULL,
+    Gender varchar(10) NOT NULL,
+    Score int NOT NULL
 )
 ```
 The clustered index stores the records in the table following the ascending order of the ```Id```. Therefore, if the inserted record has the ```Id``` of 5, the record will be inserted in the 5th row of the table instead of the first row. Similarly, if the fourth record has an ```Id``` of 3, it will be inserted in the third row instead of the fourth row. This is because the clustered index has to maintain the physical order of the stored records according to the indexed column.<br>
