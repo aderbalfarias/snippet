@@ -324,6 +324,9 @@ Using ```Clone()``` method, we creates a new array object containing all the ele
 
 ### C# Keywords
 
+#### Explain the keyword ```lock``` in C#?
+The ```lock``` keyword ensures that one thread is executing a piece of code at one time. The lock keyword ensures that one thread does not enter a critical section of code while another thread is in that critical section. Lock is a keyword shortcut for acquiring a lock for the piece of code for only one thread.
+
 #### Explain the keyword ```virtual```?
 The ```virtual``` keyword is used to modify a method, property, indexer, or event declaration and allow for it to be overridden in a derived class. You cannot use the virtual modifier with the ```static, abstract, private, override``` modifiers.
 
