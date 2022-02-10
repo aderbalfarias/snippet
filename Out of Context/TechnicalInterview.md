@@ -245,7 +245,7 @@ var x = context.Products.Where(w => w.Type == "y").ToList();
 ```
 
 #### Stack vs Heap
-In short, in the **Stack** are stored value types (types inherited from ```System.ValueType``` like ```bool, int, long, decimal, float, short```) and in the **Heap** are stored reference types (types inherited from ```System.Object``` such as ```string, object, dynamic```).<br>
+In short, in the **Stack** are stored value types (types inherited from ```System.ValueType``` like ```bool, int, long, decimal, float, short, struct```) and in the **Heap** are stored reference types (types inherited from ```System.Object``` such as ```string, object, dynamic```).<br>
 Stack is responsible for keeping track what is actually executing and where each executing thread is (each thread has its own stack).<br>
 Heap is responsible for keeping track of the data, or more precise objects.
 
