@@ -318,7 +318,7 @@ Using ```Clone()``` method, we creates a new array object containing all the ele
 - Asynchronous, data is sent in form of byte or character. Half duplex transmission, start bits and stop bits are added with data it does not require synchronization.
 
 #### ```break``` vs ```continue```
-```break``` leaves the loop completely and executes the statements after the loop. Whereas ```continue``` leaves the current iteration and executes with the next value in the loop. ```creak``` completely exits the loop. ```continue``` skips the statements after the ```continue``` statement and keeps looping.
+```break``` leaves the loop completely and executes the statements after the loop. Whereas ```continue``` leaves the current iteration and executes with the next value in the loop. ```break``` completely exits the loop. ```continue``` skips the statements after the ```continue``` statement and keeps looping.
 
 <hr>
 
