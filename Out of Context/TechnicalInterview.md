@@ -141,6 +141,115 @@ public class Startup
 }
 ```
 
+New Program.cs file version .net 6:
+```
+using CoreApp.Api.Extensions;
+using CoreApp.Api.Middlewares;
+using CoreApp.Api.Options.Authorization;
+using CoreApp.Domain.Entities;
+using CoreApp.IoC;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Serilog;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
+
+// Add services to the container.
+var corsOrigin = builder.Configuration.GetSection("CorsOrigin").Get<string[]>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins(corsOrigin).AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
+// Dependency Injection
+builder.Services.Services();
+builder.Services.Repositories();
+builder.Services.Databases(builder.Configuration.GetConnectionString("DemoConnection"));
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(nameof(AppSettings)));
+
+var authenticationOption = builder.Configuration
+    .GetSection(nameof(ApplicationOptions.Authentication))
+    .Get<AuthenticationOptions>();
+
+builder.Services.AddSingleton(authenticationOption);
+
+builder.Services.AddHealthChecks()
+    .AddSqlServer(builder.Configuration.GetConnectionString("DemoConnection"));
+
+builder.Services.AddControllers();
+builder.Services.AddApiVersioning();
+builder.Services.AddSwagger(authenticationOption);
+
+var oidc = builder.Configuration
+    .GetSection(nameof(ApplicationOptions.OidcAuthorizationServer))
+    .Get<OidcAuthorizationServerOptions>();
+
+builder.Services.AddSingleton(oidc);
+builder.Services.AddAuthorization(options =>
+{
+    options.DefaultPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .AddAuthenticationSchemes(new string[] { JwtBearerDefaults.AuthenticationScheme, "ADFS" })
+        .Build();
+});
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("X-Frame-Options", "DENY");
+    context.Response.Headers.Add("Server", "DENY");
+
+    await next();
+});
+
+app.UseAuthentication();
+
+app.Logger.LogInformation($"In {app.Environment.EnvironmentName} environment");
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("../swagger/v3/swagger.json", "Core App .NET v6");
+    c.RoutePrefix = string.Empty;
+});
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseMiddleware<ExceptionMiddleware>();
+}
+else
+{
+    app.UseMiddleware<ExceptionMiddleware>();
+    app.UseExceptionHandler("/Error");
+    app.UseStatusCodePagesWithReExecute("/Error/{0}");
+    app.UseHsts();
+
+    app.UseHttpsRedirection();
+}
+
+app.UseRouting();
+app.UseAuthorization();
+app.UseStaticFiles();
+app.UseCors();
+app.UseHealthChecks();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
+
+app.Run();
+```
+
 #### What is the use of ```ConfigureServices(IServiceCollection services)``` method of startup ```class```?
 This is an optional method of startup ```class```. It can be used to configure the services that are used by the application. This method calls first when the application is requested for the first time. Using this method, we can do things like adding services to the DI container, so services are available as a dependency in controller constructor.
 
