@@ -320,6 +320,23 @@ Using ```Clone()``` method, we creates a new array object containing all the ele
 #### ```break``` vs ```continue```
 ```break``` leaves the loop completely and executes the statements after the loop. Whereas ```continue``` leaves the current iteration and executes with the next value in the loop. ```break``` completely exits the loop. ```continue``` skips the statements after the ```continue``` statement and keeps looping.
 
+#### ```struct``` vs ```class```
+ 
+Class and struct are both user-defined data types, but have some major differences:
+##### ```struct```:
+- The struct is a value type in C# and it inherits from System.Value type.
+- Struct is usually used for smaller amounts of data.
+- Struct can't be inherited from other types.
+- A structure can't be abstract.
+- No need to create an object with a new keyword.
+- Do not have permission to create any default constructor.
+##### ```class```:
+- The class is a reference type in C# and it inherits from the System.Object type.
+- Classes are usually used for large amounts of data.
+- Classes can be inherited from other classes.
+- A class can be an abstract type.
+- We can create a default constructor.
+
 <hr>
 
 ### C# Keywords
