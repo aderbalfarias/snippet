@@ -543,6 +543,10 @@ private async Task<T> Retry<T>(Func<Task<T>> action, TimeSpan retryInterval, int
 #### Can we use ```this``` command within a static method?
 We can't use ```this``` in a static method because we can only use static variables/methods in a static method.
 
+#### How to use extension methods?
+An extension method is a ```static``` method of a ```static class```, where the ```this``` modifier is applied to the first parameter. 
+The type of the first parameter will be the type that is extended.
+
 #### Can a ```private virtual``` method can be overridden?
 No, because they are not accessible outside the ```class```.
 
