@@ -468,8 +468,16 @@ A property is a member that provides a flexible mechanism to read, write, or com
 A regular expression is a sequence of characters that specifies a search pattern.<br>
 In C#, Regular Expression/Regex is a pattern which is used to parse and check whether the given input text is matching with the given pattern or not.
 
+#### What is ```enum``` in C#? 
+An enum is a value type with a set of related named constants often referred to as an enumerator list. The enum keyword is used to declare an enumeration. It is a primitive data type that is user-defined.<br>
+An enum type can be an integer (float, int, byte, double, etc.). But if you use it beside int it has to be cast.<br>
+Some points about enum:
+- Enums are enumerated data types in c#.
+- By default, the first enumerator has the value 0, and the value of each successive enumerator is increased by 1.
+- The default type is int, and the approved types are byte, sbyte, short, ushort, uint, long, and ulong.
+- Enums are strongly typed constant. They are strongly typed, i.e. an enum of one type may not be implicitly assigned to an enum of another type even though the underlying value of their members is the same.
 
-#### Explain Hashtable in C#
+#### Explain Hashtable in C#?
 The Hashtable is a non-generic collection that stores key-value pairs, similar to generic `Dictionary<TKey, TValue>` collection. It optimizes lookups by computing the hash code of each key and stores it in a different bucket internally and then matches the hash code of the specified key at the time of accessing values.
 
 <hr>
