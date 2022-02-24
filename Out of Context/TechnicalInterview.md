@@ -1480,6 +1480,98 @@ Angular components enter its lifecycle from the time it is created to the time i
 Dependency injection is an application design pattern that is implemented by Angular and forms the core concepts of Angular. <br>
 Dependencies in Angular are services which have a functionality. Various components and directives in an application can need these functionalities of the service. Angular provides a smooth mechanism by which these dependencies are injected into components and directives.
 
+#### How to make Api calls in Angular?
+Using HttpClient request which is service available as an injectable class
+
+```
+return this.httpClient.get<ApiResponse>(url, { params: httpParams, withCredentials: true });
+return this.httpClient.post(url, new type().post(object, type), { withCredentials: true });
+return this.httpClient.delete(url, { withCredentials: true });
+
+get<T extends IApiModel>(apiRequest: ApiRequest, type: new () => T): Observable<T> {
+	return this.apiRequest
+	.pipe(
+		map((response: ApiResourceResponse) => {
+			if (response.errors != null) {
+				console.log(response.errors);
+				return new type();
+			}
+			if (response.resource !== null) {
+				return new type().parse(response.resource, type);
+			} else {
+				return new type().parse(response, type);
+			}
+		}),
+		catchError((error: any) => {
+			return of(new type());
+		})
+	);
+}
+  
+getList<T extends IApiModel>(): Observable<T[]> { return new type().parseArray(response.resource, type); }
+
+save<T extends IApiModel>(apiRequest: ApiRequest, object: T, type: new () => T, message?: string): Observable<number> {
+	return this.erpSaveService.apiRequest.pipe(
+		filter((x) => x),
+		take(1),
+		switchMap(() => {
+			return this.httpClient.post(url, new type().post(object, type), { withCredentials: true });
+		}),
+		map((response: ApiResponse) => {
+			if (response.errors != null) {
+				console.log(response.errors);
+				return null;
+			} 
+			if (message.lenght > 0) { console.log(message); }
+			return +response.resource;
+		}),
+		catchError((error: any) => { return; }),
+		finalize(() => { console.log('test'); })
+    );
+  }
+}
+
+//request with setStream
+
+obs$: Observable<MyModel[]>;
+
+constructor(private readonly baseService: BaseService) {
+	this.setStream();
+}
+
+private mySubject = new Subject();
+private mySubject = new Subject<MyModel[]>();
+
+request() {
+	myRequest.next();
+}
+
+setStream()
+{
+	this.obs$ = myRequest
+		.pipe(
+			takeUntil(unsubscribe) or take(1),
+			debounceTime(400),
+			//switchMap(x => {
+			//  return this.get<xModel>(x);
+			//})
+		)
+		.subscribe(result => { this.mySubject.next(result)}); 
+	});
+}
+
+//calling it 
+requestServiceInjected.request();
+//or 
+combineLatest([requestService.obs$, n1$, n2$]
+	.pipe(takeUntil(this.unsubscribe))
+	.subscribe(data => {
+		const x1 = data[0];
+		const x2 = data[1];
+		const x3 = data[2];
+	});
+```
+
 #### Describe the MVVM architecture?
 MVVM architecture removes tight coupling between each component. The MVVM architecture comprises of three parts:
 - **Model**: It represents the data and the business logic of an application, or we may say it contains the structure of an entity. It consists of the business logic - local and remote data source, model classes, repository.
