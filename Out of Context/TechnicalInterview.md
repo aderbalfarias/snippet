@@ -1438,6 +1438,27 @@ Sass is a meta-language on top of CSS that's used to describe the style of a doc
 
 ### Front-end Angular
 
+#### How to communication between components angular?
+Using input and output properties: ```@Input()``` decorator, ```@Output()``` decorator 
+```
+@Input() name = '';
+@Input() surname: string;
+@Input('master') masterName = ''; //master is an alias
+  
+@Output() voted = new EventEmitter<boolean>();
+@Output('showRecords') showRecords = new Subject<boolean>();
+
+vote(agreed: boolean) {
+	this.voted.emit(agreed);
+}
+  
+showData(e: any) {
+	this.showRecords.next(e.x);
+}
+```
+From Parent to Child: Pass data from parent to child with input binding like ```<app-child [name]="xx"></app-child>```<br>
+From Child to Parent: The child component exposes an EventEmitter property with which it emits events when something happens.
+
 #### What is a Directive?
 At the core, a directive is a function that executes whenever the Angular compiler finds it in the DOM. Angular directives are used to extend the power of the HTML by giving it new syntax. Each directive has a name, either one from the Angular predefined like ```ng-repeat```, or a custom one which you can name as you prefer. There are 3 types of directives:
 - **Component Directives** These form the main ```class``` having details of how the component should be processed, instantiated and used at runtime.
