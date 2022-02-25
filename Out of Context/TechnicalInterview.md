@@ -1998,6 +1998,59 @@ export class AppModule { }
 
 <hr>
 
+### Test
+
+#### What is sut? 
+System under test.
+
+#### Unit test vs integration test
+**Unit tests** focus on a single part of a whole application in total isolation, usually, a single class or function. Ideally, the tested component is free of side effects so it is as easy to isolate by mocking it and test.<br>
+**Integration test** there is no need to mock away parts of the application the main thing is to test how parts of the application work together as a whole so it considers side effects from the beginning it helps find issues that are not obvious by examining the application or a specific unit implementation.<br>
+Note: Unit test you mock everything else on the other hand in Integration test you don't mock anything you set up the data only. 
+
+#### Test structure
+**Given = Arrange**: inputs and targets. Arrange steps should set up the test case like objects, special settings, database. Handle all of these operations at the start of the test.<br>
+**When = Act**: on the target behavior. Act steps should cover the main thing to be tested. This could be calling a function or method, calling a REST API, or interacting with a web page. Keep actions focused on the target behavior.<br>
+**Then = Assert**: expected outcomes. Act steps should elicit some sort of response. Assert steps verify the goodness or badness of that response.<br>
+**Note:** BDD is follows Arrange-Act-Assert pattern by another name Given-When-Then.
+
+#### NUnit vs XUnit vs MSTest
+**NUnit:<br>**
+- [SetUp] = There should be at least one method per test class. Marks a method that should be called before each test method.
+- [TearDown] = 	There should be at least one method per test class. Marks a method that should be called after each test method.
+- [TestFixture] = Marks a class that contains tests.
+- [Test] = Marks a method, i.e., an actual test case in the test class.
+- [TestCase] = Marks a method with parameters and provides the inline arguments.
+- [TestFixtureSetUp] = Marks a method that is executed once before the execution of any test method in that fixture.
+- [Category] = Specify the category for the test.<br>
+
+**XUnit:<br>**
+- [Fact] = Marks a test method, i.e., actual test in a class
+- Assert.Throws Record Exception = Verify the raise and raise assert, irrespective of the place in the code where the problem occurs.
+- Constructor = This is not an attribute but is an ideal replacement for the [SetUp] attribute. The constructor should be parameter-less.
+- IDisposable.Dispose = This is not an attribute but is an ideal replacement for the [TearDown] attribute. This is where the code for performing necessary cleanup and de-initialization is included.
+- [Trait] = Used to set arbitrary meta-data on a test.
+- [Theory] = This attribute is used when data-driven tests have to be executed. In such cases, [Theory] has to be used instead of [Fact] attribute.
+- [InlineData] = This attribute is used along with the [Theory] attribute to supply a subset of data against which parameterized tests will be executed.
+- [ClassData] = This attribute is used when the parameters being passed to the [Theory] tests are not constants. `[Theory] [ClassData(typeof(some-data))]`
+- [MemberData] = This attribute can be used to fetch data for [Theory] from a static method. The most common approach is to load the data from the property of a test class, i.e., using IEnumerable.<br>
+
+**MSTest:<br>**
+- [TestInitialize] = Marks a method that should be called before each test method. One such method should be present before each test class.
+- [TestCleanup] = Marks a method that should be called after each test method. One such method should be present before each test class.
+- [TestClass] = Marks a class that contains tests.
+- [TestMethod] = Marks the method, i.e., the actual test case in the test class.
+- [DataRow] = Allows setting the values of the parameters of the tests. Multiple [DataRow] annotations can be present in the code.
+- [DataTestMethod] = It has the same functionality as the [TestMethod] attribute except that it is used when the [DataRow] attribute is used.
+- [AssemblyInitialize] = Marks the method that should be called once before the execution of any method in the assembly code.
+- [AssemblyCleanup] = Marks the method that should be called once after the execution of any method in the assembly code.
+- [Ignore] = Marks a test method or test class that should be considered for execution, i.e., it is ignored.
+- [TestCategory] = Specify the category for the test.
+- [ClassInitialize] = Methods that will be called only once before executing any of the test methods present in that class.
+- [ClassCleanup] = Methods that will be called only once after executing the test methods present in that class.
+
+<hr>
+
 ### Architecture
 
 #### What is Bounded Context in DDD?
