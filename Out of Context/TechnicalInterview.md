@@ -2053,6 +2053,9 @@ Note: Unit test you mock everything else on the other hand in Integration test y
 
 ### Architecture
 
+#### What is REST?
+Representational state transfer (REST) is a software architectural style that was created to guide the design and development of the architecture for the World Wide Web. REST defines a set of constraints for how the architecture of an Internet-scale distributed hypermedia system, such as the Web, should behave. The REST architectural style emphasises the scalability of interactions between components, uniform interfaces, independent deployment of components. It provides operations (HTTP methods) such as GET, POST, PUT, and DELETE.
+
 #### What is Bounded Context in DDD?
 It is the delimited applicability of a particular model. Gives team members a clear and shared understanding of what has to be consistent and what can be developed independently. Bounded Context is a central pattern in Domain-Driven Design when dealing with large models and teams, it is used in order to divide the models of underlying domain implementing **ubiquitous language** to help the communication between devs domain experts.
 
