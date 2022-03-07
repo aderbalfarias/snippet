@@ -1179,11 +1179,11 @@ SUBSTRING('Smiley', 1, 3) -- Gives result as Smi
 CHARINDEX('i', 'Smiley', 1) -- Gives 3 as result as I appears in 3rd position of the string
 ```
 
-#### What is ISNULL() operator?
+#### What is ```ISNULL()``` operator?
 ```ISNULL``` function is used to check whether value given is ```NULL``` or not ```NULL``` in sql server. This function also provides to replace a value with the ```NULL```.
 
 #### What is the difference between COMMIT and ROLLBACK?
-Every statement between BEGIN and COMMIT becomes persistent to database when the COMMIT is executed. Every statement between BEGIN and ROOLBACK are reverted to the state when the ROLLBACK was executed.
+Every statement between ```BEGIN``` and ```COMMIT``` becomes persistent to database when the ```COMMIT``` is executed. Every statement between ```BEGIN``` and ```ROOLBACK``` are reverted to the state when the ```ROLLBACK``` was executed.
 
 #### What is the use of ```@@SPID```?
 A ```@@SPID``` returns the session ID of the current user process.
