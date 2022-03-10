@@ -1822,7 +1822,8 @@ export class ClientsComponent implements OnInit {
             <td>{{ client.balance | currency:"USD":"symbol" }}</td>
             <td>
                 <a routerLink="client/{{ client.id }}" class="btn btn-secondary btn-sm">
-                    <i class="fa fa-arrow-circle-o-right"></i> Details</a>
+                    <i class="fa fa-arrow-circle-o-right"></i> Details
+	    	</a>
             </td>
         </tr>
     </tbody>
