@@ -1998,7 +1998,7 @@ export class AppModule { }
 
 <hr>
 
-### Test
+### Unit Test and Integration Test 
 
 #### What is sut? 
 System under test.
