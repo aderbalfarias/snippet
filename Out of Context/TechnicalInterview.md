@@ -329,6 +329,9 @@ strb.Append("how are you?");
 string x = strb.ToString();
 ```
 
+#### ```Thread``` vs ```Task```
+Both the ```Thread``` class and the ```Task``` class are used for parallel programming in C#. A ```Thread``` is a lower-level implementation while a ```Task``` is a higher-level implementation. It takes resources while a ```Task``` does not. It also provides more control than the ```Task``` class. A ```Thread``` should be preferred for any long-running operations, while a ```Task``` should be preferred for any other asynchronous operations.
+
 #### ```String``` vs ```string```
 Essentially, there is no difference between string and String in C#.<br>
 ```String``` is a ```class``` in the .NET framework in the System namespace. The fully qualified name is ```System.String```. Whereas, the lower case ```string``` is an alias of ```System.String```.
@@ -592,6 +595,8 @@ Some points about enum:
 
 #### Explain how ```async``` and ```await``` work?
 The async keyword turns a method into an ```async``` method, which allows you to use the ```await``` keyword in its body. **When the await keyword is applied, it suspends the calling method and yields control back to its caller until the awaited task is complete.** ```await``` can only be used inside an ```async``` method.
+- ```async``` indicates the method is asynchronous (which allows multiple tasks to work concurrently without wait for a specific task to finish).
+- ```await``` suspendes the asynchronous method evaluation.
 
 #### Explain Hashtable in C#?
 The Hashtable is a non-generic collection that stores key-value pairs, similar to generic `Dictionary<TKey, TValue>` collection. It optimizes lookups by computing the hash code of each key and stores it in a different bucket internally and then matches the hash code of the specified key at the time of accessing values.
