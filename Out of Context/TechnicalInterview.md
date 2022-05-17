@@ -590,6 +590,9 @@ Some points about enum:
 - The default type is int, and the approved types are byte, sbyte, short, ushort, uint, long, and ulong.
 - Enums are strongly typed constant. They are strongly typed, i.e. an enum of one type may not be implicitly assigned to an enum of another type even though the underlying value of their members is the same.
 
+#### Explain how ```async``` and ```await``` work?
+The async keyword turns a method into an ```async``` method, which allows you to use the ```await``` keyword in its body. **When the await keyword is applied, it suspends the calling method and yields control back to its caller until the awaited task is complete.** ```await``` can only be used inside an ```async``` method.
+
 #### Explain Hashtable in C#?
 The Hashtable is a non-generic collection that stores key-value pairs, similar to generic `Dictionary<TKey, TValue>` collection. It optimizes lookups by computing the hash code of each key and stores it in a different bucket internally and then matches the hash code of the specified key at the time of accessing values.
 
