@@ -1,6 +1,6 @@
 # Snippet
 
-Snippet repository stores parts of codes or files containing content that the author believes may be useful.
+Snippet repository stores code snippets, guides or files containing content which the author believes are useful.
 
 #### Important links
 
