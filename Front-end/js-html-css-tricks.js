@@ -9,3 +9,6 @@
 document.designMode="on"
 
 // Ctrl + L = clean the console
+
+// Jump straight to a passed-in DOM node
+inspect($('p'))
