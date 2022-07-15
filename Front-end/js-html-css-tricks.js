@@ -5,8 +5,9 @@
     document.documentElement.style.transform = 'rotate(360deg)';
 }());
 
-// Edit html
-document.designMode="on"
+// Edit html content
+document.designMode="on";
+document.body.contentEditable = 'true';
 
 // Ctrl + L = clean the console
 
