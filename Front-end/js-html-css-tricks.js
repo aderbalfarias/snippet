@@ -4,3 +4,6 @@
     document.documentElement.style.transitionTimingFunction = 'easy-in';
     document.documentElement.style.transform = 'rotate(360deg)';
 }());
+
+//Edit html
+document.designMode="on"
