@@ -468,6 +468,9 @@ lock (_object)
 #### Explain the keyword ```virtual```?
 The ```virtual``` keyword is used to modify a method, property, indexer, or event declaration and allow for it to be overridden in a derived class. You cannot use the virtual modifier with the ```static, abstract, private, override``` modifiers.
 
+#### Explain what happen if a method has the ```abstract``` keyword?
+It must be overridden.
+
 #### Explain the keyword ```volatile```?
 The ```volatile``` keyword indicates that a field might be modified by multiple threads that are executing at the same time. The compiler, the runtime system, and even hardware may rearrange reads and writes to memory locations for performance reasons. Fields that are declared volatile are not subject to these optimizations.
 
