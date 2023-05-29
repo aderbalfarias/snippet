@@ -1,0 +1,33 @@
+class Result
+{
+
+    /*
+     * Complete the 'selectStock' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER saving
+     *  2. INTEGER_ARRAY currentValue
+     *  3. INTEGER_ARRAY futureValue
+     */
+
+    // Selecting Stocks
+    public static int SelectStock(int saving, List<int> currentValue, List<int> futureValue)
+    {
+        int[] array = new int[saving + 1];
+        int n = currentValue.Count;
+
+        for (int i = 1; i <= n; i++)
+        {
+            int weight = currentValue[i - 1];
+            int value = futureValue[i - 1] - currentValue[i - 1];
+
+            for (int j = saving; j >= weight; j--)
+            {
+                array[j] = Math.Max(array[j], array[j - weight] + value);
+            }
+        }
+
+        return array[saving];
+    }
+}
