@@ -1,0 +1,51 @@
+class Result
+{
+
+    /*
+     * Complete the 'countPairs' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY numbers
+     *  2. INTEGER k
+     */
+
+    public static int countPairs(List<int> numbers, int k)
+    {
+        int count = 0;
+
+        HashSet<int> distinctNumbers = new HashSet<int>(numbers);
+
+        List<int> distinctList = distinctNumbers.ToList();
+
+        for (int i = 0; i < distinctList.Count; i++)
+        {
+            int number = distinctList[i];
+
+            if (k == 0)
+            {
+                int frequency = 0;
+
+                for (int j = 0; j < numbers.Count; j++)
+                {
+                    if (numbers[j] == number)
+                    {
+                        frequency++;
+                    }
+                }
+
+                count += (frequency * (frequency - 1)) / 2;
+            }
+            else
+            {
+                int complement = number + k;
+                if (distinctNumbers.Contains(complement))
+                {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+}
