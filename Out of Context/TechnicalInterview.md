@@ -1653,7 +1653,13 @@ In a scope hierarchy, each view has its own $scope. Hence, the variables set by 
 ```ng generate class MyClassName [options]```
 
 #### How do Observables differ from Promises?
+Both observables and promises help us work with asynchronous functionality in JavaScript. Promises deal with one asynchronous event at a time, while observables handle a sequence of asynchronous events over a period of time.<br>
 As soon as a promise is made, the execution takes place. However, this is not the case with observables because they are lazy. This means that nothing happens until a subscription is made. While promises handle a single event, observable is a stream that allows passing of more than one event. A callback is made for each event in an observable.
+- **Promise**: Handles a single event when an async operation completes or fails.
+- **Observable**: More flexible, An Observable is like a Stream (in many languages(read, write, and perform other relevant operations with bytes)) and allows to pass zero or more events where the callback is called for each event.
+
+#### What is a Guard in Angular?
+Route guards are interfaces provided by Angular which, when implemented, allow us to control the accessibility of a route based on conditions provided in class implementation of that interface.
 
 #### Could you explain the concept of templates in Angular?
 Written with HTML, templates in Angular contains Angular-specific attributes and elements. Combined with information coming from the controller and model, templates are then further rendered to cater the user with the dynamic view.
