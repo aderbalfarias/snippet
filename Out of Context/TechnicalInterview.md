@@ -1197,6 +1197,9 @@ CHARINDEX('i', 'Smiley', 1) -- Gives 3 as result as I appears in 3rd position of
 #### What is the difference between COMMIT and ROLLBACK?
 Every statement between ```BEGIN``` and ```COMMIT``` becomes persistent to database when the ```COMMIT``` is executed. Every statement between ```BEGIN``` and ```ROOLBACK``` are reverted to the state when the ```ROLLBACK``` was executed.
 
+#### Explain ```nolock``` in SQL?
+using explicit table hints frequently is considered as a bad practice that you should generally avoid. For the NOLOCK table hint specifically, reading uncommitted data that could be rolled back after you have read it can lead to a **Dirty read** which can occur when reading the data that is being modified or deleted during the uncommitted data read.
+
 #### What is the use of ```@@SPID```?
 A ```@@SPID``` returns the session ID of the current user process.
 
