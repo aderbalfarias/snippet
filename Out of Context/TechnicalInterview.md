@@ -119,17 +119,11 @@ app.UseEndpoints(endpoints =>
 
 app.Run();
 ```
-
-#### What is the use of ```ConfigureServices(IServiceCollection services)``` method of startup ```class```?
-This is an optional method of startup ```class```. It can be used to configure the services that are used by the application. This method calls first when the application is requested for the first time. Using this method, we can do things like adding services to the DI container, so services are available as a dependency in controller constructor.
-
-#### What is the use of the ```Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)``` method of startup ```class```?
-It defines how the application will respond to each HTTP request. We can configure the request pipeline by configuring the middleware. It accepts IApplicationBuilder as a parameter and also it has two optional parameters: IWebHostEnvironment and ILogger. Using this method, we can configure built-in middleware such as routing, authentication, session, etc. as well as third-party or custom middlewares.
-
-#### What is the difference between ```IApplicationBuilder.Use()``` and ```IApplicationBuilder.Run()```?
-We can use both the methods in Configure methods of startup ```class```. Both are used to add middleware delegate to the application request pipeline. 
-- ```IApplicationBuilder.Use()``` may call the next middleware in the pipeline 
-- ```IApplicationBuilder.Run()``` method never calls the subsequent or next middleware. After ```IApplicationBuilder.Run``` method, system stop adding middleware in the request. pipeline.
+Key items:
+- ```var builder = WebApplication.CreateBuilder(args);```
+- ```builder.Services```
+- ```var app = builder.Build();```
+- ```app.Run();```
 
 #### What is routing in ASP.NET Core?
 Routing is functionality that map incoming request to the route handler. The route can have values (extract them from URL) that used to process the request. The Routing uses routes for map incoming request with route handler and Generate URL that used in response.
