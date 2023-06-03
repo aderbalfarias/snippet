@@ -1181,8 +1181,20 @@ SQL Server user-defined functions are routines that accept parameters, perform a
 #### What are aggregate and scalar function?
 Aggregate functions operate against a collection of values and return a single summarizing value. Scalar functions return a single value based on scalar input arguments. Some scalar functions, such as CURRENT_TIME, do not require any arguments.
 
-#### What operator is used to pattern matching 
+#### What operator is used to pattern matching?
 LIKE
+
+#### How to identify slow queries on SQL Server database?
+Approaches to identify slow queries:
+- Query Execution Times: Monitor the execution times of queries using the **SQL Server Profiler or Extended Events**. Capture the duration of each query execution and identify queries that take a long time to complete.
+- SQL Server Dynamic Management Views (DMVs): Utilize DMVs like `sys.dm_exec_query_stats` and `sys.dm_exec_requests` to gather information about query execution and resource usage. These views provide details about query duration, CPU usage, and I/O statistics, allowing you to identify slow-running queries.
+- SQL Server Execution Plans: Analyze the execution plans of queries using SQL Server Management Studio (SSMS). Execution plans provide insights into how the database engine executes a query and can help identify inefficient operations, missing indexes, or other optimization opportunities.
+- SQL Server Profiler: Use SQL Server Profiler to capture a trace of the database activity. You can filter and analyze the captured data to identify queries with longer durations or high resource consumption.
+- Query Store: Enable the Query Store feature in SQL Server to automatically capture query performance information. Query Store tracks query execution statistics, execution plans, and query regressions over time. It provides reports and insights to help you identify and troubleshoot slow queries.
+- Performance Monitoring Tools: Utilize performance monitoring tools like SQL Server Performance Monitor or third-party monitoring solutions like Datadog
+- Indexing and Tuning Advisor: Use the SQL Server Indexing and Tuning Advisor to analyze query workloads and suggest index optimizations. It can provide recommendations to improve query performance based on the captured workload.
+
+Once the slow queries are identified, you can further optimize their performance by considering techniques such as indexing, query optimization, rewriting queries, or redesigning database schema if needed. It's important to carefully analyze the execution plans, identify potential bottlenecks, and apply appropriate optimizations.
 
 <hr>
 
