@@ -381,6 +381,7 @@ Garbage collection is a low-priority process that serves as an automatic memory 
 When **Garbage Collector** performs a collection it checks for objects in the managed heap that are no longer being used by the applications and performs the necessary operations to relcaim the memory, it will stop all running threads and find the objects in the heap that aren't being accessed by the main program and delete them, then reorganize all the objects left in the heap in order to make space and adjust all pointers to these objects in the heap and the stack.<br>
 It can be implemented by using the ```IDisposable interface```.<br>
 ```System.GC.Collect() // Force garbage collection```
+It's important to note that manually enforcing garbage collection is generally not necessary and should be used sparingly. The .NET runtime's garbage collector is highly optimized and performs automatic garbage collection based on various heuristics, balancing memory reclamation with performance considerations.
 
 #### How to pass a method as parameter in C#?
 Using Action if it doesn't return anything or Func if it does return value or reference
@@ -426,6 +427,10 @@ Using ```Sort()``` methods followed by ```Reverse()``` method.
 
 #### What are generics in C#?
 Generics are used to make reusable code classes to decrease the code redundancy, increase type safety, and performance. Using generics, we can create collection classes. To create generic collection, ```System.Collections.Generic``` namespace should be used instead of classes such as ```ArrayList``` in the ```System.Collections``` namespace. Generics promotes the usage of parameterized types.
+```
+public class List<T> { ... }
+public class MyClass<T> where T : IComparable<T> { ... }
+```
 
 #### What are the access modifiers in C# and list them?
 All types and type members have an accessibility level. The accessibility level controls whether they can be used from other code in your assembly or other assemblies. Use the following access modifiers to specify the accessibility of a type or member when you declare it:
