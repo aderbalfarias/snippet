@@ -1381,25 +1381,55 @@ Sass is a meta-language on top of CSS that's used to describe the style of a doc
 ### Front-end Angular
 
 #### How to communication between components angular?
-Using input and output properties: ```@Input()``` decorator, ```@Output()``` decorator 
+- Parent-to-Child Communication (Input Binding): Use input properties to pass data from a parent component to a child component. In the parent component's template, bind a property to the child component's input property using square brackets:
 ```
-@Input() name = '';
-@Input() surname: string;
-@Input('master') masterName = ''; //master is an alias
-  
-@Output() voted = new EventEmitter<boolean>();
-@Output('showRecords') showRecords = new Subject<boolean>();
+<!-- html file -->
+<!-- Parent Component -->
+<app-child [data]="parentData"></app-child>
+```
+```
+// typescript file
+// Parent Component
+export class ParentComponent {
+  parentData: string = "Hello from parent";
+}
 
-vote(agreed: boolean) {
-	this.voted.emit(agreed);
+// Child Component
+export class ChildComponent {
+  @Input() data: string;
 }
-  
-showData(e: any) {
-	this.showRecords.next(e.x);
-}
+
+//The child component can access the data passed from the parent component through the @Input decorator.
 ```
-From Parent to Child: Pass data from parent to child with input binding like ```<app-child [name]="xx"></app-child>```<br>
-From Child to Parent: The child component exposes an EventEmitter property with which it emits events when something happens.
+- Child-to-Parent Communication (Event Emitter): Use output properties and event emitters to emit events from a child component to its parent component. In the child component, define an output property with the @Output decorator and an instance of the EventEmitter class. When an event occurs in the child component, emit the event using the emit() method:
+```
+<!-- html file -->
+<!-- Child Component -->
+<button (click)="sendMessage()">Send Message</button>
+```
+```
+// Child Component
+import { Output, EventEmitter } from '@angular/core';
+
+export class ChildComponent {
+  @Output() messageSent = new EventEmitter<string>();
+
+  sendMessage() {
+    this.messageSent.emit("Hello from child");
+  }
+}
+
+// Parent Component
+export class ParentComponent {
+  receiveMessage(message: string) {
+    console.log(message);
+  }
+}
+
+// In the parent component's template, bind the output property to a method that handles the emitted event using parentheses
+```
+- Service: Use a shared service as a communication medium between components. Create a service with methods and properties that can be accessed by components. Components can inject the service and use its methods to share data or trigger actions. The shared service can use subjects, observables, or event emitters to facilitate communication between components.
+- ViewChild/ViewChildren: Use the `@ViewChild` and `@ViewChildren` decorators to get a reference to a child component or a collection of child components, respectively. This allows the parent component to directly access properties or invoke methods of the child component(s).
 
 #### What is a Directive?
 At the core, a directive is a function that executes whenever the Angular compiler finds it in the DOM. Angular directives are used to extend the power of the HTML by giving it new syntax. Each directive has a name, either one from the Angular predefined like ```ng-repeat```, or a custom one which you can name as you prefer. There are 3 types of directives:
@@ -1409,8 +1439,8 @@ At the core, a directive is a function that executes whenever the Angular compil
 
 #### What are Lifecycle hooks in Angular? Explain some of them
 Angular components enter its lifecycle from the time it is created to the time it is destroyed. Angular hooks provide ways to tap into these phases and trigger changes at specific phases in a lifecycle.
-- ```ngOnChanges()```: Respond when Angular sets or resets data-bound input properties. The method receives a SimpleChanges object of current and previous property values. Called before ```ngOnInit()``` and whenever one or more data-bound input properties change. If your component has no inputs or you use it without providing any inputs it won't be called.
-- ```ngOnInit()```: Initialize the directive or component after Angular first displays the data-bound properties and sets the directive or component's input properties. Called once, after the first ```ngOnChanges()```. 
+- ```ngOnChanges()```: Respond when Angular sets or resets data-bound input properties. The method receives a SimpleChanges object of **current and previous property values**. Called before ```ngOnInit()``` and whenever one or more data-bound input properties change. If your component has no inputs or you use it without providing any inputs it won't be called.
+- ```ngOnInit()```: Initialize the directive or component after Angular first displays the data-bound properties and sets the directive or component's input properties as well as initialization tasks like retrieving data from a service, setting up subscriptions, or initializing component-specific variables. Called once, after the first ```ngOnChanges()```. 
 - ```ngDoCheck()```: Detect and act upon changes that Angular can't or won't detect on its own. Called immediately after ```ngOnChanges()``` on every change detection run, and immediately after ```ngOnInit()``` on the first run.
 - ```ngAfterContentInit()```: Respond after Angular projects external content into the component's view, or into the view that a directive is in. Called once after the first ```ngDoCheck()```.
 - ```ngAfterContentChecked()```: Respond after Angular checks the content projected into the directive or component. Called after ```ngAfterContentInit()``` and every subsequent ```ngDoCheck()```.
