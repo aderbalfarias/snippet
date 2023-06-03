@@ -380,7 +380,7 @@ LINQ in an acronym for Language Integrated Query, it allow data manipulation, re
 Garbage collection is a low-priority process that serves as an automatic memory manager which manages the allocation and release of memory for the applications. Each time a new object is created, the CLR allocates memory for that object from the managed **heap**. As long as free memory space is available in the managed heap the runtime continuos to allocate space for new objects. However memory is not infinite and when heap memory is full garbage collection comes to free some memory.<br>
 When **Garbage Collector** performs a collection it checks for objects in the managed heap that are no longer being used by the applications and performs the necessary operations to relcaim the memory, it will stop all running threads and find the objects in the heap that aren't being accessed by the main program and delete them, then reorganize all the objects left in the heap in order to make space and adjust all pointers to these objects in the heap and the stack.<br>
 It can be implemented by using the ```IDisposable interface```.<br>
-```System.GC.Collect() // Force garbage collection```
+```System.GC.Collect() // Force garbage collection```<br>
 It's important to note that manually enforcing garbage collection is generally not necessary and should be used sparingly. The .NET runtime's garbage collector is highly optimized and performs automatic garbage collection based on various heuristics, balancing memory reclamation with performance considerations.
 
 #### How to pass a method as parameter in C#?
@@ -445,7 +445,15 @@ All types and type members have an accessibility level. The accessibility level 
 Circular reference is situation in which two or more resources are interdependent on each other causes the lock condition and make the resources unusable.
 
 #### List down the commonly used types of exceptions
-```NullReferenceException, ArgumentException, ArgumentNullException, ArithmeticException, OverflowException, IndexOutOfRangeException, InvalidCastException, OutOfMemoryException, StackOverflowException```
+- ```NullReferenceException```
+- ```ArgumentException```
+- ```ArgumentNullException```
+- ```ArithmeticException```
+- ```OverflowException``` 
+- ```IndexOutOfRangeException``` 
+- ```InvalidCastException```
+- ```OutOfMemoryException```
+- ```StackOverflowException```
 
 #### What are the different ways a method can be overloaded?
 Methods can be overloaded using different data types for a parameter, different order of parameters, and different number of parameters.
@@ -466,14 +474,52 @@ Some points about enum:
 - The default type is int, and the approved types are byte, sbyte, short, ushort, uint, long, and ulong.
 - Enums are strongly typed constant. They are strongly typed, i.e. an enum of one type may not be implicitly assigned to an enum of another type even though the underlying value of their members is the same.
 
-#### Explain how ```async``` and ```await``` work?
-The async keyword turns a method into an ```async``` method, which allows you to use the ```await``` keyword in its body. **When the await keyword is applied, it suspends the calling method and yields control back to its caller until the awaited task is complete.** ```await``` can only be used inside an ```async``` method.
-- ```async``` indicates the method is asynchronous (which allows multiple tasks to work concurrently without wait for a specific task to finish).
-- ```await``` suspendes the asynchronous method evaluation.
-
 #### Explain Hashtable in C#?
-The Hashtable is a non-generic collection that stores key-value pairs, similar to generic `Dictionary<TKey, TValue>` collection. It optimizes lookups by computing the hash code of each key and stores it in a different bucket internally and then matches the hash code of the specified key at the time of accessing values.
+The Hashtable is a non-generic collection that stores key-value pairs, similar to generic `Dictionary<TKey, TValue>` collection. It optimizes lookups by computing the hash code of each key and stores it in a different bucket internally and then matches the hash code of the specified key at the time of accessing values.<br>
+Some key points about Hashtables in C#:
+- A Hashtable stores data as a collection of **key-value pairs**, where each key must be unique within the Hashtable
+- The Hashtable internally uses a hash function to generate a hash code for each key
+- Hashtables automatically resize themselves as more elements are added, ensuring efficient performance
+- Hashtables rely on the GetHashCode() and Equals() methods of the keys to determine equality
+- The elements in a Hashtable are not ordered
+- Hashtable is not thread-safe for concurrent read/write operations
+```
+Hashtable hashtable = new Hashtable();
 
+// Adding key-value pairs to the Hashtable
+hashtable.Add("Name", "John");
+hashtable.Add("Age", 30);
+hashtable["City"] = "New York";
+
+// Accessing values using keys
+Console.WriteLine(hashtable["Name"]);  // Output: John
+Console.WriteLine(hashtable["Age"]);   // Output: 30
+Console.WriteLine(hashtable["City"]);  // Output: New York
+
+// Checking if a key exists
+bool containsKey = hashtable.ContainsKey("Name");
+
+// Removing a key-value pair
+hashtable.Remove("Age");
+
+// Iterating over key-value pairs
+foreach (DictionaryEntry entry in hashtable)
+{
+    Console.WriteLine($"{entry.Key}: {entry.Value}");
+}
+```
+Note: it's generally recommended to use Dictionary instead of Hashtable, as Dictionary provides type safety, better performance, and better integration with generics.
+
+#### Explain asynchronous in C#?
+Asynchronous programming in C# allows you to **write code that can run concurrently, performing tasks without blocking the main execution thread**. It enables you to execute operations in the background and efficiently utilize system resources while keeping your application responsive. Asynchronous programming is especially useful when dealing with I/O operations, network requests, or long-running tasks. In C#, you can achieve asynchronous programming using the ```async``` and ```await``` keywords, see definitions:
+- `async` keyword: The `async` keyword is used to define an asynchronous method. An asynchronous method can contain the `await` keyword to indicate points where the method can yield control back to the caller without blocking the thread.
+- `await` keyword: The `await` keyword is used within an `async` method to pause the execution of the method until a particular asynchronous operation completes. The `await` keyword ensures that the method doesn't block the calling thread and allows it to perform other tasks.
+- Asynchronous Methods: An asynchronous method typically returns a `Task` or `Task<T>` representing the asynchronous operation. The method is marked with the `async` keyword, and it can contain `await` expressions to await other asynchronous operations.<br>
+
+By using asynchronous programming, you can achieve the following benefits:
+- Improved Responsiveness: Asynchronous operations allow your application to remain responsive and handle other tasks while waiting for long-running operations to complete.
+- Efficient Resource Utilization: Asynchronous programming enables efficient use of system resources, as threads are not blocked while waiting for I/O or other operations.
+- Scalability: Asynchronous programming enables handling a large number of concurrent operations without requiring a high number of threads.
 <hr>
 
 ### Object-oriented programming (OOP)
