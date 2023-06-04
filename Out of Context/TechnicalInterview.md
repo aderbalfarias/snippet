@@ -1435,7 +1435,7 @@ export class ParentComponent {
 At the core, a directive is a function that executes whenever the Angular compiler finds it in the DOM. Angular directives are used to extend the power of the HTML by giving it new syntax. Each directive has a name, either one from the Angular predefined like ```ng-repeat```, or a custom one which you can name as you prefer. There are 3 types of directives:
 - **Component Directives** These form the main ```class``` having details of how the component should be processed, instantiated and used at runtime.
 - **Structural Directives** basically deals with manipulating the DOM elements. Structural directives have a * sign before the directive. For example, *ngIf and *ngFor.
-- **Attribute Directives** they deal with changing the look and behaviour of the dom element. You can create your own directives.
+- **Attribute Directives** they deal with changing the look and behaviour of the dom element. You can create your own directives. For example, `ngClass` and `ngStyle`
 
 #### What are Lifecycle hooks in Angular? Explain some of them
 Angular components enter its lifecycle from the time it is created to the time it is destroyed. Angular hooks provide ways to tap into these phases and trigger changes at specific phases in a lifecycle.
@@ -1451,11 +1451,30 @@ Angular components enter its lifecycle from the time it is created to the time i
 #### Explain Dependency Injection in Angular?
 Dependency injection is an application design pattern that is implemented by Angular and forms the core concepts of Angular. <br>
 Dependencies in Angular are services which have a functionality. Various components and directives in an application can need these functionalities of the service. Angular provides a smooth mechanism by which these dependencies are injected into components and directives.
+```
+constructor(private userService: UserService) { }
+```
 
 #### How to make Api calls in Angular?
 Using HttpClient request which is service available as an injectable class
 
 ```
+// Standard
+import { HttpClient } from '@angular/common/http';
+constructor(private httpClient: HttpClient) { }
+
+// Make an HTTP GET request:
+// Similarly, you can use other HTTP methods like post(), put(), delete()
+this.httpClient.get('https://api.example.com/data').subscribe((response) => {
+  // Handle the response data here
+}, (error) => {
+  // Handle any errors here
+});
+
+// Handle the response
+// Inside the subscribe() method, you can handle the response data returned by the API
+
+// Other examples:
 return this.httpClient.get<ApiResponse>(url, { params: httpParams, withCredentials: true });
 return this.httpClient.post(url, new type().post(object, type), { withCredentials: true });
 return this.httpClient.delete(url, { withCredentials: true });
@@ -1547,11 +1566,48 @@ combineLatest([requestService.obs$, n1$, n2$]
 #### Describe the MVVM architecture?
 MVVM architecture removes tight coupling between each component. The MVVM architecture comprises of three parts:
 - **Model**: It represents the data and the business logic of an application, or we may say it contains the structure of an entity. It consists of the business logic - local and remote data source, model classes, repository.
-- **View**: View is a visual layer of the application, and so consists of the UI Code(in Angular- HTML template of a component.). It sends the user action to the ViewModel but does not get the response back directly. It has to subscribe to the observables which ViewModel exposes to it to get the response. 
+- **View**: View is a visual layer of the application, and so consists of the UI Code(in Angular-HTML template of a component.). It sends the user action to the ViewModel but does not get the response back directly. It has to subscribe to the observables which ViewModel exposes to it to get the response. 
 - **ViewModel**: It is an abstract layer of the application and acts as a bridge between the View and Model(business logic). It does not have any clue which View has to use it as it does not have a direct reference to the View. View and ViewModel are connected with data-binding so, any change in the View the ViewModel takes note and changes the data inside the Model. It interacts with the Model and exposes the observable that can be observed by the View.
 
 #### How to navigating between different routes in an Angular app?
-The following snippet demonstrate how to do that:
+- Define routes: using the `RouterModule.forRoot()` method in the app's root module (app.module.ts). Configure the routes and associate them with the corresponding components
+- Perform navigation: To navigate to a specific route, you can use the `navigate()` method of the Router instance. Provide the route path as a parameter
+- Pass route parameters: using `navigate()` method
+- Programmatic navigation: You can also navigate programmatically in response to events or user actions. For example, you can navigate on a button click event or after a form submission
+- RouterLink directive: It creates links that navigate to different routes
+```
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './home.component';
+import { AboutComponent } from './about.component';
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+// Component 
+import { Router } from '@angular/router';
+constructor(private router: Router) { }
+
+// Navigate to the 'about' route
+this.router.navigate(['/about']);
+
+// Navigate to the 'product' route with a parameter
+this.router.navigate(['/product', productId]);
+
+<!-- Use RouterLink directive for navigation -->
+<a routerLink="/">Home</a>
+<a routerLink="/about">About</a>
+```
+
+Another snippet demonstrate on how to implement that:
 ```
 import from "@angular/router";
 @Component({
@@ -1581,127 +1637,100 @@ class HeaderComponent {
 }
 ```
 
-#### What is the AOT (Ahead-Of-Time) Compilation? What are its advantages?
-An angular application consists of components and templates which a browser cannot understand. Therefore, every Angular application needs to be compiled before running inside the browser. The Angular compiler takes in the JS code, compiles it, and then produces some JS code. It is known as AOT compilation and happens only once per occasion per user.<br> 
-There are two kinds of compilation that Angular provides:
-- **JIT(Just-in-Time) compilation**: the application compiles inside the browser during runtime
-- **AOT(Ahead-of-Time) compilation**: the application compiles during the build time.
-######
-Advantages of AOT compilation:
-- **Fast Rendering**: The browser loads the executable code and renders it immediately as the application is compiled before running inside the browser. 
-- **Fewer Ajax Requests**: The compiler sends the external HTML and CSS files along with the application, eliminating AJAX requests for those source files. 
-- **Minimizing Errors**: Easy to detect and handle errors during the building phase. 
-- **Better Security**: Before an application runs inside the browser, the AOT compiler adds HTML and templates into the JS files, so there are no extra HTML files to be read, thus providing better security for the application.
-
 #### Could you explain services in Angular?
-Singleton objects in Angular that get instantiated only once during the lifetime of an application are called services. An Angular service contains methods that maintain the data throughout the life of an application.<br> 
+Services act as a central place for storing and managing data, performing business logic, and interacting with external APIs or backend services. They facilitate the separation of concerns and promote reusable and maintainable code.<br>
 The primary intent of an Angular service is to organize as well as share business logic, models, or data and functions with various components of an Angular application.<br> 
 The functions offered by an Angular service can be invoked from any Angular component, such as a controller or directive.
+- Singleton Instances: Services are typically created as singleton instances
+- Injectable Decorator: To use a service, you need to inject it into the components or other services that depend on it. By applying the `@Injectable()` decorator to a service class and registering it in the Angular dependency injection system
+- Business Logic: Services are responsible for encapsulating business logic, such as data manipulation, API calls, state management, and other operations
+- Reusability: Services promote code reusability by allowing you to centralize and share common functionality across multiple components
+- Dependency Injection: Services can depend on other services or Angular built-in services, which enables you to compose complex functionality by injecting the required dependencies
+- Communication Between Components: Services can act as intermediaries for communication between components
+```
+CLI:> ng generate service
+```
 
 #### What is string interpolation in Angular?
 Also referred to as moustache syntax, string interpolation in Angular refers to a special type of syntax that makes use of template expressions in order to display the component data. These template expressions are enclosed within double curly braces i.e. ```{{ }}```.
 
 #### Can you explain the concept of scope hierarchy in Angular?
-Angular organizes the ```$scope``` objects into a hierarchy that is typically used by views. This is known as the scope hierarchy in Angular. It has a root scope that can further contain one or several scopes called child scopes.<br>
-In a scope hierarchy, each view has its own $scope. Hence, the variables set by a view's view controller will remain hidden to other view controllers. Following is a typical representation of a Scope Hierarchy:
-- Root $scope
-	- $scope for Controller 1
-	- $scope for Controller 2 
-	- $scope for Controller n
+The scope hierarchy in Angular is established based on the component's structure and the relationships defined through component nesting or routing. Each component has its own scope that encapsulates its data and functionality. The scope hierarchy allows components to communicate and share data with their parent or child components.
 	
 #### How to generate a ```class``` in Angular using CLI?
 ```ng generate class MyClassName [options]```
 
+#### How to generate a component in Angular using CLI?
+```ng generate component component-name```
+
 #### How do Observables differ from Promises?
-Both observables and promises help us work with asynchronous functionality in JavaScript. Promises deal with one asynchronous event at a time, while observables handle a sequence of asynchronous events over a period of time.<br>
-As soon as a promise is made, the execution takes place. However, this is not the case with observables because they are lazy. This means that nothing happens until a subscription is made. While promises handle a single event, observable is a stream that allows passing of more than one event. A callback is made for each event in an observable.
-- **Promise**: Handles a single event when an async operation completes or fails.
-- **Observable**: More flexible, An Observable is like a Stream (in many languages(read, write, and perform other relevant operations with bytes)) and allows to pass zero or more events where the callback is called for each event.
+Observables and Promises are both used in JavaScript to handle asynchronous operations and manage the flow of data. However, there are some key differences between them:
+- **Promise**
+	- Handles a single event when an async operation completes or fails
+	- Single Value: Promises can only resolve once and provide a single value
+	- Eager Execution: promises are eager and start executing immediately when created
+	- Cancelation: Promises, once initiated, cannot be canceled
+	- Native Browser Support: Promises are native to JavaScript and have good browser support
+- **Observable** 
+	- More flexible allows to pass zero or more events where the callback is called for each event
+	- Multiple Values: Observables can emit multiple values over time and it is capable of representing streams of data, enabling continuous updates and real-time data handling
+	- Lazy: Observables are lazy by nature, meaning they don't execute unless explicitly subscribed to. They are activated and start emitting values only when a subscription is made
+	- Cancelation: Observables support cancelation by unsubscribing from the stream
+	- Time Independence: Observables have the ability to handle time-related operations through operators like `debounceTime`, `throttleTime`, and `interval`
+	- Stream Transformation: Observables provide a rich set of operators to `transform`, `filter`, `merge`, and `combine` streams of data. These operators allow powerful data manipulation and composition
+	- Native Browser Support: bservables, specifically RxJS Observables used in Angular, require an additional library (RxJS)
 
 #### What is a Guard in Angular?
 Route guards are interfaces provided by Angular which, when implemented, allow us to control the accessibility of a route based on conditions provided in class implementation of that interface.
 
 #### Could you explain the concept of templates in Angular?
-Written with HTML, templates in Angular contains Angular-specific attributes and elements. Combined with information coming from the controller and model, templates are then further rendered to cater the user with the dynamic view.
+Written with HTML, templates in Angular contain Angular-specific attributes and elements. Combined with information coming from the controller and model, templates are then further rendered to cater the user with the dynamic view.
 
 #### Explain the difference between an Annotation and a Decorator in Angular?
-- **Annotations** are used for creating an annotation array. They are only metadata set of the ```class``` using the Reflect Metadata library.
-- **Decorators** are design patterns used for separating decoration or modification of some ```class``` without changing the original source code.
+- **Annotations** are used for creating an annotation array. They are only metadata set of the ```class``` using the Reflect Metadata library. Examples of annotations in Angular include `@Component`, `@Directive`, `@Injectable`, `@Input`, `@Output`
+- **Decorators** are design patterns used for separating decoration or modification of some ```class``` without changing the original source code. Decorators in Angular are typically defined using the `@DecoratorName` syntax. Decorators can be used for various purposes, such as logging, performance monitoring, caching, access control, and more.
 
 #### What are the building blocks of Angular?
-There are essentially 9 building blocks of an Angular application. These are:
-- **Components**: A component controls one or more views. Each view is some specific section of the screen. Every Angular application has at least one component, known as the root component. It is bootstrapped inside the main module, known as the root module. A component contains application logic defined inside a ```class```. This ```class``` is responsible for interacting with the view via an API of properties and methods.
+Angular is built upon several core building blocks that work together to create robust and scalable applications. The main building blocks of Angular are:
+- **Modules**: Modules are the fundamental building blocks of Angular applications. They organize the application into cohesive units by grouping related components, directives, pipes, and services together. Modules help with code organization, encapsulation, and dependency management.
+- **Components**: Components are the basic UI building blocks in Angular. They represent parts of the user interface and encapsulate their own logic, template, and styles. Components define the structure and behavior of a specific part of the application, making it reusable and modular.
+- **Templates**: Templates define the visual part of a component. They use HTML syntax and can include Angular-specific syntax and directives to render dynamic content. Templates are responsible for displaying data, handling user interactions, and providing the visual representation of the component.
+- **Directives**: Directives extend the functionality of HTML elements or components. There are three types of directives in Angular: structural directives, attribute directives, and components. Structural directives, such as `ngIf` and `ngFor`, change the structure of the DOM. Attribute directives, such as `ngClass` and `ngStyle`, modify the behavior or appearance of an element.
+- **Services**: Services are responsible for providing shared functionality and data across multiple components. They encapsulate business logic, data access, and other common operations. Services are typically injected into components or other services using Angular's dependency injection mechanism.
+- **Dependency Injection**: Dependency Injection (DI) is a key feature of Angular that allows for loose coupling and modular design. It enables the injection of dependencies into components and services, rather than creating them directly. DI promotes reusability, testability, and maintainability by facilitating the management of dependencies and their configuration.
+- **Routing**: Angular's routing module allows for navigation and routing within the application. It enables the creation of multiple views, each associated with a specific route or URL. Routing allows users to navigate between different components and views within the application without a full page reload.
+- **Forms**: Angular provides powerful features for working with forms, including template-driven forms and reactive forms. Forms allow for user input validation, data binding, and handling form submissions. Angular provides a robust set of form controls, validators, and form-related directive.
 - **Data Binding**: The mechanism by which parts of a template coordinates with parts of a component is known as data binding. In order to let Angular know how to connect both sides (template and its component), the binding markup is added to the template HTML.
-- **Dependency Injection (DI)**: Angular makes use of DI to provide required dependencies to new components. Typically, dependencies required by a component are services. A component's constructor parameters tell Angular about the services that a component requires. So, a dependency injection offers a way to supply fully-formed dependencies required by a new instance of a ```class```.
-- **Directives**: The templates used by Angular are dynamic in nature. Directives are responsible for instructing Angular about how to transform the DOM when rendering a template. Actually, components are directives with a template. Other types of directives are attribute and structural directives.
-- **Metadata**: In order to let Angular know how to process a ```class```, metadata is attached to the ```class```. For doing so decorators are used.
-- **Modules**: Also known as ```NgModules```, a module is an organized block of code with a specific set of capabilities. It has a specific application domain or a workflow. Like components, any Angular application has at least one module. This is known as the root module. Typically, an Angular application has several modules.
-- **Routing**: An Angular router is responsible for interpreting a browser URL as an instruction to navigate to a client-generated view. The router is bound to links on a page to tell Angular to navigate the application view when a user clicks on it.
-- **Services**: A very broad category, a service can be anything ranging from a value and function to a feature that is required by an Angular app. Technically, a service is a ```class``` with a well-defined purpose.
-- **Template**: Each component's view is associated with its companion template. A template in Angular is a form of HTML tags that lets Angular know that how it is meant to render the component.
-
-#### Explain the differences between Angular and jQuery?
-The single biggest difference between Angular and jQuery is that while the former is a JS frontend framework, the latter is a JS library. Despite this, there are some similarities between the two, such as both features DOM manipulation and provides support for animation.<br>
-Nonetheless, notable differences between Angular and jQuery are:
-- Angular has two-way data binding, jQuery does not
-- Angular provides support for RESTful API while jQuery doesn't
-- jQuery doesn't offer deep linking routing though Angular supports it
-- There is no form validation in jQuery whereas it is present in Angular
 
 #### What is Angular Material?
 It is a UI component library. Angular Material helps in creating attractive, consistent, and fully functional web pages as well as web applications. It does so while following modern web design principles, including browser portability and graceful degradation.
 
 #### What is Data Binding? How many ways it can be done?
-In order to connect application data with the DOM (Data Object Model), data binding is used. It happens between the template (HTML) and component (TypeScript). There are 3 ways to achieve data binding:
-- **Event Binding**: Enables the application to respond to user input in the target environment
-```
-import { Component } from '@angular/core';    
-@Component({    
-  selector: 'app-root',    
-  templateUrl: './app.component.html',    
-  styleUrls: ['./app.component.css']    
-})    
-export class AppComponent {      
-  onSave($event){    
-    console.log("Save button is clicked!", $event);    
-  }    
-}    
-
-<button (click)="onSave($event)">Save</button> <!--Event Binding-->  
-```
-- **Property Binding**: Enables interpolation of values computed from application data into the HTML
-```
-import { Component } from '@angular/core';    
-@Component({    
-  selector: 'app-root',    
-  templateUrl: './app.component.html',    
-  styleUrls: ['./app.component.css']    
-})    
-export class AppComponent {    
-  title = "Data binding using Property Binding";      
-  imgUrl="https://xxxxxx.png";    
-}   
-
-<h2>{{ title }}</h2> <!-- String Interpolation -->    
-<img [src]="imgUrl" /> <!-- Property Binding -->   
-```
-- **Two-way Binding**: Changes made in the application state gets automatically reflected in the view and vice-versa. The ```ngModel``` directive is used for achieving this type of data binding.<br>
-```[(ngModel)]``` where the parentheses ```()``` are used to **bind in HTML to component direction** typically used in order to respond to events whereas the calibraces ```[]``` are used to **bind in the componenet to HTML direction** which displays data from component in the page, the reason it is often used is because normally we are editing existing data.
-```
-import { Component } from "@angular/core";    
-@Component({    
-  selector: "app-root",    
-  templateUrl: "./app.component.html",    
-  styleUrls: ["./app.component.css"]    
-})    
-export class AppComponent {    
-  fullName: string = "Hello JavaTpoint";    
-}    
-
-<h2>Two-way Binding Example</h2>    
-   <input [(ngModel)]="fullName" /> <br/><br/>  <!-- Two-Way Binding -->    
-<p> {{fullName}} </p>  
-```
+Data binding in Angular is a mechanism that establishes a connection between the application's data and the user interface. It allows you to synchronize and update data values between the model (data) and the view (UI) automatically. Data binding reduces the need for manual DOM manipulation and simplifies the development process.<br>
+Angular provides three categories of data binding according to the direction of data flow:
+- From source to view:
+	- Interpolation Binding (One-way Binding):
+		- Denoted by double curly braces `{{}}`
+		- Syntax: `{{expression}}`
+		- Example: `<h1>{{pageTitle}}</h1>`
+		- It allows you to bind a component's property or expression directly into the HTML template. The property value is dynamically evaluated and inserted into the template
+	- Property Binding (One-way Binding): 
+		- Denoted by square brackets `[]`
+		- Syntax: `[target]="expression"`
+		- Example: `<input [value]="name">`
+		- It allows you to bind a property of an HTML element to a property of a component. It binds the component's property to the HTML element's property, and any changes in the component's property will reflect in the HTML element
+- From view to source 
+	- Event Binding (One-way Binding):
+		- Denoted by parentheses `()`
+		- Syntax: `(target)="statement"`
+		- Example: `<button (click)="onButtonClick()">Click Me</button>`
+		- Event binding allows you to bind an event of an HTML element to a method in the component. It allows you to respond to user interactions such as button clicks, mouse movements, and keyboard events. When the specified event occurs, the corresponding method in the component is executed.
+- In a two-way sequence of view to source to view:
+	- Two-way Binding:
+		- Denoted by parentheses `[()]`
+		- Syntax: `[(target)]="expression"`
+		- Example: `<input [(ngModel)]="name">`
+		- Two-way binding allows for synchronization of data in both directions, from the component to the template and from the template to the component
 
 #### What is ```ngOnInit()```? How to define it?
 ```ngOnInit()``` is a lifecycle hook that is called after Angular has finished initializing all data-bound properties of a directive.
