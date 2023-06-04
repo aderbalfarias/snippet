@@ -1378,6 +1378,47 @@ Sass is a meta-language on top of CSS that's used to describe the style of a doc
 
 <hr>
 
+### Front-end TypeScript
+
+#### What is TypeScript, and what are its advantages over JavaScript?
+TypeScript is a superset of JavaScript that adds static typing and additional features to JavaScript. Its advantages include:
+- Improved code maintainability.
+- Enhanced tooling and autocompletion.
+- Early error detection.
+- Better code organization with modules, and improved collaboration in large codebases.
+
+#### What are the basic types in TypeScript?
+TypeScript provides several basic types, including `number`, `string`, `boolean`, `object`, `array`, `tuple`, `enum`, `any`, `void`, `null`, and `undefined`.
+
+#### What are interfaces in TypeScript?
+Interfaces in TypeScript define a contract that an object should conform to. They describe the shape of an object by specifying the property names, types, and optionally, methods that the object should have. Interfaces enable type checking and help ensure that objects adhere to a certain structure.
+
+#### What is the difference between interface and type in TypeScript?
+Both interface and type can be used to define object shapes, but there are subtle differences. interface is often used for object shape definitions and can be extended or implemented. type can define not only object shapes but also union types, intersection types, and other advanced types.
+
+#### What are generics in TypeScript, and why are they useful?
+Generics in TypeScript allow the creation of reusable components that can work with multiple types. They enable the creation of flexible and type-safe functions, classes, and interfaces that can handle different data types without sacrificing type safety.
+
+#### How does TypeScript support inheritance and polymorphism?
+TypeScript supports class-based inheritance where a derived class can extend a base class. It also supports method overriding and polymorphism, allowing a derived class to override methods defined in the base class and provide its own implementation.
+
+#### What are access modifiers in TypeScript, and what do they mean?
+Access modifiers (`public`, `private`, and `protected`) define the visibility and accessibility of class members (properties and methods):
+- `public`: Means the member is accessible from anywhere
+- `private`: Restricts access to within the class
+- `protected`: Allows access within the class and its derived classes.
+
+#### How do you handle asynchronous operations in TypeScript?
+TypeScript provides built-in support for promises, async/await, and the async modifier. But in Angular it is possible to use RxJS library which allow to use Observables.
+
+#### How do you compile TypeScript code into JavaScript?
+TypeScript code is transpiled into JavaScript using the TypeScript compiler (tsc). The TypeScript compiler reads .ts files, checks types, and produces corresponding .js files. The compiled JavaScript files can then be executed by any JavaScript runtime environment.
+
+#### How can you configure TypeScript in a project?
+Using a tsconfig.json file, which specifies compiler options, file inclusion/exclusion patterns, module resolution settings, and more.
+
+<hr>
+
 ### Front-end Angular
 
 #### How to communication between components angular?
@@ -1434,7 +1475,7 @@ export class ParentComponent {
 #### What is a Directive?
 At the core, a directive is a function that executes whenever the Angular compiler finds it in the DOM. Angular directives are used to extend the power of the HTML by giving it new syntax. Each directive has a name, either one from the Angular predefined like ```ng-repeat```, or a custom one which you can name as you prefer. There are 3 types of directives:
 - **Component Directives** These form the main ```class``` having details of how the component should be processed, instantiated and used at runtime.
-- **Structural Directives** basically deals with manipulating the DOM elements. Structural directives have a * sign before the directive. For example, *ngIf and *ngFor.
+- **Structural Directives** basically deals with manipulating the DOM elements. Structural directives have a * sign before the directive. For example, *ngIf and *ngFor
 - **Attribute Directives** they deal with changing the look and behaviour of the dom element. You can create your own directives. For example, `ngClass` and `ngStyle`
 
 #### What are Lifecycle hooks in Angular? Explain some of them
@@ -1456,7 +1497,7 @@ constructor(private userService: UserService) { }
 ```
 
 #### How to make Api calls in Angular?
-Using HttpClient request which is service available as an injectable class
+Using HttpClient request which is service available as an injectable class.
 
 ```
 // Standard
@@ -1570,11 +1611,11 @@ MVVM architecture removes tight coupling between each component. The MVVM archit
 - **ViewModel**: It is an abstract layer of the application and acts as a bridge between the View and Model(business logic). It does not have any clue which View has to use it as it does not have a direct reference to the View. View and ViewModel are connected with data-binding so, any change in the View the ViewModel takes note and changes the data inside the Model. It interacts with the Model and exposes the observable that can be observed by the View.
 
 #### How to navigating between different routes in an Angular app?
-- Define routes: using the `RouterModule.forRoot()` method in the app's root module (app.module.ts). Configure the routes and associate them with the corresponding components
-- Perform navigation: To navigate to a specific route, you can use the `navigate()` method of the Router instance. Provide the route path as a parameter
-- Pass route parameters: using `navigate()` method
-- Programmatic navigation: You can also navigate programmatically in response to events or user actions. For example, you can navigate on a button click event or after a form submission
-- RouterLink directive: It creates links that navigate to different routes
+- Define routes: using the `RouterModule.forRoot()` method in the app's root module (app.module.ts). Configure the routes and associate them with the corresponding components.
+- Perform navigation: To navigate to a specific route, you can use the `navigate()` method of the Router instance. Provide the route path as a parameter.
+- Pass route parameters: using `navigate()` method.
+- Programmatic navigation: You can also navigate programmatically in response to events or user actions. For example, you can navigate on a button click event or after a form submission.
+- RouterLink directive: It creates links that navigate to different routes.
 ```
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -1641,47 +1682,52 @@ class HeaderComponent {
 Services act as a central place for storing and managing data, performing business logic, and interacting with external APIs or backend services. They facilitate the separation of concerns and promote reusable and maintainable code.<br>
 The primary intent of an Angular service is to organize as well as share business logic, models, or data and functions with various components of an Angular application.<br> 
 The functions offered by an Angular service can be invoked from any Angular component, such as a controller or directive.
-- Singleton Instances: Services are typically created as singleton instances
-- Injectable Decorator: To use a service, you need to inject it into the components or other services that depend on it. By applying the `@Injectable()` decorator to a service class and registering it in the Angular dependency injection system
-- Business Logic: Services are responsible for encapsulating business logic, such as data manipulation, API calls, state management, and other operations
-- Reusability: Services promote code reusability by allowing you to centralize and share common functionality across multiple components
-- Dependency Injection: Services can depend on other services or Angular built-in services, which enables you to compose complex functionality by injecting the required dependencies
-- Communication Between Components: Services can act as intermediaries for communication between components
-```
-CLI:> ng generate service
-```
+- Singleton Instances: Services are typically created as singleton instances.
+- Injectable Decorator: To use a service, you need to inject it into the components or other services that depend on it. By applying the `@Injectable()` decorator to a service class and registering it in the Angular dependency injection system.
+- Business Logic: Services are responsible for encapsulating business logic, such as data manipulation, API calls, state management, and other operations.
+- Reusability: Services promote code reusability by allowing you to centralize and share common functionality across multiple components.
+- Dependency Injection: Services can depend on other services or Angular built-in services, which enables you to compose complex functionality by injecting the required dependencies.
+- Communication Between Components: Services can act as intermediaries for communication between components.
 
-#### What is string interpolation in Angular?
-Also referred to as moustache syntax, string interpolation in Angular refers to a special type of syntax that makes use of template expressions in order to display the component data. These template expressions are enclosed within double curly braces i.e. ```{{ }}```.
+#### How to generate a Service in Angular using CLI?
+```ng generate service MyServiceName --module=app```
 
-#### Can you explain the concept of scope hierarchy in Angular?
-The scope hierarchy in Angular is established based on the component's structure and the relationships defined through component nesting or routing. Each component has its own scope that encapsulates its data and functionality. The scope hierarchy allows components to communicate and share data with their parent or child components.
-	
 #### How to generate a ```class``` in Angular using CLI?
 ```ng generate class MyClassName [options]```
 
 #### How to generate a component in Angular using CLI?
 ```ng generate component component-name```
 
+#### What is string interpolation in Angular?
+Also referred to as moustache syntax, string interpolation in Angular refers to a special type of syntax that makes use of template expressions in order to display the component data. These template expressions are enclosed within double curly braces i.e. ```{{ }}```
+
+#### Can you explain the concept of scope hierarchy in Angular?
+The scope hierarchy in Angular is established based on the component's structure and the relationships defined through component nesting or routing. Each component has its own scope that encapsulates its data and functionality. The scope hierarchy allows components to communicate and share data with their parent or child components.
+
 #### How do Observables differ from Promises?
 Observables and Promises are both used in JavaScript to handle asynchronous operations and manage the flow of data. However, there are some key differences between them:
 - **Promise**
-	- Handles a single event when an async operation completes or fails
-	- Single Value: Promises can only resolve once and provide a single value
-	- Eager Execution: promises are eager and start executing immediately when created
-	- Cancelation: Promises, once initiated, cannot be canceled
-	- Native Browser Support: Promises are native to JavaScript and have good browser support
+	- Handles a single event when an async operation completes or fails.
+	- Single Value: Promises can only resolve once and provide a single value.
+	- Eager Execution: promises are eager and start executing immediately when created.
+	- Cancelation: Promises, once initiated, cannot be canceled.
+	- Native Browser Support: Promises are native to JavaScript and have good browser support.
 - **Observable** 
-	- More flexible allows to pass zero or more events where the callback is called for each event
-	- Multiple Values: Observables can emit multiple values over time and it is capable of representing streams of data, enabling continuous updates and real-time data handling
-	- Lazy: Observables are lazy by nature, meaning they don't execute unless explicitly subscribed to. They are activated and start emitting values only when a subscription is made
-	- Cancelation: Observables support cancelation by unsubscribing from the stream
-	- Time Independence: Observables have the ability to handle time-related operations through operators like `debounceTime`, `throttleTime`, and `interval`
-	- Stream Transformation: Observables provide a rich set of operators to `transform`, `filter`, `merge`, and `combine` streams of data. These operators allow powerful data manipulation and composition
-	- Native Browser Support: bservables, specifically RxJS Observables used in Angular, require an additional library (RxJS)
+	- More flexible allows to pass zero or more events where the callback is called for each event.
+	- Multiple Values: Observables can emit multiple values over time and it is capable of representing streams of data, enabling continuous updates and real-time data handling.
+	- Lazy: Observables are lazy by nature, meaning they don't execute unless explicitly subscribed to. They are activated and start emitting values only when a subscription is made.
+	- Cancelation: Observables support cancelation by unsubscribing from the stream.
+	- Time Independence: Observables have the ability to handle time-related operations through operators like `debounceTime`, `throttleTime`, and `interval`.
+	- Stream Transformation: Observables provide a rich set of operators to `transform`, `filter`, `merge`, and `combine` streams of data. These operators allow powerful data manipulation and composition.
+	- Native Browser Support: bservables, specifically RxJS Observables used in Angular, require an additional library (RxJS).
 
-#### What is a Guard in Angular?
-Route guards are interfaces provided by Angular which, when implemented, allow us to control the accessibility of a route based on conditions provided in class implementation of that interface.
+#### What are Route Guards in Angular?
+Route guards are interfaces provided by Angular which, when implemented, allow us to control the accessibility of a route based on conditions provided in class implementation of that interface. It tells the router whether or not it should allow navigation to a requested route. They make this decision by looking for a boolean return value from a class which implements the given guard interface. The guards are: 
+- `CanActivate`
+- `CanActivateChild`
+- `CanDeactivate`
+- `CanLoad`
+- `Resolve`
 
 #### Could you explain the concept of templates in Angular?
 Written with HTML, templates in Angular contain Angular-specific attributes and elements. Combined with information coming from the controller and model, templates are then further rendered to cater the user with the dynamic view.
@@ -1713,12 +1759,12 @@ Angular provides three categories of data binding according to the direction of 
 		- Denoted by double curly braces `{{}}`
 		- Syntax: `{{expression}}`
 		- Example: `<h1>{{pageTitle}}</h1>`
-		- It allows you to bind a component's property or expression directly into the HTML template. The property value is dynamically evaluated and inserted into the template
+		- It allows you to bind a component's property or expression directly into the HTML template. The property value is dynamically evaluated and inserted into the template.
 	- Property Binding (One-way Binding): 
 		- Denoted by square brackets `[]`
 		- Syntax: `[target]="expression"`
 		- Example: `<input [value]="name">`
-		- It allows you to bind a property of an HTML element to a property of a component. It binds the component's property to the HTML element's property, and any changes in the component's property will reflect in the HTML element
+		- It allows you to bind a property of an HTML element to a property of a component. It binds the component's property to the HTML element's property, and any changes in the component's property will reflect in the HTML element.
 - From view to source 
 	- Event Binding (One-way Binding):
 		- Denoted by parentheses `()`
@@ -1730,21 +1776,15 @@ Angular provides three categories of data binding according to the direction of 
 		- Denoted by parentheses `[()]`
 		- Syntax: `[(target)]="expression"`
 		- Example: `<input [(ngModel)]="name">`
-		- Two-way binding allows for synchronization of data in both directions, from the component to the template and from the template to the component
+		- Two-way binding allows for synchronization of data in both directions, from the component to the template and from the template to the component.
 
 #### What is ```ngOnInit()```? How to define it?
 ```ngOnInit()``` is a lifecycle hook that is called after Angular has finished initializing all data-bound properties of a directive.
 
-#### How to generate a Component in Angular using CLI?
-```ng generate component MyComponentName```
-
-#### How to generate a Service in Angular using CLI?
-```ng generate service MyServiceName --module=app```
-
 #### What is RxJS? 
 RxJS is a library for composing asynchronous and event-based programs by using observable sequences. It provides one core type, the Observable, satellite types (Observer, Schedulers, Subjects) and operators inspired by Array#extras (map, filter, reduce, every, etc) to allow handling asynchronous events as collections.<br>
 Observable: represents the idea of an invokable collection of future values or events.<br>
-Observer: is a collection of callbacks that knows how to listen to values delivered by the Observable
+Observer: is a collection of callbacks that knows how to listen to values delivered by the Observable.
 
 #### What is Lazy-loading in Angular?
 The lazy load is implemented in the routes using # in the route of the special keyword loadChildren
@@ -1755,19 +1795,28 @@ The lazy load is implemented in the routes using # in the route of the special k
 }
 ```
 
-#### What are Route Guards?
-Angular’s route guards are interfaces which can tell the router whether or not it should allow navigation to a requested route. They make this decision by looking for a true or false return value from a class which implements the given guard interface. The guards are: CanActivate, CanActivateChild, CanDeactivate, CanLoad, Resolve.
-
 #### What is View Encapsulation?
 In Angular, component CSS styles are encapsulated into the component's view and don't affect the rest of the application. To control how this encapsulation happens on a per component basis, you can set the view encapsulation mode in the component metadata.<br>
-To set the component's encapsulation mode, use the encapsulation property in the component metadata encapsulation as ShadowDom, Emulated or None 
-```encapsulation: ViewEncapsulation.ShadowDom```
+To set the component's encapsulation mode, use the encapsulation property in the component metadata encapsulation as `ShadowDom`, `Emulated` or `None`
+```
+import { Component, ViewEncapsulation } from '@angular/core';
 
-- ```ShadowDom``` view encapsulation uses the browser's native shadow DOM implementation to attach a shadow DOM to the component's host element, and then puts the component view inside that shadow DOM. The component's styles are included within the shadow DOM.
+@Component({
+  selector: 'app-example',
+  templateUrl: 'example.component.html',
+  styleUrls: ['example.component.css'],
+  encapsulation: ViewEncapsulation.Emulated
+})
+export class ExampleComponent {
+  // Component logic here
+}
+```
+- ```Emulated``` (Default): In this mode, also known as "Shadow DOM," Angular emulates the shadow DOM behavior by appending a unique attribute to the HTML elements of the component's template. The styles defined in the component's CSS or SCSS file are scoped and applied only to the specific component and its children. It isolates the styles within the component, preventing them from leaking out and affecting other components.
+- ```ShadowDom```: The "ShadowDom" mode uses the native Shadow DOM provided by the browser. It creates a shadow DOM subtree for the component and encapsulates the styles within that subtree. The styles defined in the component's CSS or SCSS file are scoped to the shadow DOM and don't affect the outer DOM or other components.
+- ```None```: When using the "None" mode, the styles defined in the component's CSS or SCSS file are not encapsulated. They become global styles and can affect the entire application. This mode should be used with caution as it may lead to style conflicts and unintended side effects when multiple components define conflicting styles.
 
-- ```Emulated``` view encapsulation (the default) emulates the behavior of shadow DOM by preprocessing (and renaming) the CSS code to effectively scope the CSS to the component's view
-
-- ```None``` means that Angular does no view encapsulation. Angular adds the CSS to the global styles. The scoping rules, isolations, and protections discussed earlier don't apply. This is essentially the same as pasting the component's styles into the HTML
+#### What the keyword `export` represents in Angular?
+In Angular, the export keyword is used to make components, directives, services, or other entities available for use outside of their defining module. When a component or other entity is exported, it can be imported and used in other parts of the application.
 
 #### Samples of Component and Service in Angular
 - Component TypeScript clients.component.ts
@@ -2061,6 +2110,15 @@ Note: Unit test you mock everything else on the other hand in Integration test y
 
 ### Architecture
 
+#### Explain hexagonal architecture?
+Also known as Ports and Adapters architecture or the Onion architecture, is a software architectural pattern that promotes a modular and flexible design for building applications. It emphasizes separation of concerns and isolates the core business logic from external dependencies.<br>
+The key concept in hexagonal architecture is the notion of the application's core or the domain layer. This layer represents the heart of the application and encapsulates the business rules and domain-specific logic. It is surrounded by layers of adapters that handle the interaction with the external systems, such as the user interface, databases, external services, or third-party libraries. The main components in hexagonal architecture:
+- Core/Domain: This layer contains the application's core logic and business rules. It represents the domain-specific concepts and entities. The core does not depend on any external systems or frameworks and should be decoupled from implementation details.
+- Ports: Ports are interfaces or contracts that define the interaction points between the core and the external world. They represent the services or operations that the application provides or requires. Ports define the boundaries of the application and ensure loose coupling with external dependencies.
+- Adapters: Adapters implement the ports and provide the necessary infrastructure to connect the application to external systems. There are two types of adapters:
+	- Inbound Adapters: Also known as primary adapters, these handle the incoming requests from external systems, such as the user interface or API endpoints. They translate the external input into a format that the core can understand and invoke the corresponding operations.
+	- Outbound Adapters: Also known as secondary adapters, these handle the communication with external systems, such as databases, third-party APIs, or message queues. They abstract the details of the external systems and provide a simplified interface for the core to interact with.
+
 #### What is REST?
 Representational state transfer (REST) is a software architectural style that was created to guide the design and development of the architecture for the World Wide Web. REST defines a set of constraints for how the architecture of an Internet-scale distributed hypermedia system, such as the Web, should behave. The REST architectural style emphasises the scalability of interactions between components, uniform interfaces, independent deployment of components. It provides operations (HTTP methods) such as GET, POST, PUT, and DELETE.
 
@@ -2094,15 +2152,6 @@ Dead letter queue is a service implementation to store messages that meet one or
 #### Architectural principle: Separation of concerns
 A guiding principle when developing is Separation of Concerns. This principle asserts that software should be separated based on the kinds of work it performs. For instance, consider an application that includes logic for identifying noteworthy items to display to the user, and which formats such items in a particular way to make them more noticeable. The behaviour responsible for choosing which items to format should be kept separate from the behaviour responsible for formatting the items, since these behaviours are separate concerns that are only coincidentally related to one another.<br>
 Architecturally, applications can be logically built to follow this principle by separating core business behaviour from infrastructure and user-interface logic. Ideally, business rules and logic should reside in a separate project, which should not depend on other projects in the application. This separation helps ensure that the business model is easy to test and can evolve without being tightly coupled to low-level implementation details. Separation of concerns is a key consideration behind the use of layers in application architectures.
-
-#### Architectural principle: Dependency inversion
-The direction of dependency within the application should be in the direction of abstraction, not implementation details. Most applications are written such that compile-time dependency flows in the direction of runtime execution, producing a direct dependency graph.<br>
-Dependency inversion is a key part of building loosely coupled applications, since implementation details can be written to depend on and implement higher-level abstractions, rather than the other way around. The resulting applications are more testable, modular, and maintainable as a result. The practice of dependency injection is made possible by following the dependency inversion principle.
-
-#### Architectural principle: Single responsibility
-The single responsibility principle applies to object-oriented design, but can also be considered as an architectural principle similar to the separation of concerns. It states that objects should have only one responsibility and that they should have only one reason to change. Specifically, the only situation in which the object should change is if the manner in which it performs its one responsibility must be updated. Following this principle helps to produce more loosely coupled and modular systems since many kinds of new behaviour can be implemented as new classes rather than by adding additional responsibility to existing classes. Adding new classes is always safer than changing existing classes since no code yet depends on the new classes.<br>
-In a monolithic application we can apply the single responsibility principle at a high level to the layers in the application. Presentation responsibility should remain in the UI project, while data access responsibility should be kept within an infrastructure project. Business logic should be kept in the application core project, where it can be easily tested and can evolve independently from other responsibilities.<br>
-When this principle is applied to application architecture and taken to its logical endpoint, you get microservices. A given microservice should have a single responsibility. If you need to extend the behaviour of a system, it's usually better to do it by adding additional microservices, rather than by adding responsibility to an existing one.
 
 #### Architectural principle: Don't repeat yourself (DRY)
 The application should avoid specifying behaviour related to a particular concept in multiple places as this practice is a frequent source of errors. At some point, a change in requirements will require changing this behaviour. It's likely that at least one instance of the behaviour will fail to be updated, and the system will behave inconsistently.<br>
