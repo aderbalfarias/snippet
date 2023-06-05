@@ -281,8 +281,21 @@ int y = (int) myObj; // Unboxing
 - Reference type stores the address of the object where the value is being stored. It is a pointer to another memory location. ```string y = "Hello World!";```
 
 #### Constants vs Readonly Variables 
-- Constants can be declared in methods or global context they are declared with ```const``` modifier, it is used for immutable values, they are evaluated at compile time, user-defined types, including classes, structs, and arrays, cannot be ```const```.
-- Readonly cannot be delcared in methods, they use ```readonly``` modifier, they are evaluated at runtime, it also can hold reference-type variables, it is mostly used when its actual value is unknown before the runtime and it can only be inilialised at the time of declaration or in a constructor.
+Constants and readonly variables are both used to declare values that cannot be modified during runtime, but they have some differences in terms of their usage and behavior.
+- Constants:
+	- Declared using the `const` keyword.
+	- Evaluated at compile-time.
+	- They must be initialized with a value at the time of declaration, and the value cannot be changed afterward.
+	- Implicitly static, meaning they belong to the type rather than an instance of the type.
+	- It can only hold compile-time constant values, such as primitive types (numbers, strings, booleans) or literals.
+	- Typically used for values that are known and fixed at compile-time.
+- Readonly Variables:
+	- Declared using the readonly modifier.
+	- Evaluated at runtime, and their values can be determined dynamically.
+	- They can be initialized at the time of declaration or within the constructor of the class.
+	- It is instance-level, meaning each instance of a class can have its own value for the readonly variable.
+	- Holds any value that can be assigned to the variable type, including values calculated at runtime.
+	- Typically used for values that can be determined at runtime.
 
 #### ```public``` vs ```static``` vs ```void``` 
 - ```public``` declared variables or methods are accessible anywhere in the application. 
