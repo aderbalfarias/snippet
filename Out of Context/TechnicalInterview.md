@@ -1751,7 +1751,7 @@ Observables and Promises are both used in JavaScript to handle asynchronous oper
 	- Cancelation: Observables support cancelation by unsubscribing from the stream.
 	- Time Independence: Observables have the ability to handle time-related operations through operators like `debounceTime`, `throttleTime`, and `interval`.
 	- Stream Transformation: Observables provide a rich set of operators to `transform`, `filter`, `merge`, and `combine` streams of data. These operators allow powerful data manipulation and composition.
-	- Native Browser Support: bservables, specifically RxJS Observables used in Angular, require an additional library (RxJS).
+	- Native Browser Support: Observables, specifically RxJS Observables used in Angular, require an additional library (RxJS).
 
 #### What are Route Guards in Angular?
 Route guards are interfaces provided by Angular which, when implemented, allow us to control the accessibility of a route based on conditions provided in class implementation of that interface. It tells the router whether or not it should allow navigation to a requested route. They make this decision by looking for a boolean return value from a class which implements the given guard interface. The guards are: 
