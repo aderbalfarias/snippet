@@ -509,12 +509,12 @@ Some points about enum:
 #### Explain Hashtable in C#?
 The Hashtable is a non-generic collection that stores key-value pairs, similar to generic `Dictionary<TKey, TValue>` collection. It optimizes lookups by computing the hash code of each key and stores it in a different bucket internally and then matches the hash code of the specified key at the time of accessing values.<br>
 Some key points about Hashtables in C#:
-- A Hashtable stores data as a collection of **key-value pairs**, where each key must be unique within the Hashtable
-- The Hashtable internally uses a hash function to generate a hash code for each key
-- Hashtables automatically resize themselves as more elements are added, ensuring efficient performance
-- Hashtables rely on the GetHashCode() and Equals() methods of the keys to determine equality
-- The elements in a Hashtable are not ordered
-- Hashtable is not thread-safe for concurrent read/write operations
+- A Hashtable stores data as a collection of **key-value pairs**, where each key must be unique within the Hashtable.
+- The Hashtable internally uses a hash function to generate a hash code for each key.
+- Hashtables automatically resize themselves as more elements are added, ensuring efficient performance.
+- Hashtables rely on the GetHashCode() and Equals() methods of the keys to determine equality.
+- The elements in a Hashtable are not ordered.
+- Hashtable is not thread-safe for concurrent read/write operations.
 ```
 Hashtable hashtable = new Hashtable();
 
