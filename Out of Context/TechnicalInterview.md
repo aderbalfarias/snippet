@@ -479,7 +479,16 @@ Circular reference is situation in which two or more resources are interdependen
 - ```StackOverflowException```
 
 #### What are the different ways a method can be overloaded?
-Methods can be overloaded using different data types for a parameter, different order of parameters, and different number of parameters.
+Methods can be overloaded by:
+- Different number of parameters.
+- Different parameter types.
+- Different parameter order.
+```
+void MyMethod(int a)
+void MyMethod(int a, int b)
+void MyMethod(int a, string b)
+void MyMethod(string b, int a)
+```
 
 #### Explain property in C#?
 A property is a member that provides a flexible mechanism to read, write, or compute the value of a private field. Properties can be used as if they are public data members, but they are actually special methods called accessors. This enables data to be accessed easily and still helps promote the safety and flexibility of methods.
