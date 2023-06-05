@@ -305,42 +305,37 @@ Constants and readonly variables are both used to declare values that cannot be 
 #### ```ref``` vs ```out``` parameters
 An argument passed as ```ref``` must be initialized before passing to the method whereas ```out``` parameter needs not to be initialized before passing to a method.
 
-#### ```Array``` vs ```Arraylist```
+#### ```Array``` vs ```ArrayList```
 In an ```array```, we can have items of the same type only. The size of the ```array``` is fixed when compared. To an ```arraylist``` is similar to an array, but it doesn't have a fixed size.
 
 #### ```System.Array.CopyTo()``` and ```System.Array.Clone()```
-Using ```Clone()``` method, we creates a new array object containing all the elements in the original Array and using ```CopyTo()``` method all the elements of existing array copies into another existing array. Both methods perform a shallow copy.
+Using ```Clone()``` method, we create a new array object containing all the elements in the original Array and using ```CopyTo()``` method all the elements of existing array copies into another existing array. Both methods perform a shallow copy.
 
 #### ```is``` vs ```as``` operators
-- ```is``` operator is used to check the compatibility of an object with a given type, and it returns the result as ```Boolean```.
+- ```is``` operator is used to check the compatibility of an object with a given type, and it returns the result as ```boolean```.
 - ```as``` operator is used for casting of an object to a type or a ```class```
 
 #### ```throw``` vs ```throw ex```
 ```throw``` statement preserves original error stack whereas ```throw ex``` have the stack trace from their ```throw``` point. It is always advised to use ```throw``` because it provides more accurate error information.
 
-#### Sync vs Async
-- Synchronous, data is sent in form of blocks or frames. Full duplex type, compulsory sincronization.
-- Asynchronous, data is sent in form of byte or character. Half duplex transmission, start bits and stop bits are added with data it does not require synchronization.
-
 #### ```break``` vs ```continue```
 ```break``` leaves the loop completely and executes the statements after the loop. Whereas ```continue``` leaves the current iteration and executes with the next value in the loop. ```break``` completely exits the loop. ```continue``` skips the statements after the ```continue``` statement and keeps looping.
 
 #### ```struct``` vs ```class```
- 
 Class and struct are both user-defined data types, but have some major differences:
-##### ```struct```:
-- The struct is a value type in C# and it inherits from System.Value type.
-- Struct is usually used for smaller amounts of data.
-- Struct can't be inherited from other types.
-- A structure can't be abstract.
-- No need to create an object with a new keyword.
-- Do not have permission to create any default constructor.
-##### ```class```:
-- The class is a reference type in C# and it inherits from the System.Object type.
-- Classes are usually used for large amounts of data.
-- Classes can be inherited from other classes.
-- A class can be an abstract type.
-- We can create a default constructor.
+- ```struct```:
+	- The struct is a value type in C# and it inherits from System.Value type.
+	- Struct is usually used for smaller amounts of data.
+	- Struct can't be inherited from other types.
+	- A structure can't be abstract.
+	- No need to create an object with a new keyword.
+	- Do not have permission to create any default constructor.
+- ```class```:
+	- The class is a reference type in C# and it inherits from the System.Object type.
+	- Classes are usually used for large amounts of data.
+	- Classes can be inherited from other classes.
+	- A class can be an abstract type.
+	- We can create a default constructor.
 
 <hr>
 
