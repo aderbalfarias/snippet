@@ -178,7 +178,22 @@ public class List<T>
 ### C# Versus
 
 #### ```abstract class``` vs ```interface```
-An ```abstract class``` allows you to create functionalities, it can be partially implemented with methods and operations which allow subclasses to implement or override and ```abstract class``` can have constructors. An interface only allows you to define functionalities, not implement it (however from C# 8.0 on you can have default methods and you also can change modifiers). And whereas a ```class``` can extend only one ```abstract class```, it can take advantage of multiple interfaces.
+Abstract classes and interfaces are both mechanisms for defining contracts and promoting code reuse in object-oriented programming but thy have some distinct characteristics:
+- Abstract Class:
+	- Is a class that cannot be instantiated and serves as a blueprint for derived classes.
+	- It can contain both implemented and abstract methods.
+	- Abstract methods are declared without an implementation and must be overridden by the derived classes.
+	- It can have fields, properties, constructors, and non-abstract methods.
+	- It can provide a default implementation for some or all of its members.
+	- A class can inherit from only one abstract class.
+	- It is used when you want to provide a common base with some default behavior for derived classes to extend and override.
+- Interface:
+	- Is a contract that defines a set of methods and properties that a class must implement.
+	- It contains only method and property declarations without any implementation.
+	- All methods and properties in an interface are implicitly abstract and public.
+	- A class can implement multiple interfaces, allowing for multiple inheritance of behavior.
+	- It is used when you want to define a common set of functionality that can be implemented by unrelated classes.
+	- Since C# 8.0 you can have default methods and you also can change modifiers.
 
 #### ```System.String``` vs ```System.StringBuilder```
 - ```System.String```: It is immutable, it means when a string object is created you cannot modify and you have always to create a new object string type in memory.<br>  
