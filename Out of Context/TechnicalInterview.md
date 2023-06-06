@@ -308,6 +308,15 @@ An argument passed as ```ref``` must be initialized before passing to the method
 #### ```Array``` vs ```ArrayList```
 In an ```array```, we can have items of the same type only. The size of the ```array``` is fixed when compared. To an ```arraylist``` is similar to an array, but it doesn't have a fixed size.
 
+#### ```Array``` vs ```List```
+- Arrays: 
+	- Fixed size that is determined at the time of their creation.
+	- Adding or removing elements in an array requires creating a new array.
+- Lists: 
+	- Dynamic size and can grow or shrink dynamically as elements are added or removed.
+	- Lists provide methods like `Add()` and `Remove()` that simplify adding and removing elements.
+	- Offer additional functionality and flexibility compared to arrays.
+
 #### ```System.Array.CopyTo()``` and ```System.Array.Clone()```
 Using ```Clone()``` method, we create a new array object containing all the elements in the original Array and using ```CopyTo()``` method all the elements of existing array copies into another existing array. Both methods perform a shallow copy.
 
@@ -355,8 +364,8 @@ lock (_object)
 #### Explain the keyword ```virtual```?
 The ```virtual``` keyword is used to modify a method, property, indexer, or event declaration and allow for it to be overridden in a derived class. You cannot use the virtual modifier with the ```static, abstract, private, override``` modifiers.
 
-#### Explain what happen if a method has the ```abstract``` keyword?
-It must be overridden.
+#### Explain what happen if a menber (method, property, indexer, or event) has the ```abstract``` keyword?
+It must be overridden or implemented by derived classes.
 
 #### Explain the keyword ```volatile```?
 The ```volatile``` keyword indicates that a field might be modified by multiple threads that are executing at the same time. The compiler, the runtime system, and even hardware may rearrange reads and writes to memory locations for performance reasons. Fields that are declared volatile are not subject to these optimizations.
@@ -366,6 +375,13 @@ The using keyword has three major uses:<br>
 - The using statement defines a scope at the end of which an object will be disposed.
 - The using directive creates an alias for a namespace or imports types defined in other namespaces.
 - The using static directive imports the members of a single ```class```.
+
+#### Explain the keyword `new`?
+- Creating Objects: The most common use of the `new` keyword is for creating instances of classes.
+- Overriding Members: The `new` keyword can be used to explicitly hide or shadow a member (method, property, or event) from the base class. By using the `new` keyword, you indicate that you intentionally want to provide a new implementation for the member, and you are aware of the potential name clash.
+- Explicit Interface Implementation: When a class implements an interface, it is possible that the class already has a member with the same signature as the interface member. In such cases, the `new` keyword is used to explicitly implement the interface member.
+- Creating Arrays: The `new` keyword is used to create an array of elements in C#.
+- Creating Instances of Anonymous Types.
 
 #### Explain the keyword ```unsafe```?
 The ```unsafe``` keyword denotes an unsafe context, which is required for any operation involving pointers. You can use the ```unsafe``` modifier in the declaration of a type or a member. The entire textual extent of the type or member is therefore considered an unsafe context
@@ -714,7 +730,7 @@ Types of Dependency Injection:
 
 Dependency Lifetimes<br>
 At registration time, dependencies require a lifetime definition. The service lifetime defines the conditions under which a new service instance will be created. Below are the lifetimes defined by the ASP.NET DI framework. The terminology may be different if you choose to use a different framework.<br>
-- **Transient** – Created every time they are requested
+- **Transient** – Created every time they are requested.
 - **Scoped** – Created once per scope. Most of the time, scope refers to a web request. But this can also be used for any unit of work, such as the execution of an Azure Function.
 - **Singleton** – Created only for the first request. If a particular instance is specified at registration time, this instance will be provided to all consumers of the registration type.
 
@@ -742,6 +758,69 @@ The facade pattern is appropriate when you have a complex system that you want t
 #### [Adapter](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Adapter.linq)
 Adapter is a **Structural Pattern** which converts the interface of a ```class``` into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.<br>
 Suppose you have a Bird ```class``` with ```fly()```, and ```makeSound()``` methods. And also a ToyDuck ```class``` with ```squeak()``` method. Let’s assume that you are short on ToyDuck objects and you would like to use Bird objects in their place. Birds have some similar functionality but implement a different interface, so we can't use them directly. So we will use adapter pattern.
+
+#### Strategy Pattern
+It is a behavioral design pattern that allows you to define a family of algorithms, encapsulate each one as a separate class, and make them interchangeable at runtime. It enables the client to dynamically select and use different algorithms or strategies without tightly coupling the client code to a specific implementation.
+- Define the Strategy Interface: Create an interface that defines a contract for all the strategies. This interface typically declares one or more methods that represent the algorithms to be executed.
+- Implement Concrete Strategies: Create concrete classes that implement the strategy interface. Each concrete strategy encapsulates a specific algorithm or behavior.
+- Use Composition: In the client class or context, use composition to define a reference to the strategy interface. This allows the client to work with any strategy that adheres to the interface.
+- Set the Strategy: At runtime, the client can dynamically set or switch between different strategies by assigning a specific concrete strategy object to the strategy interface reference.
+```
+public interface IPricingStrategy
+{
+    double Calculate(double price);
+}
+
+public class RegularPricing : IPricingStrategy
+{
+    public double Calculate(double price)
+    {
+        // Apply regular pricing calculation logic
+        return price;
+    }
+}
+
+public class PremiumPricing : IPricingStrategy
+{
+    public double Calculate(double price)
+    {
+        // Apply premium pricing calculation logic
+        return price * 0.8;
+    }
+}
+
+public class BillingSystem
+{
+    private IPricingStrategy pricingStrategy;
+
+    public void SetPricingStrategy(IPricingStrategy strategy)
+    {
+        this.pricingStrategy = strategy;
+    }
+
+    public double CalculateTotalCost(double price)
+    {
+        double discountedPrice = pricingStrategy.Calculate(price);
+        // Perform additional calculations and return the total cost
+        return discountedPrice;
+    }
+}
+
+
+// ------------------------------------------------------------
+// now use it dinamically where the client code should be like:
+
+var billingSystem = new BillingSystem();
+
+// Use regular pricing strategy
+billingSystem.SetPricingStrategy(new RegularPricingStrategy());
+double totalCost = billingSystem.CalculateTotalCost(100.0);
+
+// Use premium pricing strategy
+billingSystem.SetPricingStrategy(new PremiumPricingStrategy());
+totalCost = billingSystem.CalculateTotalCost(100.0);
+
+```
 
 <hr>
 
