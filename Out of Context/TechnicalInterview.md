@@ -738,92 +738,696 @@ At registration time, dependencies require a lifetime definition. The service li
 - **Scoped** – Created once per scope. Most of the time, scope refers to a web request. But this can also be used for any unit of work, such as the execution of an Azure Function.
 - **Singleton** – Created only for the first request. If a particular instance is specified at registration time, this instance will be provided to all consumers of the registration type.
 
-#### [Chain of Responsibility](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/ChainOfResponsibility.linq)
-Chain of Responsibility is a **Behavioural Pattern** that simplifies object interconnections. Instead of senders and receivers maintaining references to all candidate receivers, each sender keeps a single reference to the head of the chain, and each receiver keeps a single reference to its immediate successor in the chain.<br>
-The derived classes know how to satisfy Client requests. If the "current" object is not available or sufficient, then it delegates to the base ```class```, which delegates to the "next" object, and the circle of life continues.
-
-#### [Observer](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/Observer.linq)
-Observer is a **Behavioural Pattern** in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.<br>
-Observer pattern is used when there is a one-to-many relationship between objects such as if one object is modified, its dependent objects are to be notified automatically. Observer pattern falls under behavioural pattern category.
-
-#### [Abstract Factory](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Creational%20Patterns/AbstractFactory.linq)
-Abstract Factory is a **Creational Pattern** that lets you produce families of related objects without specifying their concrete classes.<br>
-Provide a level of indirection that abstracts the creation of families of related or dependent objects without directly specifying their concrete classes. The "factory" object has the responsibility for providing creation services for the entire platform family. Clients never create platform objects directly, they ask the factory to do that for them.
-
-#### [Singleton](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Creational%20Patterns/Singleton.linq)
-Singleton is a **Creational Pattern** which makes the ```class``` of the single instance object responsible for the creation, initialization, access, and enforcement. Declare the instance as a private static data member. Provide a public static member function that encapsulates all initialization code, and provides access to the instance.<br>
-The Singleton pattern can be extended to support access to an application-specific number of instances.<br>
-The Singleton pattern ensures that a ```class``` has only one instance and provides a global point of access to that instance. It is named after the singleton set, which is defined to be a set containing one element. The office of the President of the United States is a Singleton.
-
-#### [Facade](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Facade.linq)
-Facade is a **Structural Pattern** that hides the complexities of the system and provides an interface to the client using which the client can access the system. This pattern involves a single ```class``` which provides simplified methods required by client and delegates calls to methods of existing system classes.<br>
-The facade pattern is appropriate when you have a complex system that you want to expose to clients in a simplified way, or you want to make an external communication layer over an existing system which is incompatible with the system. Facade deals with interfaces, not implementation. Its purpose is to hide the internal complexity behind a single interface that appears simple on the outside.
-
-#### [Adapter](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Adapter.linq)
-Adapter is a **Structural Pattern** which converts the interface of a ```class``` into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.<br>
-Suppose you have a Bird ```class``` with ```fly()```, and ```makeSound()``` methods. And also a ToyDuck ```class``` with ```squeak()``` method. Let’s assume that you are short on ToyDuck objects and you would like to use Bird objects in their place. Birds have some similar functionality but implement a different interface, so we can't use them directly. So we will use adapter pattern.
-
-#### Strategy Pattern
-It is a behavioral design pattern that allows you to define a family of algorithms, encapsulate each one as a separate class, and make them interchangeable at runtime. It enables the client to dynamically select and use different algorithms or strategies without tightly coupling the client code to a specific implementation.
+#### [Strategy Pattern](https://github.com/aderbalfarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/Strategy.linq)
+It is a **behavioral pattern** that allows you to define a family of algorithms, encapsulate each one as a separate class, and make them interchangeable at runtime. It enables the client to dynamically select and use different algorithms or strategies without tightly coupling the client code to a specific implementation.
 - Define the Strategy Interface: Create an interface that defines a contract for all the strategies. This interface typically declares one or more methods that represent the algorithms to be executed.
 - Implement Concrete Strategies: Create concrete classes that implement the strategy interface. Each concrete strategy encapsulates a specific algorithm or behavior.
 - Use Composition: In the client class or context, use composition to define a reference to the strategy interface. This allows the client to work with any strategy that adheres to the interface.
 - Set the Strategy: At runtime, the client can dynamically set or switch between different strategies by assigning a specific concrete strategy object to the strategy interface reference.
 ```
-public interface IPricingStrategy
+public interface IStrategy
 {
-    double Calculate(double price);
+    void Execute();
 }
 
-public class RegularPricing : IPricingStrategy
+public class StrategyA : IStrategy
 {
-    public double Calculate(double price)
+    public void Execute()
     {
-        // Apply regular pricing calculation logic
-        return price;
+        Console.WriteLine("Executing Strategy A");
     }
 }
 
-public class PremiumPricing : IPricingStrategy
+public class StrategyB : IStrategy
 {
-    public double Calculate(double price)
+    public void Execute()
     {
-        // Apply premium pricing calculation logic
-        return price * 0.8;
+        Console.WriteLine("Executing Strategy B");
     }
 }
 
-public class BillingSystem
+public class StrategyService
 {
-    private IPricingStrategy pricingStrategy;
+    private readonly IStrategy _strategy;
 
-    public void SetPricingStrategy(IPricingStrategy strategy)
+    public StrategyService(IStrategy strategy)
     {
-        this.pricingStrategy = strategy;
+        _strategy = strategy;
     }
 
-    public double CalculateTotalCost(double price)
+    public void ExecuteStrategy()
     {
-        double discountedPrice = pricingStrategy.Calculate(price);
-        // Perform additional calculations and return the total cost
-        return discountedPrice;
+        _strategy.Execute();
     }
 }
 
+// Usage with DI
+var services = new ServiceCollection();
+services.AddTransient<IStrategy, StrategyA>(); // Register StrategyA implementation
+services.AddTransient<IStrategy, StrategyB>(); // Register StrategyB implementation
+services.AddTransient<StrategyService>(); // Register the StrategyService
 
-// ------------------------------------------------------------
-// now use it dinamically where the client code should be like:
+var serviceProvider = services.BuildServiceProvider();
 
-var billingSystem = new BillingSystem();
+// Call the Strategy from the Client:
+var strategyService = serviceProvider.GetService<StrategyService>();
+// Execute Strategy A
+strategyService.ExecuteStrategy();
 
-// Use regular pricing strategy
-billingSystem.SetPricingStrategy(new RegularPricingStrategy());
-double totalCost = billingSystem.CalculateTotalCost(100.0);
+// Change to Strategy B
+serviceProvider.GetService<IStrategy>() = serviceProvider.GetService<StrategyB>();
+// Execute Strategy B
+strategyService.ExecuteStrategy();
+```
 
-// Use premium pricing strategy
-billingSystem.SetPricingStrategy(new PremiumPricingStrategy());
-totalCost = billingSystem.CalculateTotalCost(100.0);
+#### [Mediator](https://github.com/aderbalfarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/Mediator.linq)
+The Mediator is a **behavioral pattern** that promotes loose coupling between components by encapsulating their interactions within a mediator object. It allows components to communicate with each other indirectly through the mediator, rather than directly referring to each other.<br>
+The Mediator pattern consists of the following components:
+- Mediator: This is the central component that encapsulates the interactions between other components. It defines an interface for communication between components and manages their interactions.
+- Colleague: These are the individual components that need to communicate with each other. They are aware of the mediator and communicate with it instead of directly interacting with other colleagues.
+```
+// Mediator interface
+public interface IMediator
+{
+    void SendMessage(string message, Colleague colleague);
+}
 
+// Colleague base class
+public abstract class Colleague
+{
+    protected readonly IMediator _mediator;
+
+    public Colleague(IMediator mediator)
+    {
+        _mediator = mediator;
+    }
+
+    public abstract void ReceiveMessage(string message);
+    public abstract void SendMessage(string message);
+}
+
+// Concrete colleagues
+public class ConcreteColleagueA : Colleague
+{
+    public ConcreteColleagueA(IMediator mediator) : base(mediator)
+    {
+    }
+
+    public override void ReceiveMessage(string message)
+    {
+        Console.WriteLine("ConcreteColleagueA received: " + message);
+    }
+
+    public override void SendMessage(string message)
+    {
+        _mediator.SendMessage(message, this);
+    }
+}
+
+public class ConcreteColleagueB : Colleague
+{
+    public ConcreteColleagueB(IMediator mediator) : base(mediator)
+    {
+    }
+
+    public override void ReceiveMessage(string message)
+    {
+        Console.WriteLine("ConcreteColleagueB received: " + message);
+    }
+
+    public override void SendMessage(string message)
+    {
+        _mediator.SendMessage(message, this);
+    }
+}
+
+// Concrete mediator
+public class ConcreteMediator : IMediator
+{
+    private ConcreteColleagueA _colleagueA;
+    private ConcreteColleagueB _colleagueB;
+
+    public void SetColleagueA(ConcreteColleagueA colleagueA)
+    {
+        _colleagueA = colleagueA;
+    }
+
+    public void SetColleagueB(ConcreteColleagueB colleagueB)
+    {
+        _colleagueB = colleagueB;
+    }
+
+    public void SendMessage(string message, Colleague colleague)
+    {
+        if (colleague == _colleagueA)
+        {
+            _colleagueB.ReceiveMessage(message);
+        }
+        else if (colleague == _colleagueB)
+        {
+            _colleagueA.ReceiveMessage(message);
+        }
+    }
+}
+
+// Client code
+class Program
+{
+    static void Main(string[] args)
+    {
+        ConcreteMediator mediator = new ConcreteMediator();
+
+        ConcreteColleagueA colleagueA = new ConcreteColleagueA(mediator);
+        ConcreteColleagueB colleagueB = new ConcreteColleagueB(mediator);
+
+        mediator.SetColleagueA(colleagueA);
+        mediator.SetColleagueB(colleagueB);
+
+        colleagueA.SendMessage("Hello from Colleague A");
+        colleagueB.SendMessage("Hi from Colleague B");
+    }
+}
+```
+**MediatR**: It is a popular library in the .NET ecosystem for implementing the Mediator pattern. MediatR is a lightweight mediator implementation that simplifies communication between components in a decoupled manner.
+```
+// Define Requests
+public class CreateUserRequest : IRequest<User>
+{
+    public string Username { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+}
+
+// Define Request Handlers
+public class CreateUserRequestHandler : IRequestHandler<CreateUserRequest, User>
+{
+    public Task<User> Handle(CreateUserRequest request, CancellationToken cancellationToken)
+    {
+        // Logic to create a new user and return the result
+        return Task.FromResult(newUser);
+    }
+}
+
+// Set up MediatR and Send Requests
+services.AddMediatR(typeof(Startup));
+
+// Use MediatR to send requests
+var mediator = serviceProvider.GetRequiredService<IMediator>();
+
+var request = new CreateUserRequest
+{
+    Username = "john.doe",
+    Email = "john.doe@example.com",
+    Password = "password123"
+};
+
+var result = await mediator.Send(request);
+```
+
+#### [Chain of Responsibility](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/ChainOfResponsibility.linq)
+Chain of Responsibility is a **behavioural pattern** that simplifies object interconnections. Instead of senders and receivers maintaining references to all candidate receivers, each sender keeps a single reference to the head of the chain, and each receiver keeps a single reference to its immediate successor in the chain.<br>
+The derived classes know how to satisfy Client requests. If the "current" object is not available or sufficient, then it delegates to the base ```class```, which delegates to the "next" object, and the circle of life continues.
+```
+// Handler interface
+public abstract class Handler
+{
+    protected Handler nextHandler;
+
+    public void SetNextHandler(Handler handler)
+    {
+        nextHandler = handler;
+    }
+
+    public abstract void HandleRequest(string request);
+}
+
+// Concrete Handlers
+public class ConcreteHandlerA : Handler
+{
+    public override void HandleRequest(string request)
+    {
+        if (request == "A")
+        {
+            Console.WriteLine("ConcreteHandlerA handles the request: " + request);
+        }
+        else if (nextHandler != null)
+        {
+            nextHandler.HandleRequest(request);
+        }
+    }
+}
+
+public class ConcreteHandlerB : Handler
+{
+    public override void HandleRequest(string request)
+    {
+        if (request == "B")
+        {
+            Console.WriteLine("ConcreteHandlerB handles the request: " + request);
+        }
+        else if (nextHandler != null)
+        {
+            nextHandler.HandleRequest(request);
+        }
+    }
+}
+
+public class ConcreteHandlerC : Handler
+{
+    public override void HandleRequest(string request)
+    {
+        if (request == "C")
+        {
+            Console.WriteLine("ConcreteHandlerC handles the request: " + request);
+        }
+        else if (nextHandler != null)
+        {
+            nextHandler.HandleRequest(request);
+        }
+    }
+}
+
+// Client code
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Create the chain of handlers
+        Handler handlerA = new ConcreteHandlerA();
+        Handler handlerB = new ConcreteHandlerB();
+        Handler handlerC = new ConcreteHandlerC();
+
+        handlerA.SetNextHandler(handlerB);
+        handlerB.SetNextHandler(handlerC);
+
+        // Send requests to the chain
+        handlerA.HandleRequest("B");
+        handlerA.HandleRequest("C");
+        handlerA.HandleRequest("D");
+    }
+}
+```
+
+#### [Template](https://github.com/aderbalfarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/Template.linq)
+The Template is a **behavioral pattern** that allows you to define the skeleton of an algorithm in a base class, while letting subclasses provide specific implementations for certain steps of the algorithm. It promotes code reuse and provides a consistent structure for a series of related algorithms. Here's how the Template Pattern works:
+- Define an abstract base class
+- Declare abstract methods
+- Implement the template method
+- Create concrete subclasses
+- Customize the algorithm
+- Use the template method
+```
+// Abstract base class defining the template
+public abstract class AbstractClass
+{
+    // Template method
+    public void TemplateMethod()
+    {
+        CommonStep();
+        SpecificStep();
+    }
+
+    // Common step implemented in the base class
+    protected void CommonStep()
+    {
+        Console.WriteLine("Performing common step");
+    }
+
+    // Abstract method to be implemented by subclasses
+    protected abstract void SpecificStep();
+}
+
+// Concrete subclass 1
+public class ConcreteClass1 : AbstractClass
+{
+    // Specific step implementation for ConcreteClass1
+    protected override void SpecificStep()
+    {
+        Console.WriteLine("Performing specific step for ConcreteClass1");
+    }
+}
+
+// Concrete subclass 2
+public class ConcreteClass2 : AbstractClass
+{
+    // Specific step implementation for ConcreteClass2
+    protected override void SpecificStep()
+    {
+        Console.WriteLine("Performing specific step for ConcreteClass2");
+    }
+}
+
+// Client code
+class Program
+{
+    static void Main(string[] args)
+    {
+        AbstractClass concrete1 = new ConcreteClass1();
+        concrete1.TemplateMethod();
+
+        Console.WriteLine();
+
+        AbstractClass concrete2 = new ConcreteClass2();
+        concrete2.TemplateMethod();
+    }
+}
+```
+
+#### [Observer](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Behavioral%20Patterns/Observer.linq)
+Observer is a **behavioural pattern** in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.<br>
+Observer pattern is used when there is a one-to-many relationship between objects such as if one object is modified, its dependent objects are to be notified automatically. Observer pattern falls under behavioural pattern category.
+
+#### [Abstract Factory](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Creational%20Patterns/AbstractFactory.linq)
+Abstract Factory is a **creational pattern** that lets you produce families of related objects without specifying their concrete classes.<br>
+Provide a level of indirection that abstracts the creation of families of related or dependent objects without directly specifying their concrete classes. The "factory" object has the responsibility for providing creation services for the entire platform family. Clients never create platform objects directly, they ask the factory to do that for them.
+```
+// Abstract product interfaces
+public interface IProductA
+{
+    void OperationA();
+}
+
+public interface IProductB
+{
+    void OperationB();
+}
+
+// Concrete product classes
+public class ConcreteProductA1 : IProductA
+{
+    public void OperationA()
+    {
+        Console.WriteLine("Concrete Product A1: Operation A");
+    }
+}
+
+public class ConcreteProductA2 : IProductA
+{
+    public void OperationA()
+    {
+        Console.WriteLine("Concrete Product A2: Operation A");
+    }
+}
+
+public class ConcreteProductB1 : IProductB
+{
+    public void OperationB()
+    {
+        Console.WriteLine("Concrete Product B1: Operation B");
+    }
+}
+
+public class ConcreteProductB2 : IProductB
+{
+    public void OperationB()
+    {
+        Console.WriteLine("Concrete Product B2: Operation B");
+    }
+}
+
+// Abstract factory
+public interface IAbstractFactory
+{
+    IProductA CreateProductA();
+    IProductB CreateProductB();
+}
+
+// Concrete factories
+public class ConcreteFactory1 : IAbstractFactory
+{
+    public IProductA CreateProductA()
+    {
+        return new ConcreteProductA1();
+    }
+
+    public IProductB CreateProductB()
+    {
+        return new ConcreteProductB1();
+    }
+}
+
+public class ConcreteFactory2 : IAbstractFactory
+{
+    public IProductA CreateProductA()
+    {
+        return new ConcreteProductA2();
+    }
+
+    public IProductB CreateProductB()
+    {
+        return new ConcreteProductB2();
+    }
+}
+
+// Client code
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Create a concrete factory
+        IAbstractFactory factory = new ConcreteFactory1();
+
+        // Create products using the factory
+        IProductA productA = factory.CreateProductA();
+        IProductB productB = factory.CreateProductB();
+
+        // Use the products
+        productA.OperationA();
+        productB.OperationB();
+    }
+}
+```
+
+#### [Singleton](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Creational%20Patterns/Singleton.linq)
+Singleton is a **creational pattern** which makes the ```class``` of the single instance object responsible for the creation, initialization, access, and enforcement. Declare the instance as a private static data member. Provide a public static member function that encapsulates all initialization code, and provides access to the instance.<br>
+The Singleton pattern can be extended to support access to an application-specific number of instances.<br>
+The Singleton pattern ensures that a ```class``` has only one instance and provides a global point of access to that instance. It is named after the singleton set, which is defined to be a set containing one element. The office of the President of the United States is a Singleton.
+```
+public sealed class Singleton
+{
+    private static Singleton _instance;
+    private static readonly object _lock = new object();
+
+    private Singleton()
+    {
+        // Private constructor to prevent instantiation from outside the class
+    }
+
+    public static Singleton Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        _instance = new Singleton();
+                    }
+                }
+            }
+            return _instance;
+        }
+    }
+
+    public void SomeMethod()
+    {
+        // Perform some operations
+    }
+}
+
+// Calling it
+Singleton singleton = Singleton.Instance;
+singleton.SomeMethod();
+```
+
+#### [Facade](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Facade.linq)
+Facade is a **structural pattern** that hides the complexities of the system and provides an interface to the client using which the client can access the system. This pattern involves a single ```class``` which provides simplified methods required by client and delegates calls to methods of existing system classes.<br>
+The facade pattern is appropriate when you have a complex system that you want to expose to clients in a simplified way, or you want to make an external communication layer over an existing system which is incompatible with the system. Facade deals with interfaces, not implementation. Its purpose is to hide the internal complexity behind a single interface that appears simple on the outside.
+```
+// Complex subsystem classes
+public class SubsystemA
+{
+    public void OperationA()
+    {
+        Console.WriteLine("SubsystemA: Operation A");
+    }
+}
+
+public class SubsystemB
+{
+    public void OperationB()
+    {
+        Console.WriteLine("SubsystemB: Operation B");
+    }
+}
+
+public class SubsystemC
+{
+    public void OperationC()
+    {
+        Console.WriteLine("SubsystemC: Operation C");
+    }
+}
+
+// Facade class
+public class Facade
+{
+    private readonly SubsystemA _subsystemA;
+    private readonly SubsystemB _subsystemB;
+    private readonly SubsystemC _subsystemC;
+
+    public Facade()
+    {
+        _subsystemA = new SubsystemA();
+        _subsystemB = new SubsystemB();
+        _subsystemC = new SubsystemC();
+    }
+
+    public void PerformOperation()
+    {
+        _subsystemA.OperationA();
+        _subsystemB.OperationB();
+        _subsystemC.OperationC();
+    }
+}
+
+// Client code
+class Program
+{
+    static void Main(string[] args)
+    {
+        Facade facade = new Facade();
+        facade.PerformOperation();
+    }
+}
+```
+
+#### [Adapter](https://github.com/AderbalFarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Adapter.linq)
+Adapter is a **structural pattern** which converts the interface of a ```class``` into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces. It acts as a bridge between two incompatible interfaces, allowing them to collaborate without needing to modify their existing code.<br>
+Suppose you have a Bird ```class``` with ```fly()```, and ```makeSound()``` methods. And also a ToyDuck ```class``` with ```squeak()``` method. Let’s assume that you are short on ToyDuck objects and you would like to use Bird objects in their place. Birds have some similar functionality but implement a different interface, so we can't use them directly. So we will use adapter pattern.<br>
+The Adapter pattern consists of the following components:
+- Target: This defines the interface that the client code expects to work with.
+- Adaptee: This is the existing class or component with an incompatible interface that needs to be adapted.
+- Adapter: This is the class that adapts the Adaptee's interface to match the Target interface. It acts as a wrapper around the Adaptee, translating the requests from the Target into the appropriate calls to the Adaptee.
+```
+// Target interface
+public interface ITarget
+{
+    void Request();
+}
+
+// Adaptee
+public class Adaptee
+{
+    public void SpecificRequest()
+    {
+        Console.WriteLine("Adaptee: Specific Request");
+    }
+}
+
+// Adapter
+public class Adapter : ITarget
+{
+    private readonly Adaptee _adaptee;
+
+    public Adapter(Adaptee adaptee)
+    {
+        _adaptee = adaptee;
+    }
+
+    public void Request()
+    {
+        // Perform any necessary operations or transformations
+        // and then delegate the request to the Adaptee
+        _adaptee.SpecificRequest();
+    }
+}
+
+// Client code
+class Program
+{
+    static void Main(string[] args)
+    {
+        Adaptee adaptee = new Adaptee();
+        ITarget adapter = new Adapter(adaptee);
+
+        adapter.Request();
+    }
+}
+```
+
+#### [Bridge](https://github.com/aderbalfarias/snippet/blob/master/Design%20Patterns/Structural%20Patterns/Bridge.linq)
+The Bridge is a **structural pattern** that decouples an abstraction from its implementation, allowing them to vary independently. It is used when you want to separate the abstraction and its implementation into two separate hierarchies, allowing them to evolve independently without being tightly coupled.
+```
+// Abstraction
+public abstract class Shape
+{
+    protected IRenderer renderer;
+
+    public Shape(IRenderer renderer)
+    {
+        this.renderer = renderer;
+    }
+
+    public abstract void Draw();
+}
+
+// Refined Abstraction
+public class Circle : Shape
+{
+    private float radius;
+
+    public Circle(float radius, IRenderer renderer) : base(renderer)
+    {
+        this.radius = radius;
+    }
+
+    public override void Draw()
+    {
+        renderer.RenderCircle(radius);
+    }
+}
+
+// Implementation
+public interface IRenderer
+{
+    void RenderCircle(float radius);
+}
+
+// Concrete Implementation
+public class VectorRenderer : IRenderer
+{
+    public void RenderCircle(float radius)
+    {
+        Console.WriteLine($"Drawing a circle of radius {radius} using VectorRenderer");
+    }
+}
+
+public class RasterRenderer : IRenderer
+{
+    public void RenderCircle(float radius)
+    {
+        Console.WriteLine($"Drawing a circle of radius {radius} using RasterRenderer");
+    }
+}
+
+// Client code
+class Program
+{
+    static void Main(string[] args)
+    {
+        IRenderer vectorRenderer = new VectorRenderer();
+        IRenderer rasterRenderer = new RasterRenderer();
+
+        Shape circle1 = new Circle(5, vectorRenderer);
+        Shape circle2 = new Circle(10, rasterRenderer);
+
+        circle1.Draw();
+        circle2.Draw();
+    }
+}
 ```
 
 <hr>
