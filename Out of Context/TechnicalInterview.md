@@ -494,6 +494,10 @@ Circular reference is situation in which two or more resources are interdependen
 - ```OutOfMemoryException```
 - ```StackOverflowException```
 
+#### Explain the `finally` statement in C#?
+It is used in conjunction with a try-catch block to define a block of code that will always be executed, regardless of whether an exception is thrown or not. The finally block is executed after the try block completes, regardless of whether an exception occurs or not, and even if there is a matching catch block.<br>
+The `finally` block is commonly used for releasing resources, closing connections, or performing other cleanup operations that need to be executed regardless of exceptions. It helps ensure that necessary cleanup tasks are always performed, promoting reliable and robust code execution.
+
 #### What are the different ways a method can be overloaded?
 Methods can be overloaded by:
 - Different number of parameters.
