@@ -2537,6 +2537,14 @@ export class ExampleComponent {
 #### What the keyword `export` represents in Angular?
 In Angular, the export keyword is used to make components, directives, services, or other entities available for use outside of their defining module. When a component or other entity is exported, it can be imported and used in other parts of the application.
 
+#### What is the difference between `Subject` and `BehaviorSubject`?
+- `Subject`:
+	- **It does not have an initial value**. When a new subscriber subscribes to a `Subject`, it only receives the values emitted after the subscription.
+	- It does not replay any past values.
+- `BehaviorSubject`:
+	- **It requires an initial value** when created. Subscribers to a `BehaviorSubject` will receive the current value or the initial value when they subscribe.
+	- It emembers the last emitted value and replays it to new subscribers. When a new subscriber subscribes to a `BehaviorSubject`, it immediately receives the last emitted value, even if it was emitted before the subscription.
+
 #### What is the difference between template-driven forms and reactive forms in Angular?
 Template-driven forms are based on Angular's declarative template syntax. Form controls and validation are defined directly in the HTML template using directives like `ngModel`. Template-driven forms are easy to set up and suitable for simple forms with basic validation requirements. On the other hand, reactive forms are based on reactive programming principles using the `FormControl`, `FormGroup`, and `FormBuilder` classes. Reactive forms provide a more flexible and explicit approach to managing forms. They allow for dynamic form structures, complex validation scenarios, and easier programmatic access to form values.
 
