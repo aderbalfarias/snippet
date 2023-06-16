@@ -2109,6 +2109,43 @@ TypeScript is a superset of JavaScript that adds static typing and additional fe
 #### What are the basic types in TypeScript?
 TypeScript provides several basic types, including `number`, `string`, `boolean`, `object`, `array`, `tuple`, `enum`, `any`, `void`, `null`, and `undefined`.
 
+#### Explain the spread operator `...` in TypeScript?
+It is used to manipulate arrays or objects in various ways. It allows you to spread the elements of an array or object into another array or object:
+- Array Concatenation
+```
+const array1 = [1, 2, 3];
+const array2 = [4, 5, 6];
+const mergedArray = [...array1, ...array2];
+console.log(mergedArray); // Output: [1, 2, 3, 4, 5, 6]
+```
+- Spread elements of an array.
+```
+const numbers = [1, 2, 3];
+const allNumbers = [...numbers, 4, 5];
+console.log(allNumbers); // Output: [1, 2, 3, 4, 5]
+```
+- Spread elements of an object.
+```
+const person = { name: 'John', age: 30 };
+const updatedPerson = { ...person, age: 31 };
+console.log(updatedPerson); // Output: { name: 'John', age: 31 }
+```
+- Function Arguments
+```
+function sumNumbers(...numbers: number[]): number {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+
+const result = sumNumbers(1, 2, 3, 4, 5);
+console.log(result); // Output: 15
+```
+- Array Copy
+```
+const originalArray = [1, 2, 3];
+const copiedArray = [...originalArray];
+console.log(copiedArray); // Output: [1, 2, 3]
+```
+
 #### What are interfaces in TypeScript?
 Interfaces in TypeScript define a contract that an object should conform to. They describe the shape of an object by specifying the property names, types, and optionally, methods that the object should have. Interfaces enable type checking and help ensure that objects adhere to a certain structure.
 
